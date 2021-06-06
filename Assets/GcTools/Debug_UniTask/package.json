@@ -1,0 +1,17 @@
+{
+    "name": "com.gigacee.gc-tools-for-unity-debug-unitask",
+    "version": "1.0.0",
+    "displayName": "GC Tools / Debug / UniTask",
+    "unity": "2019.4",
+    "dependencies": {
+        "com.gigacee.gc-tools-for-unity-core": "1.0.0",
+        "com.gigacee.gc-tools-for-unity-debug-core": "1.0.0",
+        "com.neuecc.unirx": "7.1.0",
+        "com.cysharp.unitask": "2.2.5"
+    },
+    "author": {
+        "name": "Gigacee",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
+}

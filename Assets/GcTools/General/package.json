@@ -1,0 +1,11 @@
+{
+    "name": "com.gigacee.gc-tools-for-unity-general",
+    "version": "1.0.0",
+    "displayName": "GC Tools / General",
+    "unity": "2019.4",
+    "author": {
+        "name": "Gigacee",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
+}

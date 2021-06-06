@@ -1,0 +1,17 @@
+{
+    "name": "GcTools.Debug.Ui",
+    "references": [
+        "GUID:22b3f71ddbc6b4e4a8f784666ef3b096",
+        "GUID:c284d179a5cb8514c80c08a132215d74",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

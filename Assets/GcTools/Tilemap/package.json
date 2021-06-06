@@ -1,0 +1,14 @@
+{
+    "name": "com.gigacee.gc-tools-for-unity-tilemap",
+    "version": "1.0.0",
+    "displayName": "GC Tools / Tilemap",
+    "unity": "2019.4",
+    "dependencies": {
+        "com.unity.2d.tilemap": "1.0.0"
+    },
+    "author": {
+        "name": "Gigacee",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
+}
