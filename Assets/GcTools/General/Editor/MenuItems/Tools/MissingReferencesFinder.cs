@@ -98,7 +98,6 @@ namespace GcTools
                     if (!component)
                     {
                         Debug.LogError($"Missing Component in GameObject: {GetFullPath(go)}", go);
-
                         continue;
                     }
 
@@ -107,7 +106,8 @@ namespace GcTools
 
                     PropertyInfo objRefValueMethod = typeof(SerializedProperty).GetProperty(
                         "objectReferenceStringValue",
-                        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public
+                    );
 
                     while (sp.NextVisible(true))
                     {
