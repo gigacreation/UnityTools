@@ -5,16 +5,16 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static GcTools.MenuItemConstants;
 
 namespace GcTools
 {
     public static class MissingReferencesFinder
     {
-        private const int BasePriority = -2100000000;
-        private const string MenuRoot = "Tools/GC Tools/";
-        private const string Category = "Tools/GC Tools/-------- Find Missing References --------";
+        private const int CategoryPriority = ToolsPriority;
+        private const string Category = ToolsDirName + CategoryPrefix + "Find Missing References" + CategorySuffix;
 
-        [MenuItem(Category, priority = BasePriority)]
+        [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()
         {
         }
@@ -25,7 +25,7 @@ namespace GcTools
             return false;
         }
 
-        [MenuItem(MenuRoot + "Find Missing References in Current Scene", priority = BasePriority + 1)]
+        [MenuItem(ToolsDirName + "Find Missing References in Current Scene", priority = CategoryPriority + 1)]
         public static void FindMissingReferencesInCurrentScene()
         {
             FindMissingReferences(SceneManager.GetActiveScene().path, GetSceneObjects());
@@ -33,7 +33,7 @@ namespace GcTools
             Debug.Log($"{SceneManager.GetActiveScene().name}: The process is finished.");
         }
 
-        [MenuItem(MenuRoot + "Find Missing References in All Enabled Scenes", priority = BasePriority + 2)]
+        [MenuItem(ToolsDirName + "Find Missing References in All Enabled Scenes", priority = CategoryPriority + 2)]
         public static void FindMissingReferencesInAllEnabledScenes()
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
@@ -49,7 +49,7 @@ namespace GcTools
             Debug.Log("All processes are finished.");
         }
 
-        [MenuItem(MenuRoot + "Find Missing References in All Scenes", priority = BasePriority + 3)]
+        [MenuItem(ToolsDirName + "Find Missing References in All Scenes", priority = CategoryPriority + 3)]
         public static void FindMissingReferencesInAllScenes()
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
@@ -65,7 +65,7 @@ namespace GcTools
             Debug.Log("All processes are finished.");
         }
 
-        [MenuItem(MenuRoot + "Find Missing References in Assets", priority = BasePriority + 4)]
+        [MenuItem(ToolsDirName + "Find Missing References in Assets", priority = CategoryPriority + 4)]
         public static void FindMissingReferencesInAssets()
         {
             foreach (string path in AssetDatabase.FindAssets("t:Prefab").Select(AssetDatabase.GUIDToAssetPath))

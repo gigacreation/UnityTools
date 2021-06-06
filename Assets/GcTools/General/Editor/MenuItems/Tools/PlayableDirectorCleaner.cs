@@ -1,15 +1,16 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.Playables;
+using static GcTools.MenuItemConstants;
 
 namespace GcTools
 {
     public static class PlayableDirectorCleaner
     {
-        private const int BasePriority = -2099999400;
-        private const string Category = "Tools/GC Tools/-------- Clean PlayableDirector --------";
+        private const int CategoryPriority = ToolsPriority + 600;
+        private const string Category = ToolsDirName + CategoryPrefix + "Clean PlayableDirector" + CategorySuffix;
 
-        [MenuItem(Category, priority = BasePriority)]
+        [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()
         {
         }
@@ -20,7 +21,7 @@ namespace GcTools
             return false;
         }
 
-        [MenuItem("Tools/GC Tools/Purge All Playable Directors Bindings", priority = BasePriority + 1)]
+        [MenuItem(ToolsDirName + "Purge All Playable Directors Bindings", priority = CategoryPriority + 1)]
         public static void PurgeAllPlayableDirectorsBindings()
         {
             foreach (PlayableDirector director in Object.FindObjectsOfType<PlayableDirector>())

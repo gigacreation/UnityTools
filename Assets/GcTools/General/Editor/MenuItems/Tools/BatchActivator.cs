@@ -1,16 +1,17 @@
 ﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using static GcTools.MenuItemConstants;
 
 namespace GcTools
 {
     public static class BatchActivator
     {
-        private const int BasePriority = -2099999700;
-        private const string Category = "Tools/GC Tools/-------- Activate GameObjects --------";
-        private const string ActivateGameobjects = "Tools/GC Tools/Activate Selected GameObjects And Descendants";
+        private const int CategoryPriority = ToolsPriority + 300;
+        private const string Category = ToolsDirName + CategoryPrefix + "Activate GameObjects" + CategorySuffix;
+        private const string ActivateGameobjects = ToolsDirName + "Activate Selected GameObjects And Descendants";
 
-        [MenuItem(Category, priority = BasePriority)]
+        [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()
         {
         }
@@ -21,7 +22,7 @@ namespace GcTools
             return false;
         }
 
-        [MenuItem(ActivateGameobjects, priority = BasePriority + 1)]
+        [MenuItem(ActivateGameobjects, priority = CategoryPriority + 1)]
         public static void ActivateSelectedGameObjectsAndDescendants()
         {
             foreach (Transform selection in Selection.transforms)

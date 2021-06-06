@@ -5,12 +5,16 @@ using System.Reflection;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
+using static GcTools.MenuItemConstants;
 
 namespace GcTools
 {
     public static class AnimatorNodeAligner
     {
-        [MenuItem("Assets/GC Tools/Align Animator Nodes", priority = -2100000000)]
+        private const int CategoryPriority = AssetsPriority;
+        private const string AlignAnimatorNodes = AssetsDirName + "Align Animator Nodes";
+
+        [MenuItem(AlignAnimatorNodes, priority = CategoryPriority)]
         private static void AlignAnimator()
         {
             Type animatorControllerToolType = Assembly
@@ -37,6 +41,12 @@ namespace GcTools
                     .GetMethod("RebuildGraph", BindingFlags.Public | BindingFlags.Instance)
                     ?.Invoke(animatorWindow, new object[] {false});
             }
+        }
+
+        [MenuItem(AlignAnimatorNodes, true)]
+        private static bool NoAnimatorControllerSelection()
+        {
+            return Selection.objects.All(x => x as AnimatorController);
         }
     }
 }

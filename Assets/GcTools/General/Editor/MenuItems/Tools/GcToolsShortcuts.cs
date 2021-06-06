@@ -7,16 +7,17 @@ using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static GcTools.MenuItemConstants;
 using Object = UnityEngine.Object;
 
 namespace GcTools
 {
     public static class GcToolsShortcuts
     {
-        private const int BasePriority = -2099999000;
-        private const string Category = "Tools/GC Tools/-------- Shortcuts --------";
+        private const int CategoryPriority = ToolsPriority + 10000;
+        private const string Category = ToolsDirName + CategoryPrefix + "Shortcuts" + CategorySuffix;
 
-        [MenuItem(Category, priority = BasePriority)]
+        [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()
         {
         }
@@ -27,7 +28,7 @@ namespace GcTools
             return false;
         }
 
-        [MenuItem("Tools/GC Tools/Check if Root Prefabs have Changed #%p", priority = BasePriority + 1)]
+        [MenuItem(ToolsDirName + "Check if Root Prefabs have Changed #%p", priority = CategoryPriority + 1)]
         public static void CheckIfRootPrefabsHaveChanged()
         {
             IEnumerable<GameObject> rootGameObjects;
@@ -67,7 +68,7 @@ namespace GcTools
             Selection.objects = overriddenPrefabInstances;
         }
 
-        [MenuItem("Tools/GC Tools/Restore Rainbow Folders #%r", priority = BasePriority + 2)]
+        [MenuItem(ToolsDirName + "Restore Rainbow Folders #%r", priority = CategoryPriority + 2)]
         public static async Task RestoreRainbowFolders()
         {
             // UnityEditor.dllを取得
@@ -100,7 +101,7 @@ namespace GcTools
             initViewMode?.Invoke(projectWindow, new[] {Enum.GetValues(viewModeType).GetValue(1)});
         }
 
-        [MenuItem("Tools/GC Tools/Clear Console #%c", priority = BasePriority + 3)]
+        [MenuItem(ToolsDirName + "Clear Console #%c", priority = CategoryPriority + 3)]
         public static void ClearConsole()
         {
             Type.GetType("UnityEditor.LogEntries, UnityEditor.dll")

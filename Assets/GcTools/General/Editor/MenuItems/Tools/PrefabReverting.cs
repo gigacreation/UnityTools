@@ -1,21 +1,22 @@
 ﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using static GcTools.MenuItemConstants;
 
 namespace GcTools
 {
     public static class PrefabReverting
     {
-        private const int BasePriority = -2099999900;
-        private const string Category = "Tools/GC Tools/-------- Revert Prefabs --------";
-        private const string RevertName = "Tools/GC Tools/Revert Name On Selected Prefabs";
-        private const string RevertTransform = "Tools/GC Tools/Revert Transform On Selected Prefabs";
-        private const string RevertRectTransform = "Tools/GC Tools/Revert RectTransform On Selected Prefabs";
-        private const string RevertAll = "Tools/GC Tools/Revert All Properties On Selected Prefabs";
+        private const int CategoryPriority = ToolsPriority + 100;
+        private const string Category = ToolsDirName + CategoryPrefix + "Revert Prefabs" + CategorySuffix;
+        private const string RevertName = ToolsDirName + "Revert Name On Selected Prefabs";
+        private const string RevertTransform = ToolsDirName + "Revert Transform On Selected Prefabs";
+        private const string RevertRectTransform = ToolsDirName + "Revert RectTransform On Selected Prefabs";
+        private const string RevertAll = ToolsDirName + "Revert All Properties On Selected Prefabs";
 
         private const InteractionMode U = InteractionMode.UserAction;
 
-        [MenuItem(Category, priority = BasePriority)]
+        [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()
         {
         }
@@ -26,7 +27,7 @@ namespace GcTools
             return false;
         }
 
-        [MenuItem(RevertName, priority = BasePriority + 1)]
+        [MenuItem(RevertName, priority = CategoryPriority + 1)]
         public static void RevertNameOnSelectedPrefabs()
         {
             foreach (GameObject obj in Selection.gameObjects)
@@ -36,7 +37,7 @@ namespace GcTools
             }
         }
 
-        [MenuItem(RevertTransform, priority = BasePriority + 2)]
+        [MenuItem(RevertTransform, priority = CategoryPriority + 2)]
         public static void RevertTransformOnSelectedPrefabs()
         {
             foreach (Transform trans in Selection.gameObjects.Select(obj => obj.transform))
@@ -48,7 +49,7 @@ namespace GcTools
             }
         }
 
-        [MenuItem(RevertRectTransform, priority = BasePriority + 3)]
+        [MenuItem(RevertRectTransform, priority = CategoryPriority + 3)]
         public static void RevertRectTransformOnSelectedPrefabs()
         {
             foreach (RectTransform rect in Selection.gameObjects.Select(obj => obj.transform as RectTransform))
@@ -65,7 +66,7 @@ namespace GcTools
             }
         }
 
-        [MenuItem(RevertAll, priority = BasePriority + 10)]
+        [MenuItem(RevertAll, priority = CategoryPriority + 10)]
         public static void RevertAllPropertiesOnSelectedPrefabs()
         {
             foreach (GameObject obj in Selection.gameObjects)
