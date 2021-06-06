@@ -97,7 +97,7 @@ namespace GcTools
                 {
                     if (!component)
                     {
-                        Debug.LogError($"Missing Component in GameObject: {GetFullPath(go)}");
+                        Debug.LogError($"Missing Component in GameObject: {GetFullPath(go)}", go);
 
                         continue;
                     }
@@ -109,7 +109,6 @@ namespace GcTools
                         "objectReferenceStringValue",
                         BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
 
-                    // Iterate over the components' properties.
                     while (sp.NextVisible(true))
                     {
                         if (sp.propertyType != SerializedPropertyType.ObjectReference)
