@@ -10,7 +10,7 @@ namespace GcTools
 {
     public static class MissingReferencesFinder
     {
-        private const int BasePriority = -32000;
+        private const int BasePriority = -2100000000;
         private const string MenuRoot = "Tools/GC Tools/";
         private const string Category = "Tools/GC Tools/-------- Find Missing References --------";
 

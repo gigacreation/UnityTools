@@ -13,7 +13,7 @@ namespace GcTools
 {
     public static class GcToolsShortcuts
     {
-        private const int BasePriority = -31000;
+        private const int BasePriority = -2099999000;
         private const string Category = "Tools/GC Tools/-------- Shortcuts --------";
 
         [MenuItem(Category, priority = BasePriority)]

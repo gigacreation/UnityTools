@@ -10,7 +10,7 @@ namespace GcTools
 {
     public static class AnimatorNodeAligner
     {
-        [MenuItem("Assets/GC Tools/Align Animator Nodes")]
+        [MenuItem("Assets/GC Tools/Align Animator Nodes", priority = -2100000000)]
         private static void AlignAnimator()
         {
             Type animatorControllerToolType = Assembly

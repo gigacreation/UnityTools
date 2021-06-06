@@ -6,7 +6,7 @@ namespace GcTools
 {
     public static class PlayableDirectorCleaner
     {
-        private const int BasePriority = -31400;
+        private const int BasePriority = -2099999400;
         private const string Category = "Tools/GC Tools/-------- Clean PlayableDirector --------";
 
         [MenuItem(Category, priority = BasePriority)]

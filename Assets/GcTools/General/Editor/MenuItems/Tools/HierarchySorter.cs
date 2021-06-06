@@ -7,7 +7,7 @@ namespace GcTools
 {
     public static class HierarchySorter
     {
-        private const int BasePriority = -31600;
+        private const int BasePriority = -2099999600;
         private const string Category = "Tools/GC Tools/-------- Sort Hierarchy --------";
         private const string ByName = "Tools/GC Tools/Sort Selected GameObjects By Name";
         private const string ByPositionXYZ = "Tools/GC Tools/Sort Selected GameObjects By Position XYZ";

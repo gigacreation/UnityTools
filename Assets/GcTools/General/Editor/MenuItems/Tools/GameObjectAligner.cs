@@ -6,7 +6,7 @@ namespace GcTools
 {
     public static class GameObjectAligner
     {
-        private const int BasePriority = -31800;
+        private const int BasePriority = -2099999800;
         private const string Category = "Tools/GC Tools/-------- Align GameObjects --------";
         private const string Position100 = "Tools/GC Tools/Align Selected GameObject (1.00)";
         private const string Position050 = "Tools/GC Tools/Align Selected GameObject (0.50)";

@@ -6,7 +6,7 @@ namespace GcTools
 {
     public static class BatchActivator
     {
-        private const int BasePriority = -31700;
+        private const int BasePriority = -2099999700;
         private const string Category = "Tools/GC Tools/-------- Activate GameObjects --------";
         private const string ActivateGameobjects = "Tools/GC Tools/Activate Selected GameObjects And Descendants";
 

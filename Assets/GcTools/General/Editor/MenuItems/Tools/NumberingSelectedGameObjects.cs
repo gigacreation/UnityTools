@@ -5,7 +5,7 @@ namespace GcTools
 {
     public static class NumberingSelectedGameObjects
     {
-        private const int BasePriority = -31500;
+        private const int BasePriority = -2099999500;
         private const string Category = "Tools/GC Tools/-------- Numbering GameObjects --------";
 
         [MenuItem(Category, priority = BasePriority)]

@@ -6,7 +6,7 @@ namespace GcTools
 {
     public static class PrefabReverting
     {
-        private const int BasePriority = -31900;
+        private const int BasePriority = -2099999900;
         private const string Category = "Tools/GC Tools/-------- Revert Prefabs --------";
         private const string RevertName = "Tools/GC Tools/Revert Name On Selected Prefabs";
         private const string RevertTransform = "Tools/GC Tools/Revert Transform On Selected Prefabs";
