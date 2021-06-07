@@ -7,7 +7,7 @@ namespace GigaceeTools
     public class HierarchyFolderSeparator : Editor
     {
         private const string TexturePath =
-            "Packages/com.gigacee.gc-tools-for-unity-hierarchy-folders/Textures/HierarchyIconDarkSeparator.png";
+            "Packages/com.gigacee.gigacee-tools-for-unity-hierarchy-folders/Textures/HierarchyIconDarkSeparator.png";
 
         private static readonly Vector2 s_labelOffset = new Vector2(18f, 0);
         private static readonly Color s_labelColor = new Color32(112, 112, 112, 255);
