@@ -1,7 +1,7 @@
 {
     "name": "com.gigacee.gigacee-tools-for-unity-debug-text-printer-build-timestamp",
     "version": "1.0.0",
-    "displayName": "GC Tools / Debug / Text Printer / Build Timestamp",
+    "displayName": "Gigacee Tools / Debug / Text Printer / Build Timestamp",
     "unity": "2019.4",
     "dependencies": {
         "com.gigacee.gigacee-tools-for-unity-debug-text-printer": "1.0.0",

@@ -9,9 +9,9 @@ namespace GigaceeTools
     {
         private const int CategoryPriority = ToolsPriority + 200;
         private const string Category = ToolsDirName + CategoryPrefix + "Align GameObjects" + CategorySuffix;
-        private const string Position100 = "Tools/GC Tools/Align Selected GameObject (1.00)";
-        private const string Position050 = "Tools/GC Tools/Align Selected GameObject (0.50)";
-        private const string Position025 = "Tools/GC Tools/Align Selected GameObject (0.25)";
+        private const string Position100 = "Tools/Gigacee Tools/Align Selected GameObject (1.00)";
+        private const string Position050 = "Tools/Gigacee Tools/Align Selected GameObject (0.50)";
+        private const string Position025 = "Tools/Gigacee Tools/Align Selected GameObject (0.25)";
 
         [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()

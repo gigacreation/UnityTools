@@ -1,7 +1,7 @@
 {
     "name": "com.gigacee.gigacee-tools-for-unity-debug-core",
     "version": "1.0.0",
-    "displayName": "GC Tools / Debug / Core",
+    "displayName": "Gigacee Tools / Debug / Core",
     "unity": "2019.4",
     "dependencies": {
         "com.gigacee.gigacee-tools-for-unity-core": "1.0.0",

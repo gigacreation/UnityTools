@@ -1,7 +1,7 @@
 {
     "name": "com.gigacee.gigacee-tools-for-unity-debug-text-printer",
     "version": "1.0.0",
-    "displayName": "GC Tools / Debug / Text Printer",
+    "displayName": "Gigacee Tools / Debug / Text Printer",
     "unity": "2019.4",
     "dependencies": {
         "com.gigacee.gigacee-tools-for-unity-core": "1.0.0",
