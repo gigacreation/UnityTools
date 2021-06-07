@@ -1,0 +1,17 @@
+{
+    "name": "GigaceeTools.HierarchyFolders.Editor",
+    "references": [
+        "GUID:8dbfd4694fdecd34495bb83f1b6586aa"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
