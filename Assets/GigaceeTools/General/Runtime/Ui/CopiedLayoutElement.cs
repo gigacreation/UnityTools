@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 namespace GigaceeTools
 {
-    [ExecuteAlways, RequireComponent(typeof(RectTransform))]
+    [ExecuteAlways]
+    [RequireComponent(typeof(RectTransform))]
     public class CopiedLayoutElement : UIBehaviour, ILayoutElement
     {
         [SerializeField] private bool _copyMinWidth;

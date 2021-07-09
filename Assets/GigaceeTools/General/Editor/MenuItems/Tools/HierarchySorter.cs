@@ -74,7 +74,9 @@ namespace GigaceeTools
         }
 
         // オブジェクトが 2 つ以上選択されていなければメニューを無効化する
-        [MenuItem(ByName, true), MenuItem(ByPositionXYZ, true), MenuItem(ByPositionYXZ, true)]
+        [MenuItem(ByName, true)]
+        [MenuItem(ByPositionXYZ, true)]
+        [MenuItem(ByPositionYXZ, true)]
         private static bool ValidateSort()
         {
             return Selection.transforms.Length >= 2;

@@ -57,7 +57,9 @@ namespace GigaceeTools
             }
         }
 
-        [MenuItem(Position100, true), MenuItem(Position050, true), MenuItem(Position025, true)]
+        [MenuItem(Position100, true)]
+        [MenuItem(Position050, true)]
+        [MenuItem(Position025, true)]
         private static bool NoSelection()
         {
             return Selection.transforms.Any();

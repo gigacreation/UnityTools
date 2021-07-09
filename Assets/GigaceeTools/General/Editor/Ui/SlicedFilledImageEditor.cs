@@ -7,7 +7,8 @@ using UnityEngine;
 namespace GigaceeTools
 {
     // Custom Editor to order the variables in the Inspector similar to Image component
-    [CustomEditor(typeof(SlicedFilledImage)), CanEditMultipleObjects]
+    [CustomEditor(typeof(SlicedFilledImage))]
+    [CanEditMultipleObjects]
     public class SlicedFilledImageEditor : Editor
     {
         private SerializedProperty _spriteProp, _colorProp;

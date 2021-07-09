@@ -7,7 +7,8 @@ using UnityEditor;
 
 namespace GigaceeTools
 {
-    [ExecuteAlways, RequireComponent(typeof(RectTransform))]
+    [ExecuteAlways]
+    [RequireComponent(typeof(RectTransform))]
     public class SafeAreaAdjuster : MonoBehaviour
     {
         [SerializeField] private RectTransform _rectTransform;

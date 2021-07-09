@@ -13,7 +13,8 @@ using UnityEngine.U2D;
 namespace GigaceeTools
 {
     // Credit: https://bitbucket.org/Unity-Technologies/ui/src/2018.4/UnityEngine.UI/UI/Core/Image.cs
-    [RequireComponent(typeof(CanvasRenderer)), AddComponentMenu("UI/Sliced Filled Image", 11)]
+    [RequireComponent(typeof(CanvasRenderer))]
+    [AddComponentMenu("UI/Sliced Filled Image", 11)]
     public class SlicedFilledImage :
         MaskableGraphic,
         ISerializationCallbackReceiver,
@@ -35,7 +36,7 @@ namespace GigaceeTools
 
         [SerializeField] private Sprite _sprite;
         [SerializeField] private FillDirection _fillDirection;
-        [SerializeField, Range(0, 1)] private float _fillAmount = 1f;
+        [SerializeField] [Range(0, 1)] private float _fillAmount = 1f;
         [SerializeField] private bool _fillCenter = true;
         [SerializeField] private float _pixelsPerUnitMultiplier = 1f;
 
