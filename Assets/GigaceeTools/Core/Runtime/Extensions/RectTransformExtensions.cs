@@ -1,45 +1,39 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics.CodeAnalysis;
+using UnityEngine;
 
 namespace GigaceeTools
 {
-    public static partial class RectTransformExtensions
+    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    public static class RectTransformExtensions
     {
-        private static Vector2 s_vector2;
-
         public static void SetAnchoredPosition(this RectTransform self, float x, float y)
         {
-            s_vector2.Set(x, y);
-            self.anchoredPosition = s_vector2;
+            self.anchoredPosition = new Vector2(x, y);
         }
 
         public static void SetAnchoredPositionX(this RectTransform self, float x)
         {
-            s_vector2.Set(x, self.anchoredPosition.y);
-            self.anchoredPosition = s_vector2;
+            self.anchoredPosition = new Vector2(x, self.anchoredPosition.y);
         }
 
         public static void SetAnchoredPositionY(this RectTransform self, float y)
         {
-            s_vector2.Set(self.anchoredPosition.x, y);
-            self.anchoredPosition = s_vector2;
+            self.anchoredPosition = new Vector2(self.anchoredPosition.x, y);
         }
 
         public static void SetWidth(this RectTransform self, float width)
         {
-            s_vector2.Set(width, self.sizeDelta.y);
-            self.sizeDelta = s_vector2;
+            self.sizeDelta = new Vector2(width, self.sizeDelta.y);
         }
 
         public static void SetHeight(this RectTransform self, float height)
         {
-            s_vector2.Set(self.sizeDelta.x, height);
-            self.sizeDelta = s_vector2;
+            self.sizeDelta = new Vector2(self.sizeDelta.x, height);
         }
 
         public static void SetSize(this RectTransform self, float width, float height)
         {
-            s_vector2.Set(width, height);
-            self.sizeDelta = s_vector2;
+            self.sizeDelta = new Vector2(width, height);
         }
 
         public static void Reset(this RectTransform self)
@@ -57,5 +51,77 @@ namespace GigaceeTools
             self.localRotation = Quaternion.identity;
             self.localScale = Vector3.one;
         }
+
+        #region WithKeepingPosition
+
+        // Original code from https://gist.github.com/nkjzm/1b31512c00aee93403427f14ebfb4db8
+        // Licensed under https://opensource.org/licenses/mit-license.php
+
+        public static void SetPivotWithKeepingPosition(this RectTransform self, Vector2 targetPivot)
+        {
+            Vector2 vector2 = targetPivot - self.pivot;
+            self.pivot = targetPivot;
+            Vector2 sizeDelta = self.sizeDelta;
+
+            self.anchoredPosition += new Vector2(sizeDelta.x * vector2.x, sizeDelta.y * vector2.y);
+        }
+
+        public static void SetPivotWithKeepingPosition(this RectTransform self, float x, float y)
+        {
+            self.SetPivotWithKeepingPosition(new Vector2(x, y));
+        }
+
+        public static void SetAnchorWithKeepingPosition(this RectTransform self, Vector2 targetAnchor)
+        {
+            self.SetAnchorWithKeepingPosition(targetAnchor, targetAnchor);
+        }
+
+        public static void SetAnchorWithKeepingPosition(this RectTransform self, float x, float y)
+        {
+            self.SetAnchorWithKeepingPosition(new Vector2(x, y));
+        }
+
+        public static void SetAnchorWithKeepingPosition(
+            this RectTransform self, Vector2 targetMinAnchor, Vector2 targetMaxAnchor
+        )
+        {
+            var parentRt = self.parent as RectTransform;
+
+            if (parentRt == null)
+            {
+                Debug.LogError($"親の RectTransform が見つかりません: {self}");
+                return;
+            }
+
+            Vector2 diffMin = targetMinAnchor - self.anchorMin;
+            Vector2 diffMax = targetMaxAnchor - self.anchorMax;
+
+            self.anchorMin = targetMinAnchor;
+            self.anchorMax = targetMaxAnchor;
+
+            Rect rect = parentRt.rect;
+            float diffLeft = rect.width * diffMin.x;
+            float diffRight = rect.width * diffMax.x;
+            float diffBottom = rect.height * diffMin.y;
+            float diffTop = rect.height * diffMax.y;
+
+            self.sizeDelta += new Vector2(diffLeft - diffRight, diffBottom - diffTop);
+
+            Vector2 pivot = self.pivot;
+
+            self.anchoredPosition -= new Vector2(
+                diffLeft * (1f - pivot.x) + diffRight * pivot.x,
+                diffBottom * (1f - pivot.y) + diffTop * pivot.y
+            );
+        }
+
+        public static void SetAnchorWithKeepingPosition(
+            this RectTransform self, float minX, float minY, float maxX, float maxY
+        )
+        {
+            self.SetAnchorWithKeepingPosition(new Vector2(minX, minY), new Vector2(maxX, maxY));
+        }
+
+        #endregion
     }
 }

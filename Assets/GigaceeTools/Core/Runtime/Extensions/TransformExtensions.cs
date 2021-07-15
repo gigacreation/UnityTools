@@ -6,11 +6,9 @@ namespace GigaceeTools
     [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public static class TransformExtensions
     {
-        private static Vector3 s_vector3;
-
-        // =================================================================================================================
+        // =============================================================================================================
         //  Reset
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void Reset(this Transform self)
         {
@@ -19,46 +17,41 @@ namespace GigaceeTools
             self.localScale = Vector3.one;
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  SetPosition
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void SetPosition(this Transform self, float x, float y, float z)
         {
-            s_vector3.Set(x, y, z);
-            self.position = s_vector3;
+            self.position = new Vector3(x, y, z);
         }
 
         public static void SetPosition(this Transform self, float x, float y)
         {
-            s_vector3.Set(x, y, self.position.z);
-            self.position = s_vector3;
+            self.position = new Vector3(x, y, self.position.z);
         }
 
         public static void SetPositionX(this Transform self, float x)
         {
-            s_vector3 = self.position;
-            s_vector3.Set(x, s_vector3.y, s_vector3.z);
-            self.position = s_vector3;
+            Vector3 position = self.position;
+            self.position = new Vector3(x, position.y, position.z);
         }
 
         public static void SetPositionY(this Transform self, float y)
         {
-            s_vector3 = self.position;
-            s_vector3.Set(s_vector3.x, y, s_vector3.z);
-            self.position = s_vector3;
+            Vector3 position = self.position;
+            self.position = new Vector3(position.x, y, position.z);
         }
 
         public static void SetPositionZ(this Transform self, float z)
         {
-            s_vector3 = self.position;
-            s_vector3.Set(s_vector3.x, s_vector3.y, z);
-            self.position = s_vector3;
+            Vector3 position = self.position;
+            self.position = new Vector3(position.x, position.y, z);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  AddPosition
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void AddPosition(this Transform self, float x, float y, float z)
         {
@@ -80,46 +73,41 @@ namespace GigaceeTools
             self.Translate(0f, 0f, z);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  SetLocalPosition
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void SetLocalPosition(this Transform self, float x, float y, float z)
         {
-            s_vector3.Set(x, y, z);
-            self.localPosition = s_vector3;
+            self.localPosition = new Vector3(x, y, z);
         }
 
         public static void SetLocalPosition(this Transform self, float x, float y)
         {
-            s_vector3.Set(x, y, self.localPosition.z);
-            self.localPosition = s_vector3;
+            self.localPosition = new Vector3(x, y, self.localPosition.z);
         }
 
         public static void SetLocalPositionX(this Transform self, float x)
         {
-            s_vector3 = self.localPosition;
-            s_vector3.Set(x, s_vector3.y, s_vector3.z);
-            self.localPosition = s_vector3;
+            Vector3 localPosition = self.localPosition;
+            self.localPosition = new Vector3(x, localPosition.y, localPosition.z);
         }
 
         public static void SetLocalPositionY(this Transform self, float y)
         {
-            s_vector3 = self.localPosition;
-            s_vector3.Set(s_vector3.x, y, s_vector3.z);
-            self.localPosition = s_vector3;
+            Vector3 localPosition = self.localPosition;
+            self.localPosition = new Vector3(localPosition.x, y, localPosition.z);
         }
 
         public static void SetLocalPositionZ(this Transform self, float z)
         {
-            s_vector3 = self.localPosition;
-            s_vector3.Set(s_vector3.x, s_vector3.y, z);
-            self.localPosition = s_vector3;
+            Vector3 localPosition = self.localPosition;
+            self.localPosition = new Vector3(localPosition.x, localPosition.y, z);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  AddLocalPosition
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void AddLocalPosition(this Transform self, float x, float y, float z)
         {
@@ -161,198 +149,174 @@ namespace GigaceeTools
             self.Translate(0f, 0f, z, relativeTo);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  SetLocalScale
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void SetLocalScale(this Transform self, float x, float y, float z)
         {
-            s_vector3.Set(x, y, z);
-            self.localScale = s_vector3;
+            self.localScale = new Vector3(x, y, z);
         }
 
         public static void SetLocalScaleX(this Transform self, float x)
         {
-            s_vector3 = self.localScale;
-            s_vector3.Set(x, s_vector3.y, s_vector3.z);
-            self.localScale = s_vector3;
+            Vector3 localScale = self.localScale;
+            self.localScale = new Vector3(x, localScale.y, localScale.z);
         }
 
         public static void SetLocalScaleY(this Transform self, float y)
         {
-            s_vector3 = self.localScale;
-            s_vector3.Set(s_vector3.x, y, s_vector3.z);
-            self.localScale = s_vector3;
+            Vector3 localScale = self.localScale;
+            self.localScale = new Vector3(localScale.x, y, localScale.z);
         }
 
         public static void SetLocalScaleZ(this Transform self, float z)
         {
-            s_vector3 = self.localScale;
-            s_vector3.Set(s_vector3.x, s_vector3.y, z);
-            self.localScale = s_vector3;
+            Vector3 localScale = self.localScale;
+            self.localScale = new Vector3(localScale.x, localScale.y, z);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  AddLocalScale
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void AddLocalScale(this Transform self, float x, float y, float z)
         {
-            s_vector3 = self.localScale;
-            s_vector3.Set(s_vector3.x + x, s_vector3.y + y, s_vector3.z + z);
-            self.localScale = s_vector3;
+            Vector3 localScale = self.localScale;
+            self.localScale = new Vector3(localScale.x + x, localScale.y + y, localScale.z + z);
         }
 
         public static void AddLocalScaleX(this Transform self, float x)
         {
-            s_vector3 = self.localScale;
-            s_vector3.Set(s_vector3.x + x, s_vector3.y, s_vector3.z);
-            self.localScale = s_vector3;
+            Vector3 localScale = self.localScale;
+            self.localScale = new Vector3(localScale.x + x, localScale.y, localScale.z);
         }
 
         public static void AddLocalScaleY(this Transform self, float y)
         {
-            s_vector3 = self.localScale;
-            s_vector3.Set(s_vector3.x, s_vector3.y + y, s_vector3.z);
-            self.localScale = s_vector3;
+            Vector3 localScale = self.localScale;
+            self.localScale = new Vector3(localScale.x, localScale.y + y, localScale.z);
         }
 
         public static void AddLocalScaleZ(this Transform self, float z)
         {
-            s_vector3 = self.localScale;
-            s_vector3.Set(s_vector3.x, s_vector3.y, s_vector3.z + z);
-            self.localScale = s_vector3;
+            Vector3 localScale = self.localScale;
+            self.localScale = new Vector3(localScale.x, localScale.y, localScale.z + z);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  SetEulerAngles
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void SetEulerAngles(this Transform self, float x, float y, float z)
         {
-            s_vector3.Set(x, y, z);
-            self.eulerAngles = s_vector3;
+            self.eulerAngles = new Vector3(x, y, z);
         }
 
         public static void SetEulerAnglesX(this Transform self, float x)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(x, s_vector3.y, s_vector3.z);
-            self.eulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.eulerAngles = new Vector3(x, localEulerAngles.y, localEulerAngles.z);
         }
 
         public static void SetEulerAnglesY(this Transform self, float y)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(s_vector3.x, y, s_vector3.z);
-            self.eulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.eulerAngles = new Vector3(localEulerAngles.x, y, localEulerAngles.z);
         }
 
         public static void SetEulerAnglesZ(this Transform self, float z)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(s_vector3.x, s_vector3.y, z);
-            self.eulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.eulerAngles = new Vector3(localEulerAngles.x, localEulerAngles.y, z);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  AddEulerAngles
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void AddEulerAngles(this Transform self, float x, float y, float z)
         {
-            s_vector3 = self.eulerAngles;
-            s_vector3.Set(s_vector3.x + x, s_vector3.y + y, s_vector3.z + z);
-            self.eulerAngles = s_vector3;
+            Vector3 eulerAngles = self.eulerAngles;
+            self.eulerAngles = new Vector3(eulerAngles.x + x, eulerAngles.y + y, eulerAngles.z + z);
         }
 
         public static void AddEulerAnglesX(this Transform self, float x)
         {
-            s_vector3 = self.eulerAngles;
-            s_vector3.Set(s_vector3.x + x, s_vector3.y, s_vector3.z);
-            self.eulerAngles = s_vector3;
+            Vector3 eulerAngles = self.eulerAngles;
+            self.eulerAngles = new Vector3(eulerAngles.x + x, eulerAngles.y, eulerAngles.z);
         }
 
         public static void AddEulerAnglesY(this Transform self, float y)
         {
-            s_vector3 = self.eulerAngles;
-            s_vector3.Set(s_vector3.x, s_vector3.y + y, s_vector3.z);
-            self.eulerAngles = s_vector3;
+            Vector3 eulerAngles = self.eulerAngles;
+            self.eulerAngles = new Vector3(eulerAngles.x, eulerAngles.y + y, eulerAngles.z);
         }
 
         public static void AddEulerAnglesZ(this Transform self, float z)
         {
-            s_vector3 = self.eulerAngles;
-            s_vector3.Set(s_vector3.x, s_vector3.y, s_vector3.z + z);
-            self.eulerAngles = s_vector3;
+            Vector3 eulerAngles = self.eulerAngles;
+            self.eulerAngles = new Vector3(eulerAngles.x, eulerAngles.y, eulerAngles.z + z);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  SetLocalEulerAngles
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void SetLocalEulerAngles(this Transform self, float x, float y, float z)
         {
-            s_vector3.Set(x, y, z);
-            self.localEulerAngles = s_vector3;
+            self.localEulerAngles = new Vector3(x, y, z);
         }
 
         public static void SetLocalEulerAnglesX(this Transform self, float x)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(x, s_vector3.y, s_vector3.z);
-            self.localEulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.localEulerAngles = new Vector3(x, localEulerAngles.y, localEulerAngles.z);
         }
 
         public static void SetLocalEulerAnglesY(this Transform self, float y)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(s_vector3.x, y, s_vector3.z);
-            self.localEulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.localEulerAngles = new Vector3(localEulerAngles.x, y, localEulerAngles.z);
         }
 
         public static void SetLocalEulerAnglesZ(this Transform self, float z)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(s_vector3.x, s_vector3.y, z);
-            self.localEulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.localEulerAngles = new Vector3(localEulerAngles.x, localEulerAngles.y, z);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  AddLocalEulerAngles
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void AddLocalEulerAngles(this Transform self, float x, float y, float z)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(s_vector3.x + x, s_vector3.y + y, s_vector3.z + z);
-            self.localEulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.localEulerAngles = new Vector3(localEulerAngles.x + x, localEulerAngles.y + y, localEulerAngles.z + z);
         }
 
         public static void AddLocalEulerAnglesX(this Transform self, float x)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(s_vector3.x + x, s_vector3.y, s_vector3.z);
-            self.localEulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.localEulerAngles = new Vector3(localEulerAngles.x + x, localEulerAngles.y, localEulerAngles.z);
         }
 
         public static void AddLocalEulerAnglesY(this Transform self, float y)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(s_vector3.x, s_vector3.y + y, s_vector3.z);
-            self.localEulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.localEulerAngles = new Vector3(localEulerAngles.x, localEulerAngles.y + y, localEulerAngles.z);
         }
 
         public static void AddLocalEulerAnglesZ(this Transform self, float z)
         {
-            s_vector3 = self.localEulerAngles;
-            s_vector3.Set(s_vector3.x, s_vector3.y, s_vector3.z + z);
-            self.localEulerAngles = s_vector3;
+            Vector3 localEulerAngles = self.localEulerAngles;
+            self.localEulerAngles = new Vector3(localEulerAngles.x, localEulerAngles.y, localEulerAngles.z + z);
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  Lerp
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void Lerp(this Transform self, Transform to, float t)
         {
@@ -368,8 +332,8 @@ namespace GigaceeTools
 
         public static void LerpPosition(this Transform self, Vector2 to, float t)
         {
-            s_vector3 = self.position;
-            self.position = Vector3.Lerp(s_vector3, new Vector3(to.x, to.y, s_vector3.z), t);
+            Vector3 position = self.position;
+            self.position = Vector3.Lerp(position, new Vector3(to.x, to.y, position.z), t);
         }
 
         public static void LerpRotate(this Transform self, Quaternion to, float t)
@@ -432,9 +396,9 @@ namespace GigaceeTools
             self.SetLocalScaleZ(Mathf.Lerp(self.localScale.z, to, t));
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  SmoothStep
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void SmoothStep(this Transform self, Transform to, float t)
         {
@@ -445,10 +409,10 @@ namespace GigaceeTools
 
         public static void SmoothStepPosition(this Transform self, Vector3 to, float t)
         {
-            s_vector3 = self.position;
-            float newPositionX = Mathf.SmoothStep(s_vector3.x, to.x, t);
-            float newPositionY = Mathf.SmoothStep(s_vector3.y, to.y, t);
-            float newPositionZ = Mathf.SmoothStep(s_vector3.z, to.z, t);
+            Vector3 position = self.position;
+            float newPositionX = Mathf.SmoothStep(position.x, to.x, t);
+            float newPositionY = Mathf.SmoothStep(position.y, to.y, t);
+            float newPositionZ = Mathf.SmoothStep(position.z, to.z, t);
             self.position = new Vector3(newPositionX, newPositionY, newPositionZ);
         }
 
@@ -459,28 +423,28 @@ namespace GigaceeTools
 
         public static void SmoothStepEulerAngles(this Transform self, Vector3 to, float t)
         {
-            s_vector3 = self.eulerAngles;
-            float eulerAnglesX = Mathf.SmoothStep(s_vector3.x, to.x, t);
-            float eulerAnglesY = Mathf.SmoothStep(s_vector3.y, to.y, t);
-            float eulerAnglesZ = Mathf.SmoothStep(s_vector3.z, to.z, t);
+            Vector3 eulerAngles = self.eulerAngles;
+            float eulerAnglesX = Mathf.SmoothStep(eulerAngles.x, to.x, t);
+            float eulerAnglesY = Mathf.SmoothStep(eulerAngles.y, to.y, t);
+            float eulerAnglesZ = Mathf.SmoothStep(eulerAngles.z, to.z, t);
             self.SetEulerAngles(eulerAnglesX, eulerAnglesY, eulerAnglesZ);
         }
 
         public static void SmoothStepLocalScale(this Transform self, Vector3 to, float t)
         {
-            s_vector3 = self.localScale;
-            float localScaleX = Mathf.SmoothStep(s_vector3.x, to.x, t);
-            float localScaleY = Mathf.SmoothStep(s_vector3.y, to.y, t);
-            float localScaleZ = Mathf.SmoothStep(s_vector3.z, to.z, t);
+            Vector3 localScale = self.localScale;
+            float localScaleX = Mathf.SmoothStep(localScale.x, to.x, t);
+            float localScaleY = Mathf.SmoothStep(localScale.y, to.y, t);
+            float localScaleZ = Mathf.SmoothStep(localScale.z, to.z, t);
             self.SetLocalScale(localScaleX, localScaleY, localScaleZ);
         }
 
         public static void SmoothStepLocalScale(this Transform self, Vector2 to, float t)
         {
-            s_vector3 = self.localScale;
-            float localScaleX = Mathf.SmoothStep(s_vector3.x, to.x, t);
-            float localScaleY = Mathf.SmoothStep(s_vector3.y, to.y, t);
-            self.SetLocalScale(localScaleX, localScaleY, s_vector3.z);
+            Vector3 localScale = self.localScale;
+            float localScaleX = Mathf.SmoothStep(localScale.x, to.x, t);
+            float localScaleY = Mathf.SmoothStep(localScale.y, to.y, t);
+            self.SetLocalScale(localScaleX, localScaleY, localScale.z);
         }
 
         public static void SmoothStepPositionX(this Transform self, float to, float t)
@@ -528,9 +492,9 @@ namespace GigaceeTools
             self.SetLocalScaleZ(Mathf.SmoothStep(self.localScale.z, to, t));
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  Clamp
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void Clamp(this Transform self, Transform min, Transform max)
         {
@@ -541,36 +505,36 @@ namespace GigaceeTools
 
         public static void ClampPosition(this Transform self, Vector3 min, Vector3 max)
         {
-            s_vector3 = self.position;
-            float x = Mathf.Clamp(s_vector3.x, min.x, max.x);
-            float y = Mathf.Clamp(s_vector3.y, min.y, max.y);
-            float z = Mathf.Clamp(s_vector3.z, min.z, max.z);
+            Vector3 position = self.position;
+            float x = Mathf.Clamp(position.x, min.x, max.x);
+            float y = Mathf.Clamp(position.y, min.y, max.y);
+            float z = Mathf.Clamp(position.z, min.z, max.z);
             self.SetPosition(x, y, z);
         }
 
         public static void ClampPosition(this Transform self, Vector2 min, Vector2 max)
         {
-            s_vector3 = self.position;
-            float x = Mathf.Clamp(s_vector3.x, min.x, max.x);
-            float y = Mathf.Clamp(s_vector3.y, min.y, max.y);
+            Vector3 position = self.position;
+            float x = Mathf.Clamp(position.x, min.x, max.x);
+            float y = Mathf.Clamp(position.y, min.y, max.y);
             self.SetPosition(x, y);
         }
 
         public static void ClampEulerAngles(this Transform self, Vector3 min, Vector3 max)
         {
-            s_vector3 = self.eulerAngles;
-            float x = Mathf.Clamp(s_vector3.x, min.x, max.x);
-            float y = Mathf.Clamp(s_vector3.y, min.y, max.y);
-            float z = Mathf.Clamp(s_vector3.z, min.z, max.z);
+            Vector3 eulerAngles = self.eulerAngles;
+            float x = Mathf.Clamp(eulerAngles.x, min.x, max.x);
+            float y = Mathf.Clamp(eulerAngles.y, min.y, max.y);
+            float z = Mathf.Clamp(eulerAngles.z, min.z, max.z);
             self.SetEulerAngles(x, y, z);
         }
 
         public static void ClampLocalScale(this Transform self, Vector3 min, Vector3 max)
         {
-            s_vector3 = self.localScale;
-            float x = Mathf.Clamp(s_vector3.x, min.x, max.x);
-            float y = Mathf.Clamp(s_vector3.y, min.y, max.y);
-            float z = Mathf.Clamp(s_vector3.z, min.z, max.z);
+            Vector3 localScale = self.localScale;
+            float x = Mathf.Clamp(localScale.x, min.x, max.x);
+            float y = Mathf.Clamp(localScale.y, min.y, max.y);
+            float z = Mathf.Clamp(localScale.z, min.z, max.z);
             self.SetLocalScale(x, y, z);
         }
 
@@ -619,9 +583,9 @@ namespace GigaceeTools
             self.SetLocalScaleZ(Mathf.Clamp(self.localScale.z, min, max));
         }
 
-        // =================================================================================================================
+        // =============================================================================================================
         //  LookAt2D
-        // =================================================================================================================
+        // =============================================================================================================
 
         public static void LookAt2D(this Transform self, Transform target)
         {
@@ -655,9 +619,9 @@ namespace GigaceeTools
 
         public static void LookAt2D(this Transform self, Vector2 target, Vector3 axis, float angle = 0f)
         {
-            s_vector3 = self.position;
-            s_vector3.Set(target.x - s_vector3.x, target.y - s_vector3.y, 0f);
-            self.rotation = Quaternion.AngleAxis(angle + Mathf.Atan2(s_vector3.y, s_vector3.x) * Mathf.Rad2Deg, axis);
+            Vector3 position = self.position;
+            var difference = new Vector3(target.x - position.x, target.y - position.y, 0f);
+            self.rotation = Quaternion.AngleAxis(angle + Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg, axis);
         }
     }
 }
