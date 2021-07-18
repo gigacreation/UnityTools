@@ -1,5 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace GigaceeTools
 {
@@ -22,10 +26,36 @@ namespace GigaceeTools
 
         public void RebuildLayout()
         {
+#if UNITY_EDITOR
+            if (!EditorApplication.isPlaying)
+            {
+                RebuildLayoutOnEdit();
+                return;
+            }
+#endif
+
+            StartCoroutine(RebuildLayoutAtRuntime());
+        }
+
+        private void RebuildLayoutOnEdit()
+        {
             ComponentHelper.EnableOrDisableComponentIfExists(_contentSizeFitter, true);
             ComponentHelper.EnableOrDisableComponentIfExists(_layoutGroup, true);
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);
+
+            ComponentHelper.EnableOrDisableComponentIfExists(_contentSizeFitter, false);
+            ComponentHelper.EnableOrDisableComponentIfExists(_layoutGroup, false);
+        }
+
+        private IEnumerator RebuildLayoutAtRuntime()
+        {
+            ComponentHelper.EnableOrDisableComponentIfExists(_contentSizeFitter, true);
+            ComponentHelper.EnableOrDisableComponentIfExists(_layoutGroup, true);
+
+            LayoutRebuilder.MarkLayoutForRebuild(_rectTransform);
+
+            yield return new WaitForEndOfFrame();
 
             ComponentHelper.EnableOrDisableComponentIfExists(_contentSizeFitter, false);
             ComponentHelper.EnableOrDisableComponentIfExists(_layoutGroup, false);
