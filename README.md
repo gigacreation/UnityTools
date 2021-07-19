@@ -8,6 +8,10 @@
 
 `https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/General`
 
+## UI
+
+`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Ui`
+
 ## TextMesh Pro
 
 `https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/TextMeshPro`

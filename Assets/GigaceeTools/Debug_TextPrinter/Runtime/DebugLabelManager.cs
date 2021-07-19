@@ -2,7 +2,6 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GigaceeTools
 {
@@ -10,16 +9,9 @@ namespace GigaceeTools
     public class DebugLabelManager : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _labelPrefab;
-        [SerializeField] private RectTransform _rectTransform;
-        [SerializeField] private VerticalLayoutGroup _verticalLayoutGroup;
+        [SerializeField] private AutoLayoutSupporter _autoLayoutSupporter;
 
         private readonly Dictionary<int, TextMeshProUGUI> _children = new Dictionary<int, TextMeshProUGUI>();
-
-        private void Reset()
-        {
-            _rectTransform = transform as RectTransform;
-            _verticalLayoutGroup = GetComponent<VerticalLayoutGroup>();
-        }
 
         public TextMeshProUGUI Add(string typeName, int priority)
         {
@@ -57,7 +49,7 @@ namespace GigaceeTools
                 sortedLabels[i].transform.SetSiblingIndex(i);
             }
 
-            Adjust(_children.Count);
+            _autoLayoutSupporter.RebuildLayout();
 
             return newLabel;
         }
@@ -76,17 +68,7 @@ namespace GigaceeTools
             _children.Remove(childPair.Key);
             Destroy(childPair.Value.gameObject);
 
-            Adjust(_children.Count);
-        }
-
-        private void Adjust(int labelCount)
-        {
-            _rectTransform.SetHeight(
-                labelCount * _labelPrefab.fontSize
-                + (labelCount - 1) * _verticalLayoutGroup.spacing
-                + _verticalLayoutGroup.padding.top
-                + _verticalLayoutGroup.padding.bottom
-            );
+            _autoLayoutSupporter.RebuildLayout();
         }
     }
 }

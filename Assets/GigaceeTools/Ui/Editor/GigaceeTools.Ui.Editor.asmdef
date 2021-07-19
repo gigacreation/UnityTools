@@ -1,0 +1,17 @@
+{
+    "name": "GigaceeTools.Ui.Editor",
+    "references": [
+        "GUID:2e7cde942c5b85842a6460c201ca33ee"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
