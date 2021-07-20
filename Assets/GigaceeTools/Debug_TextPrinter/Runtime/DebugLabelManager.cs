@@ -13,6 +13,11 @@ namespace GigaceeTools
 
         private readonly Dictionary<int, TextMeshProUGUI> _children = new Dictionary<int, TextMeshProUGUI>();
 
+        private void Reset()
+        {
+            _autoLayoutSupporter = GetComponent<AutoLayoutSupporter>();
+        }
+
         public TextMeshProUGUI Add(string typeName, int priority)
         {
             if (_children.ContainsKey(priority))

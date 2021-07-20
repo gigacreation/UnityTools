@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace GigaceeTools
 {
@@ -13,6 +10,13 @@ namespace GigaceeTools
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private ContentSizeFitter _contentSizeFitter;
         [SerializeField] private LayoutGroup _layoutGroup;
+
+        private bool _isDestroying;
+
+        private void OnDestroy()
+        {
+            _isDestroying = true;
+        }
 
         private void Reset()
         {
@@ -26,13 +30,16 @@ namespace GigaceeTools
 
         public void RebuildLayout()
         {
-#if UNITY_EDITOR
-            if (!EditorApplication.isPlaying)
+            if (_isDestroying)
+            {
+                return;
+            }
+
+            if (Application.isEditor && !Application.isPlaying)
             {
                 RebuildLayoutOnEdit();
                 return;
             }
-#endif
 
             StartCoroutine(RebuildLayoutAtRuntime());
         }
