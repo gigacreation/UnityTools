@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace Scripts
 {
-    public class SceneLoadButton : MonoBehaviour
+    public class LoadSceneButton : MonoBehaviour
     {
         public void LoadScene(string sceneName)
         {

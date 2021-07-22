@@ -11,21 +11,28 @@ namespace GigaceeTools
     [RequireComponent(typeof(RectTransform))]
     public class CopiedLayoutElement : UIBehaviour, ILayoutElement
     {
-        [SerializeField] private bool _copyMinWidth;
+        [SerializeField] private bool _shouldCopyMinWidth;
         [SerializeField] private RectTransform _copySourceOfMinWidth;
-        [SerializeField] private bool _copyMinHeight;
+        [SerializeField] private bool _shouldCopyMinHeight;
         [SerializeField] private RectTransform _copySourceOfMinHeight;
-        [SerializeField] private bool _copyPreferredWidth;
+        [SerializeField] private bool _shouldCopyPreferredWidth;
         [SerializeField] private RectTransform _copySourceOfPreferredWidth;
-        [SerializeField] private bool _copyPreferredHeight;
+        [SerializeField] private bool _shouldCopyPreferredHeight;
         [SerializeField] private RectTransform _copySourceOfPreferredHeight;
 
         public float minWidth
         {
             get
             {
-                if (!_copyMinWidth || (_copySourceOfMinWidth == null) || !IsActive())
+                if (!_shouldCopyMinWidth || (_copySourceOfMinWidth == null) || !IsActive())
                 {
+                    return -1f;
+                }
+
+                // ReSharper disable once InvertIf
+                if (_copySourceOfMinWidth == transform as RectTransform)
+                {
+                    Debug.LogWarning("コピー元に自身が設定されています。", gameObject);
                     return -1f;
                 }
 
@@ -37,8 +44,15 @@ namespace GigaceeTools
         {
             get
             {
-                if (!_copyMinHeight || (_copySourceOfMinHeight == null) || !IsActive())
+                if (!_shouldCopyMinHeight || (_copySourceOfMinHeight == null) || !IsActive())
                 {
+                    return -1f;
+                }
+
+                // ReSharper disable once InvertIf
+                if (_copySourceOfMinHeight == transform as RectTransform)
+                {
+                    Debug.LogWarning("コピー元に自身が設定されています。", gameObject);
                     return -1f;
                 }
 
@@ -50,8 +64,15 @@ namespace GigaceeTools
         {
             get
             {
-                if (!_copyPreferredWidth || (_copySourceOfPreferredWidth == null) || !IsActive())
+                if (!_shouldCopyPreferredWidth || (_copySourceOfPreferredWidth == null) || !IsActive())
                 {
+                    return -1f;
+                }
+
+                // ReSharper disable once InvertIf
+                if (_copySourceOfPreferredWidth == transform as RectTransform)
+                {
+                    Debug.LogWarning("コピー元に自身が設定されています。", gameObject);
                     return -1f;
                 }
 
@@ -63,8 +84,15 @@ namespace GigaceeTools
         {
             get
             {
-                if (!_copyPreferredHeight || (_copySourceOfPreferredHeight == null) || !IsActive())
+                if (!_shouldCopyPreferredHeight || (_copySourceOfPreferredHeight == null) || !IsActive())
                 {
+                    return -1f;
+                }
+
+                // ReSharper disable once InvertIf
+                if (_copySourceOfPreferredHeight == transform as RectTransform)
+                {
+                    Debug.LogWarning("コピー元に自身が設定されています。", gameObject);
                     return -1f;
                 }
 
