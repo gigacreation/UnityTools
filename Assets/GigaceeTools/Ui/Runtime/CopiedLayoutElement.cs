@@ -13,12 +13,21 @@ namespace GigaceeTools
     {
         [SerializeField] private bool _shouldCopyMinWidth;
         [SerializeField] private RectTransform _copySourceOfMinWidth;
+
+        [Space]
         [SerializeField] private bool _shouldCopyMinHeight;
         [SerializeField] private RectTransform _copySourceOfMinHeight;
+
+        [Space]
         [SerializeField] private bool _shouldCopyPreferredWidth;
         [SerializeField] private RectTransform _copySourceOfPreferredWidth;
+
+        [Space]
         [SerializeField] private bool _shouldCopyPreferredHeight;
         [SerializeField] private RectTransform _copySourceOfPreferredHeight;
+
+        [Space]
+        [SerializeField] private Vector2 _padding;
 
         public float minWidth
         {
@@ -36,7 +45,7 @@ namespace GigaceeTools
                     return -1f;
                 }
 
-                return LayoutUtility.GetMinWidth(_copySourceOfMinWidth);
+                return LayoutUtility.GetMinWidth(_copySourceOfMinWidth) + _padding.x;
             }
         }
 
@@ -56,7 +65,7 @@ namespace GigaceeTools
                     return -1f;
                 }
 
-                return LayoutUtility.GetMinHeight(_copySourceOfMinHeight);
+                return LayoutUtility.GetMinHeight(_copySourceOfMinHeight) + _padding.y;
             }
         }
 
@@ -76,7 +85,7 @@ namespace GigaceeTools
                     return -1f;
                 }
 
-                return LayoutUtility.GetPreferredWidth(_copySourceOfPreferredWidth);
+                return LayoutUtility.GetPreferredWidth(_copySourceOfPreferredWidth) + _padding.x;
             }
         }
 
@@ -96,7 +105,7 @@ namespace GigaceeTools
                     return -1f;
                 }
 
-                return LayoutUtility.GetPreferredHeight(_copySourceOfPreferredHeight);
+                return LayoutUtility.GetPreferredHeight(_copySourceOfPreferredHeight) + _padding.y;
             }
         }
 
