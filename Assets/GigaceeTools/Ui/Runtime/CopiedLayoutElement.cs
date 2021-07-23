@@ -29,6 +29,15 @@ namespace GigaceeTools
         [Space]
         [SerializeField] private Vector2 _padding;
 
+#if UNITY_EDITOR
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+
+            LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
+        }
+#endif
+
         public float minWidth
         {
             get
@@ -45,7 +54,7 @@ namespace GigaceeTools
                     return -1f;
                 }
 
-                return LayoutUtility.GetMinWidth(_copySourceOfMinWidth) + _padding.x;
+                return LayoutUtility.GetMinWidth(_copySourceOfMinWidth) + _padding.x * 2f;
             }
         }
 
@@ -65,7 +74,7 @@ namespace GigaceeTools
                     return -1f;
                 }
 
-                return LayoutUtility.GetMinHeight(_copySourceOfMinHeight) + _padding.y;
+                return LayoutUtility.GetMinHeight(_copySourceOfMinHeight) + _padding.y * 2f;
             }
         }
 
@@ -85,7 +94,7 @@ namespace GigaceeTools
                     return -1f;
                 }
 
-                return LayoutUtility.GetPreferredWidth(_copySourceOfPreferredWidth) + _padding.x;
+                return LayoutUtility.GetPreferredWidth(_copySourceOfPreferredWidth) + _padding.x * 2f;
             }
         }
 
@@ -105,7 +114,7 @@ namespace GigaceeTools
                     return -1f;
                 }
 
-                return LayoutUtility.GetPreferredHeight(_copySourceOfPreferredHeight) + _padding.y;
+                return LayoutUtility.GetPreferredHeight(_copySourceOfPreferredHeight) + _padding.y * 2f;
             }
         }
 

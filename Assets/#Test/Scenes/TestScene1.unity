@@ -181,7 +181,7 @@ MonoBehaviour:
   _copySourceOfPreferredWidth: {fileID: 848820396}
   _shouldCopyPreferredHeight: 1
   _copySourceOfPreferredHeight: {fileID: 848820396}
-  _padding: {x: 40, y: 20}
+  _padding: {x: 20, y: 10}
 --- !u!114 &249745077
 MonoBehaviour:
   m_ObjectHideFlags: 0
