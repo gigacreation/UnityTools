@@ -20,11 +20,19 @@ namespace GigaceeTools
             return result.ToArray();
         }
 
-        public static void EnableOrDisableComponentIfExists(Behaviour behaviour, bool enabled)
+        public static void EnableComponents(IEnumerable<Behaviour> behaviours)
         {
-            if (behaviour)
+            foreach (Behaviour behaviour in behaviours)
             {
-                behaviour.enabled = enabled;
+                behaviour.enabled = true;
+            }
+        }
+
+        public static void DisableComponents(IEnumerable<Behaviour> behaviours)
+        {
+            foreach (Behaviour behaviour in behaviours)
+            {
+                behaviour.enabled = false;
             }
         }
     }

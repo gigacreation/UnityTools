@@ -1,15 +1,18 @@
 ﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace GigaceeTools
 {
-    [RequireComponent(typeof(RectTransform))]
     public class AutoLayoutSupporter : MonoBehaviour
     {
-        [SerializeField] private RectTransform _rectTransform;
-        [SerializeField] private ContentSizeFitter _contentSizeFitter;
-        [SerializeField] private LayoutGroup _layoutGroup;
+        [SerializeField] private ContentSizeFitter[] _contentSizeFitters;
+        [SerializeField] private LayoutGroup[] _layoutGroups;
+        [SerializeField] private RectTransform[] _rectTransforms;
 
         private bool _isDestroying;
 
@@ -20,12 +23,24 @@ namespace GigaceeTools
 
         private void Reset()
         {
-            _rectTransform = transform as RectTransform;
-            _contentSizeFitter = GetComponent<ContentSizeFitter>();
-            _layoutGroup = GetComponent<LayoutGroup>();
+            _contentSizeFitters = GetComponentsInParent<ContentSizeFitter>()
+                .Concat(GetComponentsInChildren<ContentSizeFitter>())
+                .Distinct()
+                .ToArray();
 
-            ComponentHelper.EnableOrDisableComponentIfExists(_contentSizeFitter, false);
-            ComponentHelper.EnableOrDisableComponentIfExists(_layoutGroup, false);
+            _layoutGroups = GetComponentsInParent<LayoutGroup>()
+                .Concat(GetComponentsInChildren<LayoutGroup>())
+                .Distinct()
+                .ToArray();
+
+            _rectTransforms = _contentSizeFitters.Select(x => x.transform as RectTransform)
+                .Concat(_layoutGroups.Select(x => x.transform as RectTransform))
+                .Distinct()
+                .OrderByDescending(x => x.GetComponentsInParent<Transform>().Length)
+                .ToArray();
+
+            ComponentHelper.DisableComponents(_contentSizeFitters);
+            ComponentHelper.DisableComponents(_layoutGroups);
         }
 
         public void RebuildLayout()
@@ -35,37 +50,49 @@ namespace GigaceeTools
                 return;
             }
 
-            if (Application.isEditor && !Application.isPlaying)
+#if UNITY_EDITOR
+            if (!EditorApplication.isPlaying)
             {
                 RebuildLayoutOnEdit();
                 return;
             }
+#endif
 
             StartCoroutine(RebuildLayoutAtRuntime());
         }
 
+#if UNITY_EDITOR
         private void RebuildLayoutOnEdit()
         {
-            ComponentHelper.EnableOrDisableComponentIfExists(_contentSizeFitter, true);
-            ComponentHelper.EnableOrDisableComponentIfExists(_layoutGroup, true);
+            ComponentHelper.EnableComponents(_contentSizeFitters);
+            ComponentHelper.EnableComponents(_layoutGroups);
 
-            LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);
+            foreach (RectTransform rectTransform in _rectTransforms)
+            {
+                Undo.RecordObject(rectTransform, "RebuildLayoutOnEdit");
+                LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+                EditorUtility.SetDirty(rectTransform);
+            }
 
-            ComponentHelper.EnableOrDisableComponentIfExists(_contentSizeFitter, false);
-            ComponentHelper.EnableOrDisableComponentIfExists(_layoutGroup, false);
+            ComponentHelper.DisableComponents(_contentSizeFitters);
+            ComponentHelper.DisableComponents(_layoutGroups);
         }
+#endif
 
         private IEnumerator RebuildLayoutAtRuntime()
         {
-            ComponentHelper.EnableOrDisableComponentIfExists(_contentSizeFitter, true);
-            ComponentHelper.EnableOrDisableComponentIfExists(_layoutGroup, true);
+            ComponentHelper.EnableComponents(_contentSizeFitters);
+            ComponentHelper.EnableComponents(_layoutGroups);
 
-            LayoutRebuilder.MarkLayoutForRebuild(_rectTransform);
+            foreach (RectTransform rectTransform in _rectTransforms)
+            {
+                LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
 
-            yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();
+            }
 
-            ComponentHelper.EnableOrDisableComponentIfExists(_contentSizeFitter, false);
-            ComponentHelper.EnableOrDisableComponentIfExists(_layoutGroup, false);
+            ComponentHelper.DisableComponents(_contentSizeFitters);
+            ComponentHelper.DisableComponents(_layoutGroups);
         }
     }
 }
