@@ -71,7 +71,7 @@ namespace GigaceeTools
             foreach (RectTransform rectTransform in _rectTransforms)
             {
                 Undo.RecordObject(rectTransform, "RebuildLayoutOnEdit");
-                LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+                LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
                 EditorUtility.SetDirty(rectTransform);
 
                 yield return new WaitForEndOfFrame();
