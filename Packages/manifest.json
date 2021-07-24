@@ -4,6 +4,7 @@
     "com.gigacee.build-timestamp-display-for-unity": "https://github.com/Gigacee/build-timestamp-display-for-unity.git?path=Assets/BuildTimestampDisplay",
     "com.neuecc.unirx": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
     "com.unity.2d.tilemap": "1.0.0",
+    "com.unity.editorcoroutines": "1.0.0",
     "com.unity.ide.rider": "3.0.7",
     "com.unity.textmeshpro": "2.1.6",
     "com.unity.ugui": "1.0.0",

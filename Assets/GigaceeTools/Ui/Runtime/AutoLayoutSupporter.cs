@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_EDITOR
+using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 #endif
 
@@ -53,7 +54,7 @@ namespace GigaceeTools
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying)
             {
-                RebuildLayoutOnEdit();
+                EditorCoroutineUtility.StartCoroutine(RebuildLayoutOnEdit(), this);
                 return;
             }
 #endif
@@ -62,7 +63,7 @@ namespace GigaceeTools
         }
 
 #if UNITY_EDITOR
-        private void RebuildLayoutOnEdit()
+        private IEnumerator RebuildLayoutOnEdit()
         {
             ComponentHelper.EnableComponents(_contentSizeFitters);
             ComponentHelper.EnableComponents(_layoutGroups);
@@ -72,6 +73,8 @@ namespace GigaceeTools
                 Undo.RecordObject(rectTransform, "RebuildLayoutOnEdit");
                 LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
                 EditorUtility.SetDirty(rectTransform);
+
+                yield return new WaitForEndOfFrame();
             }
 
             ComponentHelper.DisableComponents(_contentSizeFitters);
