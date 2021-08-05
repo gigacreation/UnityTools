@@ -1,7 +1,11 @@
 {
-  "name": "GigaceeTools.HierarchyFolders.Editor",
+  "name": "GigaceeTools.Addressables.Editor",
   "references": [
-    "GUID:8dbfd4694fdecd34495bb83f1b6586aa"
+    "GUID:2c7f53bf3760ff64dbfd435364600926",
+    "GUID:15698b3078c3f0545a65d8584259d818",
+    "GUID:69448af7b92c7f342b298e06a37122aa",
+    "GUID:84651a3751eca9349aac36a66bba901b",
+    "GUID:c5ecc461727906345a35491a0440694f"
   ],
   "includePlatforms": [
     "Editor"

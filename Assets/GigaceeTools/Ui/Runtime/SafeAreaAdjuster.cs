@@ -41,7 +41,7 @@ namespace GigaceeTools
 #if UNITY_EDITOR
             if (!onStart && !EditorApplication.isPlaying)
             {
-                Undo.RecordObject(_rectTransform, "AdjustToSafeArea");
+                Undo.RecordObject(_rectTransform, "Adjust to Safe Area");
             }
 #endif
 

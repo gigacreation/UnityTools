@@ -41,7 +41,7 @@ namespace GigaceeTools
             EditorGUI.LabelField(
                 new Rect(selectionRect.position + s_labelOffset, selectionRect.size),
                 instance.name,
-                new GUIStyle {normal = new GUIStyleState {textColor = s_labelColor}}
+                new GUIStyle { normal = new GUIStyleState { textColor = s_labelColor } }
             );
 
             GUI.DrawTexture(

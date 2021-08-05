@@ -32,7 +32,7 @@ namespace GigaceeTools
 
         private static AnimationCurve CopyAnimationCurve(AnimationCurve curve)
         {
-            return new AnimationCurve {keys = curve.keys};
+            return new AnimationCurve { keys = curve.keys };
         }
 
         private IEnumerator WarpTextCo()

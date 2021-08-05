@@ -1,11 +1,11 @@
 {
-    "name": "com.gigacee.gigacee-tools-for-unity-hierarchy-folders",
-    "version": "1.0.0",
-    "displayName": "Gigacee Tools / Hierarchy Folders",
-    "unity": "2019.4",
-    "author": {
-        "name": "Gigacee",
-        "email": "gigacee@gigacreation.jp",
-        "url": "https://www.gigacreation.jp/"
-    }
+  "name": "com.gigacee.gigacee-tools-for-unity-hierarchy-folders",
+  "version": "1.0.0",
+  "displayName": "Gigacee Tools / Hierarchy Folders",
+  "unity": "2019.4",
+  "author": {
+    "name": "Gigacee",
+    "email": "gigacee@gigacreation.jp",
+    "url": "https://www.gigacreation.jp/"
+  }
 }

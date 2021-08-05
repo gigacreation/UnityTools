@@ -70,7 +70,7 @@ namespace GigaceeTools
 
             foreach (RectTransform rectTransform in _rectTransforms)
             {
-                Undo.RecordObject(rectTransform, "RebuildLayoutOnEdit");
+                Undo.RecordObject(rectTransform, "Rebuild Layout on Edit");
                 LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
                 EditorUtility.SetDirty(rectTransform);
 

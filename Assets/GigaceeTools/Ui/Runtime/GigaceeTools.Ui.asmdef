@@ -1,16 +1,16 @@
 {
-    "name": "GigaceeTools.Ui",
-    "references": [
-        "GUID:0066bcf430d7edd438aca9c462fd4c38",
-        "GUID:478a2357cc57436488a56e564b08d223"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "GigaceeTools.Ui",
+  "references": [
+    "GUID:0066bcf430d7edd438aca9c462fd4c38",
+    "GUID:478a2357cc57436488a56e564b08d223"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

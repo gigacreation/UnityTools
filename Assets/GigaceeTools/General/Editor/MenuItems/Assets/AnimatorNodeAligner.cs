@@ -39,7 +39,7 @@ namespace GigaceeTools
 
                 animatorControllerToolType
                     .GetMethod("RebuildGraph", BindingFlags.Public | BindingFlags.Instance)
-                    ?.Invoke(animatorWindow, new object[] {false});
+                    ?.Invoke(animatorWindow, new object[] { false });
             }
         }
 

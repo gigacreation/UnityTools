@@ -93,12 +93,12 @@ namespace GigaceeTools
             projectWindow.Focus();
 
             // プロジェクトウィンドウを 1 カラム表示に変更
-            initViewMode?.Invoke(projectWindow, new[] {Enum.GetValues(viewModeType).GetValue(0)});
+            initViewMode?.Invoke(projectWindow, new[] { Enum.GetValues(viewModeType).GetValue(0) });
 
             await Task.Delay(100);
 
             // プロジェクトウィンドウを 2 カラム表示に変更
-            initViewMode?.Invoke(projectWindow, new[] {Enum.GetValues(viewModeType).GetValue(1)});
+            initViewMode?.Invoke(projectWindow, new[] { Enum.GetValues(viewModeType).GetValue(1) });
         }
 
         [MenuItem(ToolsDirName + "Clear Console #%c", priority = CategoryPriority + 3)]

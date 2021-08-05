@@ -137,7 +137,7 @@ namespace GigaceeTools
                 foreach (string valueName in registryKey.GetValueNames())
                 {
                     object value = registryKey.GetValue(valueName);
-                    string key = valueName.Split(new[] {"_h"}, StringSplitOptions.None)[0];
+                    string key = valueName.Split(new[] { "_h" }, StringSplitOptions.None)[0];
 
                     if (value is byte[] byteValue)
                     {
