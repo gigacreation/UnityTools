@@ -1,18 +1,18 @@
 {
-  "name": "GigaceeTools.Debug.UniTask",
-  "references": [
-    "GUID:0066bcf430d7edd438aca9c462fd4c38",
-    "GUID:850de870f1408554eb762d5126cc08dc",
-    "GUID:560b04d1a97f54a4e82edc0cbbb69285",
-    "GUID:f51ebe6a0ceec4240a699833d6309b23"
-  ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "autoReferenced": true,
-  "defineConstraints": [],
-  "versionDefines": [],
-  "noEngineReferences": false
+    "name": "GigaceeTools.Debug.UniTask",
+    "references": [
+        "GUID:0066bcf430d7edd438aca9c462fd4c38",
+        "GUID:850de870f1408554eb762d5126cc08dc",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

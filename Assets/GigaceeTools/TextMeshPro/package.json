@@ -1,14 +1,14 @@
 {
-  "name": "com.gigacee.gigacee-tools-for-unity-textmeshpro",
-  "version": "1.0.0",
-  "displayName": "Gigacee Tools / TextMesh Pro",
-  "unity": "2019.4",
-  "dependencies": {
-    "com.unity.textmeshpro": "2.1.6"
-  },
-  "author": {
-    "name": "Gigacee",
-    "email": "gigacee@gigacreation.jp",
-    "url": "https://www.gigacreation.jp/"
-  }
+    "name": "com.gigacee.gigacee-tools-for-unity-textmeshpro",
+    "version": "1.0.0",
+    "displayName": "Gigacee Tools / TextMesh Pro",
+    "unity": "2019.4",
+    "dependencies": {
+        "com.unity.textmeshpro": "2.1.6"
+    },
+    "author": {
+        "name": "Gigacee",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
 }

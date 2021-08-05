@@ -1,16 +1,16 @@
 {
-  "name": "com.gigacee.gigacee-tools-for-unity-debug-ui",
-  "version": "1.0.0",
-  "displayName": "Gigacee Tools / Debug / UI",
-  "unity": "2019.4",
-  "dependencies": {
-    "com.gigacee.gigacee-tools-for-unity-core": "1.0.0",
-    "com.gigacee.gigacee-tools-for-unity-debug-core": "1.0.0",
-    "com.neuecc.unirx": "7.1.0"
-  },
-  "author": {
-    "name": "Gigacee",
-    "email": "gigacee@gigacreation.jp",
-    "url": "https://www.gigacreation.jp/"
-  }
+    "name": "com.gigacee.gigacee-tools-for-unity-debug-ui",
+    "version": "1.0.0",
+    "displayName": "Gigacee Tools / Debug / UI",
+    "unity": "2019.4",
+    "dependencies": {
+        "com.gigacee.gigacee-tools-for-unity-core": "1.0.0",
+        "com.gigacee.gigacee-tools-for-unity-debug-core": "1.0.0",
+        "com.neuecc.unirx": "7.1.0"
+    },
+    "author": {
+        "name": "Gigacee",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
 }

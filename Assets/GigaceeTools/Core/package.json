@@ -1,11 +1,11 @@
 {
-  "name": "com.gigacee.gigacee-tools-for-unity-core",
-  "version": "1.0.0",
-  "displayName": "Gigacee Tools / Core",
-  "unity": "2019.4",
-  "author": {
-    "name": "Gigacee",
-    "email": "gigacee@gigacreation.jp",
-    "url": "https://www.gigacreation.jp/"
-  }
+    "name": "com.gigacee.gigacee-tools-for-unity-core",
+    "version": "1.0.0",
+    "displayName": "Gigacee Tools / Core",
+    "unity": "2019.4",
+    "author": {
+        "name": "Gigacee",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
 }
