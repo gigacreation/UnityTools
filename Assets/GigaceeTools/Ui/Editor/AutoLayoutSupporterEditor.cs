@@ -22,6 +22,21 @@ namespace GigaceeTools
             {
                 autoLayoutSupporter.RebuildLayout();
             }
+
+            GUILayout.Space(4f);
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Enable All Layout Components", GUILayout.Height(24f)))
+                {
+                    autoLayoutSupporter.EnableAllLayoutComponents();
+                }
+
+                if (GUILayout.Button("Disable All Layout Components", GUILayout.Height(24f)))
+                {
+                    autoLayoutSupporter.DisableAllLayoutComponents();
+                }
+            }
         }
     }
 }

@@ -24,6 +24,14 @@ namespace GigaceeTools
 
         private void Reset()
         {
+            GetReferences();
+
+            ComponentHelper.DisableComponents(_contentSizeFitters);
+            ComponentHelper.DisableComponents(_layoutGroups);
+        }
+
+        private void GetReferences()
+        {
             _contentSizeFitters = GetComponentsInParent<ContentSizeFitter>()
                 .Concat(GetComponentsInChildren<ContentSizeFitter>())
                 .Distinct()
@@ -39,9 +47,6 @@ namespace GigaceeTools
                 .Distinct()
                 .OrderByDescending(x => x.GetComponentsInParent<Transform>().Length)
                 .ToArray();
-
-            ComponentHelper.DisableComponents(_contentSizeFitters);
-            ComponentHelper.DisableComponents(_layoutGroups);
         }
 
         public void RebuildLayout()
@@ -51,7 +56,7 @@ namespace GigaceeTools
                 return;
             }
 
-            Reset();
+            GetReferences();
 
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying)
@@ -99,5 +104,45 @@ namespace GigaceeTools
             ComponentHelper.DisableComponents(_contentSizeFitters);
             ComponentHelper.DisableComponents(_layoutGroups);
         }
+
+#if UNITY_EDITOR
+        public void EnableAllLayoutComponents()
+        {
+            GetReferences();
+
+            foreach (ContentSizeFitter contentSizeFitter in _contentSizeFitters)
+            {
+                Undo.RecordObject(contentSizeFitter, "Enable Content Size Fitter");
+                contentSizeFitter.enabled = true;
+                EditorUtility.SetDirty(contentSizeFitter);
+            }
+
+            foreach (LayoutGroup layoutGroup in _layoutGroups)
+            {
+                Undo.RecordObject(layoutGroup, "Enable Layout Group");
+                layoutGroup.enabled = true;
+                EditorUtility.SetDirty(layoutGroup);
+            }
+        }
+
+        public void DisableAllLayoutComponents()
+        {
+            GetReferences();
+
+            foreach (ContentSizeFitter contentSizeFitter in _contentSizeFitters)
+            {
+                Undo.RecordObject(contentSizeFitter, "Enable Content Size Fitter");
+                contentSizeFitter.enabled = false;
+                EditorUtility.SetDirty(contentSizeFitter);
+            }
+
+            foreach (LayoutGroup layoutGroup in _layoutGroups)
+            {
+                Undo.RecordObject(layoutGroup, "Enable Layout Group");
+                layoutGroup.enabled = false;
+                EditorUtility.SetDirty(layoutGroup);
+            }
+        }
+#endif
     }
 }
