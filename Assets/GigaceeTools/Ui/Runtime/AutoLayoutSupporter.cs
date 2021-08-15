@@ -51,6 +51,8 @@ namespace GigaceeTools
                 return;
             }
 
+            Reset();
+
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying)
             {
