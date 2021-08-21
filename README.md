@@ -2,56 +2,56 @@
 
 ## Core
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Core`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Core`
 
 ## General
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/General`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/General`
 
 ## UI
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Ui`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Ui`
 
 ## TextMesh Pro
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/TextMeshPro`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/TextMeshPro`
 
 ## Tilemap
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Tilemap`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Tilemap`
 
 ## Addressables
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Addressables`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Addressables`
 
 ## UniRx
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/UniRx`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/UniRx`
 
 ## UniTask
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/UniTask`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/UniTask`
 
 ## Hierarchy Folders
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/HierarchyFolders`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/HierarchyFolders`
 
 ## Debug / Core
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Debug_Core`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Debug_Core`
 
 ## Debug / UI
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Debug_Ui`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Debug_Ui`
 
 ## Debug / Text Printer
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Debug_TextPrinter`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Debug_TextPrinter`
 
 ## Debug / Text Printer / Build Timestamp
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Debug_TextPrinter_BuildTimestamp`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Debug_TextPrinter_BuildTimestamp`
 
 ## Debug / UniTask
 
-`https://github.com/Gigacee/gigacee-tools-for-unity.git?path=Assets/GigaceeTools/Debug_UniTask`
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Debug_UniTask`
