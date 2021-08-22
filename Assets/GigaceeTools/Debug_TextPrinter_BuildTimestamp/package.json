@@ -6,7 +6,7 @@
     "dependencies": {
         "com.gigacee.gigaceetools.debug.textprinter": "1.0.0",
         "com.unity.textmeshpro": "2.1.6",
-        "com.gigacee.build-timestamp-display-for-unity": "1.1.2"
+        "com.gigacee.buildtimestampdisplay": "1.2.0"
     },
     "author": {
         "name": "Gigacee",

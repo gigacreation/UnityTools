@@ -7,14 +7,14 @@
       "dependencies": {},
       "hash": "60bfbae787b1aade3b7a2504999031d96996d7dd"
     },
-    "com.gigacee.build-timestamp-display-for-unity": {
-      "version": "https://github.com/Gigacee/build-timestamp-display-for-unity.git?path=Assets/BuildTimestampDisplay",
+    "com.gigacee.buildtimestampdisplay": {
+      "version": "https://github.com/gigacee/BuildTimestampDisplayForUnity.git?path=Assets/BuildTimestampDisplay",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "9df0556439f2b8dca64f57f243020227554f05f5"
+      "hash": "6911db199462e308853e7c367473c78c41e6dc38"
     },
     "com.neuecc.unirx": {
       "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
