@@ -1,10 +1,10 @@
 {
-    "name": "com.gigacee.gigacee-tools-for-unity-general",
+    "name": "com.gigacee.gigaceetools.general",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / General",
     "unity": "2019.4",
     "dependencies": {
-        "com.gigacee.gigacee-tools-for-unity-core": "1.0.0"
+        "com.gigacee.gigaceetools.core": "1.0.0"
     },
     "author": {
         "name": "Gigacee",

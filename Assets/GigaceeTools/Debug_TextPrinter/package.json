@@ -1,12 +1,12 @@
 {
-    "name": "com.gigacee.gigacee-tools-for-unity-debug-text-printer",
+    "name": "com.gigacee.gigaceetools.debug.textprinter",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / Debug / Text Printer",
     "unity": "2019.4",
     "dependencies": {
-        "com.gigacee.gigacee-tools-for-unity-core": "1.0.0",
-        "com.gigacee.gigacee-tools-for-unity-ui": "1.0.0",
-        "com.gigacee.gigacee-tools-for-unity-debug-core": "1.0.0",
+        "com.gigacee.gigaceetools.core": "1.0.0",
+        "com.gigacee.gigaceetools.ui": "1.0.0",
+        "com.gigacee.gigaceetools.debug.core": "1.0.0",
         "com.unity.textmeshpro": "2.1.6",
         "com.neuecc.unirx": "7.1.0"
     },

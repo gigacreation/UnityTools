@@ -1,11 +1,11 @@
 {
-    "name": "com.gigacee.gigacee-tools-for-unity-debug-ui",
+    "name": "com.gigacee.gigaceetools.debug.ui",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / Debug / UI",
     "unity": "2019.4",
     "dependencies": {
-        "com.gigacee.gigacee-tools-for-unity-core": "1.0.0",
-        "com.gigacee.gigacee-tools-for-unity-debug-core": "1.0.0",
+        "com.gigacee.gigaceetools.core": "1.0.0",
+        "com.gigacee.gigaceetools.debug.core": "1.0.0",
         "com.neuecc.unirx": "7.1.0"
     },
     "author": {
