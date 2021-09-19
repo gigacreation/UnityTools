@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "60bfbae787b1aade3b7a2504999031d96996d7dd"
+      "hash": "69be818a46ca876afc5cb370a0ceb00324b4437d"
     },
     "com.gigacee.buildtimestampdisplay": {
       "version": "https://github.com/gigacee/BuildTimestampDisplayForUnity.git?path=Assets/BuildTimestampDisplay",
@@ -30,11 +30,11 @@
       "dependencies": {}
     },
     "com.unity.addressables": {
-      "version": "1.18.9",
+      "version": "1.18.15",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.19.0",
+        "com.unity.scriptablebuildpipeline": "1.19.1",
         "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
@@ -67,8 +67,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.19.0",
-      "depth": 1,
+      "version": "1.19.2",
+      "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
