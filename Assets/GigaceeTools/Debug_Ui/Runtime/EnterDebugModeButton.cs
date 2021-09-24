@@ -6,11 +6,11 @@ using UnityEngine.UI;
 namespace GigaceeTools
 {
     // ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
-    [RequireComponent(typeof(Image), typeof(Button))]
+    [RequireComponent(typeof(Image), typeof(Selectable))]
     public class EnterDebugModeButton : MonoBehaviour
     {
         [SerializeField] private Image _image;
-        [SerializeField] private Button _button;
+        [SerializeField] private Selectable _selectable;
 
         [SerializeField] private float _longPressDuration = 1f;
 
@@ -19,7 +19,7 @@ namespace GigaceeTools
         private void Reset()
         {
             _image = GetComponent<Image>();
-            _button = GetComponent<Button>();
+            _selectable = GetComponent<Selectable>();
         }
 
         protected virtual void Start()
@@ -48,24 +48,27 @@ namespace GigaceeTools
 
                     ReturnToDefault();
                     EnableDebugMode();
-                });
+                })
+                .AddTo(this);
 
-            _button
+            _selectable
                 .OnPointerDownAsObservable()
                 .Where(_ => !_debugCore.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
                     pressed = true;
                     pressedTime = Time.realtimeSinceStartup;
-                });
+                })
+                .AddTo(this);
 
-            _button
+            _selectable
                 .OnPointerUpAsObservable()
                 .Where(_ => !_debugCore.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
                     ReturnToDefault();
-                });
+                })
+                .AddTo(this);
 
             void ReturnToDefault()
             {

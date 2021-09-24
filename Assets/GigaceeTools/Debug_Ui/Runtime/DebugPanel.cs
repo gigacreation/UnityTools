@@ -23,19 +23,17 @@ namespace GigaceeTools
 
         private void Start()
         {
-            if (!ServiceLocator.TryGetInstance(out IDebugCore debugCore))
+            if (ServiceLocator.TryGetInstance(out IDebugCore debugCore))
             {
-                return;
+                debugCore
+                    .IsDebugMode
+                    .Where(x => x)
+                    .Subscribe(x =>
+                    {
+                        Dismiss();
+                    })
+                    .AddTo(this);
             }
-
-            debugCore
-                .IsDebugMode
-                .Where(x => x)
-                .Subscribe(x =>
-                {
-                    Dismiss();
-                })
-                .AddTo(this);
         }
 
         private void OnDestroy()

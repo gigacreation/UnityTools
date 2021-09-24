@@ -15,13 +15,15 @@ namespace GigaceeTools
         {
             base.Initialize();
 
-            DebugCore.IsDebugMode
+            DebugCore
+                .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
                 {
                     Label.SetText("- fps");
 
-                    this.UpdateAsObservable()
+                    this
+                        .UpdateAsObservable()
                         .Select(__ => Time.deltaTime)
                         .Buffer(BufferSize, 1)
                         .Select(y => 1f / y.Average())

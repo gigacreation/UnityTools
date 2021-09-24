@@ -20,12 +20,10 @@ namespace GigaceeTools
                 return;
             }
 
-            _button
-                .onClick
-                .AddListener(() =>
-                {
-                    debugCore.IsDebugMode.Value = false;
-                });
+            _button.onClick.AddListener(() =>
+            {
+                debugCore.IsDebugMode.Value = false;
+            });
         }
     }
 }

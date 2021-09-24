@@ -30,8 +30,10 @@ namespace GigaceeTools
 
             if (_labelPrefab == null)
             {
-                var obj = new GameObject(typeName);
-                obj.transform.parent = transform;
+                var obj = new GameObject(typeName)
+                {
+                    transform = { parent = transform }
+                };
 
                 newLabel = obj.AddComponent<TextMeshProUGUI>();
                 newLabel.verticalAlignment = VerticalAlignmentOptions.Middle;

@@ -10,11 +10,13 @@ namespace GigaceeTools
         {
             base.Initialize();
 
-            DebugCore.IsDebugMode
+            DebugCore
+                .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
                 {
-                    this.UpdateAsObservable()
+                    this
+                        .UpdateAsObservable()
                         .Subscribe(__ =>
                         {
                             Label.SetText($"TimeScale: {Time.timeScale}");
