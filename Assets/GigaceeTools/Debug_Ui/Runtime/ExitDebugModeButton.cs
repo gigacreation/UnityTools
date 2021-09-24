@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace GigaceeTools
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(Image), typeof(Button))]
     public class ExitDebugModeButton : MonoBehaviour
     {
         [SerializeField] private Button _button;
