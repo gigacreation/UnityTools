@@ -14,9 +14,10 @@ namespace GigaceeTools
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class DebugPanel : MonoBehaviour
     {
+        [SerializeField] private Transform[] _contents;
+
         [SerializeField] private Transform _showButton;
         [SerializeField] private Transform _hideButton;
-        [SerializeField] private Transform[] _contents;
 
         private IEnumerable<Transform> _otherDebugPanels;
 
