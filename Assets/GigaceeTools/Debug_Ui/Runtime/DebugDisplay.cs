@@ -3,13 +3,17 @@ using UnityEngine;
 
 namespace GigaceeTools
 {
+    /// <summary>
+    /// デバッグモードがオンのときに表示され、オフのときに非表示になります。
+    /// </summary>
     public class DebugDisplay : MonoBehaviour
     {
         private void Start()
         {
             if (ServiceLocator.TryGetInstance(out IDebugCore debugCore))
             {
-                debugCore.IsDebugMode
+                debugCore
+                    .IsDebugMode
                     .Subscribe(x =>
                     {
                         if (x)

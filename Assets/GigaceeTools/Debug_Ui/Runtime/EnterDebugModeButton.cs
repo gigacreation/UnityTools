@@ -34,7 +34,8 @@ namespace GigaceeTools
 
             _image.fillAmount = 0f;
 
-            this.UpdateAsObservable()
+            this
+                .UpdateAsObservable()
                 .Where(_ => pressed)
                 .Subscribe(_ =>
                 {
@@ -49,7 +50,8 @@ namespace GigaceeTools
                     EnableDebugMode();
                 });
 
-            _button.OnPointerDownAsObservable()
+            _button
+                .OnPointerDownAsObservable()
                 .Where(_ => !_debugCore.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
@@ -57,7 +59,8 @@ namespace GigaceeTools
                     pressedTime = Time.realtimeSinceStartup;
                 });
 
-            _button.OnPointerUpAsObservable()
+            _button
+                .OnPointerUpAsObservable()
                 .Where(_ => !_debugCore.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
