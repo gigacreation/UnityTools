@@ -1,40 +1,18 @@
-﻿using UniRx;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GigaceeTools
 {
     /// <summary>
     /// デバッグモードがオンのときに表示され、オフのときに非表示になります。
     /// </summary>
-    public class DebugDisplay : MonoBehaviour
+    public class DebugDisplay : FireOnSwitchingDebugMode
     {
-        private void Start()
-        {
-            if (ServiceLocator.TryGetInstance(out IDebugCore debugCore))
-            {
-                debugCore
-                    .IsDebugMode
-                    .Subscribe(x =>
-                    {
-                        if (x)
-                        {
-                            Present();
-                        }
-                        else
-                        {
-                            Dismiss();
-                        }
-                    })
-                    .AddTo(this);
-            }
-        }
-
-        private void Present()
+        protected override void OnEnterDebugMode()
         {
             transform.localScale = Vector3.one;
         }
 
-        private void Dismiss()
+        protected override void OnExitDebugMode()
         {
             transform.localScale = Vector3.zero;
         }

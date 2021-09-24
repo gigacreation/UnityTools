@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 namespace GigaceeTools
 {
-    // ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
     [RequireComponent(typeof(Image), typeof(Selectable))]
     public class EnterDebugModeButton : MonoBehaviour
     {
@@ -16,27 +15,28 @@ namespace GigaceeTools
 
         private IDebugCore _debugCore;
 
+        private bool _isPressed;
+
         private void Reset()
         {
             _image = GetComponent<Image>();
             _selectable = GetComponent<Selectable>();
         }
 
-        protected virtual void Start()
+        private void Start()
         {
             if (!ServiceLocator.TryGetInstance(out _debugCore))
             {
                 return;
             }
 
-            var pressed = false;
             var pressedTime = 0f;
 
             _image.fillAmount = 0f;
 
             this
                 .UpdateAsObservable()
-                .Where(_ => pressed)
+                .Where(_ => _isPressed)
                 .Subscribe(_ =>
                 {
                     _image.fillAmount = (Time.realtimeSinceStartup - pressedTime) / _longPressDuration;
@@ -56,7 +56,7 @@ namespace GigaceeTools
                 .Where(_ => !_debugCore.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
-                    pressed = true;
+                    _isPressed = true;
                     pressedTime = Time.realtimeSinceStartup;
                 })
                 .AddTo(this);
@@ -69,15 +69,15 @@ namespace GigaceeTools
                     ReturnToDefault();
                 })
                 .AddTo(this);
-
-            void ReturnToDefault()
-            {
-                pressed = false;
-                _image.fillAmount = 0f;
-            }
         }
 
-        protected virtual void EnableDebugMode()
+        private void ReturnToDefault()
+        {
+            _isPressed = false;
+            _image.fillAmount = 0f;
+        }
+
+        private void EnableDebugMode()
         {
             _debugCore.IsDebugMode.Value = true;
         }

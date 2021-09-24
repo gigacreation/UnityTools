@@ -8,6 +8,8 @@ namespace GigaceeTools
     {
         [SerializeField] private Button _button;
 
+        private IDebugCore _debugCore;
+
         private void Reset()
         {
             _button = GetComponent<Button>();
@@ -15,15 +17,17 @@ namespace GigaceeTools
 
         private void Start()
         {
-            if (!ServiceLocator.TryGetInstance(out IDebugCore debugCore))
+            if (!ServiceLocator.TryGetInstance(out _debugCore))
             {
                 return;
             }
 
-            _button.onClick.AddListener(() =>
-            {
-                debugCore.IsDebugMode.Value = false;
-            });
+            _button.onClick.AddListener(ExitDebugMode);
+        }
+
+        private void ExitDebugMode()
+        {
+            _debugCore.IsDebugMode.Value = false;
         }
     }
 }
