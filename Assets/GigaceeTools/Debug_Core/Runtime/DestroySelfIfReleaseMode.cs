@@ -2,7 +2,7 @@
 
 namespace GigaceeTools
 {
-    public class DestroyItselfIfReleaseMode : MonoBehaviour
+    public class DestroySelfIfReleaseMode : MonoBehaviour
     {
         private void Start()
         {
