@@ -3017,7 +3017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33495bcc01d04304bbde7772714ebbf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetKind: 2
+  _targetKind: 1
   _visible: 1
   _selections: []
 --- !u!1 &1898673053

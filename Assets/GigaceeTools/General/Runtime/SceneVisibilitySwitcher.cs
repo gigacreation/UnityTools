@@ -53,6 +53,11 @@ namespace GigaceeTools
 
             foreach (Target target in targets)
             {
+                if (!target.GameObject)
+                {
+                    continue;
+                }
+
                 if (target.Visible)
                 {
 #if UNITY_EDITOR
