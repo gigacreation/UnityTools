@@ -10,46 +10,76 @@ namespace GigaceeTools
 {
     public class SceneVisibilitySwitcher : MonoBehaviour
     {
+        [SerializeField] private TargetKind _targetKind;
         [SerializeField] private bool _visible;
-        [SerializeField] private Target _target;
+        [SerializeField] private Target[] _selections;
 
         private void OnValidate()
         {
-            IEnumerable<GameObject> targetGameObjects;
+            IEnumerable<Target> targets;
 
-            switch (_target)
+            switch (_targetKind)
             {
-                case Target.Self:
-                    targetGameObjects = new[] { gameObject };
+                case TargetKind.Self:
+                    targets = new[]
+                    {
+                        new Target
+                        {
+                            GameObject = gameObject,
+                            Visible = _visible
+                        }
+                    };
+
                     break;
 
-                case Target.ChildrenOneLevelDown:
-                    targetGameObjects = transform.Cast<Transform>().Select(x => x.gameObject);
+                case TargetKind.ChildrenOneLevelDown:
+                    targets = transform
+                        .Cast<Transform>()
+                        .Select(x => new Target
+                        {
+                            GameObject = x.gameObject,
+                            Visible = _visible
+                        });
+
+                    break;
+
+                case TargetKind.Selections:
+                    targets = _selections;
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-#if UNITY_EDITOR
-            foreach (GameObject go in targetGameObjects)
+            foreach (Target target in targets)
             {
-                if (_visible)
+                if (target.Visible)
                 {
-                    SceneVisibilityManager.instance.Show(go, true);
+#if UNITY_EDITOR
+                    SceneVisibilityManager.instance.Show(target.GameObject, true);
+#endif
                 }
                 else
                 {
-                    SceneVisibilityManager.instance.Hide(go, true);
+#if UNITY_EDITOR
+                    SceneVisibilityManager.instance.Hide(target.GameObject, true);
+#endif
                 }
             }
-#endif
         }
 
-        private enum Target
+        private enum TargetKind
         {
             Self,
-            ChildrenOneLevelDown
+            ChildrenOneLevelDown,
+            Selections
+        }
+
+        [Serializable]
+        private class Target
+        {
+            public GameObject GameObject;
+            public bool Visible;
         }
     }
 }
