@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace GigaceeTools
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class Rigidbody2DExtensions
     {
         public static void MovePositionX(this Rigidbody2D self, float x)
