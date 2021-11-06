@@ -5,8 +5,8 @@ namespace GigaceeTools
 {
     public class DebugCore : MonoBehaviour, IDebugCore
     {
-        [SerializeField] private bool _forceReleaseBuild;
         [SerializeField] private BoolReactiveProperty _isDebugMode;
+        [SerializeField] private bool _forceReleaseBuild;
 
         private void Awake()
         {

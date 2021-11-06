@@ -363,9 +363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9170b29b843854d8c2d1b28f97763d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceReleaseBuild: 0
   _isDebugMode:
     value: 1
+  _forceReleaseBuild: 0
 --- !u!1 &474705199
 GameObject:
   m_ObjectHideFlags: 0
@@ -2566,9 +2566,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9170b29b843854d8c2d1b28f97763d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceReleaseBuild: 0
   _isDebugMode:
     value: 1
+  _forceReleaseBuild: 0
 --- !u!4 &1516538190
 Transform:
   m_ObjectHideFlags: 0
