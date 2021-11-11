@@ -1852,12 +1852,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20298cca7020389438778633e5de9a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onEnterDebugMode:
-    m_PersistentCalls:
-      m_Calls: []
-  _onExitDebugMode:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1064997035
 MonoBehaviour:
   m_ObjectHideFlags: 0

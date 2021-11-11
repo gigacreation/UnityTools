@@ -19,25 +19,15 @@ namespace GigaceeTools
                     {
                         if (x)
                         {
-                            OnEnterDebugMode();
+                            _onEnterDebugMode.Invoke();
                         }
                         else
                         {
-                            OnExitDebugMode();
+                            _onExitDebugMode.Invoke();
                         }
                     })
                     .AddTo(this);
             }
-        }
-
-        protected virtual void OnEnterDebugMode()
-        {
-            _onEnterDebugMode?.Invoke();
-        }
-
-        protected virtual void OnExitDebugMode()
-        {
-            _onExitDebugMode?.Invoke();
         }
     }
 }
