@@ -9,7 +9,7 @@ namespace GigaceeTools
     {
         private const int CategoryPriority = ToolsPriority + 300;
         private const string Category = ToolsDirName + CategoryPrefix + "Activate GameObjects" + CategorySuffix;
-        private const string ActivateGameobjects = ToolsDirName + "Activate Selected GameObjects And Descendants";
+        private const string ActivateGameObjects = ToolsDirName + "Activate Selected GameObjects And Descendants";
 
         [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()
@@ -22,7 +22,7 @@ namespace GigaceeTools
             return false;
         }
 
-        [MenuItem(ActivateGameobjects, priority = CategoryPriority + 1)]
+        [MenuItem(ActivateGameObjects, priority = CategoryPriority + 1)]
         public static void ActivateSelectedGameObjectsAndDescendants()
         {
             foreach (Transform selection in Selection.transforms)
@@ -34,7 +34,7 @@ namespace GigaceeTools
             }
         }
 
-        [MenuItem(ActivateGameobjects, true)]
+        [MenuItem(ActivateGameObjects, true)]
         private static bool NoSelection()
         {
             return Selection.transforms.Any();

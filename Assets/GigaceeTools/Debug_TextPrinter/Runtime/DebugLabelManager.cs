@@ -47,7 +47,7 @@ namespace GigaceeTools
             _children.Add(priority, newLabel);
 
             TextMeshProUGUI[] sortedLabels = _children
-                .OrderByDescending(pair => pair.Key)
+                .OrderBy(pair => pair.Key)
                 .Select(pair => pair.Value)
                 .ToArray();
 
