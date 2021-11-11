@@ -21,6 +21,8 @@ namespace GigaceeTools
 
         private IEnumerable<Transform> _otherDebugPanels;
 
+        private bool _isQuitting;
+
         private void Start()
         {
             if (ServiceLocator.TryGetInstance(out IDebugCore debugCore))
@@ -38,12 +40,22 @@ namespace GigaceeTools
 
         private void OnDestroy()
         {
+            if (_isQuitting)
+            {
+                return;
+            }
+
             FindDebugPanelsIfNotAlready();
 
             foreach (Transform panel in _otherDebugPanels)
             {
                 panel.transform.localScale = Vector3.one;
             }
+        }
+
+        private void OnApplicationQuit()
+        {
+            _isQuitting = true;
         }
 
         public void Present()
@@ -84,12 +96,9 @@ namespace GigaceeTools
 
         private void FindDebugPanelsIfNotAlready()
         {
-            if (_otherDebugPanels == null)
-            {
-                _otherDebugPanels = FindObjectsOfType<DebugPanel>()
-                    .Where(x => x != this)
-                    .Select(x => x.transform);
-            }
+            _otherDebugPanels ??= FindObjectsOfType<DebugPanel>()
+                .Where(x => x != this)
+                .Select(x => x.transform);
         }
     }
 }

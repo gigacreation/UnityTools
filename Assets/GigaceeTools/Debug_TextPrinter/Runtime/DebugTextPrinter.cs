@@ -12,22 +12,29 @@ namespace GigaceeTools
 
         private DebugLabelManager _debugLabelManager;
 
+        private bool _isQuitting;
+
         private void Start()
         {
-            if (!ServiceLocator.TryGetInstance(out DebugCore))
+            if (ServiceLocator.TryGetInstance(out DebugCore))
             {
-                return;
+                Initialize();
             }
-
-            Initialize();
         }
 
         private void OnDestroy()
         {
-            if (_debugLabelManager)
+            if (_isQuitting || !_debugLabelManager)
             {
-                _debugLabelManager.Remove(GetType().Name);
+                return;
             }
+
+            _debugLabelManager.Remove(GetType().Name);
+        }
+
+        private void OnApplicationQuit()
+        {
+            _isQuitting = true;
         }
 
         protected virtual void Initialize()

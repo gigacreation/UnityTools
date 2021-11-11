@@ -18,10 +18,13 @@ namespace GigaceeTools
 
             ServiceLocator.Register<IDebugCore>(this);
 
-            IsDebugMode.Where(x => !x).Subscribe(x =>
-            {
-                Disposables.Clear();
-            });
+            IsDebugMode
+                .Where(x => !x)
+                .Subscribe(x =>
+                {
+                    Disposables.Clear();
+                })
+                .AddTo(this);
         }
 
         private void OnDestroy()

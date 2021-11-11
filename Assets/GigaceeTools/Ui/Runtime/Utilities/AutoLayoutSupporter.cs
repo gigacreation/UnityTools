@@ -16,10 +16,16 @@ namespace GigaceeTools
         [SerializeField] private RectTransform[] _rectTransforms;
 
         private bool _isDestroying;
+        private bool _isQuitting;
 
         private void OnDestroy()
         {
             _isDestroying = true;
+        }
+
+        private void OnApplicationQuit()
+        {
+            _isQuitting = true;
         }
 
         private void Reset()
@@ -51,7 +57,7 @@ namespace GigaceeTools
 
         public void RebuildLayout()
         {
-            if (_isDestroying)
+            if (_isDestroying || _isQuitting)
             {
                 return;
             }
