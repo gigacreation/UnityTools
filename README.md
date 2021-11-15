@@ -40,6 +40,10 @@
 
 `https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Debug_Core`
 
+## Debug / General
+
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Debug_General`
+
 ## Debug / UI
 
 `https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Debug_Ui`
