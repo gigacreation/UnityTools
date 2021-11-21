@@ -13,17 +13,40 @@ namespace GigaceeTools
             int millisecondsDelay,
             Func<bool> cond,
             bool ignoreTimeScale = false,
-            PlayerLoopTiming delayTiming = PlayerLoopTiming.Update
+            PlayerLoopTiming delayTiming = PlayerLoopTiming.Update,
+            CancellationToken ct = default
         )
         {
-            var cancellationTokenSource = new CancellationTokenSource();
+            var currentCts = new CancellationTokenSource();
+            var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(currentCts.Token, ct);
 
             await UniTask.WhenAny(
-                UniTask.Delay(millisecondsDelay, ignoreTimeScale, delayTiming, cancellationTokenSource.Token),
-                UniTask.WaitUntil(cond, delayTiming, cancellationTokenSource.Token)
+                UniTask.Delay(millisecondsDelay, ignoreTimeScale, delayTiming, linkedCts.Token),
+                UniTask.WaitUntil(cond, delayTiming, linkedCts.Token)
             );
 
-            cancellationTokenSource.Cancel();
+            currentCts.Cancel();
+            currentCts.Dispose();
+        }
+
+        public static async UniTask SkippableDelay(
+            TimeSpan delayTimeSpan,
+            Func<bool> cond,
+            bool ignoreTimeScale = false,
+            PlayerLoopTiming delayTiming = PlayerLoopTiming.Update,
+            CancellationToken ct = default
+        )
+        {
+            var currentCts = new CancellationTokenSource();
+            var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(currentCts.Token, ct);
+
+            await UniTask.WhenAny(
+                UniTask.Delay(delayTimeSpan, ignoreTimeScale, delayTiming, linkedCts.Token),
+                UniTask.WaitUntil(cond, delayTiming, linkedCts.Token)
+            );
+
+            currentCts.Cancel();
+            currentCts.Dispose();
         }
 
 #if UNITASK_DOTWEEN_SUPPORT
@@ -31,17 +54,20 @@ namespace GigaceeTools
             Tween tween,
             Func<bool> cond,
             TweenCancelBehaviour tweenCancelBehaviour = TweenCancelBehaviour.Kill,
-            PlayerLoopTiming delayTiming = PlayerLoopTiming.Update
+            PlayerLoopTiming delayTiming = PlayerLoopTiming.Update,
+            CancellationToken ct = default
         )
         {
-            var cancellationTokenSource = new CancellationTokenSource();
+            var currentCts = new CancellationTokenSource();
+            var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(currentCts.Token, ct);
 
             await UniTask.WhenAny(
-                tween.ToUniTask(tweenCancelBehaviour, cancellationTokenSource.Token),
-                UniTask.WaitUntil(cond, delayTiming, cancellationTokenSource.Token)
+                tween.ToUniTask(tweenCancelBehaviour, linkedCts.Token),
+                UniTask.WaitUntil(cond, delayTiming, linkedCts.Token)
             );
 
-            cancellationTokenSource.Cancel();
+            currentCts.Cancel();
+            currentCts.Dispose();
         }
 #endif
     }
