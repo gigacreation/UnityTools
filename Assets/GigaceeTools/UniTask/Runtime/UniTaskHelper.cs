@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 #if UNITASK_DOTWEEN_SUPPORT
@@ -7,6 +8,8 @@ using DG.Tweening;
 
 namespace GigaceeTools
 {
+    [SuppressMessage("ReSharper", "UnusedType.Global")]
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class UniTaskHelper
     {
         public static async UniTask SkippableDelay(
@@ -27,6 +30,7 @@ namespace GigaceeTools
 
             currentCts.Cancel();
             currentCts.Dispose();
+            linkedCts.Dispose();
         }
 
         public static async UniTask SkippableDelay(
@@ -47,6 +51,7 @@ namespace GigaceeTools
 
             currentCts.Cancel();
             currentCts.Dispose();
+            linkedCts.Dispose();
         }
 
 #if UNITASK_DOTWEEN_SUPPORT
@@ -68,6 +73,7 @@ namespace GigaceeTools
 
             currentCts.Cancel();
             currentCts.Dispose();
+            linkedCts.Dispose();
         }
 #endif
     }
