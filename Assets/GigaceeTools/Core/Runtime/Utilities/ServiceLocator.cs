@@ -60,6 +60,11 @@ namespace GigaceeTools
                 return;
             }
 
+            if (s_instances[type] is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
+
             s_instances.Remove(type);
         }
 
