@@ -2,27 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace GigaceeTools
 {
-    public class SceneVisibilitySwitcher : MonoBehaviour
+    public class SetActiveOnAwake : MonoBehaviour
     {
         [SerializeField] private TargetKind _targetKind;
-        [SerializeField] private bool _visible;
+        [SerializeField] private bool _active = true;
         [SerializeField] private Target[] _selections;
 
-        private void OnValidate()
+        private void Awake()
         {
             IEnumerable<Target> targets = _targetKind switch
             {
-                TargetKind.Self => new[] { new Target { GameObject = gameObject, Visible = _visible } },
+                TargetKind.AllChildren => GetComponentsInChildren<Transform>(true)
+                    .Select(x => new Target { GameObject = x.gameObject, Active = _active }),
 
                 TargetKind.ChildrenOneLevelDown => transform
                     .Cast<Transform>()
-                    .Select(x => new Target { GameObject = x.gameObject, Visible = _visible }),
+                    .Select(x => new Target { GameObject = x.gameObject, Active = _active }),
 
                 TargetKind.Selections => _selections,
 
@@ -36,24 +34,13 @@ namespace GigaceeTools
                     continue;
                 }
 
-                if (target.Visible)
-                {
-#if UNITY_EDITOR
-                    SceneVisibilityManager.instance.Show(target.GameObject, true);
-#endif
-                }
-                else
-                {
-#if UNITY_EDITOR
-                    SceneVisibilityManager.instance.Hide(target.GameObject, true);
-#endif
-                }
+                target.GameObject.SetActive(target.Active);
             }
         }
 
         private enum TargetKind
         {
-            Self,
+            AllChildren,
             ChildrenOneLevelDown,
             Selections
         }
@@ -62,7 +49,7 @@ namespace GigaceeTools
         private class Target
         {
             public GameObject GameObject;
-            public bool Visible;
+            public bool Active;
         }
     }
 }
