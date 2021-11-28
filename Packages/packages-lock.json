@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "69be818a46ca876afc5cb370a0ceb00324b4437d"
+      "hash": "50a67d8f419b6cea0398eff6c19cf0bbe11ed609"
     },
     "com.gigacee.buildtimestampdisplay": {
       "version": "https://github.com/gigacee/BuildTimestampDisplayForUnity.git?path=Assets/BuildTimestampDisplay",
