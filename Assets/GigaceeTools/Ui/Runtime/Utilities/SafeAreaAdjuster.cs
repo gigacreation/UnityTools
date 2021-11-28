@@ -1,6 +1,8 @@
 ﻿// Original code from https://eiki.hatenablog.jp/entry/2020/06/24/192013
 
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -9,61 +11,62 @@ namespace GigaceeTools
 {
     [ExecuteAlways]
     [RequireComponent(typeof(RectTransform))]
-    public class SafeAreaAdjuster : MonoBehaviour
+    public class SafeAreaAdjuster : UIBehaviour
     {
         [SerializeField] private RectTransform _rectTransform;
-        [SerializeField] private Rect _previousSafeArea;
+        [SerializeField] private bool _setDirtyOnAdjust;
 
-        private void Start()
+        [Space]
+        [SerializeField] private Image _image;
+        [SerializeField] private bool _showBorder;
+
+        protected override void OnRectTransformDimensionsChange()
         {
-            Adjust(true);
-
-            _previousSafeArea = Screen.safeArea;
+            Adjust();
         }
 
-        private void Update()
+        private void Adjust()
         {
-            if (Screen.safeArea != _previousSafeArea)
-            {
-                Adjust(false);
-            }
-
-            _previousSafeArea = Screen.safeArea;
-        }
-
-        private void Reset()
-        {
-            _rectTransform = transform as RectTransform;
-        }
-
-        private void Adjust(bool onStart)
-        {
-#if UNITY_EDITOR
-            if (!onStart && !EditorApplication.isPlaying)
-            {
-                Undo.RecordObject(_rectTransform, "Adjust to Safe Area");
-            }
-#endif
-
-            Rect area = Screen.safeArea;
-
-            Vector2 anchorMin = area.position;
-            Vector2 anchorMax = area.position + area.size;
+            Vector2 anchorMin = Screen.safeArea.position;
+            Vector2 anchorMax = Screen.safeArea.position + Screen.safeArea.size;
 
             anchorMin.x /= Screen.width;
             anchorMin.y /= Screen.height;
             anchorMax.x /= Screen.width;
             anchorMax.y /= Screen.height;
 
+#if UNITY_EDITOR
+            if (!EditorApplication.isPlaying && _setDirtyOnAdjust)
+            {
+                Undo.RecordObject(_rectTransform, "Adjust to Safe Area");
+            }
+#endif
+
             _rectTransform.anchorMin = anchorMin;
             _rectTransform.anchorMax = anchorMax;
 
 #if UNITY_EDITOR
-            if (!onStart && !EditorApplication.isPlaying)
+            if (!EditorApplication.isPlaying && _setDirtyOnAdjust)
             {
                 EditorUtility.SetDirty(_rectTransform);
             }
 #endif
         }
+
+#if UNITY_EDITOR
+        protected override void OnValidate()
+        {
+            if (_image)
+            {
+                _image.enabled = _showBorder;
+            }
+        }
+
+        protected override void Reset()
+        {
+            _rectTransform = transform as RectTransform;
+            _image = GetComponent<Image>();
+        }
+#endif
     }
 }

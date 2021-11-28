@@ -32,7 +32,11 @@ namespace GigaceeTools
             {
                 var obj = new GameObject(typeName)
                 {
-                    transform = { parent = transform }
+                    transform =
+                    {
+                        parent = transform,
+                        localScale = Vector3.one
+                    }
                 };
 
                 newLabel = obj.AddComponent<TextMeshProUGUI>();
