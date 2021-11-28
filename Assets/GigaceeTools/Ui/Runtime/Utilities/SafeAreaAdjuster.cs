@@ -14,27 +14,14 @@ namespace GigaceeTools
     {
         [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private bool _setDirtyOnAdjust;
-        [SerializeField] private Rect _previousSafeArea;
 
         [Space]
         [SerializeField] private Image _image;
         [SerializeField] private bool _showBorder;
 
-        private void Start()
-        {
-            Adjust(true);
-
-            _previousSafeArea = Screen.safeArea;
-        }
-
         private void Update()
         {
-            if (_previousSafeArea != Screen.safeArea)
-            {
-                Adjust(false);
-            }
-
-            _previousSafeArea = Screen.safeArea;
+            Adjust();
         }
 
         private void OnValidate()
@@ -51,32 +38,33 @@ namespace GigaceeTools
             _image = GetComponent<Image>();
         }
 
-        private void Adjust(bool onStart)
+        private void Adjust()
         {
-            Vector2 anchorMin = Screen.safeArea.position;
-            Vector2 anchorMax = Screen.safeArea.position + Screen.safeArea.size;
+            Vector2 newAnchorMin = Screen.safeArea.position;
+            Vector2 newAnchorMax = Screen.safeArea.position + Screen.safeArea.size;
 
-            Debug.Log(anchorMin);
+            newAnchorMin.x /= Screen.width;
+            newAnchorMin.y /= Screen.height;
+            newAnchorMax.x /= Screen.width;
+            newAnchorMax.y /= Screen.height;
 
-            anchorMin.x /= Screen.width;
-            anchorMin.y /= Screen.height;
-            anchorMax.x /= Screen.width;
-            anchorMax.y /= Screen.height;
-
-            Debug.Log(anchorMin);
+            if ((_rectTransform.anchorMin == newAnchorMin) && (_rectTransform.anchorMax == newAnchorMax))
+            {
+                return;
+            }
 
 #if UNITY_EDITOR
-            if (!EditorApplication.isPlaying && !onStart && _setDirtyOnAdjust)
+            if (!EditorApplication.isPlaying && _setDirtyOnAdjust)
             {
                 Undo.RecordObject(_rectTransform, "Adjust to Safe Area");
             }
 #endif
 
-            _rectTransform.anchorMin = anchorMin;
-            _rectTransform.anchorMax = anchorMax;
+            _rectTransform.anchorMin = newAnchorMin;
+            _rectTransform.anchorMax = newAnchorMax;
 
 #if UNITY_EDITOR
-            if (!EditorApplication.isPlaying && !onStart && _setDirtyOnAdjust)
+            if (!EditorApplication.isPlaying && _setDirtyOnAdjust)
             {
                 EditorUtility.SetDirty(_rectTransform);
             }

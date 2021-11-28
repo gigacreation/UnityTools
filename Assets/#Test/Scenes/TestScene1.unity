@@ -1211,7 +1211,7 @@ RectTransform:
   m_Father: {fileID: 1754712902}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.01953125}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -1268,12 +1268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rectTransform: {fileID: 728000494}
   _setDirtyOnAdjust: 1
-  _previousSafeArea:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 2880
-    height: 1440
   _image: {fileID: 728000495}
   _showBorder: 1
 --- !u!1 &739716566
