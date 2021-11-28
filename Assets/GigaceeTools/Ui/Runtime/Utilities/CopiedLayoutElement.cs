@@ -32,8 +32,6 @@ namespace GigaceeTools
 #if UNITY_EDITOR
         protected override void OnValidate()
         {
-            base.OnValidate();
-
             LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
         }
 #endif
