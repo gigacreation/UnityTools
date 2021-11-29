@@ -19,10 +19,20 @@ namespace GigaceeTools
         [SerializeField] private Image _image;
         [SerializeField] private bool _showBorder;
 
-        private void Update()
+        private void Start()
         {
             Adjust();
         }
+
+#if UNITY_EDITOR
+        private void Update()
+        {
+            if (!EditorApplication.isPlaying)
+            {
+                Adjust();
+            }
+        }
+#endif
 
         private void OnValidate()
         {
