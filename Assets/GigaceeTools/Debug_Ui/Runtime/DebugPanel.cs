@@ -30,7 +30,7 @@ namespace GigaceeTools
                 debugCore
                     .IsDebugMode
                     .Where(x => x)
-                    .Subscribe(x =>
+                    .Subscribe(_ =>
                     {
                         Dismiss();
                     })

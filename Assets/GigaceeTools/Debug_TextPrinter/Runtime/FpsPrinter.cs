@@ -32,7 +32,7 @@ namespace GigaceeTools
                         {
                             Label.SetText($"{fps:F1} fps");
                         })
-                        .AddTo(DebugCore.Disposables);
+                        .AddTo(DebugCore.DebugDisposables);
                 })
                 .AddTo(this);
         }

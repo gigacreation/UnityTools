@@ -21,7 +21,7 @@ namespace GigaceeTools
                         {
                             Label.SetText($"TimeScale: {Time.timeScale}");
                         })
-                        .AddTo(DebugCore.Disposables);
+                        .AddTo(DebugCore.DebugDisposables);
                 })
                 .AddTo(this);
         }

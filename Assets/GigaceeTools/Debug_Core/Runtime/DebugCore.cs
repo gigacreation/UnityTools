@@ -3,39 +3,24 @@ using UnityEngine;
 
 namespace GigaceeTools
 {
-    public class DebugCore : MonoBehaviour, IDebugCore
+    public class DebugCore : IDebugCore
     {
-        [SerializeField] private BoolReactiveProperty _isDebugMode;
-        [SerializeField] private bool _forceReleaseBuild;
+        private readonly ReactiveProperty<bool> _isDebugMode;
 
-        private void Awake()
+        public DebugCore(bool initialMode, Component linkedComponent)
         {
-            if (!Debug.isDebugBuild || _forceReleaseBuild || ServiceLocator.IsRegistered<IDebugCore>())
-            {
-                Destroy(gameObject);
-                return;
-            }
+            _isDebugMode = new ReactiveProperty<bool>(initialMode);
 
-            ServiceLocator.Register<IDebugCore>(this);
-
-            IsDebugMode
+            _isDebugMode
                 .Where(x => !x)
-                .Subscribe(x =>
+                .Subscribe(_ =>
                 {
-                    Disposables.Clear();
+                    DebugDisposables.Clear();
                 })
-                .AddTo(this);
+                .AddTo(linkedComponent);
         }
 
-        private void OnDestroy()
-        {
-            if (ServiceLocator.IsRegistered(this))
-            {
-                ServiceLocator.Unregister<IDebugCore>(this);
-            }
-        }
-
-        public BoolReactiveProperty IsDebugMode => _isDebugMode;
-        public CompositeDisposable Disposables { get; } = new CompositeDisposable();
+        public IReactiveProperty<bool> IsDebugMode => _isDebugMode;
+        public CompositeDisposable DebugDisposables { get; } = new CompositeDisposable();
     }
 }

@@ -35,7 +35,7 @@ namespace GigaceeTools
                         {
                             Time.timeScale = x;
                         })
-                        .AddTo(debugCore.Disposables);
+                        .AddTo(debugCore.DebugDisposables);
 
                     this
                         .UpdateAsObservable()
@@ -67,7 +67,7 @@ namespace GigaceeTools
                                 SlowDown(0.2f);
                             }
                         })
-                        .AddTo(debugCore.Disposables);
+                        .AddTo(debugCore.DebugDisposables);
                 })
                 .AddTo(this);
         }
