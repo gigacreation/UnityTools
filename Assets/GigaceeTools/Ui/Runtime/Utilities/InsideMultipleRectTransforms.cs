@@ -23,6 +23,11 @@ namespace GigaceeTools
 
         private void Start()
         {
+            if (_targets == null)
+            {
+                return;
+            }
+
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying)
             {
@@ -37,6 +42,11 @@ namespace GigaceeTools
 #if UNITY_EDITOR
         private void Update()
         {
+            if (_targets == null)
+            {
+                return;
+            }
+
             if (!EditorApplication.isPlaying)
             {
                 EditorCoroutineUtility.StartCoroutine(WaitForNextFrameAndAdjust(), this);
