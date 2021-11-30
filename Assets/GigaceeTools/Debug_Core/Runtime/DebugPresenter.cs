@@ -15,7 +15,7 @@ namespace GigaceeTools
         {
             if (!Debug.isDebugBuild || _forceReleaseBuild || ServiceLocator.IsRegistered<IDebugCore>())
             {
-                Destroy(this);
+                Destroy(gameObject);
                 return;
             }
 
