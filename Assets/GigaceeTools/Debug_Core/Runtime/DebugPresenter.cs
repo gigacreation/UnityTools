@@ -13,20 +13,43 @@ namespace GigaceeTools
 
         private void Awake()
         {
-            if (!Debug.isDebugBuild || _forceReleaseBuild || ServiceLocator.IsRegistered<IDebugCore>())
+            if (!Debug.isDebugBuild)
             {
-                Destroy(gameObject);
+                Destroy(this);
                 return;
             }
 
-            _debugCore = new DebugCore(_debugMode.Value, this);
+            if (ServiceLocator.TryGetInstance(out _debugCore))
+            {
+                LinkDebugModeFlags(_debugCore);
+                return;
+            }
+
+            if (_forceReleaseBuild)
+            {
+                Destroy(this);
+                return;
+            }
+
+            _debugCore = new DebugCore(_debugMode.Value);
+
+            LinkDebugModeFlags(_debugCore);
 
             ServiceLocator.Register(_debugCore);
         }
 
-        private void Start()
+        private void OnApplicationQuit()
         {
-            _debugCore
+            ServiceLocator.Unregister(_debugCore);
+        }
+
+        /// <summary>
+        /// この Presenter のデバッグモードフラグと、DebugCore のデバッグモードフラグを連動させます。
+        /// </summary>
+        /// <param name="debugCore"></param>
+        private void LinkDebugModeFlags(IDebugCore debugCore)
+        {
+            debugCore
                 .IsDebugMode
                 .Subscribe(x =>
                 {
@@ -35,19 +58,12 @@ namespace GigaceeTools
                 .AddTo(this);
 
             _debugMode
+                .SkipLatestValueOnSubscribe()
                 .Subscribe(x =>
                 {
-                    _debugCore.IsDebugMode.Value = x;
+                    debugCore.IsDebugMode.Value = x;
                 })
                 .AddTo(this);
-        }
-
-        private void OnDestroy()
-        {
-            if (ServiceLocator.IsRegistered(_debugCore))
-            {
-                ServiceLocator.Unregister(_debugCore);
-            }
         }
     }
 }
