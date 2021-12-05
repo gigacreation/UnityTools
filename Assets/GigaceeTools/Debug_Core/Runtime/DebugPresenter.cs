@@ -21,7 +21,13 @@ namespace GigaceeTools
 
             if (ServiceLocator.TryGetInstance(out _debugCore))
             {
-                LinkDebugModeFlags(_debugCore);
+                if (FindObjectsOfType<DebugPresenter>(true).Length == 1)
+                {
+                    LinkDebugModeFlags(_debugCore);
+                    return;
+                }
+
+                Destroy(this);
                 return;
             }
 
