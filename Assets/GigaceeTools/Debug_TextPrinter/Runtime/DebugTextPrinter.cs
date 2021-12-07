@@ -16,7 +16,7 @@ namespace GigaceeTools
 
         private void Start()
         {
-            if (ServiceLocator.TryGetInstance(out DebugCore))
+            if (ServiceLocator.TryGet(out DebugCore))
             {
                 Initialize();
             }

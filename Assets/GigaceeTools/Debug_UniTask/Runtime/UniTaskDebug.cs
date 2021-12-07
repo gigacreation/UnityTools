@@ -27,7 +27,7 @@ namespace GigaceeTools
             CancellationToken cancellationToken = default
         )
         {
-            if (!s_isReleaseMode && (s_debugCore == null) && !ServiceLocator.TryGetInstance(out s_debugCore))
+            if (!s_isReleaseMode && (s_debugCore == null) && !ServiceLocator.TryGet(out s_debugCore))
             {
                 s_isReleaseMode = true;
             }
@@ -52,7 +52,7 @@ namespace GigaceeTools
             CancellationToken cancellationToken = default
         )
         {
-            if (!s_isReleaseMode && (s_debugCore == null) && !ServiceLocator.TryGetInstance(out s_debugCore))
+            if (!s_isReleaseMode && (s_debugCore == null) && !ServiceLocator.TryGet(out s_debugCore))
             {
                 s_isReleaseMode = true;
             }

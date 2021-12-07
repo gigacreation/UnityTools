@@ -11,7 +11,7 @@ namespace GigaceeTools
 
         private void Start()
         {
-            if (ServiceLocator.TryGetInstance(out IDebugCore debugCore))
+            if (ServiceLocator.TryGet(out IDebugCore debugCore))
             {
                 debugCore
                     .IsDebugMode

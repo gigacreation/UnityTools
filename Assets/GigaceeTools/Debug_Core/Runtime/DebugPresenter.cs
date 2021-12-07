@@ -19,7 +19,7 @@ namespace GigaceeTools
                 return;
             }
 
-            if (ServiceLocator.TryGetInstance(out _debugCore))
+            if (ServiceLocator.TryGet(out _debugCore))
             {
                 if (FindObjectsOfType<DebugPresenter>(true).Length == 1)
                 {

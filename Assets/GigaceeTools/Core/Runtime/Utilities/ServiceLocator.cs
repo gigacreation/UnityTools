@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 namespace GigaceeTools
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public static class ServiceLocator
     {
         /// <summary>
         /// インスタンスを登録する辞書。
         /// </summary>
         private static readonly Dictionary<Type, object> s_instances = new Dictionary<Type, object>();
-
-        /// <summary>
-        /// インスタンスの登録をすべて解除します。
-        /// </summary>
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Initialize()
-        {
-            s_instances.Clear();
-        }
 
         /// <summary>
         /// インスタンスを登録します。
@@ -96,7 +89,7 @@ namespace GigaceeTools
         /// </summary>
         /// <typeparam name="T">取得したいインスタンスの型。</typeparam>
         /// <returns>取得したインスタンスを返します。取得できなかった場合は null を返します。</returns>
-        public static T GetInstance<T>() where T : class
+        public static T Get<T>() where T : class
         {
             Type type = typeof(T);
 
@@ -115,12 +108,21 @@ namespace GigaceeTools
         /// <param name="instance">取得したインスタンスを入れる変数。</param>
         /// <typeparam name="T">取得したいインスタンスの型。</typeparam>
         /// <returns>取得が成功したら true を返します。</returns>
-        public static bool TryGetInstance<T>(out T instance) where T : class
+        public static bool TryGet<T>(out T instance) where T : class
         {
             Type type = typeof(T);
             instance = s_instances.ContainsKey(type) ? s_instances[type] as T : null;
 
             return instance != null;
+        }
+
+        /// <summary>
+        /// インスタンスの登録をすべて解除します。
+        /// </summary>
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ClearInstances()
+        {
+            s_instances.Clear();
         }
     }
 }
