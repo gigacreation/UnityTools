@@ -78,6 +78,7 @@ namespace GigaceeTools
         private void Adjust()
         {
             Vector3[][] cornersOfTargets = _targets
+                .Where(rt => rt)
                 .Select(rt =>
                 {
                     var corners = new Vector3[4];
@@ -85,6 +86,11 @@ namespace GigaceeTools
                     return corners;
                 })
                 .ToArray();
+
+            if (!cornersOfTargets.Any())
+            {
+                return;
+            }
 
             var bottomLeftPosition = new Vector2(
                 cornersOfTargets.Max(corners => corners[0].x),
