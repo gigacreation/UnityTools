@@ -56,6 +56,8 @@ namespace GigaceeTools
     {
         private static AddressableAssetSettings s_settings;
 
+        private static readonly string[] s_defaultGroupNames = { "Built In Data", "Default Local Group" };
+
         // Addressable Asset Settings を取得します
         public static AddressableAssetSettings GetSettings()
         {
@@ -230,13 +232,34 @@ namespace GigaceeTools
                 .Select(c => c.Key);
         }
 
-        // グループを名前でソートします
+        /// <summary>
+        /// グループを名前でソートします。
+        /// </summary>
         public static void SortGroups()
         {
             AddressableAssetSettings settings = GetSettings();
             List<AddressableAssetGroup> groups = settings.groups;
 
-            groups.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+            groups.Sort((a, b) =>
+            {
+                int indexOfA = Array.IndexOf(s_defaultGroupNames, a.Name);
+                int indexOfB = Array.IndexOf(s_defaultGroupNames, b.Name);
+
+                // 両方ともデフォルトのグループではない場合
+                if ((indexOfA == -1) && (indexOfB == -1))
+                {
+                    return string.Compare(a.Name, b.Name, StringComparison.Ordinal);
+                }
+
+                // 両方ともデフォルトのグループである場合
+                if ((indexOfA >= 0) && (indexOfB >= 0))
+                {
+                    return indexOfA - indexOfB;
+                }
+
+                // 片方だけデフォルトのグループである場合
+                return indexOfB - indexOfA;
+            });
         }
 
         // AddressableAssetsWindow の描画を更新します
