@@ -4,7 +4,7 @@ namespace GigaceeTools
 {
     public class DestroySelfIfReleaseMode : MonoBehaviour
     {
-        private void Start()
+        private void Awake()
         {
             if (!ServiceLocator.IsRegistered<IDebugCore>())
             {
