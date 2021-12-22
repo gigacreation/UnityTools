@@ -260,6 +260,9 @@ namespace GigaceeTools
                 // 片方だけデフォルトのグループである場合
                 return indexOfB - indexOfA;
             });
+
+            EditorUtility.SetDirty(settings);
+            AssetDatabase.SaveAssets();
         }
 
         // AddressableAssetsWindow の描画を更新します
