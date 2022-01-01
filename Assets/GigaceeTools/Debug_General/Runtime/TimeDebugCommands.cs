@@ -16,8 +16,6 @@ namespace GigaceeTools
 
         private float _storedTimeScale;
 
-        private bool IsApplicationPlaying => Application.isPlaying;
-
         private void Start()
         {
             if (!ServiceLocator.TryGet(out IDebugCore debugCore))
@@ -101,19 +99,16 @@ namespace GigaceeTools
             _timeScale.Value = Mathf.Max(0f, Time.timeScale - num);
         }
 
-        // [EnableIf(nameof(IsApplicationPlaying))]
         private void OnClickSlowDownButtonInInspector()
         {
             SlowDown(0.2f);
         }
 
-        // [EnableIf(nameof(IsApplicationPlaying))]
         private void OnClickPauseButtonInInspector()
         {
             TogglePause();
         }
 
-        // [EnableIf(nameof(IsApplicationPlaying))]
         private void OnClickSpeedUpButtonInInspector()
         {
             SpeedUp(0.2f);
