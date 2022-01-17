@@ -16,16 +16,10 @@ namespace GigaceeTools
         [SerializeField] private RectTransform[] _rectTransforms;
 
         private bool _isDestroying;
-        private bool _isQuitting;
 
         private void OnDestroy()
         {
             _isDestroying = true;
-        }
-
-        private void OnApplicationQuit()
-        {
-            _isQuitting = true;
         }
 
         private void Reset()
@@ -55,11 +49,11 @@ namespace GigaceeTools
                 .ToArray();
         }
 
-        public void RebuildLayout()
+        public IEnumerator ExecuteRebuilding()
         {
-            if (_isDestroying || _isQuitting)
+            if (_isDestroying)
             {
-                return;
+                yield break;
             }
 
             GetReferences();
@@ -67,42 +61,30 @@ namespace GigaceeTools
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying)
             {
-                EditorCoroutineUtility.StartCoroutine(RebuildLayoutOnEdit(), this);
-                return;
+                yield return EditorCoroutineUtility.StartCoroutine(RebuildLayout(), this);
+                yield break;
             }
 #endif
 
-            StartCoroutine(RebuildLayoutAtRuntime());
+            yield return RebuildLayout();
         }
+
+        private IEnumerator RebuildLayout()
+        {
+            ComponentHelper.EnableComponents(_contentSizeFitters);
+            ComponentHelper.EnableComponents(_layoutGroups);
+
+            foreach (RectTransform rectTransform in _rectTransforms)
+            {
+#if UNITY_EDITOR
+                Undo.RecordObject(rectTransform, "Rebuild Layout");
+#endif
+
+                LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
 
 #if UNITY_EDITOR
-        private IEnumerator RebuildLayoutOnEdit()
-        {
-            ComponentHelper.EnableComponents(_contentSizeFitters);
-            ComponentHelper.EnableComponents(_layoutGroups);
-
-            foreach (RectTransform rectTransform in _rectTransforms)
-            {
-                Undo.RecordObject(rectTransform, "Rebuild Layout on Edit");
-                LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
                 EditorUtility.SetDirty(rectTransform);
-
-                yield return new WaitForEndOfFrame();
-            }
-
-            ComponentHelper.DisableComponents(_contentSizeFitters);
-            ComponentHelper.DisableComponents(_layoutGroups);
-        }
 #endif
-
-        private IEnumerator RebuildLayoutAtRuntime()
-        {
-            ComponentHelper.EnableComponents(_contentSizeFitters);
-            ComponentHelper.EnableComponents(_layoutGroups);
-
-            foreach (RectTransform rectTransform in _rectTransforms)
-            {
-                LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
 
                 yield return new WaitForEndOfFrame();
             }

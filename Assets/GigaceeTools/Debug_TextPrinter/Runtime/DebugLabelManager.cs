@@ -60,7 +60,7 @@ namespace GigaceeTools
                 sortedLabels[i].transform.SetSiblingIndex(i);
             }
 
-            _autoLayoutSupporter.RebuildLayout();
+            _ = _autoLayoutSupporter.ExecuteRebuilding();
 
             return newLabel;
         }
@@ -79,7 +79,7 @@ namespace GigaceeTools
             _children.Remove(childPair.Key);
             Destroy(childPair.Value.gameObject);
 
-            _autoLayoutSupporter.RebuildLayout();
+            _ = _autoLayoutSupporter.ExecuteRebuilding();
         }
     }
 }

@@ -845,6 +845,8 @@ GameObject:
   - component: {fileID: 543282934}
   - component: {fileID: 543282937}
   - component: {fileID: 543282938}
+  - component: {fileID: 543282939}
+  - component: {fileID: 543282940}
   m_Layer: 5
   m_Name: AutoLayoutSupporter
   m_TagString: Untagged
@@ -953,10 +955,10 @@ MonoBehaviour:
     m_Bottom: 20
   m_ChildAlignment: 4
   m_Spacing: 20
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -995,12 +997,41 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543282930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e463d7d5eba649889e8fab6eb226d8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _priority: 0
+--- !u!114 &543282939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543282930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98a9ffd87144124093afb8c9f8170f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priority: 1
+--- !u!114 &543282940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543282930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e99de77fb22a64e91e6899ec1c44e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priority: 2
+  _buildTimestamp: {fileID: 11400000, guid: c2b13b312d90e3d4389c02d78615dae3, type: 2}
+  _format: yyyy/MM/dd HH:mm:ss
+  _utcOffsetHours: 9
 --- !u!1 &591141097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +1047,7 @@ GameObject:
   - component: {fileID: 591141102}
   - component: {fileID: 591141101}
   m_Layer: 5
-  m_Name: Nest
+  m_Name: Nested
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2758,8 +2789,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -740, y: 360}
-  m_SizeDelta: {x: 1480, y: 720}
+  m_AnchoredPosition: {x: -720, y: 405}
+  m_SizeDelta: {x: 1440, y: 810}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1455666195
 MonoBehaviour:
