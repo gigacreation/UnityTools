@@ -49,7 +49,27 @@ namespace GigaceeTools
                 .ToArray();
         }
 
-        public IEnumerator ExecuteRebuilding()
+        public void ExecuteRebuilding()
+        {
+            if (_isDestroying)
+            {
+                return;
+            }
+
+            GetReferences();
+
+#if UNITY_EDITOR
+            if (!EditorApplication.isPlaying)
+            {
+                EditorCoroutineUtility.StartCoroutine(RebuildLayout(), this);
+                return;
+            }
+#endif
+
+            StartCoroutine(RebuildLayout());
+        }
+
+        public IEnumerator ExecuteRebuildingCo()
         {
             if (_isDestroying)
             {

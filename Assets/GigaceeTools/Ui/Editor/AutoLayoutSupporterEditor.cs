@@ -20,7 +20,7 @@ namespace GigaceeTools
 
             if (GUILayout.Button("Rebuild Layout", GUILayout.Height(32f)))
             {
-                _ = autoLayoutSupporter.ExecuteRebuilding();
+                autoLayoutSupporter.ExecuteRebuilding();
             }
 
             GUILayout.Space(4f);
