@@ -35,19 +35,19 @@ MonoBehaviour:
   debugMode: 0
   debugStoreTargetId: 1
   showPreviewPanel: 1
-  storeSettingsLocation: 0
+  storeSettingsLocation: 1
   modules:
     showPanel: 0
-    audioEnabled: 1
-    physicsEnabled: 1
-    physics2DEnabled: 1
-    spriteEnabled: 1
-    uiEnabled: 1
+    audioEnabled: 0
+    physicsEnabled: 0
+    physics2DEnabled: 0
+    spriteEnabled: 0
+    uiEnabled: 0
     textMeshProEnabled: 0
     tk2DEnabled: 0
     deAudioEnabled: 0
     deUnityExtendedEnabled: 0
     epoOutlineEnabled: 0
-  createASMDEF: 0
+  createASMDEF: 1
   showPlayingTweens: 0
   showPausedTweens: 0
