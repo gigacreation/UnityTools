@@ -15,11 +15,15 @@ MonoBehaviour:
   m_GroupName: Z_Test
   m_Data:
     m_SerializedData: []
-  m_GUID: cc83765fd0728c544b4a3bc2c807b530
-  m_SerializeEntries: []
+  m_GUID: c892ea679fbe7a74bac785d29bf3b8dd
+  m_SerializeEntries:
+  - m_GUID: 41f802069d34a234c992e38cc6783fe6
+    m_Address: Assets/#Test/Textures/Square.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1c9c2b307bce1014d955ec6763da6126, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 27751b7659ac21d44b3f4fdbc418c1e4, type: 2}
-    - {fileID: 11400000, guid: b016da19da915ba448854e16abbe19f8, type: 2}
+    - {fileID: 11400000, guid: b1c6c0f45b6161a4eaf9b117e17ba1d1, type: 2}
+    - {fileID: 11400000, guid: 1cdcfa29a3f7e364c90843acdecabd79, type: 2}
