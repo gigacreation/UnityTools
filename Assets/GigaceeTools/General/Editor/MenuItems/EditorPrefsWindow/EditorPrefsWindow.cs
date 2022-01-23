@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.Win32;
 using UnityEditor;
 using UnityEngine;
-using static GigaceeTools.MenuItemConstants;
+using static GigaceeTools.ToolsMenuItemConstants;
 
 namespace GigaceeTools
 {
@@ -16,7 +16,7 @@ namespace GigaceeTools
     /// </summary>
     public class EditorPrefsWindow : EditorWindow
     {
-        private const int CategoryPriority = ToolsPriority - 90;
+        private const int CategoryPriority = BasePriority - 90;
 
         private const float Space = 5f;
 
@@ -114,7 +114,7 @@ namespace GigaceeTools
         /// <summary>
         /// 開きます
         /// </summary>
-        [MenuItem(ToolsDirName + "Editor Prefs Window", priority = CategoryPriority + 1)]
+        [MenuItem(BasePath + "Editor Prefs Window", priority = CategoryPriority + 1)]
         private static void Open()
         {
             GetWindow<EditorPrefsWindow>("Editor Prefs Window");

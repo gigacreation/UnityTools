@@ -1,15 +1,15 @@
 ﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static GigaceeTools.MenuItemConstants;
+using static GigaceeTools.ToolsMenuItemConstants;
 
 namespace GigaceeTools
 {
     public static class BatchActivator
     {
-        private const int CategoryPriority = ToolsPriority + 300;
-        private const string Category = ToolsDirName + CategoryPrefix + "Activate GameObjects" + CategorySuffix;
-        private const string ActivateGameObjects = ToolsDirName + "Activate Selected GameObjects And Descendants";
+        private const int CategoryPriority = BasePriority + 300;
+        private const string Category = BasePath + CategoryPrefix + "Activate GameObjects" + CategorySuffix;
+        private const string ActivateGameObjects = BasePath + "Activate Selected GameObjects And Descendants";
 
         [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()

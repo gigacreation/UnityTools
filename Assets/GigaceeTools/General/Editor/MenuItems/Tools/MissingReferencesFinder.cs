@@ -5,14 +5,14 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static GigaceeTools.MenuItemConstants;
+using static GigaceeTools.ToolsMenuItemConstants;
 
 namespace GigaceeTools
 {
     public static class MissingReferencesFinder
     {
-        private const int CategoryPriority = ToolsPriority;
-        private const string Category = ToolsDirName + CategoryPrefix + "Find Missing References" + CategorySuffix;
+        private const int CategoryPriority = BasePriority;
+        private const string Category = BasePath + CategoryPrefix + "Find Missing References" + CategorySuffix;
 
         [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()
@@ -25,7 +25,7 @@ namespace GigaceeTools
             return false;
         }
 
-        [MenuItem(ToolsDirName + "Find Missing References in Current Scene", priority = CategoryPriority + 1)]
+        [MenuItem(BasePath + "Find Missing References in Current Scene", priority = CategoryPriority + 1)]
         public static void FindMissingReferencesInCurrentScene()
         {
             FindMissingReferences(SceneManager.GetActiveScene().path, GetSceneObjects());
@@ -33,7 +33,7 @@ namespace GigaceeTools
             Debug.Log($"{SceneManager.GetActiveScene().name}: The process is finished.");
         }
 
-        [MenuItem(ToolsDirName + "Find Missing References in All Enabled Scenes", priority = CategoryPriority + 2)]
+        [MenuItem(BasePath + "Find Missing References in All Enabled Scenes", priority = CategoryPriority + 2)]
         public static void FindMissingReferencesInAllEnabledScenes()
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
@@ -49,7 +49,7 @@ namespace GigaceeTools
             Debug.Log("All processes are finished.");
         }
 
-        [MenuItem(ToolsDirName + "Find Missing References in All Scenes", priority = CategoryPriority + 3)]
+        [MenuItem(BasePath + "Find Missing References in All Scenes", priority = CategoryPriority + 3)]
         public static void FindMissingReferencesInAllScenes()
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
@@ -65,7 +65,7 @@ namespace GigaceeTools
             Debug.Log("All processes are finished.");
         }
 
-        [MenuItem(ToolsDirName + "Find Missing References in Assets", priority = CategoryPriority + 4)]
+        [MenuItem(BasePath + "Find Missing References in Assets", priority = CategoryPriority + 4)]
         public static void FindMissingReferencesInAssets()
         {
             foreach (string path in AssetDatabase.FindAssets("t:Prefab").Select(AssetDatabase.GUIDToAssetPath))

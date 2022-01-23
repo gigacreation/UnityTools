@@ -2,17 +2,17 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static GigaceeTools.MenuItemConstants;
+using static GigaceeTools.ToolsMenuItemConstants;
 
 namespace GigaceeTools
 {
     public static class HierarchySorter
     {
-        private const int CategoryPriority = ToolsPriority + 400;
-        private const string Category = ToolsDirName + CategoryPrefix + "Sort Hierarchy" + CategorySuffix;
-        private const string ByName = ToolsDirName + "Sort Selected GameObjects By Name";
-        private const string ByPositionXYZ = ToolsDirName + "Sort Selected GameObjects By Position XYZ";
-        private const string ByPositionYXZ = ToolsDirName + "Sort Selected GameObjects By Position YXZ";
+        private const int CategoryPriority = BasePriority + 400;
+        private const string Category = BasePath + CategoryPrefix + "Sort Hierarchy" + CategorySuffix;
+        private const string ByName = BasePath + "Sort Selected GameObjects By Name";
+        private const string ByPositionXYZ = BasePath + "Sort Selected GameObjects By Position XYZ";
+        private const string ByPositionYXZ = BasePath + "Sort Selected GameObjects By Position YXZ";
 
         [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()

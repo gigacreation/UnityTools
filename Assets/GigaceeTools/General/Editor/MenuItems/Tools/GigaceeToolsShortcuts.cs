@@ -7,15 +7,15 @@ using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static GigaceeTools.MenuItemConstants;
+using static GigaceeTools.ToolsMenuItemConstants;
 using Object = UnityEngine.Object;
 
 namespace GigaceeTools
 {
     public static class GigaceeToolsShortcuts
     {
-        private const int CategoryPriority = ToolsPriority + 10000;
-        private const string Category = ToolsDirName + CategoryPrefix + "Shortcuts" + CategorySuffix;
+        private const int CategoryPriority = BasePriority + 10000;
+        private const string Category = BasePath + CategoryPrefix + "Shortcuts" + CategorySuffix;
 
         [MenuItem(Category, priority = CategoryPriority)]
         public static void CategoryName()
@@ -28,7 +28,7 @@ namespace GigaceeTools
             return false;
         }
 
-        [MenuItem(ToolsDirName + "Check if Root Prefabs have Changed #%p", priority = CategoryPriority + 1)]
+        [MenuItem(BasePath + "Check if Root Prefabs have Changed #%p", priority = CategoryPriority + 1)]
         public static void CheckIfRootPrefabsHaveChanged()
         {
             IEnumerable<GameObject> rootGameObjects;
@@ -68,7 +68,7 @@ namespace GigaceeTools
             Selection.objects = overriddenPrefabInstances;
         }
 
-        [MenuItem(ToolsDirName + "Restore Rainbow Folders #%r", priority = CategoryPriority + 2)]
+        [MenuItem(BasePath + "Restore Rainbow Folders #%r", priority = CategoryPriority + 2)]
         public static async Task RestoreRainbowFolders()
         {
             // UnityEditor.dllを取得
@@ -101,7 +101,7 @@ namespace GigaceeTools
             initViewMode?.Invoke(projectWindow, new[] { Enum.GetValues(viewModeType).GetValue(1) });
         }
 
-        [MenuItem(ToolsDirName + "Clear Console #%c", priority = CategoryPriority + 3)]
+        [MenuItem(BasePath + "Clear Console #%c", priority = CategoryPriority + 3)]
         public static void ClearConsole()
         {
             Type.GetType("UnityEditor.LogEntries, UnityEditor.dll")

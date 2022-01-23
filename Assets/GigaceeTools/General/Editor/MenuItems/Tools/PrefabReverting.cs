@@ -1,19 +1,19 @@
 ﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static GigaceeTools.MenuItemConstants;
+using static GigaceeTools.ToolsMenuItemConstants;
 
 namespace GigaceeTools
 {
     public static class PrefabReverting
     {
-        private const int CategoryPriority = ToolsPriority + 100;
-        private const string Category = ToolsDirName + CategoryPrefix + "Revert Prefabs" + CategorySuffix;
-        private const string RevertName = ToolsDirName + "Revert Name On Selected Prefabs";
-        private const string RevertTransform = ToolsDirName + "Revert Transform On Selected Prefabs";
-        private const string RevertRectTransform = ToolsDirName + "Revert RectTransform On Selected Prefabs";
-        private const string RevertBoxCollider2D = ToolsDirName + "Revert BoxCollider2D On Selected Prefabs";
-        private const string RevertAll = ToolsDirName + "Revert All Properties On Selected Prefabs";
+        private const int CategoryPriority = BasePriority + 100;
+        private const string Category = BasePath + CategoryPrefix + "Revert Prefabs" + CategorySuffix;
+        private const string RevertName = BasePath + "Revert Name On Selected Prefabs";
+        private const string RevertTransform = BasePath + "Revert Transform On Selected Prefabs";
+        private const string RevertRectTransform = BasePath + "Revert RectTransform On Selected Prefabs";
+        private const string RevertBoxCollider2D = BasePath + "Revert BoxCollider2D On Selected Prefabs";
+        private const string RevertAll = BasePath + "Revert All Properties On Selected Prefabs";
 
         private const InteractionMode U = InteractionMode.UserAction;
 

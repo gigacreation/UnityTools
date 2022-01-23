@@ -5,14 +5,14 @@ using System.Reflection;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
-using static GigaceeTools.MenuItemConstants;
+using static GigaceeTools.AssetsMenuItemConstants;
 
 namespace GigaceeTools
 {
     public static class AnimatorNodeAligner
     {
-        private const int CategoryPriority = AssetsPriority;
-        private const string AlignAnimatorNodes = AssetsDirName + "Align Animator Nodes";
+        private const int CategoryPriority = BasePriority;
+        private const string AlignAnimatorNodes = BasePath + "Align Animator Nodes";
 
         [MenuItem(AlignAnimatorNodes, priority = CategoryPriority)]
         private static void AlignAnimator()
