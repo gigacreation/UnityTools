@@ -39,13 +39,10 @@ namespace GigaceeTools
         /// </summary>
         private void OnGUI()
         {
-            if (_windowPadding == null)
+            _windowPadding ??= new GUIStyle
             {
-                _windowPadding = new GUIStyle
-                {
-                    padding = new RectOffset(10, 10, 10, 10)
-                };
-            }
+                padding = new RectOffset(10, 10, 10, 10)
+            };
 
             using (new EditorGUILayout.VerticalScope(_windowPadding))
             {
@@ -60,11 +57,11 @@ namespace GigaceeTools
                     if (GUILayout.Button("Delete All", EditorStyles.toolbarButton))
                     {
                         if (EditorUtility.DisplayDialog(
-                            "Delete all editor preferences.",
-                            "Are you sure you want to delete all the editor preferences? This action cannot be undone.",
-                            "Yes",
-                            "No"
-                        ))
+                                "Delete all editor preferences.",
+                                "Are you sure you want to delete all the editor preferences? This action cannot be undone.",
+                                "Yes",
+                                "No"
+                            ))
                         {
                             EditorPrefs.DeleteAll();
                         }

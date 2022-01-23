@@ -42,7 +42,8 @@ namespace GigaceeTools
 
             // Mesh mesh = m_TextComponent.textInfo.meshInfo[0].mesh;
 
-            _textComponent.havePropertiesChanged = true; // Need to force the TextMeshPro Object to be updated.
+            // Need to force the TextMeshPro Object to be updated.
+            _textComponent.havePropertiesChanged = true;
             _curveScale *= 10f;
             float oldCurveScale = _curveScale;
             AnimationCurve oldCurve = CopyAnimationCurve(_vertexCurve);
@@ -60,8 +61,8 @@ namespace GigaceeTools
                 oldCurveScale = _curveScale;
                 oldCurve = CopyAnimationCurve(_vertexCurve);
 
-                _textComponent
-                    .ForceMeshUpdate(); // Generate the mesh and populate the textInfo with data we can use and manipulate.
+                // Generate the mesh and populate the textInfo with data we can use and manipulate.
+                _textComponent.ForceMeshUpdate();
 
                 TMP_TextInfo textInfo = _textComponent.textInfo;
                 int characterCount = textInfo.characterCount;
@@ -92,9 +93,10 @@ namespace GigaceeTools
                     Vector3[] vertices = textInfo.meshInfo[materialIndex].vertices;
 
                     // Compute the baseline mid point for each character
-                    Vector3 offsetToMidBaseline =
-                        new Vector2((vertices[vertexIndex + 0].x + vertices[vertexIndex + 2].x) / 2,
-                            textInfo.characterInfo[i].baseLine);
+                    Vector3 offsetToMidBaseline = new Vector2(
+                        (vertices[vertexIndex + 0].x + vertices[vertexIndex + 2].x) / 2,
+                        textInfo.characterInfo[i].baseLine
+                    );
 
                     // float offsetY = VertexCurve.Evaluate((float)i / characterCount + loopCount / 50f); // Random.Range(-0.25f, 0.25f);
 
@@ -105,8 +107,9 @@ namespace GigaceeTools
                     vertices[vertexIndex + 3] += -offsetToMidBaseline;
 
                     // Compute the angle of rotation for each character based on the animation curve
-                    float x0 = (offsetToMidBaseline.x - boundsMinX) /
-                               (boundsMaxX - boundsMinX); // Character's position relative to the bounds of the mesh.
+
+                    // Character's position relative to the bounds of the mesh.
+                    float x0 = (offsetToMidBaseline.x - boundsMinX) / (boundsMaxX - boundsMinX);
                     float x1 = x0 + 0.0001f;
                     float y0 = _vertexCurve.Evaluate(x0) * _curveScale;
                     float y1 = _vertexCurve.Evaluate(x1) * _curveScale;
@@ -114,8 +117,9 @@ namespace GigaceeTools
                     var horizontal = new Vector3(1, 0, 0);
 
                     // Vector3 normal = new Vector3(-(y1 - y0), (x1 * (boundsMaxX - boundsMinX) + boundsMinX) - offsetToMidBaseline.x, 0);
-                    Vector3 tangent = new Vector3(x1 * (boundsMaxX - boundsMinX) + boundsMinX, y1) -
-                                      new Vector3(offsetToMidBaseline.x, y0);
+                    Vector3 tangent
+                        = new Vector3(x1 * (boundsMaxX - boundsMinX) + boundsMinX, y1)
+                        - new Vector3(offsetToMidBaseline.x, y0);
 
                     float dot = Mathf.Acos(Vector3.Dot(horizontal, tangent.normalized)) * 57.2957795f;
                     Vector3 cross = Vector3.Cross(horizontal, tangent);

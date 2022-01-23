@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -34,22 +35,16 @@ namespace GigaceeTools
 
         private void OnGUI()
         {
-            if (_area == null)
+            _area ??= new GUIStyle
             {
-                _area = new GUIStyle
-                {
-                    padding = new RectOffset(10, 10, 10, 10)
-                };
-            }
+                padding = new RectOffset(10, 10, 10, 10)
+            };
 
-            if (_heading == null)
+            _heading ??= new GUIStyle(EditorStyles.label)
             {
-                _heading = new GUIStyle(EditorStyles.label)
-                {
-                    fontStyle = FontStyle.Bold,
-                    fontSize = 20
-                };
-            }
+                fontStyle = FontStyle.Bold,
+                fontSize = 20
+            };
 
             using (new EditorGUILayout.ScrollViewScope(Vector2.zero))
             {
@@ -82,9 +77,12 @@ namespace GigaceeTools
                     GUILayout.Space(LargeSpace);
                     GUILayout.Label("Sorting Layer", _heading);
                     GUILayout.Space(SmallSpace);
+
                     _inputSortingLayer = EditorGUILayout.TextField("Sorting Layer: ", _inputSortingLayer);
-                    _inputSortingLayerProjectPath =
-                        EditorGUILayout.TextField("Project Path: ", _inputSortingLayerProjectPath);
+
+                    _inputSortingLayerProjectPath
+                        = EditorGUILayout.TextField("Project Path: ", _inputSortingLayerProjectPath);
+
                     GUILayout.Space(SmallSpace);
 
                     using (new EditorGUILayout.HorizontalScope())
@@ -108,8 +106,10 @@ namespace GigaceeTools
                     GUILayout.Space(LargeSpace);
                     GUILayout.Label("Layer", _heading);
                     GUILayout.Space(SmallSpace);
+
                     _inputLayer = EditorGUILayout.LayerField("Layer: ", _inputLayer);
                     _inputLayerProjectPath = EditorGUILayout.TextField("Project Path: ", _inputLayerProjectPath);
+
                     GUILayout.Space(SmallSpace);
 
                     using (new EditorGUILayout.HorizontalScope())
@@ -156,12 +156,15 @@ namespace GigaceeTools
         {
             string sceneName = SceneManager.GetActiveScene().name;
 
-            foreach (GameObject obj in Resources.FindObjectsOfTypeAll<GameObject>()
-                .Where(obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None)))
+            IEnumerable<GameObject> gos = Resources
+                .FindObjectsOfTypeAll<GameObject>()
+                .Where(go => go.scene.isLoaded && (go.hideFlags == HideFlags.None));
+
+            foreach (GameObject go in gos)
             {
-                if (obj.CompareTag(tag))
+                if (go.CompareTag(tag))
                 {
-                    Debug.Log($"{sceneName}/{obj.transform.GetPath()}");
+                    Debug.Log($"{sceneName}/{go.transform.GetPath()}");
                 }
             }
         }
@@ -177,7 +180,7 @@ namespace GigaceeTools
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
 
-            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes.Where(s => s.enabled))
+            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
             {
                 EditorSceneManager.OpenScene(scene.path);
                 FindGameObjectsWithTagInScene(tag);
@@ -190,7 +193,11 @@ namespace GigaceeTools
 
         private static void FindGameObjectsWithTagInProject(string tag, string pathToSearch)
         {
-            foreach (string assetPath in AssetDatabase.FindAssets("t:Prefab").Select(AssetDatabase.GUIDToAssetPath))
+            IEnumerable<string> paths = AssetDatabase
+                .FindAssets("t:Prefab")
+                .Select(AssetDatabase.GUIDToAssetPath);
+
+            foreach (string assetPath in paths)
             {
                 if (!string.IsNullOrEmpty(pathToSearch) && !assetPath.StartsWith(pathToSearch))
                 {
@@ -210,31 +217,34 @@ namespace GigaceeTools
         {
             string sceneName = SceneManager.GetActiveScene().name;
 
-            foreach (GameObject obj in Resources.FindObjectsOfTypeAll<GameObject>()
-                .Where(obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None)))
+            IEnumerable<GameObject> gos = Resources
+                .FindObjectsOfTypeAll<GameObject>()
+                .Where(obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None));
+
+            foreach (GameObject go in gos)
             {
-                if (obj.TryGetComponent(out Renderer renderer))
+                if (go.TryGetComponent(out Renderer renderer))
                 {
                     if (renderer.sortingLayerName == sortingLayer)
                     {
-                        Debug.Log($"{sceneName}/{obj.transform.GetPath()} (Sorting Order: {renderer.sortingOrder})");
+                        Debug.Log($"{sceneName}/{go.transform.GetPath()} (Sorting Order: {renderer.sortingOrder})");
                     }
                 }
 
-                if (obj.TryGetComponent(out SortingGroup sortingGroup))
+                if (go.TryGetComponent(out SortingGroup sortingGroup))
                 {
                     if (sortingGroup.sortingLayerName == sortingLayer)
                     {
-                        Debug.Log($"{sceneName}/{obj.transform.GetPath()} (Sorting Order: {renderer.sortingOrder})");
+                        Debug.Log($"{sceneName}/{go.transform.GetPath()} (Sorting Order: {renderer.sortingOrder})");
                     }
                 }
 
                 // ReSharper disable once InvertIf
-                if (obj.TryGetComponent(out Canvas canvas))
+                if (go.TryGetComponent(out Canvas canvas))
                 {
                     if (canvas.sortingLayerName == sortingLayer)
                     {
-                        Debug.Log($"{sceneName}/{obj.transform.GetPath()} (Sorting Order: {renderer.sortingOrder})");
+                        Debug.Log($"{sceneName}/{go.transform.GetPath()} (Sorting Order: {renderer.sortingOrder})");
                     }
                 }
             }
@@ -251,7 +261,7 @@ namespace GigaceeTools
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
 
-            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes.Where(s => s.enabled))
+            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
             {
                 EditorSceneManager.OpenScene(scene.path);
                 FindGameObjectsWithSortingLayerInScene(sortingLayer);
@@ -264,21 +274,25 @@ namespace GigaceeTools
 
         private static void FindGameObjectsWithSortingLayerInProject(string sortingLayer, string pathToSearch)
         {
-            foreach (string assetPath in AssetDatabase.FindAssets("t:Prefab").Select(AssetDatabase.GUIDToAssetPath))
+            IEnumerable<string> paths = AssetDatabase
+                .FindAssets("t:Prefab")
+                .Select(AssetDatabase.GUIDToAssetPath);
+
+            foreach (string assetPath in paths)
             {
                 if (!string.IsNullOrEmpty(pathToSearch) && !assetPath.StartsWith(pathToSearch))
                 {
                     continue;
                 }
 
-                var obj = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+                var go = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
 
-                if (!obj)
+                if (!go)
                 {
                     continue;
                 }
 
-                if (obj.TryGetComponent(out Renderer renderer))
+                if (go.TryGetComponent(out Renderer renderer))
                 {
                     if (renderer.sortingLayerName == sortingLayer)
                     {
@@ -286,7 +300,7 @@ namespace GigaceeTools
                     }
                 }
 
-                if (obj.TryGetComponent(out SortingGroup sortingGroup))
+                if (go.TryGetComponent(out SortingGroup sortingGroup))
                 {
                     if (sortingGroup.sortingLayerName == sortingLayer)
                     {
@@ -295,7 +309,7 @@ namespace GigaceeTools
                 }
 
                 // ReSharper disable once InvertIf
-                if (obj.TryGetComponent(out Canvas canvas))
+                if (go.TryGetComponent(out Canvas canvas))
                 {
                     if (canvas.sortingLayerName == sortingLayer)
                     {
@@ -311,12 +325,15 @@ namespace GigaceeTools
         {
             string sceneName = SceneManager.GetActiveScene().name;
 
-            foreach (GameObject obj in Resources.FindObjectsOfTypeAll<GameObject>()
-                .Where(obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None)))
+            IEnumerable<GameObject> gos = Resources
+                .FindObjectsOfTypeAll<GameObject>()
+                .Where(obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None));
+
+            foreach (GameObject go in gos)
             {
-                if (obj.layer == layer)
+                if (go.layer == layer)
                 {
-                    Debug.Log($"{sceneName}/{obj.transform.GetPath()}");
+                    Debug.Log($"{sceneName}/{go.transform.GetPath()}");
                 }
             }
         }
@@ -332,7 +349,7 @@ namespace GigaceeTools
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
 
-            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes.Where(s => s.enabled))
+            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
             {
                 EditorSceneManager.OpenScene(scene.path);
                 FindGameObjectsWithLayerInScene(layer);
@@ -345,7 +362,11 @@ namespace GigaceeTools
 
         private static void FindGameObjectsWithLayerInProject(int layer, string pathToSearch)
         {
-            foreach (string assetPath in AssetDatabase.FindAssets("t:Prefab").Select(AssetDatabase.GUIDToAssetPath))
+            IEnumerable<string> path = AssetDatabase
+                .FindAssets("t:Prefab")
+                .Select(AssetDatabase.GUIDToAssetPath);
+
+            foreach (string assetPath in path)
             {
                 if (!string.IsNullOrEmpty(pathToSearch) && !assetPath.StartsWith(pathToSearch))
                 {

@@ -19,8 +19,8 @@ namespace GigaceeTools
 
             Object[] objectsOfSameTypeExceptSelf = FindObjectsOfType(_targetComponent.GetType(), true)
                 .Where(obj => (obj != _targetComponent)
-                              && obj is Component c
-                              && !c.GetComponent<DestroySelfIfAlreadyExists>().WillBeDestroyed)
+                    && obj is Component c
+                    && !c.GetComponent<DestroySelfIfAlreadyExists>().WillBeDestroyed)
                 .ToArray();
 
             if (objectsOfSameTypeExceptSelf.Length == 0)

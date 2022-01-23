@@ -245,11 +245,11 @@ namespace GigaceeTools
             }
 
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                rectTransform,
-                screenPoint,
-                eventCamera,
-                out Vector2 local
-            ))
+                    rectTransform,
+                    screenPoint,
+                    eventCamera,
+                    out Vector2 local
+                ))
             {
                 return false;
             }

@@ -73,8 +73,8 @@ namespace GigaceeTools
         private bool AreModifierKeysPressed()
         {
             return (!_withCtrlKey || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-                   && (!_withShiftKey || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                   && (!_withAltKey || Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt));
+                && (!_withShiftKey || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                && (!_withAltKey || Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt));
         }
 
         public void TogglePause()
