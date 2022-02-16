@@ -6,8 +6,10 @@ namespace GigaceeTools
     [DefaultExecutionOrder(-1)]
     public class DebugPresenter : MonoBehaviour
     {
-        [SerializeField] private BoolReactiveProperty _debugMode;
         [SerializeField] private bool _forceReleaseBuild;
+
+        // TODO: _forceReleaseBuild が true の場合は Disable にする
+        [SerializeField] private BoolReactiveProperty _debugMode;
 
         private IDebugCore _debugCore;
 
