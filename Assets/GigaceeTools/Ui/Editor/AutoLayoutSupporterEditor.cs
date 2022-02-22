@@ -37,6 +37,21 @@ namespace GigaceeTools
                     autoLayoutSupporter.DisableAllLayoutComponents();
                 }
             }
+
+            GUILayout.Space(4f);
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                if (GUILayout.Button("Update References", GUILayout.Height(24f)))
+                {
+                    autoLayoutSupporter.UpdateReferences();
+                }
+
+                if (GUILayout.Button("Update References in Children", GUILayout.Height(24f)))
+                {
+                    autoLayoutSupporter.UpdateReferencesInChildren();
+                }
+            }
         }
     }
 }

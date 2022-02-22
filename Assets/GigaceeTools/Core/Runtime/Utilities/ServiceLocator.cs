@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace GigaceeTools
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class ServiceLocator
     {
         /// <summary>
@@ -23,6 +23,7 @@ namespace GigaceeTools
         {
             Type type = typeof(T);
 
+            // TODO: ContainsKey を TryGetValue に書き換える
             if (s_instances.ContainsKey(type))
             {
                 Debug.LogWarning($"すでに同じ型のインスタンスが登録されています: {type.Name}");

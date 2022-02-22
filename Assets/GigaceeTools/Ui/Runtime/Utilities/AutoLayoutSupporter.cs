@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_EDITOR
@@ -9,6 +10,7 @@ using UnityEditor;
 
 namespace GigaceeTools
 {
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public class AutoLayoutSupporter : MonoBehaviour
     {
         [SerializeField] private ContentSizeFitter[] _contentSizeFitters;
@@ -24,14 +26,18 @@ namespace GigaceeTools
 
         private void Reset()
         {
-            GetReferences();
+            UpdateReferences();
 
             ComponentHelper.DisableComponents(_contentSizeFitters);
             ComponentHelper.DisableComponents(_layoutGroups);
         }
 
-        private void GetReferences()
+        public void UpdateReferences()
         {
+#if UNITY_EDITOR
+            Undo.RecordObject(this, "Update References");
+#endif
+
             _contentSizeFitters = GetComponentsInParent<ContentSizeFitter>()
                 .Concat(GetComponentsInChildren<ContentSizeFitter>())
                 .Distinct()
@@ -47,6 +53,18 @@ namespace GigaceeTools
                 .Distinct()
                 .OrderByDescending(x => x.GetComponentsInParent<Transform>().Length)
                 .ToArray();
+
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(this);
+#endif
+        }
+
+        public void UpdateReferencesInChildren()
+        {
+            foreach (AutoLayoutSupporter als in GetComponentsInChildren<AutoLayoutSupporter>())
+            {
+                als.UpdateReferences();
+            }
         }
 
         public void ExecuteRebuilding()
@@ -56,7 +74,7 @@ namespace GigaceeTools
                 return;
             }
 
-            GetReferences();
+            UpdateReferences();
 
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying)
@@ -76,7 +94,7 @@ namespace GigaceeTools
                 yield break;
             }
 
-            GetReferences();
+            UpdateReferences();
 
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying)
@@ -116,7 +134,7 @@ namespace GigaceeTools
 #if UNITY_EDITOR
         public void EnableAllLayoutComponents()
         {
-            GetReferences();
+            UpdateReferences();
 
             foreach (ContentSizeFitter contentSizeFitter in _contentSizeFitters)
             {
@@ -135,7 +153,7 @@ namespace GigaceeTools
 
         public void DisableAllLayoutComponents()
         {
-            GetReferences();
+            UpdateReferences();
 
             foreach (ContentSizeFitter contentSizeFitter in _contentSizeFitters)
             {

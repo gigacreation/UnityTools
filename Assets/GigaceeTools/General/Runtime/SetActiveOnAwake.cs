@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace GigaceeTools
 {
+    // TODO: _targetKind が Selections でないときは _selections を非表示にする
     public class SetActiveOnAwake : MonoBehaviour
     {
         [SerializeField] private TargetKind _targetKind;
