@@ -1,11 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 
 namespace GigaceeTools
 {
-    [SuppressMessage("ReSharper", "UnusedType.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class TransformExtensions
     {
         // =============================================================================================================

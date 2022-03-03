@@ -1,11 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace GigaceeTools
 {
-    [SuppressMessage("ReSharper", "UnusedType.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class ImageExtensions
     {
         public static void SetAlpha(this Image self, float alpha)

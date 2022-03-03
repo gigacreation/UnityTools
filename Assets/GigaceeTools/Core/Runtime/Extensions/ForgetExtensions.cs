@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 #if UNITASK_DOTWEEN_SUPPORT
 using DG.Tweening;
@@ -6,9 +6,7 @@ using DG.Tweening;
 
 namespace GigaceeTools
 {
-    [SuppressMessage("ReSharper", "UnusedType.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class ForgetExtensions
     {
         public static void Forget(this AsyncOperation self)

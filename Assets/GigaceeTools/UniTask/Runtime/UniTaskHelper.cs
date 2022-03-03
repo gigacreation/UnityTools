@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 #if UNITASK_DOTWEEN_SUPPORT
 using DG.Tweening;
 #endif
 
 namespace GigaceeTools
 {
-    [SuppressMessage("ReSharper", "UnusedType.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class UniTaskHelper
     {
         public static async UniTask SkippableDelay(

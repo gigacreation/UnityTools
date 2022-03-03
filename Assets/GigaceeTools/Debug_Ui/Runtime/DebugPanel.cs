@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using JetBrains.Annotations;
 using UniRx;
 using UnityEngine;
 
@@ -10,8 +10,7 @@ namespace GigaceeTools
     /// デバッグモード中、表示・非表示を切り替えることができるパネルです。
     /// パネルが複数ある場合、一つのパネルを表示すると他のパネルは自動で非表示になります。
     /// </summary>
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
-    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public class DebugPanel : MonoBehaviour
     {
         [SerializeField] private Transform[] _contents;

@@ -1,11 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using UniRx;
+﻿using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
 namespace GigaceeTools
 {
-    [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
     public class TimeDebugCommands : MonoBehaviour
     {
         [SerializeField] private FloatReactiveProperty _timeScale = new FloatReactiveProperty(1f);
