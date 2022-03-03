@@ -1,0 +1,11 @@
+{
+    "name": "com.gigacee.gigaceetools.ui.slicedfilledimage",
+    "version": "1.0.0",
+    "displayName": "Gigacee Tools / UI / Sliced Filled Image",
+    "unity": "2019.4",
+    "author": {
+        "name": "Gigacee",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
+}

@@ -12,6 +12,10 @@
 
 `https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Ui`
 
+## UI / Sliced Filled Image
+
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Ui_SlicedFilledImage`
+
 ## TextMesh Pro
 
 `https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/TextMeshPro`

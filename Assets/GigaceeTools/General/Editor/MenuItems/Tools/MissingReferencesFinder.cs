@@ -25,6 +25,7 @@ namespace GigaceeTools
             return false;
         }
 
+        // TODO: Prefab Mode に対応する
         [MenuItem(BasePath + "Find Missing References in Current Scene", priority = CategoryPriority + 1)]
         public static void FindMissingReferencesInCurrentScene()
         {
