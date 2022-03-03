@@ -12,6 +12,10 @@
 
 `https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Ui`
 
+## UI / RectTransform Set with Keeping Position Extensions
+
+`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Ui_RectTransformSetWithKeepingPositionExtensions`
+
 ## UI / Sliced Filled Image
 
 `https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Ui_SlicedFilledImage`
