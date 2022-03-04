@@ -12,7 +12,7 @@ namespace GigaceeTools
             self.blocksRaycasts = true;
         }
 
-        public static void Inactivate(this CanvasGroup self)
+        public static void Deactivate(this CanvasGroup self)
         {
             self.alpha = 0f;
             self.blocksRaycasts = false;
