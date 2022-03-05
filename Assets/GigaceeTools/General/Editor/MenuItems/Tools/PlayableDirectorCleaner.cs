@@ -7,7 +7,7 @@ namespace GigaceeTools
 {
     public static class PlayableDirectorCleaner
     {
-        private const int CategoryPriority = BasePriority + 600;
+        private const int CategoryPriority = BasePriority + 300;
         private const string Category = BasePath + CategoryPrefix + "Clean PlayableDirector" + CategorySuffix;
 
         [MenuItem(Category, priority = CategoryPriority)]

@@ -7,7 +7,7 @@ namespace GigaceeTools
 {
     public static class PrefabReverting
     {
-        private const int CategoryPriority = BasePriority + 100;
+        private const int CategoryPriority = BasePriority;
         private const string Category = BasePath + CategoryPrefix + "Revert Prefabs" + CategorySuffix;
         private const string RevertName = BasePath + "Revert Name On Selected Prefabs";
         private const string RevertTransform = BasePath + "Revert Transform On Selected Prefabs";
