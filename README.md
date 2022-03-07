@@ -32,10 +32,6 @@
 
 `https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/Addressables`
 
-## UniRx
-
-`https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/UniRx`
-
 ## UniTask
 
 `https://github.com/gigacee/GigaceeToolsForUnity.git?path=Assets/GigaceeTools/UniTask`
