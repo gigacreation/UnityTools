@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace GigaceeTools
 {
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class UniTaskDebug
     {
         private static bool s_isReleaseMode;
         private static IDebugCore s_debugCore;
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Initialize()
-        {
-            s_isReleaseMode = false;
-            s_debugCore = null;
-        }
 
         /// <summary>
         /// デバッグモードの時のみスキップできる UniTask.Delay。
@@ -65,6 +60,13 @@ namespace GigaceeTools
                     cancellationToken
                 )
             );
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticFields()
+        {
+            s_isReleaseMode = false;
+            s_debugCore = null;
         }
     }
 }

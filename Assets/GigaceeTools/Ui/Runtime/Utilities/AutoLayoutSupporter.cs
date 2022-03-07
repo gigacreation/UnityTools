@@ -38,20 +38,20 @@ namespace GigaceeTools
             Undo.RecordObject(this, "Update References");
 #endif
 
-            _contentSizeFitters = GetComponentsInParent<ContentSizeFitter>()
-                .Concat(GetComponentsInChildren<ContentSizeFitter>())
+            _contentSizeFitters = GetComponentsInParent<ContentSizeFitter>(true)
+                .Concat(GetComponentsInChildren<ContentSizeFitter>(true))
                 .Distinct()
                 .ToArray();
 
-            _layoutGroups = GetComponentsInParent<LayoutGroup>()
-                .Concat(GetComponentsInChildren<LayoutGroup>())
+            _layoutGroups = GetComponentsInParent<LayoutGroup>(true)
+                .Concat(GetComponentsInChildren<LayoutGroup>(true))
                 .Distinct()
                 .ToArray();
 
             _rectTransforms = _contentSizeFitters.Select(x => x.transform as RectTransform)
                 .Concat(_layoutGroups.Select(x => x.transform as RectTransform))
                 .Distinct()
-                .OrderByDescending(x => x.GetComponentsInParent<Transform>().Length)
+                .OrderByDescending(x => x.GetComponentsInParent<Transform>(true).Length)
                 .ToArray();
 
 #if UNITY_EDITOR
@@ -61,7 +61,7 @@ namespace GigaceeTools
 
         public void UpdateReferencesInChildren()
         {
-            foreach (AutoLayoutSupporter als in GetComponentsInChildren<AutoLayoutSupporter>())
+            foreach (AutoLayoutSupporter als in GetComponentsInChildren<AutoLayoutSupporter>(true))
             {
                 als.UpdateReferences();
             }

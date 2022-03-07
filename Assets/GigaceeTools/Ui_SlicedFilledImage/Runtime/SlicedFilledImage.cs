@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Sprites;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ using UnityEngine.U2D;
 namespace GigaceeTools
 {
     // Credit: https://bitbucket.org/Unity-Technologies/ui/src/2018.4/UnityEngine.UI/UI/Core/Image.cs
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     [RequireComponent(typeof(CanvasRenderer))]
     [AddComponentMenu("UI/Sliced Filled Image", 11)]
     public class SlicedFilledImage :
