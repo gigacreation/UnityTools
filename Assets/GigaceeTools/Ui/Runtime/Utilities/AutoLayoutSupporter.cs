@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -28,8 +29,7 @@ namespace GigaceeTools
         {
             UpdateReferences();
 
-            ComponentHelper.DisableComponents(_contentSizeFitters);
-            ComponentHelper.DisableComponents(_layoutGroups);
+            DisableAllLayoutComponents();
         }
 
         public void UpdateReferences()
@@ -61,9 +61,9 @@ namespace GigaceeTools
 
         public void UpdateReferencesInChildren()
         {
-            foreach (AutoLayoutSupporter als in GetComponentsInChildren<AutoLayoutSupporter>(true))
+            foreach (AutoLayoutSupporter supporter in GetComponentsInChildren<AutoLayoutSupporter>(true))
             {
-                als.UpdateReferences();
+                supporter.UpdateReferences();
             }
         }
 
@@ -79,12 +79,12 @@ namespace GigaceeTools
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying)
             {
-                EditorCoroutineUtility.StartCoroutine(RebuildLayout(), this);
+                EditorCoroutineUtility.StartCoroutine(RebuildLayoutCo(), this);
                 return;
             }
 #endif
 
-            StartCoroutine(RebuildLayout());
+            StartCoroutine(RebuildLayoutCo());
         }
 
         public IEnumerator ExecuteRebuildingCo()
@@ -99,19 +99,69 @@ namespace GigaceeTools
 #if UNITY_EDITOR
             if (!EditorApplication.isPlaying)
             {
-                yield return EditorCoroutineUtility.StartCoroutine(RebuildLayout(), this);
+                yield return EditorCoroutineUtility.StartCoroutine(RebuildLayoutCo(), this);
                 yield break;
             }
 #endif
 
-            yield return RebuildLayout();
+            yield return RebuildLayoutCo();
         }
 
-        private IEnumerator RebuildLayout()
+        private IEnumerator RebuildLayoutCo()
         {
-            ComponentHelper.EnableComponents(_contentSizeFitters);
-            ComponentHelper.EnableComponents(_layoutGroups);
+            EnableAllLayoutComponents();
 
+            yield return MarkAllRectTransformsForRebuildCo();
+
+            DisableAllLayoutComponents();
+        }
+
+        public void EnableAllLayoutComponents()
+        {
+            EnableComponents(_contentSizeFitters);
+            EnableComponents(_layoutGroups);
+        }
+
+        public void DisableAllLayoutComponents()
+        {
+            DisableComponents(_contentSizeFitters);
+            DisableComponents(_layoutGroups);
+        }
+
+        private void EnableComponents(IEnumerable<Behaviour> behaviours)
+        {
+            foreach (Behaviour behaviour in behaviours)
+            {
+#if UNITY_EDITOR
+                Undo.RecordObject(behaviour, "Enable Component");
+#endif
+
+                behaviour.enabled = true;
+
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(behaviour);
+#endif
+            }
+        }
+
+        private void DisableComponents(IEnumerable<Behaviour> behaviours)
+        {
+            foreach (Behaviour behaviour in behaviours)
+            {
+#if UNITY_EDITOR
+                Undo.RecordObject(behaviour, "Disable Component");
+#endif
+
+                behaviour.enabled = false;
+
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(behaviour);
+#endif
+            }
+        }
+
+        private IEnumerator MarkAllRectTransformsForRebuildCo()
+        {
             foreach (RectTransform rectTransform in _rectTransforms)
             {
 #if UNITY_EDITOR
@@ -126,49 +176,6 @@ namespace GigaceeTools
 
                 yield return new WaitForEndOfFrame();
             }
-
-            ComponentHelper.DisableComponents(_contentSizeFitters);
-            ComponentHelper.DisableComponents(_layoutGroups);
         }
-
-#if UNITY_EDITOR
-        public void EnableAllLayoutComponents()
-        {
-            UpdateReferences();
-
-            foreach (ContentSizeFitter contentSizeFitter in _contentSizeFitters)
-            {
-                Undo.RecordObject(contentSizeFitter, "Enable Content Size Fitter");
-                contentSizeFitter.enabled = true;
-                EditorUtility.SetDirty(contentSizeFitter);
-            }
-
-            foreach (LayoutGroup layoutGroup in _layoutGroups)
-            {
-                Undo.RecordObject(layoutGroup, "Enable Layout Group");
-                layoutGroup.enabled = true;
-                EditorUtility.SetDirty(layoutGroup);
-            }
-        }
-
-        public void DisableAllLayoutComponents()
-        {
-            UpdateReferences();
-
-            foreach (ContentSizeFitter contentSizeFitter in _contentSizeFitters)
-            {
-                Undo.RecordObject(contentSizeFitter, "Enable Content Size Fitter");
-                contentSizeFitter.enabled = false;
-                EditorUtility.SetDirty(contentSizeFitter);
-            }
-
-            foreach (LayoutGroup layoutGroup in _layoutGroups)
-            {
-                Undo.RecordObject(layoutGroup, "Enable Layout Group");
-                layoutGroup.enabled = false;
-                EditorUtility.SetDirty(layoutGroup);
-            }
-        }
-#endif
     }
 }
