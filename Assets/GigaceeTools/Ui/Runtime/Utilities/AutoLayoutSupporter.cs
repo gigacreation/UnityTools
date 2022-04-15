@@ -133,6 +133,7 @@ namespace GigaceeTools
             foreach (Behaviour behaviour in behaviours)
             {
 #if UNITY_EDITOR
+                // TODO: Undo.RecordObject の対象オブジェクトの null チェックを行う
                 Undo.RecordObject(behaviour, "Enable Component");
 #endif
 
