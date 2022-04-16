@@ -7,7 +7,6 @@ using System.Text;
 using Microsoft.Win32;
 using UnityEditor;
 using UnityEngine;
-using static GigaceeTools.ToolsMenuItemConstants;
 
 namespace GigaceeTools
 {
@@ -16,7 +15,8 @@ namespace GigaceeTools
     /// </summary>
     public class EditorPrefsWindow : EditorWindow
     {
-        private const int CategoryPriority = BasePriority - 90;
+        private const int CategoryPriority = 1001;
+        private const string Category = "Tools/Gigacee Tools/Custom Window/";
 
         private const float Space = 5f;
 
@@ -111,7 +111,7 @@ namespace GigaceeTools
         /// <summary>
         /// 開きます
         /// </summary>
-        [MenuItem(BasePath + "Editor Prefs Window", priority = CategoryPriority + 1)]
+        [MenuItem(Category + "Editor Prefs Window", priority = CategoryPriority)]
         private static void Open()
         {
             GetWindow<EditorPrefsWindow>("Editor Prefs Window");
@@ -124,26 +124,25 @@ namespace GigaceeTools
         {
             const string Name = @"Software\Unity Technologies\Unity Editor 5.x\";
 
-            using (RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(Name, false))
+            using RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(Name, false);
+
+            if (registryKey == null)
             {
-                if (registryKey == null)
+                yield break;
+            }
+
+            foreach (string valueName in registryKey.GetValueNames())
+            {
+                object value = registryKey.GetValue(valueName);
+                string key = valueName.Split(new[] { "_h" }, StringSplitOptions.None)[0];
+
+                if (value is byte[] byteValue)
                 {
-                    yield break;
+                    yield return new KeyValueData(key, Encoding.UTF8.GetString(byteValue));
                 }
-
-                foreach (string valueName in registryKey.GetValueNames())
+                else
                 {
-                    object value = registryKey.GetValue(valueName);
-                    string key = valueName.Split(new[] { "_h" }, StringSplitOptions.None)[0];
-
-                    if (value is byte[] byteValue)
-                    {
-                        yield return new KeyValueData(key, Encoding.UTF8.GetString(byteValue));
-                    }
-                    else
-                    {
-                        yield return new KeyValueData(key, value.ToString());
-                    }
+                    yield return new KeyValueData(key, value.ToString());
                 }
             }
         }

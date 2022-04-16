@@ -5,14 +5,13 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
-using static GigaceeTools.ToolsMenuItemConstants;
 
 namespace GigaceeTools
 {
     public class TagAndLayerFinder : EditorWindow
     {
-        private const int CategoryPriority = BasePriority - 100;
-        private const string Category = BasePath + CategoryPrefix + "Custom Window" + CategorySuffix;
+        private const int CategoryPriority = 1000;
+        private const string Category = "Tools/Gigacee Tools/Custom Window/";
 
         private const string CurrentScene = "Current Scene";
         private const string AllEnabledScenes = "All Enabled Scenes";
@@ -133,18 +132,7 @@ namespace GigaceeTools
             }
         }
 
-        [MenuItem(Category, priority = CategoryPriority)]
-        public static void CategoryName()
-        {
-        }
-
-        [MenuItem(Category, true)]
-        private static bool CategoryValidate()
-        {
-            return false;
-        }
-
-        [MenuItem(BasePath + "Tag and Layer Finder", priority = CategoryPriority + 1)]
+        [MenuItem(Category + "Tag and Layer Finder", priority = CategoryPriority)]
         private static void ShowWindow()
         {
             var window = GetWindow<TagAndLayerFinder>();

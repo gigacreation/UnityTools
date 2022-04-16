@@ -5,17 +5,17 @@ using System.Reflection;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
-using static GigaceeTools.AssetsMenuItemConstants;
 
 namespace GigaceeTools
 {
     public static class AnimatorNodeAligner
     {
-        private const int CategoryPriority = BasePriority;
-        private const string AlignAnimatorNodes = BasePath + "Align Animator Nodes";
+        private const int CategoryPriority = 2100000000;
+        private const string Category = "Assets/Gigacee Tools/";
+        private const string AlignAnimatorNodesName = Category + "Align Animator Nodes";
 
-        [MenuItem(AlignAnimatorNodes, priority = CategoryPriority)]
-        private static void AlignAnimator()
+        [MenuItem(AlignAnimatorNodesName, priority = CategoryPriority)]
+        private static void AlignAnimatorNodes()
         {
             Type animatorControllerToolType = Assembly
                 .Load("UnityEditor.Graphs")
@@ -24,7 +24,8 @@ namespace GigaceeTools
 
             EditorWindow animatorWindow = EditorWindow.GetWindow(animatorControllerToolType);
 
-            IEnumerable<AnimatorController> selectedAnimatorControllers = Selection.objects
+            IEnumerable<AnimatorController> selectedAnimatorControllers = Selection
+                .objects
                 .Select(x => x as AnimatorController)
                 .Where(x => x);
 
@@ -43,7 +44,7 @@ namespace GigaceeTools
             }
         }
 
-        [MenuItem(AlignAnimatorNodes, true)]
+        [MenuItem(AlignAnimatorNodesName, true)]
         private static bool NoAnimatorControllerSelection()
         {
             return Selection.objects.All(x => x as AnimatorController);

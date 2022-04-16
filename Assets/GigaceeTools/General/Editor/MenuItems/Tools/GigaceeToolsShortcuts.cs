@@ -7,28 +7,16 @@ using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static GigaceeTools.ToolsMenuItemConstants;
 using Object = UnityEngine.Object;
 
 namespace GigaceeTools
 {
     public static class GigaceeToolsShortcuts
     {
-        private const int CategoryPriority = BasePriority + 10000;
-        private const string Category = BasePath + CategoryPrefix + "Shortcuts" + CategorySuffix;
+        private const int CategoryPriority = 9999;
+        private const string Category = "Tools/Gigacee Tools/Shortcuts/";
 
-        [MenuItem(Category, priority = CategoryPriority)]
-        public static void CategoryName()
-        {
-        }
-
-        [MenuItem(Category, true)]
-        private static bool CategoryValidate()
-        {
-            return false;
-        }
-
-        [MenuItem(BasePath + "Check if Root Prefabs have Changed #%p", priority = CategoryPriority + 1)]
+        [MenuItem(Category + "Check if Root Prefabs have Changed", priority = CategoryPriority)]
         public static void CheckIfRootPrefabsHaveChanged()
         {
             IEnumerable<GameObject> rootGameObjects;
@@ -37,17 +25,20 @@ namespace GigaceeTools
 
             if (currentPrefabStage == null)
             {
-                // Prefab Mode でない場合、シーンのルートにある GameObject を取得
+                // Prefab Mode でない場合、シーンのルートにある GameObject を取得する
                 rootGameObjects = SceneManager.GetActiveScene().GetRootGameObjects();
             }
             else
             {
-                // Prefab Mode の場合、ルートの Prefab の 1 階層下にある GameObject を取得
-                rootGameObjects = currentPrefabStage.prefabContentsRoot.transform.Cast<Transform>()
+                // Prefab Mode の場合、ルートの Prefab の 1 階層下にある GameObject を取得する
+                rootGameObjects = currentPrefabStage
+                    .prefabContentsRoot
+                    .transform
+                    .Cast<Transform>()
                     .Select(x => x.gameObject);
             }
 
-            // 変更されている Prefab Instance を抽出
+            // 変更されている Prefab Instance を抽出する
             Object[] overriddenPrefabInstances = rootGameObjects
                 .Where(PrefabUtility.IsAnyPrefabInstanceRoot)
                 .Where(x => PrefabUtility.HasPrefabInstanceAnyOverrides(x, false))
@@ -64,47 +55,49 @@ namespace GigaceeTools
                 Debug.Log("ルートに変更された Prefab はありませんでした。");
             }
 
-            // 変更されている Prefab Instance が存在していたら、それらを選択
+            // 変更されている Prefab Instance が存在していたら、それらを選択する
             Selection.objects = overriddenPrefabInstances;
         }
 
-        [MenuItem(BasePath + "Restore Rainbow Folders #%r", priority = CategoryPriority + 2)]
+        [MenuItem(Category + "Restore Rainbow Folders", priority = CategoryPriority + 1)]
         public static async Task RestoreRainbowFolders()
         {
-            // UnityEditor.dllを取得
+            // UnityEditor.dllを取得する
             Assembly asm = Assembly.Load("UnityEditor");
 
-            // ProjectBrowserクラスを取得
+            // ProjectBrowserクラスを取得する
             Type projectWindowType = asm.GetType("UnityEditor.ProjectBrowser");
 
-            // 列挙体 ProjectBrowser.ViewMode を取得
+            // 列挙体 ProjectBrowser.ViewMode を取得する
             Type viewModeType = asm.GetType("UnityEditor.ProjectBrowser+ViewMode");
 
-            // ビューモードを設定するメソッドを取得
+            // ビューモードを設定するメソッドを取得する
             MethodInfo initViewMode = projectWindowType.GetMethod(
                 "InitViewMode",
                 BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static
             );
 
-            // プロジェクトウィンドウを取得
+            // プロジェクトウィンドウを取得する
             EditorWindow projectWindow = EditorWindow.GetWindow(projectWindowType, false, "Project", false);
 
-            // プロジェクトウィンドウにフォーカス
+            // プロジェクトウィンドウにフォーカスする
             projectWindow.Focus();
 
-            // プロジェクトウィンドウを 1 カラム表示に変更
+            // プロジェクトウィンドウを 1 カラム表示に変更する
             initViewMode?.Invoke(projectWindow, new[] { Enum.GetValues(viewModeType).GetValue(0) });
 
+            // 少し待つ
             await Task.Delay(100);
 
-            // プロジェクトウィンドウを 2 カラム表示に変更
+            // プロジェクトウィンドウを 2 カラム表示に変更する
             initViewMode?.Invoke(projectWindow, new[] { Enum.GetValues(viewModeType).GetValue(1) });
         }
 
-        [MenuItem(BasePath + "Clear Console #%c", priority = CategoryPriority + 3)]
+        [MenuItem(Category + "Clear Console", priority = CategoryPriority + 2)]
         public static void ClearConsole()
         {
-            Type.GetType("UnityEditor.LogEntries, UnityEditor.dll")
+            Type
+                .GetType("UnityEditor.LogEntries, UnityEditor.dll")
                 ?.GetMethod("Clear", BindingFlags.Static | BindingFlags.Public)
                 ?.Invoke(null, null);
         }

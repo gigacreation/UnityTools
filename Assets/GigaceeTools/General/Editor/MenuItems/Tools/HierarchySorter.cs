@@ -2,30 +2,18 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using static GigaceeTools.ToolsMenuItemConstants;
 
 namespace GigaceeTools
 {
     public static class HierarchySorter
     {
-        private const int CategoryPriority = BasePriority + 100;
-        private const string Category = BasePath + CategoryPrefix + "Sort Hierarchy" + CategorySuffix;
-        private const string ByName = BasePath + "Sort Selected GameObjects By Name";
-        private const string ByPositionXYZ = BasePath + "Sort Selected GameObjects By Position XYZ";
-        private const string ByPositionYXZ = BasePath + "Sort Selected GameObjects By Position YXZ";
+        private const int CategoryPriority = 1;
+        private const string Category = "Tools/Gigacee Tools/Sort Hierarchy/";
+        private const string ByName = Category + "Sort Selected GameObjects by Name";
+        private const string ByPositionXYZ = Category + "Sort Selected GameObjects by Position XYZ";
+        private const string ByPositionYXZ = Category + "Sort Selected GameObjects by Position YXZ";
 
-        [MenuItem(Category, priority = CategoryPriority)]
-        public static void CategoryName()
-        {
-        }
-
-        [MenuItem(Category, true)]
-        private static bool CategoryValidate()
-        {
-            return false;
-        }
-
-        [MenuItem(ByName, priority = CategoryPriority + 1)]
+        [MenuItem(ByName, priority = CategoryPriority)]
         private static void SortByName()
         {
             foreach (IGrouping<Transform, Transform> group in Selection.transforms.GroupBy(s => s.parent))
@@ -34,7 +22,7 @@ namespace GigaceeTools
             }
         }
 
-        [MenuItem(ByPositionXYZ, priority = CategoryPriority + 2)]
+        [MenuItem(ByPositionXYZ, priority = CategoryPriority + 1)]
         private static void SortByPosXYZ()
         {
             foreach (IGrouping<Transform, Transform> group in Selection.transforms.GroupBy(s => s.parent))
@@ -49,7 +37,7 @@ namespace GigaceeTools
         }
 
         // ReSharper disable once InconsistentNaming
-        [MenuItem(ByPositionYXZ, priority = CategoryPriority + 3)]
+        [MenuItem(ByPositionYXZ, priority = CategoryPriority + 2)]
         private static void SortByPosYXZ()
         {
             foreach (IGrouping<Transform, Transform> group in Selection.transforms.GroupBy(s => s.parent))

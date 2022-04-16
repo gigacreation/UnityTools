@@ -7,18 +7,14 @@ using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
-using static GigaceeTools.ToolsMenuItemConstants;
 using Object = UnityEngine.Object;
 
 namespace GigaceeTools
 {
     public static class AddressablesMenuItems
     {
-        private const int CategoryPriority = BasePriority + 1000;
-        private const string Category = BasePath + CategoryPrefix + "Addressables" + CategorySuffix;
-        private const string FullCleanBuildItemName = BasePath + "Full Clean Build";
-        private const string ClearCachedCatalogsAndBundlesItemName = BasePath + "Clear Cached Catalogs and Bundles";
-        private const string SortAddressablesGroupsItemName = BasePath + "Sort Addressables Groups";
+        private const int CategoryPriority = 100;
+        private const string Category = "Tools/Gigacee Tools/Addressables/";
 
         private static readonly string[] s_defaultGroupNames = { "Built In Data", "Default Local Group" };
 
@@ -27,21 +23,10 @@ namespace GigaceeTools
         private static AddressableAssetSettings AddressablesSettings
             => s_addressablesSettings ??= AddressableAssetSettingsDefaultObject.Settings;
 
-        [MenuItem(Category, priority = CategoryPriority)]
-        public static void CategoryName()
-        {
-        }
-
-        [MenuItem(Category, true)]
-        private static bool CategoryValidate()
-        {
-            return false;
-        }
-
         /// <summary>
         /// Addressables のクリーンビルドを行います。その際、以前のビルドが存在していたら削除します。
         /// </summary>
-        [MenuItem(FullCleanBuildItemName, priority = CategoryPriority + 1)]
+        [MenuItem(Category + "Full Clean Build", priority = CategoryPriority + 1)]
         public static void FullCleanBuild()
         {
             string remoteBuildRawPath = AddressablesSettings
@@ -72,7 +57,7 @@ namespace GigaceeTools
             AddressableAssetSettings.BuildPlayerContent();
         }
 
-        [MenuItem(ClearCachedCatalogsAndBundlesItemName, priority = CategoryPriority + 2)]
+        [MenuItem(Category + "Clear Cached Catalogs and Bundles", priority = CategoryPriority + 2)]
         public static void ClearCachedCatalogsAndBundles()
         {
             string catalogDirPath = Path.Combine(Application.persistentDataPath, "com.unity.addressables");
@@ -105,7 +90,7 @@ namespace GigaceeTools
             Debug.Log($"アセットバンドルのキャッシュクリアに{(success ? "成功" : "失敗")}しました。");
         }
 
-        [MenuItem(SortAddressablesGroupsItemName, priority = CategoryPriority + 3)]
+        [MenuItem(Category + "Sort Addressables Groups", priority = CategoryPriority + 3)]
         public static void SortAddressablesGroups()
         {
             List<AddressableAssetGroup> groups = AddressablesSettings.groups;

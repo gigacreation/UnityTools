@@ -1,27 +1,15 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.Playables;
-using static GigaceeTools.ToolsMenuItemConstants;
 
 namespace GigaceeTools
 {
     public static class PlayableDirectorCleaner
     {
-        private const int CategoryPriority = BasePriority + 300;
-        private const string Category = BasePath + CategoryPrefix + "Clean PlayableDirector" + CategorySuffix;
+        private const int CategoryPriority = 200;
+        private const string Category = "Tools/Gigacee Tools/Playable Director/";
 
-        [MenuItem(Category, priority = CategoryPriority)]
-        public static void CategoryName()
-        {
-        }
-
-        [MenuItem(Category, true)]
-        private static bool CategoryValidate()
-        {
-            return false;
-        }
-
-        [MenuItem(BasePath + "Purge All Playable Directors Bindings", priority = CategoryPriority + 1)]
+        [MenuItem(Category + "Purge All Playable Directors Bindings", priority = CategoryPriority)]
         public static void PurgeAllPlayableDirectorsBindings()
         {
             foreach (PlayableDirector director in Object.FindObjectsOfType<PlayableDirector>())
