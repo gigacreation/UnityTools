@@ -10,7 +10,7 @@ namespace GigaceeTools
 {
     public static class AnimatorNodeAligner
     {
-        private const int CategoryPriority = 2100000000;
+        private const int CategoryPriority = 2000000000;
         private const string Category = "Assets/Gigacee Tools/";
         private const string AlignAnimatorNodesName = Category + "Align Animator Nodes";
 

@@ -6,7 +6,7 @@ namespace GigaceeTools
 {
     public static class PlayableDirectorCleaner
     {
-        private const int CategoryPriority = 200;
+        private const int CategoryPriority = 2000000200;
         private const string Category = "Tools/Gigacee Tools/Playable Director/";
 
         [MenuItem(Category + "Purge All Playable Directors Bindings", priority = CategoryPriority)]
