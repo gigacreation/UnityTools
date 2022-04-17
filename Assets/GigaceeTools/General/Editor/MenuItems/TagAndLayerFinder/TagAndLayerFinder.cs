@@ -11,7 +11,7 @@ namespace GigaceeTools
     public class TagAndLayerFinder : EditorWindow
     {
         private const int CategoryPriority = 20003;
-        private const string Category = "Tools/Gigacee Tools/Custom Window/";
+        private const string Category = "Tools/Gigacee Tools/Tag and Layer Finder/";
 
         private const string CurrentScene = "Current Scene";
         private const string AllEnabledScenes = "All Enabled Scenes";
@@ -132,7 +132,7 @@ namespace GigaceeTools
             }
         }
 
-        [MenuItem(Category + "Tag and Layer Finder", priority = CategoryPriority)]
+        [MenuItem(Category + "Tag and Layer Finder Window", priority = CategoryPriority)]
         private static void ShowWindow()
         {
             var window = GetWindow<TagAndLayerFinder>();

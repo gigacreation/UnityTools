@@ -16,7 +16,7 @@ namespace GigaceeTools
     public class EditorPrefsWindow : EditorWindow
     {
         private const int CategoryPriority = 20004;
-        private const string Category = "Tools/Gigacee Tools/Custom Window/";
+        private const string Category = "Tools/Gigacee Tools/EditorPrefs/";
 
         private const float Space = 5f;
 
@@ -111,10 +111,10 @@ namespace GigaceeTools
         /// <summary>
         /// 開きます
         /// </summary>
-        [MenuItem(Category + "Editor Prefs Window", priority = CategoryPriority)]
+        [MenuItem(Category + "EditorPrefs Window", priority = CategoryPriority)]
         private static void Open()
         {
-            GetWindow<EditorPrefsWindow>("Editor Prefs Window");
+            GetWindow<EditorPrefsWindow>("EditorPrefs Window");
         }
 
         /// <summary>
