@@ -13,7 +13,7 @@ namespace GigaceeTools
 {
     public static class AddressablesMenuItems
     {
-        private const int CategoryPriority = 2000000010;
+        private const int CategoryPriority = 20100;
         private const string Category = "Tools/Gigacee Tools/Addressables/";
 
         private static readonly string[] s_defaultGroupNames = { "Built In Data", "Default Local Group" };

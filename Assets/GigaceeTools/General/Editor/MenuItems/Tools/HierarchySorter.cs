@@ -7,7 +7,7 @@ namespace GigaceeTools
 {
     public static class HierarchySorter
     {
-        private const int CategoryPriority = 2000000001;
+        private const int CategoryPriority = 20001;
         private const string Category = "Tools/Gigacee Tools/Sort Hierarchy/";
         private const string ByName = Category + "Sort Selected GameObjects by Name";
         private const string ByPositionXYZ = Category + "Sort Selected GameObjects by Position XYZ";

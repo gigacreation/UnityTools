@@ -13,7 +13,7 @@ namespace GigaceeTools
 {
     public static class GigaceeToolsShortcuts
     {
-        private const int CategoryPriority = 2000009999;
+        private const int CategoryPriority = 20999;
         private const string Category = "Tools/Gigacee Tools/Shortcuts/";
 
         [MenuItem(Category + "Check if Root Prefabs have Changed", priority = CategoryPriority)]

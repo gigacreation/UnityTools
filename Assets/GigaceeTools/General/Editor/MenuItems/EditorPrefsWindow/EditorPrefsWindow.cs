@@ -15,7 +15,7 @@ namespace GigaceeTools
     /// </summary>
     public class EditorPrefsWindow : EditorWindow
     {
-        private const int CategoryPriority = 2000000101;
+        private const int CategoryPriority = 20004;
         private const string Category = "Tools/Gigacee Tools/Custom Window/";
 
         private const float Space = 5f;

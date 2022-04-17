@@ -6,7 +6,7 @@ namespace GigaceeTools
 {
     public static class PrefabReverting
     {
-        private const int CategoryPriority = 2000000000;
+        private const int CategoryPriority = 20000;
         private const string Category = "Tools/Gigacee Tools/Revert Prefabs/";
 
         private const InteractionMode U = InteractionMode.UserAction;
