@@ -10,7 +10,7 @@ namespace GigaceeTools
 {
     public class TagAndLayerFinder : EditorWindow
     {
-        private const int CategoryPriority = 2000001000;
+        private const int CategoryPriority = 2000000100;
         private const string Category = "Tools/Gigacee Tools/Custom Window/";
 
         private const string CurrentScene = "Current Scene";

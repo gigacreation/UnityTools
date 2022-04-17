@@ -5,7 +5,7 @@ namespace GigaceeTools
 {
     public static class NumberingSelectedGameObjects
     {
-        private const int CategoryPriority = 2000000020;
+        private const int CategoryPriority = 2000000002;
         private const string Category = "Tools/Gigacee Tools/Numbering GameObjects/";
 
         [MenuItem(Category + "Numbering Selected GameObjects (1)", priority = CategoryPriority)]
