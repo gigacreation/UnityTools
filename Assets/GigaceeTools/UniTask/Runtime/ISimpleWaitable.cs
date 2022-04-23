@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace GigaceeTools
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
-    public interface ICommonWaitable
+    public interface ISimpleWaitable
     {
         /// <summary>
         /// タスクが完了になるまで待機し、呼ばれてから完了するまでに掛かった時間を返します。

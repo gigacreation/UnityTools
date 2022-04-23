@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GigaceeTools
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
-    public class CommonAsyncUtility : ICommonWaitable
+    public class SimpleWaitable : ISimpleWaitable
     {
         private readonly UniTaskCompletionSource _ucs = new UniTaskCompletionSource();
 
