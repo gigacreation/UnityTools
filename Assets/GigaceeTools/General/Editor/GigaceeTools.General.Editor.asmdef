@@ -1,8 +1,8 @@
 {
     "name": "GigaceeTools.General.Editor",
+    "rootNamespace": "",
     "references": [
-        "GUID:7a08060d7d0e576468021083ab1e7193",
-        "GUID:15698b3078c3f0545a65d8584259d818"
+        "GUID:7a08060d7d0e576468021083ab1e7193"
     ],
     "includePlatforms": [
         "Editor"

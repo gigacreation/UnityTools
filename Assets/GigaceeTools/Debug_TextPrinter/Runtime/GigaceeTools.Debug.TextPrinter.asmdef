@@ -1,5 +1,6 @@
 {
     "name": "GigaceeTools.Debug.TextPrinter",
+    "rootNamespace": "",
     "references": [
         "GUID:0066bcf430d7edd438aca9c462fd4c38",
         "GUID:2e7cde942c5b85842a6460c201ca33ee",

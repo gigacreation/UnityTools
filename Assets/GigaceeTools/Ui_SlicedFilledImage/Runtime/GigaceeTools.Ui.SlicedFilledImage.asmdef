@@ -1,3 +1,14 @@
 {
-    "name": "GigaceeTools.Ui.SlicedFilledImage"
+    "name": "GigaceeTools.Ui.SlicedFilledImage",
+    "rootNamespace": "",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
