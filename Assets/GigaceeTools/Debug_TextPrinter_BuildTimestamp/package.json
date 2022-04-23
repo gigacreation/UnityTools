@@ -2,10 +2,10 @@
     "name": "com.gigacee.gigaceetools.debug.textprinter.buildtimestamp",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / Debug / Text Printer / Build Timestamp",
-    "unity": "2019.4",
+    "unity": "2020.3",
     "dependencies": {
         "com.gigacee.gigaceetools.debug.textprinter": "1.0.0",
-        "com.unity.textmeshpro": "2.1.6",
+        "com.unity.textmeshpro": "3.0.6",
         "com.gigacee.buildtimestampdisplay": "1.2.0"
     },
     "author": {

@@ -2,7 +2,7 @@
     "name": "com.gigacee.gigaceetools.tilemap",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / Tilemap",
-    "unity": "2019.4",
+    "unity": "2020.3",
     "dependencies": {
         "com.unity.2d.tilemap": "1.0.0"
     },

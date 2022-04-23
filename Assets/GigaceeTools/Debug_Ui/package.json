@@ -2,7 +2,7 @@
     "name": "com.gigacee.gigaceetools.debug.ui",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / Debug / UI",
-    "unity": "2019.4",
+    "unity": "2020.3",
     "dependencies": {
         "com.gigacee.gigaceetools.core": "1.0.0",
         "com.gigacee.gigaceetools.debug.core": "1.0.0",

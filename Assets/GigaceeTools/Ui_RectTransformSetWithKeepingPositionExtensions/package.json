@@ -2,7 +2,7 @@
     "name": "com.gigacee.gigaceetools.ui.recttransformsetwithkeepingpositionextensions",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / UI / RectTransform Set with Keeping Position Extensions",
-    "unity": "2019.4",
+    "unity": "2020.3",
     "author": {
         "name": "Gigacee",
         "email": "gigacee@gigacreation.jp",
