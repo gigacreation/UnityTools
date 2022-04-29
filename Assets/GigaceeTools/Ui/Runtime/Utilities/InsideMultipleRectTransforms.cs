@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_EDITOR
@@ -9,21 +11,28 @@ using UnityEditor;
 
 namespace GigaceeTools
 {
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     [ExecuteAlways]
     [RequireComponent(typeof(RectTransform))]
     public class InsideMultipleRectTransforms : MonoBehaviour
     {
+        [Header("References")]
         [SerializeField] private RectTransform _rectTransform;
-        [SerializeField] private RectTransform[] _targets;
+        [SerializeField] private List<RectTransform> _targets;
         [SerializeField] private bool _setDirtyOnAdjust;
 
         [Space]
         [SerializeField] private Image _image;
         [SerializeField] private bool _showBorder;
 
-        private void Start()
+        [Header("References")]
+        [SerializeField] private bool _adjustOnAwake = true;
+
+        public IList<RectTransform> Targets => _targets;
+
+        private void Awake()
         {
-            if (_targets == null)
+            if (!_adjustOnAwake || !_targets.Any())
             {
                 return;
             }
@@ -75,7 +84,7 @@ namespace GigaceeTools
             Adjust();
         }
 
-        private void Adjust()
+        public void Adjust()
         {
             Vector3[][] cornersOfTargets = _targets
                 .Where(rt => rt)
