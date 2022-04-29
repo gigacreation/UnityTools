@@ -26,7 +26,7 @@ namespace GigaceeTools
         [SerializeField] private bool _showBorder;
 
         [Header("References")]
-        [SerializeField] private bool _adjustOnAwake = true;
+        [SerializeField] private bool _adjustOnAwake;
 
         public IList<RectTransform> Targets => _targets;
 
