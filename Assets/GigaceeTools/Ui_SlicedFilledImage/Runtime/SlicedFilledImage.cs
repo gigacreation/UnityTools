@@ -49,11 +49,6 @@ namespace GigaceeTools
 
         [NonSerialized] private Sprite _overrideSprite;
 
-        protected SlicedFilledImage()
-        {
-            useLegacyMeshGeneration = false;
-        }
-
         public Sprite Sprite
         {
             get => _sprite;
@@ -204,6 +199,11 @@ namespace GigaceeTools
         }
 
         private float AlphaHitTestMinimumThreshold => _alphaHitTestMinimumThreshold;
+
+        protected SlicedFilledImage()
+        {
+            useLegacyMeshGeneration = false;
+        }
 
         protected override void OnEnable()
         {

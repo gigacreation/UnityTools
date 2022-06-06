@@ -6,6 +6,36 @@ namespace GigaceeTools
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class RectTransformExtensions
     {
+        public static void SetAnchorMin(this RectTransform self, float x, float y)
+        {
+            self.anchorMin = new Vector2(x, y);
+        }
+
+        public static void SetAnchorMinX(this RectTransform self, float x)
+        {
+            self.anchorMin = new Vector2(x, self.anchorMin.y);
+        }
+
+        public static void SetAnchorMinY(this RectTransform self, float y)
+        {
+            self.anchorMin = new Vector2(self.anchorMin.x, y);
+        }
+
+        public static void SetAnchorMax(this RectTransform self, float x, float y)
+        {
+            self.anchorMax = new Vector2(x, y);
+        }
+
+        public static void SetAnchorMaxX(this RectTransform self, float x)
+        {
+            self.anchorMax = new Vector2(x, self.anchorMax.y);
+        }
+
+        public static void SetAnchorMaxY(this RectTransform self, float y)
+        {
+            self.anchorMax = new Vector2(self.anchorMax.x, y);
+        }
+
         public static void SetAnchoredPosition(this RectTransform self, float x, float y)
         {
             self.anchoredPosition = new Vector2(x, y);

@@ -152,14 +152,14 @@ namespace GigaceeTools
         /// </summary>
         private class KeyValueData
         {
+            public string Key { get; }
+            public string Value { get; }
+
             public KeyValueData(string key, string value)
             {
                 Key = key;
                 Value = value;
             }
-
-            public string Key { get; }
-            public string Value { get; }
 
             public bool IsFilter(string searchText)
             {
