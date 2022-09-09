@@ -10,6 +10,8 @@ namespace GigaceeTools
     {
         private readonly UniTaskCompletionSource _ucs = new UniTaskCompletionSource();
 
+        public bool Active => _ucs.Task.Status == UniTaskStatus.Pending;
+
         public async UniTask<float> WaitForCompletionAsync(CancellationToken ct = default)
         {
             // 現在時刻を保持しておく
@@ -31,15 +33,6 @@ namespace GigaceeTools
         public void Completed()
         {
             _ucs.TrySetResult();
-        }
-
-        /// <summary>
-        /// タスクが実行中かどうかを返します。
-        /// </summary>
-        /// <returns>タスクが実行中なら true を、そうでないなら false を返します。</returns>
-        internal bool IsActive()
-        {
-            return _ucs.Task.Status == UniTaskStatus.Pending;
         }
     }
 }
