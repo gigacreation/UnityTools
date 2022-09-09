@@ -25,9 +25,21 @@ namespace GigaceeTools
             return Time.realtimeSinceStartup - timeRequestedToPresent;
         }
 
+        /// <summary>
+        /// タスクを完了にします。
+        /// </summary>
         public void Completed()
         {
             _ucs.TrySetResult();
+        }
+
+        /// <summary>
+        /// タスクが実行中かどうかを返します。
+        /// </summary>
+        /// <returns>タスクが実行中なら true を、そうでないなら false を返します。</returns>
+        internal bool IsActive()
+        {
+            return _ucs.Task.Status == UniTaskStatus.Pending;
         }
     }
 }

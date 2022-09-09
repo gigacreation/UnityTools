@@ -86,3 +86,6 @@ crashlytics-build.properties
 
 # File to keep an empty directory
 !/**/.gitkeep
+
+# macOS
+.DS_Store
