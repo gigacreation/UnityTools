@@ -11,7 +11,7 @@ namespace GigaceeTools
         /// タスクが実行中かどうかを返します。
         /// </summary>
         /// <returns>タスクが実行中なら true を、そうでないなら false を返します。</returns>
-        bool Active { get; }
+        bool IsPending { get; }
 
         /// <summary>
         /// タスクが完了になるまで待機し、呼ばれてから完了するまでに掛かった時間を返します。

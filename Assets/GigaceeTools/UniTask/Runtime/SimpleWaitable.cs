@@ -10,7 +10,7 @@ namespace GigaceeTools
     {
         private readonly UniTaskCompletionSource _ucs = new UniTaskCompletionSource();
 
-        public bool Active => _ucs.Task.Status == UniTaskStatus.Pending;
+        public bool IsPending => _ucs.Task.Status == UniTaskStatus.Pending;
 
         public async UniTask<float> WaitForCompletionAsync(CancellationToken ct = default)
         {
@@ -18,7 +18,7 @@ namespace GigaceeTools
             float timeRequestedToPresent = Time.realtimeSinceStartup;
 
             // タスクが完了になるまで待機する
-            while (_ucs.Task.Status == UniTaskStatus.Pending)
+            while (IsPending)
             {
                 await UniTask.NextFrame(ct);
             }
