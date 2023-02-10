@@ -1,17 +1,13 @@
 {
-    "name": "GigaceeTools.Ui.Editor",
+    "name": "GigaceeTools.UI.RectTransformSetWithKeepingPositionExtensions",
     "rootNamespace": "",
-    "references": [
-        "GUID:2e7cde942c5b85842a6460c201ca33ee"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false

@@ -1,16 +1,17 @@
 {
-    "name": "GigaceeTools.Ui",
+    "name": "GigaceeTools.UI.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:0066bcf430d7edd438aca9c462fd4c38",
-        "GUID:478a2357cc57436488a56e564b08d223"
+        "GUID:2e7cde942c5b85842a6460c201ca33ee"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": true,
+    "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
