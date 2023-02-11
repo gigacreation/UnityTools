@@ -9,10 +9,10 @@ namespace GigaceeTools
         private const string TexturePath =
             "Packages/com.gigacee.gigaceetools.hierarchyfolders/Textures/HierarchyIconDarkSeparator.png";
 
-        private static readonly Vector2 s_labelOffset = new Vector2(18f, 0);
+        private static readonly Vector2 s_labelOffset = new(18f, 0);
         private static readonly Color s_labelColor = new Color32(112, 112, 112, 255);
-        private static readonly Vector2 s_iconSize = new Vector2(16f, 14f);
-        private static readonly Vector2 s_iconOffset = new Vector2(0f, 1f);
+        private static readonly Vector2 s_iconSize = new(16f, 14f);
+        private static readonly Vector2 s_iconOffset = new(0f, 1f);
 
         [InitializeOnLoadMethod]
         private static void AddHierarchyItemOnGUI()

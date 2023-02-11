@@ -12,7 +12,7 @@ namespace GigaceeTools
     {
         [SerializeField] private TMP_Text _textComponent;
 
-        [SerializeField] private AnimationCurve _vertexCurve = new AnimationCurve(
+        [SerializeField] private AnimationCurve _vertexCurve = new(
             new Keyframe(0f, 0f),
             new Keyframe(0.5f, 1f),
             new Keyframe(1f, 0f)

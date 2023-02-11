@@ -8,7 +8,7 @@ namespace GigaceeTools
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public class SimpleWaitable : ISimpleWaitable
     {
-        private readonly UniTaskCompletionSource _ucs = new UniTaskCompletionSource();
+        private readonly UniTaskCompletionSource _ucs = new();
 
         public bool IsPending => _ucs.Task.Status == UniTaskStatus.Pending;
 

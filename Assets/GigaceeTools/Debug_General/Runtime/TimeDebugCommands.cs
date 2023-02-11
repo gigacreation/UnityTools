@@ -6,7 +6,7 @@ namespace GigaceeTools
 {
     public class TimeDebugCommands : MonoBehaviour
     {
-        [SerializeField] private FloatReactiveProperty _timeScale = new FloatReactiveProperty(1f);
+        [SerializeField] private FloatReactiveProperty _timeScale = new(1f);
 
         [SerializeField] private bool _withCtrlKey;
         [SerializeField] private bool _withShiftKey;

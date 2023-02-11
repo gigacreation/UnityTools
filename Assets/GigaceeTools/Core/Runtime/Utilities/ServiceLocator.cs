@@ -11,7 +11,7 @@ namespace GigaceeTools
         /// <summary>
         /// インスタンスを登録する辞書。
         /// </summary>
-        private static readonly Dictionary<Type, object> s_instances = new Dictionary<Type, object>();
+        private static readonly Dictionary<Type, object> s_instances = new();
 
         /// <summary>
         /// インスタンスを登録します。

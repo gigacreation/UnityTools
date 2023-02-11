@@ -7,6 +7,9 @@ namespace GigaceeTools
     {
         private readonly ReactiveProperty<bool> _isDebugMode;
 
+        public IReactiveProperty<bool> IsDebugMode => _isDebugMode;
+        public CompositeDisposable DebugDisposables { get; } = new();
+
         public DebugCore(bool initialMode)
         {
             _isDebugMode = new ReactiveProperty<bool>(initialMode);
@@ -18,9 +21,6 @@ namespace GigaceeTools
                     DebugDisposables.Clear();
                 });
         }
-
-        public IReactiveProperty<bool> IsDebugMode => _isDebugMode;
-        public CompositeDisposable DebugDisposables { get; } = new CompositeDisposable();
 
         public void Dispose()
         {

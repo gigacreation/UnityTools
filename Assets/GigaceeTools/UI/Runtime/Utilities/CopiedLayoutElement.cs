@@ -29,13 +29,6 @@ namespace GigaceeTools
         [Space]
         [SerializeField] private Vector2 _padding;
 
-#if UNITY_EDITOR
-        protected override void OnValidate()
-        {
-            LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
-        }
-#endif
-
         public float minWidth
         {
             get
@@ -119,6 +112,13 @@ namespace GigaceeTools
         public int layoutPriority => 2;
         public float flexibleHeight => -1f;
         public float flexibleWidth => -1f;
+
+#if UNITY_EDITOR
+        protected override void OnValidate()
+        {
+            LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
+        }
+#endif
 
         public void CalculateLayoutInputHorizontal()
         {

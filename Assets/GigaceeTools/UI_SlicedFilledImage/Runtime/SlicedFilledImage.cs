@@ -49,6 +49,42 @@ namespace GigaceeTools
 
         [NonSerialized] private Sprite _overrideSprite;
 
+        int ILayoutElement.layoutPriority => 0;
+
+        float ILayoutElement.minWidth => 0f;
+
+        float ILayoutElement.minHeight => 0f;
+
+        float ILayoutElement.flexibleWidth => -1f;
+
+        float ILayoutElement.flexibleHeight => -1f;
+
+        float ILayoutElement.preferredWidth
+        {
+            get
+            {
+                if (ActiveSprite == null)
+                {
+                    return 0f;
+                }
+
+                return DataUtility.GetMinSize(ActiveSprite).x / PixelsPerUnit;
+            }
+        }
+
+        float ILayoutElement.preferredHeight
+        {
+            get
+            {
+                if (ActiveSprite == null)
+                {
+                    return 0f;
+                }
+
+                return DataUtility.GetMinSize(ActiveSprite).y / PixelsPerUnit;
+            }
+        }
+
         public Sprite Sprite
         {
             get => _sprite;
@@ -344,42 +380,6 @@ namespace GigaceeTools
                 );
 
                 return true;
-            }
-        }
-
-        int ILayoutElement.layoutPriority => 0;
-
-        float ILayoutElement.minWidth => 0f;
-
-        float ILayoutElement.minHeight => 0f;
-
-        float ILayoutElement.flexibleWidth => -1f;
-
-        float ILayoutElement.flexibleHeight => -1f;
-
-        float ILayoutElement.preferredWidth
-        {
-            get
-            {
-                if (ActiveSprite == null)
-                {
-                    return 0f;
-                }
-
-                return DataUtility.GetMinSize(ActiveSprite).x / PixelsPerUnit;
-            }
-        }
-
-        float ILayoutElement.preferredHeight
-        {
-            get
-            {
-                if (ActiveSprite == null)
-                {
-                    return 0f;
-                }
-
-                return DataUtility.GetMinSize(ActiveSprite).y / PixelsPerUnit;
             }
         }
 
@@ -743,7 +743,7 @@ namespace GigaceeTools
         }
 
 #if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
-        private static readonly List<SlicedFilledImage> s_trackedTexturelessImages = new List<SlicedFilledImage>();
+        private static readonly List<SlicedFilledImage> s_trackedTexturelessImages = new();
         private static bool s_initialized;
 #endif
     }

@@ -11,7 +11,7 @@ namespace GigaceeTools
         [SerializeField] private TextMeshProUGUI _labelPrefab;
         [SerializeField] private AutoLayoutSupporter _autoLayoutSupporter;
 
-        private readonly Dictionary<int, TextMeshProUGUI> _children = new Dictionary<int, TextMeshProUGUI>();
+        private readonly Dictionary<int, TextMeshProUGUI> _children = new();
 
         private void Reset()
         {

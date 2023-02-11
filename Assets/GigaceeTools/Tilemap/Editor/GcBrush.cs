@@ -12,9 +12,9 @@ namespace GigaceeTools.Editor
     [CustomEditor(typeof(GcBrush))]
     public class GcBrushEditor : GridBrushEditor
     {
-        private readonly Color _textColor = new Color(1f, 0.5f, 0.75f);
-        private readonly Color _backgroundColor = new Color(0.13f, 0.13f, 0.17f, 0.5f);
-        private readonly Vector3Int _textOffset = new Vector3Int(2, 2, 0);
+        private readonly Color _textColor = new(1f, 0.5f, 0.75f);
+        private readonly Color _backgroundColor = new(0.13f, 0.13f, 0.17f, 0.5f);
+        private readonly Vector3Int _textOffset = new(2, 2, 0);
 
         public override void OnPaintSceneGUI(
             GridLayout grid, GameObject brushTarget, BoundsInt position, GridBrushBase.Tool tool, bool executing
