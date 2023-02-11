@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace GigaceeTools.Test
+namespace GigaceeTools.Sample
 {
     public class DebugTitle : MonoBehaviour
     {
