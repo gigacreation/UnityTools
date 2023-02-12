@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,126 +10,76 @@ namespace GigaceeTools.Csv
     public static class CsvUtility
     {
         /// <summary>
-        /// CSV の指定した列のリストを生成します。
+        /// CSV の指定された列を要素に持ったリストを作成して返します。
         /// </summary>
-        /// <param name="csvPath">CSV のパス。</param>
-        /// <param name="columnNum">リスト化する列のインデックス。</param>
-        /// <param name="hasHeader">true なら、CSV の 1 行目をヘッダーとして扱います。</param>
-        /// <returns>生成されたリスト。</returns>
-        public static List<string> GenerateList(string csvPath, int columnNum, bool hasHeader = false)
+        /// <param name="request">抽出リクエストのデータ。</param>
+        /// <returns>抽出したリスト。</returns>
+        public static List<string> ExtractIntoList(CsvExtractRequest request)
         {
-            var csv = AssetDatabase.LoadAssetAtPath<TextAsset>(csvPath);
-
-            if (!csv)
+            if (!(request.ValueColumnIndexes?.Length > 0))
             {
-                Debug.LogError($"指定された CSV が存在していません：{csvPath}");
+                Debug.LogError("抽出する列のインデックスが指定されていません。");
                 return null;
             }
 
-            var reader = new StringReader(csv.text);
+            if (!TryLoadCsv(request.Path, out TextAsset csv))
+            {
+                Debug.LogError($"指定された CSV が存在していません：{request.Path}");
+                return null;
+            }
+
             var result = new List<string>();
 
-            if (hasHeader)
+            Extract(csv.text, request.HasHeader, request.GetMaxTargetColumnIndex(), splitLine =>
             {
-                // ヘッダーをスキップする
-                reader.ReadLine();
-            }
-
-            while (reader.Peek() > -1)
-            {
-                string line = reader.ReadLine();
-
-                if (string.IsNullOrEmpty(line))
-                {
-                    continue;
-                }
-
-                string[] splitLine = line.Split(',');
-
-                if (columnNum >= splitLine.Length)
-                {
-                    continue;
-                }
-
-                result.Add(splitLine[columnNum]);
-            }
+                result.Add(string.Join("", request.ValueColumnIndexes.Select(idx => splitLine[idx])));
+            });
 
             return result;
         }
 
         /// <summary>
-        /// CSV の指定した列を Key, Value にした辞書を生成します。
+        /// CSV の指定された列をキー・値とした辞書を作成して返します。
         /// </summary>
-        /// <param name="csvPath">CSV の名前（拡張子を除いたファイル名）。</param>
-        /// <param name="keyColumnNum">Key にする列。</param>
-        /// <param name="hasHeader">true なら、CSV の 1 行目をヘッダーとして扱います。</param>
-        /// <param name="valueColumnNums">Value にする列。複数指定すると、それらの文字列を結合します。</param>
-        /// <returns>生成した辞書。</returns>
-        public static Dictionary<string, string> GenerateDictionary(
-            string csvPath, int keyColumnNum, bool hasHeader = false, params int[] valueColumnNums
-        )
+        /// <param name="request">抽出リクエストのデータ。</param>
+        /// <returns>抽出した辞書。</returns>
+        public static Dictionary<string, string> ExtractIntoDictionary(CsvExtractRequest request)
         {
-            var csv = AssetDatabase.LoadAssetAtPath<TextAsset>(csvPath);
-
-            if (!csv)
+            if (!(request.KeyColumnIndexes?.Length > 0) || !(request.ValueColumnIndexes?.Length > 0))
             {
-                Debug.LogError($"指定された CSV が存在していません：{csvPath}");
+                Debug.LogError("抽出する列のインデックスが指定されていません。");
                 return null;
             }
 
-            var reader = new StringReader(csv.text);
+            if (!TryLoadCsv(request.Path, out TextAsset csv))
+            {
+                Debug.LogError($"指定された CSV が存在していません：{request.Path}");
+                return null;
+            }
+
             var result = new Dictionary<string, string>();
 
-            if (hasHeader)
+            Extract(csv.text, request.HasHeader, request.GetMaxTargetColumnIndex(), splitLine =>
             {
-                // ヘッダーをスキップする
-                reader.ReadLine();
-            }
-
-            while (reader.Peek() > -1)
-            {
-                string line = reader.ReadLine();
-
-                if (string.IsNullOrEmpty(line))
-                {
-                    continue;
-                }
-
-                string[] splitLine = line.Split(',');
-
-                if ((keyColumnNum >= splitLine.Length) || (Mathf.Max(valueColumnNums) >= splitLine.Length))
-                {
-                    continue;
-                }
-
-                result.Add(splitLine[keyColumnNum], string.Join("", valueColumnNums.Select(x => splitLine[x])));
-            }
+                result.Add(
+                    string.Join("", request.KeyColumnIndexes.Select(idx => splitLine[idx])),
+                    string.Join("", request.ValueColumnIndexes.Select(idx => splitLine[idx]))
+                );
+            });
 
             return result;
         }
 
-        /// <summary>
-        /// CSV の指定した列を Key, Value にした辞書を生成します。
-        /// </summary>
-        /// <param name="csvPath">CSV の名前（拡張子を除いたファイル名）。</param>
-        /// <param name="valueColumnNum">Value にする列。</param>
-        /// <param name="hasHeader">true なら、CSV の 1 行目をヘッダーとして扱います。</param>
-        /// <param name="keyColumnNums">Key にする列。複数指定すると、それらの文字列を結合します。</param>
-        /// <returns>生成した辞書。</returns>
-        public static Dictionary<string, string> GenerateKeyMergedDictionary(
-            string csvPath, int valueColumnNum, bool hasHeader = false, params int[] keyColumnNums
-        )
+        private static bool TryLoadCsv(string path, out TextAsset csv)
         {
-            var csv = AssetDatabase.LoadAssetAtPath<TextAsset>(csvPath);
+            csv = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
 
-            if (!csv)
-            {
-                Debug.LogError($"指定された CSV が存在していません：{csvPath}");
-                return null;
-            }
+            return csv;
+        }
 
-            var reader = new StringReader(csv.text);
-            var result = new Dictionary<string, string>();
+        private static void Extract(string csvText, bool hasHeader, int maxTargetColumnIndex, Action<string[]> action)
+        {
+            var reader = new StringReader(csvText);
 
             if (hasHeader)
             {
@@ -147,15 +98,13 @@ namespace GigaceeTools.Csv
 
                 string[] splitLine = line.Split(',');
 
-                if ((Mathf.Max(keyColumnNums) >= splitLine.Length) || (valueColumnNum >= splitLine.Length))
+                if (maxTargetColumnIndex >= splitLine.Length)
                 {
                     continue;
                 }
 
-                result.Add(string.Join("", keyColumnNums.Select(x => splitLine[x])), splitLine[valueColumnNum]);
+                action(splitLine);
             }
-
-            return result;
         }
     }
 }
