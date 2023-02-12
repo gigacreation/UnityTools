@@ -1,3 +1,4 @@
+using GigaceeTools.Service;
 using UnityEngine;
 
 namespace GigaceeTools.Sample

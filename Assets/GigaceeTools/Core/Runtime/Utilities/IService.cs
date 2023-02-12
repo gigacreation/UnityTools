@@ -1,4 +1,4 @@
-namespace GigaceeTools
+namespace GigaceeTools.Service
 {
     public interface IService
     {

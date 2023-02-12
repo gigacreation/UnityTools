@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using GigaceeTools.Service;
+using TMPro;
 using UniRx;
 using UnityEngine;
 

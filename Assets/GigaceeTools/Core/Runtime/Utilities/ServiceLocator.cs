@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace GigaceeTools
+namespace GigaceeTools.Service
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class ServiceLocator

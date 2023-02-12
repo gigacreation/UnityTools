@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using GigaceeTools.Service;
+using UniRx;
 using UnityEngine;
 
 namespace GigaceeTools
