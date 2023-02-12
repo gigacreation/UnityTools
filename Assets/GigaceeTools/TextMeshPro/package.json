@@ -2,7 +2,7 @@
     "name": "com.gigacee.gigaceetools.textmeshpro",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / TextMesh Pro",
-    "unity": "2020.3",
+    "unity": "2021.3",
     "dependencies": {
         "com.unity.textmeshpro": "3.0.6"
     },

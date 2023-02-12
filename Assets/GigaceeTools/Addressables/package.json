@@ -2,7 +2,7 @@
     "name": "com.gigacee.gigaceetools.addressables",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / Addressables",
-    "unity": "2020.3",
+    "unity": "2021.3",
     "dependencies": {
         "com.unity.addressables": "1.18.19",
         "com.unity.scriptablebuildpipeline": "1.19.2"

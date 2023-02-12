@@ -1,7 +1,7 @@
 {
-    "name": "com.gigacee.gigaceetools.ui.recttransformsetwithkeepingpositionextensions",
+    "name": "com.gigacee.gigaceetools.csv",
     "version": "1.0.0",
-    "displayName": "Gigacee Tools / UI / RectTransform Set with Keeping Position Extensions",
+    "displayName": "Gigacee Tools / Csv",
     "unity": "2021.3",
     "author": {
         "name": "Gigacee",

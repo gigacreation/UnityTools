@@ -2,7 +2,7 @@
     "name": "com.gigacee.gigaceetools.debug.textprinter",
     "version": "1.0.0",
     "displayName": "Gigacee Tools / Debug / Text Printer",
-    "unity": "2020.3",
+    "unity": "2021.3",
     "dependencies": {
         "com.gigacee.gigaceetools.core": "1.0.0",
         "com.gigacee.gigaceetools.ui": "1.0.0",
