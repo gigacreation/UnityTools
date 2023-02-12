@@ -9,121 +9,121 @@ namespace GigaceeTools
     public static class ServiceLocator
     {
         /// <summary>
-        /// インスタンスを登録する辞書。
+        /// サービスを登録する辞書。
         /// </summary>
-        private static readonly Dictionary<Type, object> s_instances = new();
+        private static readonly Dictionary<Type, object> s_services = new();
 
         /// <summary>
-        /// インスタンスを登録します。
-        /// すでに同じ型のインスタンスが登録されている場合は登録できませんので、先に Unregister を行ってください。
+        /// サービスを登録します。
+        /// すでに同じ型のサービスが登録されている場合は登録できませんので、先に Unregister を行ってください。
         /// </summary>
-        /// <param name="instance">登録するインスタンス。</param>
-        /// <typeparam name="T">登録するインスタンスの型。</typeparam>
-        public static void Register<T>(T instance) where T : class
+        /// <param name="service">登録するサービス。</param>
+        /// <typeparam name="TService">登録するサービスの型。</typeparam>
+        public static void Register<TService>(TService service) where TService : class, IService
         {
-            Type type = typeof(T);
+            Type type = typeof(TService);
 
             // TODO: ContainsKey を TryGetValue に書き換える
-            if (s_instances.ContainsKey(type))
+            if (s_services.ContainsKey(type))
             {
-                Debug.LogWarning($"すでに同じ型のインスタンスが登録されています: {type.Name}");
+                Debug.LogWarning($"すでに同じ型のサービスが登録されています: {type.Name}");
                 return;
             }
 
-            s_instances[type] = instance;
+            s_services[type] = service;
         }
 
         /// <summary>
-        /// インスタンスの登録を解除します。インスタンスが登録されていなかった場合は警告が出ます。
+        /// サービスの登録を解除します。サービスが登録されていなかった場合は警告が出ます。
         /// </summary>
-        /// <param name="instance">登録を解除するインスタンス。</param>
-        /// <typeparam name="T">登録を解除するインスタンスの型。</typeparam>
-        public static void Unregister<T>(T instance) where T : class
+        /// <param name="service">登録を解除するサービス。</param>
+        /// <typeparam name="TService">登録を解除するサービスの型。</typeparam>
+        public static void Unregister<TService>(TService service) where TService : class, IService
         {
-            Type type = typeof(T);
+            Type type = typeof(TService);
 
-            if (!s_instances.ContainsKey(type))
+            if (!s_services.ContainsKey(type))
             {
-                Debug.LogWarning($"要求された型のインスタンスが登録されていません: {type.Name}");
+                Debug.LogWarning($"要求された型のサービスが登録されていません: {type.Name}");
                 return;
             }
 
-            if (!Equals(s_instances[type], instance))
+            if (!Equals(s_services[type], service))
             {
-                Debug.LogWarning($"登録されている要求された型のインスタンスと渡されたインスタンスが一致しません: {type.Name}");
+                Debug.LogWarning($"登録されている要求された型のサービスと渡されたサービスが一致しません: {type.Name}");
                 return;
             }
 
-            if (s_instances[type] is IDisposable disposable)
+            if (s_services[type] is IDisposable disposable)
             {
                 disposable.Dispose();
             }
 
-            s_instances.Remove(type);
+            s_services.Remove(type);
         }
 
         /// <summary>
-        /// 指定された型のインスタンスがすでに登録されているかをチェックします。
+        /// 指定された型のサービスがすでに登録されているかをチェックします。
         /// </summary>
-        /// <typeparam name="T">登録を確認するインスタンスの型。</typeparam>
-        /// <returns>指定された型のインスタンスがすでに登録されている場合は true を返します。</returns>
-        public static bool IsRegistered<T>() where T : class
+        /// <typeparam name="TService">登録を確認するサービスの型。</typeparam>
+        /// <returns>指定された型のサービスがすでに登録されている場合は true を返します。</returns>
+        public static bool IsRegistered<TService>() where TService : class, IService
         {
-            return s_instances.ContainsKey(typeof(T));
+            return s_services.ContainsKey(typeof(TService));
         }
 
         /// <summary>
-        /// 渡されたインスタンスがすでに登録されているかをチェックします。
+        /// 渡されたサービスがすでに登録されているかをチェックします。
         /// </summary>
-        /// <param name="instance">登録を確認するインスタンス。</param>
-        /// <typeparam name="T">登録を確認するインスタンスの型。</typeparam>
-        /// <returns>渡されたインスタンスが既に登録されている場合は true を返します。</returns>
-        public static bool IsRegistered<T>(T instance) where T : class
+        /// <param name="service">登録を確認するサービス。</param>
+        /// <typeparam name="TService">登録を確認するサービスの型。</typeparam>
+        /// <returns>渡されたサービスが既に登録されている場合は true を返します。</returns>
+        public static bool IsRegistered<TService>(TService service) where TService : class, IService
         {
-            Type type = typeof(T);
+            Type type = typeof(TService);
 
-            return s_instances.ContainsKey(type) && Equals(s_instances[type], instance);
+            return s_services.ContainsKey(type) && Equals(s_services[type], service);
         }
 
         /// <summary>
-        /// インスタンスを取得します。取得できなかった場合はエラーになります。
+        /// サービスを取得します。取得できなかった場合はエラーになります。
         /// </summary>
-        /// <typeparam name="T">取得したいインスタンスの型。</typeparam>
-        /// <returns>取得したインスタンスを返します。取得できなかった場合は null を返します。</returns>
-        public static T Get<T>() where T : class
+        /// <typeparam name="TService">取得したいサービスの型。</typeparam>
+        /// <returns>取得したサービスを返します。取得できなかった場合は null を返します。</returns>
+        public static TService Get<TService>() where TService : class, IService
         {
-            Type type = typeof(T);
+            Type type = typeof(TService);
 
-            if (s_instances.ContainsKey(type))
+            if (s_services.ContainsKey(type))
             {
-                return s_instances[type] as T;
+                return s_services[type] as TService;
             }
 
-            Debug.LogError($"要求された型のインスタンスが登録されていません: {type.Name}");
+            Debug.LogError($"要求された型のサービスが登録されていません: {type.Name}");
             return null;
         }
 
         /// <summary>
-        /// インスタンスを取得し、渡された引数に代入します。取得できなかった場合は null が入ります。
+        /// サービスを取得し、渡された引数に代入します。取得できなかった場合は null が入ります。
         /// </summary>
-        /// <param name="instance">取得したインスタンスを入れる変数。</param>
-        /// <typeparam name="T">取得したいインスタンスの型。</typeparam>
+        /// <param name="service">取得したサービスを入れる変数。</param>
+        /// <typeparam name="TService">取得したいサービスの型。</typeparam>
         /// <returns>取得が成功したら true を返します。</returns>
-        public static bool TryGet<T>(out T instance) where T : class
+        public static bool TryGet<TService>(out TService service) where TService : class, IService
         {
-            Type type = typeof(T);
-            instance = s_instances.ContainsKey(type) ? s_instances[type] as T : null;
+            Type type = typeof(TService);
+            service = s_services.ContainsKey(type) ? s_services[type] as TService : null;
 
-            return instance != null;
+            return service != null;
         }
 
         /// <summary>
-        /// インスタンスの登録をすべて解除します。
+        /// サービスの登録をすべて解除します。
         /// </summary>
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ClearInstances()
+        private static void ClearServices()
         {
-            s_instances.Clear();
+            s_services.Clear();
         }
     }
 }

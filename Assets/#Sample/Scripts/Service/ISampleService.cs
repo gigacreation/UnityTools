@@ -1,6 +1,6 @@
 namespace GigaceeTools.Sample
 {
-    public interface ISampleService
+    public interface ISampleService : IService
     {
         void Bark();
     }

@@ -1,9 +1,8 @@
-﻿using System;
-using UniRx;
+﻿using UniRx;
 
 namespace GigaceeTools
 {
-    public class DebugCore : IDebugCore, IDisposable
+    public class DebugCore : IDebugCore
     {
         private readonly ReactiveProperty<bool> _isDebugMode;
 
