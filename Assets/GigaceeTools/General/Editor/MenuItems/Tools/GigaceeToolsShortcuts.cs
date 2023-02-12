@@ -58,7 +58,7 @@ namespace GigaceeTools
                 Debug.Log($"ルートの Prefab が変更されています: {instance}");
             }
 
-            if (!overriddenPrefabInstances.Any())
+            if (overriddenPrefabInstances.Length == 0)
             {
                 Debug.Log("ルートに変更された Prefab はありませんでした。");
             }

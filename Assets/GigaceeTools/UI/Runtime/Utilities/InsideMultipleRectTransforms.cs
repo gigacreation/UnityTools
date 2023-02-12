@@ -32,7 +32,7 @@ namespace GigaceeTools
 
         private void Awake()
         {
-            if (!_adjustOnAwake || !_targets.Any())
+            if (!_adjustOnAwake || (_targets.Count == 0))
             {
                 return;
             }
@@ -96,7 +96,7 @@ namespace GigaceeTools
                 })
                 .ToArray();
 
-            if (!cornersOfTargets.Any())
+            if (cornersOfTargets.Length == 0)
             {
                 return;
             }
