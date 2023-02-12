@@ -1,60 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+using System.Linq;
 using UnityEngine;
 
 namespace GigaceeTools.Service
 {
-    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class ServiceLocator
     {
         /// <summary>
-        /// サービスを登録する辞書。
+        /// The dictionary to register services.
         /// </summary>
-        private static readonly Dictionary<Type, object> s_services = new();
+        private static readonly Dictionary<Type, IService> s_services = new();
 
         /// <summary>
-        /// サービスを登録します。
-        /// すでに同じ型のサービスが登録されている場合は登録できませんので、先に Unregister を行ってください。
+        /// Register a service. If a service of the same type is already registered, you should unregister it first.
         /// </summary>
-        /// <param name="service">登録するサービス。</param>
-        /// <typeparam name="TService">登録するサービスの型。</typeparam>
+        /// <param name="service">The service to register.</param>
+        /// <typeparam name="TService">The type of the service.</typeparam>
         public static void Register<TService>(TService service) where TService : class, IService
         {
-            Type type = typeof(TService);
-
-            // TODO: ContainsKey を TryGetValue に書き換える
-            if (s_services.ContainsKey(type))
+            if (service is null)
             {
-                Debug.LogWarning($"すでに同じ型のサービスが登録されています: {type.Name}");
+                Debug.LogError("It does not allow to register null.");
                 return;
             }
 
-            s_services[type] = service;
+            Type type = typeof(TService);
+
+            if (!s_services.TryAdd(type, service))
+            {
+                Debug.LogWarning($"A service of the same type is already registered: {type.Name}");
+            }
         }
 
         /// <summary>
-        /// サービスの登録を解除します。サービスが登録されていなかった場合は警告が出ます。
+        /// Unregister a service.
         /// </summary>
-        /// <param name="service">登録を解除するサービス。</param>
-        /// <typeparam name="TService">登録を解除するサービスの型。</typeparam>
+        /// <param name="service">The service to unregister.</param>
+        /// <typeparam name="TService">The type of the service.</typeparam>
         public static void Unregister<TService>(TService service) where TService : class, IService
         {
-            Type type = typeof(TService);
+            (Type type, IService registeredService) = s_services.SingleOrDefault(pair => Equals(pair.Value, service));
 
-            if (!s_services.ContainsKey(type))
+            if (type == null)
             {
-                Debug.LogWarning($"要求された型のサービスが登録されていません: {type.Name}");
+                Debug.LogWarning($"The passed service is not registered: {service.GetType()}");
                 return;
             }
 
-            if (!Equals(s_services[type], service))
-            {
-                Debug.LogWarning($"登録されている要求された型のサービスと渡されたサービスが一致しません: {type.Name}");
-                return;
-            }
-
-            if (s_services[type] is IDisposable disposable)
+            if (registeredService is IDisposable disposable)
             {
                 disposable.Dispose();
             }
@@ -63,21 +57,21 @@ namespace GigaceeTools.Service
         }
 
         /// <summary>
-        /// 指定された型のサービスがすでに登録されているかをチェックします。
+        /// Checks if a service of the specified type is registered.
         /// </summary>
-        /// <typeparam name="TService">登録を確認するサービスの型。</typeparam>
-        /// <returns>指定された型のサービスがすでに登録されている場合は true を返します。</returns>
+        /// <typeparam name="TService">The type of a service to check.</typeparam>
+        /// <returns>Returns true if a service of the given type is registered.</returns>
         public static bool IsRegistered<TService>() where TService : class, IService
         {
             return s_services.ContainsKey(typeof(TService));
         }
 
         /// <summary>
-        /// 渡されたサービスがすでに登録されているかをチェックします。
+        /// Checks if the specified service is registered.
         /// </summary>
-        /// <param name="service">登録を確認するサービス。</param>
-        /// <typeparam name="TService">登録を確認するサービスの型。</typeparam>
-        /// <returns>渡されたサービスが既に登録されている場合は true を返します。</returns>
+        /// <param name="service">The service to check.</param>
+        /// <typeparam name="TService">The type of a service to check.</typeparam>
+        /// <returns>Returns true if the given service is registered.</returns>
         public static bool IsRegistered<TService>(TService service) where TService : class, IService
         {
             Type type = typeof(TService);
@@ -86,10 +80,10 @@ namespace GigaceeTools.Service
         }
 
         /// <summary>
-        /// サービスを取得します。取得できなかった場合はエラーになります。
+        /// Get a service.
         /// </summary>
-        /// <typeparam name="TService">取得したいサービスの型。</typeparam>
-        /// <returns>取得したサービスを返します。取得できなかった場合は null を返します。</returns>
+        /// <typeparam name="TService">The type of a service.</typeparam>
+        /// <returns>The service of the requested type.</returns>
         public static TService Get<TService>() where TService : class, IService
         {
             Type type = typeof(TService);
@@ -99,16 +93,16 @@ namespace GigaceeTools.Service
                 return s_services[type] as TService;
             }
 
-            Debug.LogError($"要求された型のサービスが登録されていません: {type.Name}");
+            Debug.LogError($"A service of the given type is not registered: {type.Name}");
             return null;
         }
 
         /// <summary>
-        /// サービスを取得し、渡された引数に代入します。取得できなかった場合は null が入ります。
+        /// Try to get a service.
         /// </summary>
-        /// <param name="service">取得したサービスを入れる変数。</param>
-        /// <typeparam name="TService">取得したいサービスの型。</typeparam>
-        /// <returns>取得が成功したら true を返します。</returns>
+        /// <param name="service">The service of the requested type.</param>
+        /// <typeparam name="TService">The type of a service.</typeparam>
+        /// <returns>Returns true if the get was successful.</returns>
         public static bool TryGet<TService>(out TService service) where TService : class, IService
         {
             Type type = typeof(TService);
@@ -118,7 +112,7 @@ namespace GigaceeTools.Service
         }
 
         /// <summary>
-        /// サービスの登録をすべて解除します。
+        /// Unregister all services.
         /// </summary>
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ClearServices()
