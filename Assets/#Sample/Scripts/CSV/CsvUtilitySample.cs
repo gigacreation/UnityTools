@@ -6,6 +6,10 @@ namespace GigaceeTools.Sample
 {
     public class CsvUtilitySample : MonoBehaviour
     {
+        [SerializeField] private bool _testList;
+        [SerializeField] private bool _testDictionary;
+
+        [Space]
         [SerializeField] private string _csvPath;
         [SerializeField] private bool _hasHeader;
         [SerializeField] private int[] _keyColumnIndexes;
@@ -13,8 +17,15 @@ namespace GigaceeTools.Sample
 
         private void Start()
         {
-            TestListExtracting();
-            TestDictionaryExtracting();
+            if (_testList)
+            {
+                TestListExtracting();
+            }
+
+            if (_testDictionary)
+            {
+                TestDictionaryExtracting();
+            }
         }
 
         private void TestListExtracting()
