@@ -74,9 +74,7 @@ namespace GigaceeTools.Service
         /// <returns>Returns true if the given service is registered.</returns>
         public static bool IsRegistered<TService>(TService service) where TService : class, IService
         {
-            Type type = typeof(TService);
-
-            return s_services.ContainsKey(type) && Equals(s_services[type], service);
+            return s_services.ContainsValue(service);
         }
 
         /// <summary>
@@ -88,13 +86,13 @@ namespace GigaceeTools.Service
         {
             Type type = typeof(TService);
 
-            if (s_services.ContainsKey(type))
+            if (!s_services.TryGetValue(type, out IService service))
             {
-                return s_services[type] as TService;
+                Debug.LogError($"A service of the given type is not registered: {type.Name}");
+                return null;
             }
 
-            Debug.LogError($"A service of the given type is not registered: {type.Name}");
-            return null;
+            return service as TService;
         }
 
         /// <summary>
@@ -105,10 +103,14 @@ namespace GigaceeTools.Service
         /// <returns>Returns true if the get was successful.</returns>
         public static bool TryGet<TService>(out TService service) where TService : class, IService
         {
-            Type type = typeof(TService);
-            service = s_services.ContainsKey(type) ? s_services[type] as TService : null;
+            if (!s_services.TryGetValue(typeof(TService), out IService registeredService))
+            {
+                service = null;
+                return false;
+            }
 
-            return service != null;
+            service = registeredService as TService;
+            return true;
         }
 
         /// <summary>

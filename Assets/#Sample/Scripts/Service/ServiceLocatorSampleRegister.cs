@@ -1,3 +1,4 @@
+using System.Collections;
 using GigaceeTools.Service;
 using UnityEngine;
 
@@ -14,9 +15,19 @@ namespace GigaceeTools.Sample
             ServiceLocator.Register(_sampleService);
         }
 
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            ServiceLocator.Unregister(_sampleService);
+        }
+
         private void OnDestroy()
         {
-            ServiceLocator.Unregister(_sampleService);
+            if (ServiceLocator.IsRegistered(_sampleService))
+            {
+                ServiceLocator.Unregister(_sampleService);
+            }
         }
     }
 }

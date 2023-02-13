@@ -5,11 +5,14 @@ namespace GigaceeTools.Sample
 {
     public class ServiceLocatorSampleUser : MonoBehaviour
     {
+        [SerializeField] private bool _enable;
+
         private void Start()
         {
-            var service = ServiceLocator.Get<ISampleService>();
-
-            service.Bark();
+            if (_enable && ServiceLocator.TryGet(out ISampleService sampleService))
+            {
+                sampleService.Bark();
+            }
         }
     }
 }
