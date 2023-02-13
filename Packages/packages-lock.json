@@ -16,6 +16,13 @@
       },
       "hash": "76b4f1e5703462c4643a8099a20f3f3022c745d1"
     },
+    "com.gigacee.servicelocator": {
+      "version": "https://github.com/gigacee/ServiceLocator.git?path=Assets/Service",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "62ee3ac9798dacf828c3e9fca939f675086391e2"
+    },
     "com.neuecc.unirx": {
       "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
       "depth": 0,

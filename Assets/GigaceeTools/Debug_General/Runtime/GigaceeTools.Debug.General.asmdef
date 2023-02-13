@@ -2,7 +2,7 @@
     "name": "GigaceeTools.Debug.General",
     "rootNamespace": "",
     "references": [
-        "GUID:0066bcf430d7edd438aca9c462fd4c38",
+        "GUID:4ddf577e5319e423cb0317c35ba02965",
         "GUID:850de870f1408554eb762d5126cc08dc",
         "GUID:560b04d1a97f54a4e82edc0cbbb69285"
     ],
