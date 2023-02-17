@@ -1824,6 +1824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d97d0eac077482382701d520f62597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tryGetServiceOnStart: 0
+  _logIfServiceIsUnregistered: 0
 --- !u!114 &871044388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1836,8 +1838,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b214e9d82fdd44d168ce6abe4e602167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _register: 0
-  _unregister: 0
+  _registerOnAwake: 0
+  _unregisterAfterOneSecond: 0
 --- !u!1 &877234880
 GameObject:
   m_ObjectHideFlags: 0
