@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using GigaceeTools.Csv;
 using UnityEngine;
 
-namespace GigaceeTools.Sample
+namespace GigaceeTools.Test
 {
-    public class CsvUtilitySample : MonoBehaviour
+    public class CsvUtilityTest : MonoBehaviour
     {
         [SerializeField] private bool _testList;
         [SerializeField] private bool _testDictionary;
