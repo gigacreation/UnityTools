@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using GigaceeTools.Csv;
+using GigaCreation.Tools.Csv;
 using UnityEngine;
 
-namespace GigaceeTools.Test
+namespace GigaCreation.Tools.Test
 {
     public class CsvUtilityTest : MonoBehaviour
     {

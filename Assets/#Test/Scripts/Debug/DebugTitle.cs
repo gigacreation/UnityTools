@@ -3,7 +3,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-namespace GigaceeTools.Test
+namespace GigaCreation.Tools.Test
 {
     public class DebugTitle : MonoBehaviour
     {

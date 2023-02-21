@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GigaceeTools.Test
+namespace GigaCreation.Tools.Test
 {
     public class LoadSceneButton : MonoBehaviour
     {

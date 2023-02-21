@@ -1,0 +1,14 @@
+{
+    "name": "jp.gigacreation.tools.tilemap",
+    "version": "1.0.0",
+    "displayName": "UnityTools / Tilemap",
+    "unity": "2021.3",
+    "dependencies": {
+        "com.unity.2d.tilemap": "1.0.0"
+    },
+    "author": {
+        "name": "Gigacee",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
+}

@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _testList: 0
   _testDictionary: 0
-  _csvPath: Assets/#Sample/Data/Tables/Sample.csv
+  _csvPath: Assets/#Sample/Data/Sample.csv
   _hasHeader: 1
   _keyColumnIndexes: 00000000
   _valueColumnIndexes: 01000000

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GigaceeTools.Test
+namespace GigaCreation.Tools.Test
 {
     public class DestroySelfTestTarget : MonoBehaviour
     {
