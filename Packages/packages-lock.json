@@ -14,7 +14,7 @@
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "76b4f1e5703462c4643a8099a20f3f3022c745d1"
+      "hash": "2bb2333df72bcb910e9d807445bcc77987312d3a"
     },
     "com.neuecc.unirx": {
       "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
@@ -109,11 +109,11 @@
       }
     },
     "jp.gigacreation.tools.servicelocator": {
-      "version": "https://github.com/gigacee/ServiceLocatorForUnity.git?path=Assets/Service",
+      "version": "https://github.com/gigacreation/ServiceLocatorForUnity.git?path=Assets/Service",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "f641160f8ade10190470167118f6c8811afd6bfc"
+      "hash": "74ca664b7b168e96000003964855487147739e35"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
