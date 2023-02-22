@@ -113,7 +113,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "b07c6c28a1d35dbb7103ad9eb0322f53ede80e4d"
+      "hash": "dfbe0d3a08ced01a2521214931b65ed322bc447e"
     },
     "jp.gigacreation.tools.servicelocator": {
       "version": "https://github.com/gigacreation/ServiceLocatorForUnity.git?path=Assets/Service",
