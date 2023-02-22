@@ -108,6 +108,13 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "jp.gigacreation.tools.csv2collections": {
+      "version": "https://github.com/gigacreation/Csv2CollectionsForUnity.git?path=Assets/Csv2Collections",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b07c6c28a1d35dbb7103ad9eb0322f53ede80e4d"
+    },
     "jp.gigacreation.tools.servicelocator": {
       "version": "https://github.com/gigacreation/ServiceLocatorForUnity.git?path=Assets/Service",
       "depth": 0,
