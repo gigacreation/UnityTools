@@ -3,7 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     [RequireComponent(typeof(RectTransform))]
     public class DebugLabelManager : MonoBehaviour

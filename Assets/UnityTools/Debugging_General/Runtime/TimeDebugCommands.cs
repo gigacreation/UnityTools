@@ -3,7 +3,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     public class TimeDebugCommands : MonoBehaviour
     {
@@ -17,7 +17,7 @@ namespace GigaCreation.Tools
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out IDebugCore debugCore))
+            if (!ServiceLocator.TryGet(out IDebuggingCore debugCore))
             {
                 return;
             }

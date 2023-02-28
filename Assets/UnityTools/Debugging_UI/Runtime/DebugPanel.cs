@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using UniRx;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     /// <summary>
     /// デバッグモード中、表示・非表示を切り替えることができるパネルです。
@@ -25,7 +25,7 @@ namespace GigaCreation.Tools
 
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebugCore debugCore))
+            if (ServiceLocator.TryGet(out IDebuggingCore debugCore))
             {
                 debugCore
                     .IsDebugMode

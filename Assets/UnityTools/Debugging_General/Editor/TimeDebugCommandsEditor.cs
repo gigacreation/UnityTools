@@ -1,16 +1,16 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging.Editor
 {
     [CustomEditor(typeof(TimeDebugCommands))]
-    public class TimeDebugCommandsEditor : Editor
+    public class TimeDebugCommandsEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            if (!(target is TimeDebugCommands timeDebugCommands))
+            if (target is not TimeDebugCommands timeDebugCommands)
             {
                 return;
             }

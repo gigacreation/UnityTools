@@ -2,17 +2,17 @@
 using UniRx;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     [DefaultExecutionOrder(-1)]
-    public class DebugPresenter : MonoBehaviour
+    public class DebuggingPresenter : MonoBehaviour
     {
         [SerializeField] private bool _forceReleaseBuild;
 
         // TODO: _forceReleaseBuild が true の場合は Disable にする
         [SerializeField] private BoolReactiveProperty _debugMode;
 
-        private IDebugCore _debugCore;
+        private IDebuggingCore _debuggingCore;
 
         private void Awake()
         {
@@ -22,11 +22,11 @@ namespace GigaCreation.Tools
                 return;
             }
 
-            if (ServiceLocator.TryGet(out _debugCore))
+            if (ServiceLocator.TryGet(out _debuggingCore))
             {
-                if (FindObjectsOfType<DebugPresenter>(true).Length == 1)
+                if (FindObjectsOfType<DebuggingPresenter>(true).Length == 1)
                 {
-                    LinkDebugModeFlags(_debugCore);
+                    LinkDebugModeFlags(_debuggingCore);
                     return;
                 }
 
@@ -40,25 +40,25 @@ namespace GigaCreation.Tools
                 return;
             }
 
-            _debugCore = new DebugCore(_debugMode.Value);
+            _debuggingCore = new DebuggingCore(_debugMode.Value);
 
-            LinkDebugModeFlags(_debugCore);
+            LinkDebugModeFlags(_debuggingCore);
 
-            ServiceLocator.Register(_debugCore);
+            ServiceLocator.Register(_debuggingCore);
         }
 
         private void OnApplicationQuit()
         {
-            ServiceLocator.Unregister(_debugCore);
+            ServiceLocator.Unregister(_debuggingCore);
         }
 
         /// <summary>
-        /// この Presenter のデバッグモードフラグと、DebugCore のデバッグモードフラグを連動させます。
+        /// この Presenter のデバッグモードフラグと、DebuggingCore のデバッグモードフラグを連動させます。
         /// </summary>
-        /// <param name="debugCore"></param>
-        private void LinkDebugModeFlags(IDebugCore debugCore)
+        /// <param name="debuggingCore"></param>
+        private void LinkDebugModeFlags(IDebuggingCore debuggingCore)
         {
-            debugCore
+            debuggingCore
                 .IsDebugMode
                 .Subscribe(x =>
                 {
@@ -70,7 +70,7 @@ namespace GigaCreation.Tools
                 .SkipLatestValueOnSubscribe()
                 .Subscribe(x =>
                 {
-                    debugCore.IsDebugMode.Value = x;
+                    debuggingCore.IsDebugMode.Value = x;
                 })
                 .AddTo(this);
         }

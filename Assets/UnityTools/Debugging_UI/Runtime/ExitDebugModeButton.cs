@@ -2,14 +2,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     [RequireComponent(typeof(Image), typeof(Button))]
     public class ExitDebugModeButton : MonoBehaviour
     {
         [SerializeField] private Button _button;
 
-        private IDebugCore _debugCore;
+        private IDebuggingCore _debuggingCore;
 
         private void Reset()
         {
@@ -18,7 +18,7 @@ namespace GigaCreation.Tools
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out _debugCore))
+            if (!ServiceLocator.TryGet(out _debuggingCore))
             {
                 return;
             }
@@ -28,7 +28,7 @@ namespace GigaCreation.Tools
 
         private void ExitDebugMode()
         {
-            _debugCore.IsDebugMode.Value = false;
+            _debuggingCore.IsDebugMode.Value = false;
         }
     }
 }

@@ -4,7 +4,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     [RequireComponent(typeof(Image), typeof(Selectable))]
     public class EnterDebugModeButton : MonoBehaviour
@@ -14,7 +14,7 @@ namespace GigaCreation.Tools
 
         [SerializeField] private float _longPressDuration = 1f;
 
-        private IDebugCore _debugCore;
+        private IDebuggingCore _debuggingCore;
 
         private bool _isPressed;
 
@@ -26,7 +26,7 @@ namespace GigaCreation.Tools
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out _debugCore))
+            if (!ServiceLocator.TryGet(out _debuggingCore))
             {
                 return;
             }
@@ -54,7 +54,7 @@ namespace GigaCreation.Tools
 
             _selectable
                 .OnPointerDownAsObservable()
-                .Where(_ => !_debugCore.IsDebugMode.Value)
+                .Where(_ => !_debuggingCore.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
                     _isPressed = true;
@@ -64,7 +64,7 @@ namespace GigaCreation.Tools
 
             _selectable
                 .OnPointerUpAsObservable()
-                .Where(_ => !_debugCore.IsDebugMode.Value)
+                .Where(_ => !_debuggingCore.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
                     ReturnToDefault();
@@ -80,7 +80,7 @@ namespace GigaCreation.Tools
 
         private void EnableDebugMode()
         {
-            _debugCore.IsDebugMode.Value = true;
+            _debuggingCore.IsDebugMode.Value = true;
         }
     }
 }

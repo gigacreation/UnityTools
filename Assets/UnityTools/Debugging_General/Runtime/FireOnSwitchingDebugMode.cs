@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     public class FireOnSwitchingDebugMode : MonoBehaviour
     {
@@ -12,7 +12,7 @@ namespace GigaCreation.Tools
 
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebugCore debugCore))
+            if (ServiceLocator.TryGet(out IDebuggingCore debugCore))
             {
                 debugCore
                     .IsDebugMode

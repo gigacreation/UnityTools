@@ -1,14 +1,16 @@
 ﻿using GigaCreation.Tools.Service;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public abstract class DebuggingTextDisplay : MonoBehaviour
     {
         [SerializeField] private int _priority;
 
-        protected IDebugCore DebugCore;
+        protected IDebuggingCore DebuggingCore;
         protected TextMeshProUGUI Label;
 
         private DebugLabelManager _debugLabelManager;
@@ -17,7 +19,7 @@ namespace GigaCreation.Tools
 
         private void Start()
         {
-            if (ServiceLocator.TryGet(out DebugCore))
+            if (ServiceLocator.TryGet(out DebuggingCore))
             {
                 Initialize();
             }
@@ -43,15 +45,13 @@ namespace GigaCreation.Tools
             Label = AddAndGetLabel();
         }
 
-        // ReSharper disable once MemberCanBePrivate.Global
         protected TextMeshProUGUI AddAndGetLabel()
         {
             if (!TryGetComponent(out _debugLabelManager))
             {
-                _debugLabelManager = FindObjectOfType<DebugLabelManager>();
+                _debugLabelManager = FindAnyObjectByType<DebugLabelManager>();
             }
 
-            // ReSharper disable once InvertIf
             if (!_debugLabelManager)
             {
                 Debug.LogError("DebugLabelManager が見つかりません。");

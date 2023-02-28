@@ -2,15 +2,15 @@
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
-    public class TimeScaleDebuggingTextDisplayDisplay : DebuggingTextDisplay
+    public class TimeScaleDisplay : DebuggingTextDisplay
     {
         protected override void Initialize()
         {
             base.Initialize();
 
-            DebugCore
+            DebuggingCore
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
@@ -21,7 +21,7 @@ namespace GigaCreation.Tools
                         {
                             Label.SetText($"TimeScale: {Time.timeScale}");
                         })
-                        .AddTo(DebugCore.DebugDisposables);
+                        .AddTo(DebuggingCore.DebugDisposables);
                 })
                 .AddTo(this);
         }

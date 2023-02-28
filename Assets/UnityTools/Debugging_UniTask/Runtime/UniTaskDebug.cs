@@ -5,13 +5,13 @@ using GigaCreation.Tools.Service;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class UniTaskDebug
     {
         private static bool s_isReleaseMode;
-        private static IDebugCore s_debugCore;
+        private static IDebuggingCore s_debuggingCore;
 
         /// <summary>
         /// デバッグモードの時のみスキップできる UniTask.Delay。
@@ -23,7 +23,7 @@ namespace GigaCreation.Tools
             CancellationToken cancellationToken = default
         )
         {
-            if (!s_isReleaseMode && (s_debugCore == null) && !ServiceLocator.TryGet(out s_debugCore))
+            if (!s_isReleaseMode && (s_debuggingCore == null) && !ServiceLocator.TryGet(out s_debuggingCore))
             {
                 s_isReleaseMode = true;
             }
@@ -31,7 +31,7 @@ namespace GigaCreation.Tools
             await UniTask.WhenAny(
                 UniTask.Delay(millisecondsDelay, ignoreTimeScale, delayTiming, cancellationToken),
                 UniTask.WaitUntil(
-                    () => (s_debugCore != null) && s_debugCore.IsDebugMode.Value && Input.anyKeyDown,
+                    () => (s_debuggingCore != null) && s_debuggingCore.IsDebugMode.Value && Input.anyKeyDown,
                     delayTiming,
                     cancellationToken
                 )
@@ -48,7 +48,7 @@ namespace GigaCreation.Tools
             CancellationToken cancellationToken = default
         )
         {
-            if (!s_isReleaseMode && (s_debugCore == null) && !ServiceLocator.TryGet(out s_debugCore))
+            if (!s_isReleaseMode && (s_debuggingCore == null) && !ServiceLocator.TryGet(out s_debuggingCore))
             {
                 s_isReleaseMode = true;
             }
@@ -56,7 +56,7 @@ namespace GigaCreation.Tools
             await UniTask.WhenAny(
                 UniTask.Delay(delayTimeSpan, ignoreTimeScale, delayTiming, cancellationToken),
                 UniTask.WaitUntil(
-                    () => (s_debugCore != null) && s_debugCore.IsDebugMode.Value && Input.anyKeyDown,
+                    () => (s_debuggingCore != null) && s_debuggingCore.IsDebugMode.Value && Input.anyKeyDown,
                     delayTiming,
                     cancellationToken
                 )
@@ -67,7 +67,7 @@ namespace GigaCreation.Tools
         private static void ResetStaticFields()
         {
             s_isReleaseMode = false;
-            s_debugCore = null;
+            s_debuggingCore = null;
         }
     }
 }

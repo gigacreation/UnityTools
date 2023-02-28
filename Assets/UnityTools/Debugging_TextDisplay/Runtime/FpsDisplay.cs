@@ -5,9 +5,9 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
-    public class FpsDebuggingTextDisplayDisplay : DebuggingTextDisplay
+    public class FpsDisplay : DebuggingTextDisplay
     {
         private const int BufferSize = 5;
 
@@ -15,7 +15,7 @@ namespace GigaCreation.Tools
         {
             base.Initialize();
 
-            DebugCore
+            DebuggingCore
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
@@ -32,7 +32,7 @@ namespace GigaCreation.Tools
                         {
                             Label.SetText($"{fps:F1} fps");
                         })
-                        .AddTo(DebugCore.DebugDisposables);
+                        .AddTo(DebuggingCore.DebugDisposables);
                 })
                 .AddTo(this);
         }

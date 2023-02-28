@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     /// <summary>
     /// デバッグモードがオンのときに表示され、オフのときに非表示になります。
@@ -11,7 +11,7 @@ namespace GigaCreation.Tools
     {
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebugCore debugCore))
+            if (ServiceLocator.TryGet(out IDebuggingCore debugCore))
             {
                 debugCore
                     .IsDebugMode

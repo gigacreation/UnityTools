@@ -1,15 +1,15 @@
 ﻿using UniRx;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
-    public class DebugCore : IDebugCore
+    public class DebuggingCore : IDebuggingCore
     {
         private readonly ReactiveProperty<bool> _isDebugMode;
 
         public IReactiveProperty<bool> IsDebugMode => _isDebugMode;
         public CompositeDisposable DebugDisposables { get; } = new();
 
-        public DebugCore(bool initialMode)
+        public DebuggingCore(bool initialMode)
         {
             _isDebugMode = new ReactiveProperty<bool>(initialMode);
 

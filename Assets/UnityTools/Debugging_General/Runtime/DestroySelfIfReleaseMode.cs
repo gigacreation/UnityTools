@@ -1,13 +1,13 @@
 ﻿using GigaCreation.Tools.Service;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Debugging
 {
     public class DestroySelfIfReleaseMode : MonoBehaviour
     {
         private void Awake()
         {
-            if (!ServiceLocator.IsRegistered<IDebugCore>())
+            if (!ServiceLocator.IsRegistered<IDebuggingCore>())
             {
                 Destroy(gameObject);
             }
