@@ -1,5 +1,5 @@
 {
-    "name": "GigaCreation.Tools.Debugging.TextPrinter.BuildTimestamp",
+    "name": "GigaCreation.Tools.Debugging.TextDisplay.BuildTimestamp",
     "rootNamespace": "",
     "references": [
         "GUID:218c99f30364fd44880caf53a4ffa9f2",

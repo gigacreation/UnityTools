@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GigaCreation.Tools
 {
-    public class FpsPrinter : DebugTextPrinter
+    public class FpsDebuggingTextDisplayDisplay : DebuggingTextDisplay
     {
         private const int BufferSize = 5;
 

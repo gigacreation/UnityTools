@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GigaCreation.Tools
 {
-    public class BuildTimestampPrinter : DebugTextPrinter
+    public class BuildTimestampDebuggingTextDisplay : DebuggingTextDisplay
     {
         [SerializeField] private BuildTimestamp _buildTimestamp;
         [SerializeField] private string _format = "yyyy/MM/dd HH:mm:ss";

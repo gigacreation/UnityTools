@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GigaCreation.Tools
 {
-    public class TimeScalePrinter : DebugTextPrinter
+    public class TimeScaleDebuggingTextDisplayDisplay : DebuggingTextDisplay
     {
         protected override void Initialize()
         {

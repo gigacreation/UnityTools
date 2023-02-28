@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GigaCreation.Tools
 {
-    public abstract class DebugTextPrinter : MonoBehaviour
+    public abstract class DebuggingTextDisplay : MonoBehaviour
     {
         [SerializeField] private int _priority;
 

@@ -1,5 +1,5 @@
 {
-    "name": "GigaCreation.Tools.Debugging.TextPrinter",
+    "name": "GigaCreation.Tools.Debugging.TextDisplay",
     "rootNamespace": "",
     "references": [
         "GUID:4ddf577e5319e423cb0317c35ba02965",
