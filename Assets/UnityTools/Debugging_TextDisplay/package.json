@@ -1,0 +1,18 @@
+{
+    "name": "jp.gigacreation.tools.debugging.textdisplay",
+    "version": "1.0.0",
+    "displayName": "UnityTools / Debug / Text Display",
+    "unity": "2021.3",
+    "dependencies": {
+        "jp.gigacreation.tools.core": "1.0.0",
+        "jp.gigacreation.tools.ui": "1.0.0",
+        "jp.gigacreation.tools.debugging.core": "1.0.0",
+        "com.unity.textmeshpro": "3.0.6",
+        "com.neuecc.unirx": "7.1.0"
+    },
+    "author": {
+        "name": "GIGA CREATION",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
+}

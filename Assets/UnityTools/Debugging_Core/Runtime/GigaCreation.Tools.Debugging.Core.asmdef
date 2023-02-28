@@ -1,0 +1,17 @@
+{
+    "name": "GigaCreation.Tools.Debugging.Core",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4ddf577e5319e423cb0317c35ba02965",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
