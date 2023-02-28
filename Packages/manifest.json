@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
-    "com.gigacee.buildtimestampdisplay": "https://github.com/gigacee/BuildTimestampDisplayForUnity.git?path=Assets/BuildTimestampDisplay",
     "com.neuecc.unirx": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
@@ -12,6 +11,7 @@
     "com.unity.test-framework": "1.1.33",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.ugui": "1.0.0",
+    "jp.gigacreation.tools.buildtimestampdisplay": "https://github.com/gigacreation/BuildTimestampDisplayForUnity.git?path=Assets/BuildTimestampDisplay",
     "jp.gigacreation.tools.csv2collections": "https://github.com/gigacreation/Csv2CollectionsForUnity.git?path=Assets/Csv2Collections",
     "jp.gigacreation.tools.servicelocator": "https://github.com/gigacreation/ServiceLocatorForUnity.git?path=Assets/Service",
     "com.unity.modules.ai": "1.0.0",

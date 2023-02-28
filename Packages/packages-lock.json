@@ -7,15 +7,6 @@
       "dependencies": {},
       "hash": "73d86259ce31ce7f4dfe1d028ea1c3edf96c23e4"
     },
-    "com.gigacee.buildtimestampdisplay": {
-      "version": "https://github.com/gigacee/BuildTimestampDisplayForUnity.git?path=Assets/BuildTimestampDisplay",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0"
-      },
-      "hash": "2bb2333df72bcb910e9d807445bcc77987312d3a"
-    },
     "com.neuecc.unirx": {
       "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
       "depth": 0,
@@ -107,6 +98,15 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "jp.gigacreation.tools.buildtimestampdisplay": {
+      "version": "https://github.com/gigacreation/BuildTimestampDisplayForUnity.git?path=Assets/BuildTimestampDisplay",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "cbbfe5401abacb911ad849b5fe9df972d985ced1"
     },
     "jp.gigacreation.tools.csv2collections": {
       "version": "https://github.com/gigacreation/Csv2CollectionsForUnity.git?path=Assets/Csv2Collections",

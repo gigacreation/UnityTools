@@ -1,4 +1,4 @@
-﻿using BuildTimestampDisplay;
+﻿using GigaCreation.Tools.BuildTimestampDisplay;
 using UnityEngine;
 
 namespace GigaCreation.Tools
