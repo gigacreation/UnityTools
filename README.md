@@ -36,30 +36,26 @@
 
 `https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/UniTask`
 
-## Hierarchy Folders
+## Debugging / Core
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/HierarchyFolders`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_Core`
 
-## Debug / Core
+## Debugging / General
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debug_Core`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_General`
 
-## Debug / General
+## Debugging / UI
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debug_General`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_Ui`
 
-## Debug / UI
+## Debugging / Text Display
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debug_Ui`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_TextDisplay`
 
-## Debug / Text Printer
+## Debugging / Text Display / Build Timestamp
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debug_TextPrinter`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_TextDisplay_BuildTimestamp`
 
-## Debug / Text Printer / Build Timestamp
+## Debugging / UniTask
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debug_TextPrinter_BuildTimestamp`
-
-## Debug / UniTask
-
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debug_UniTask`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_UniTask`
