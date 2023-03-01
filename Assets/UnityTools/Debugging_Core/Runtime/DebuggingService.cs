@@ -1,15 +1,15 @@
 ﻿using UniRx;
 
-namespace GigaCreation.Tools.Debugging
+namespace GigaCreation.Tools.Debugging.Core
 {
-    public class DebuggingCore : IDebuggingCore
+    public class DebuggingService : IDebuggingService
     {
         private readonly ReactiveProperty<bool> _isDebugMode;
 
         public IReactiveProperty<bool> IsDebugMode => _isDebugMode;
-        public CompositeDisposable DebugDisposables { get; } = new();
+        public CompositeDisposable DebuggingDisposables { get; } = new();
 
-        public DebuggingCore(bool initialMode)
+        public DebuggingService(bool initialMode)
         {
             _isDebugMode = new ReactiveProperty<bool>(initialMode);
 
@@ -17,14 +17,14 @@ namespace GigaCreation.Tools.Debugging
                 .Where(x => !x)
                 .Subscribe(_ =>
                 {
-                    DebugDisposables.Clear();
+                    DebuggingDisposables.Clear();
                 });
         }
 
         public void Dispose()
         {
             _isDebugMode.Dispose();
-            DebugDisposables.Dispose();
+            DebuggingDisposables.Dispose();
         }
     }
 }

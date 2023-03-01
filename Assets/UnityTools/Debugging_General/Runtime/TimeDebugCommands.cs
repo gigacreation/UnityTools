@@ -1,4 +1,5 @@
-﻿using GigaCreation.Tools.Service;
+﻿using GigaCreation.Tools.Debugging.Core;
+using GigaCreation.Tools.Service;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace GigaCreation.Tools.Debugging
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out IDebuggingCore debugCore))
+            if (!ServiceLocator.TryGet(out IDebuggingService debugCore))
             {
                 return;
             }
@@ -32,7 +33,7 @@ namespace GigaCreation.Tools.Debugging
                         {
                             Time.timeScale = x;
                         })
-                        .AddTo(debugCore.DebugDisposables);
+                        .AddTo(debugCore.DebuggingDisposables);
 
                     this
                         .UpdateAsObservable()
@@ -64,7 +65,7 @@ namespace GigaCreation.Tools.Debugging
                                 SlowDown(0.2f);
                             }
                         })
-                        .AddTo(debugCore.DebugDisposables);
+                        .AddTo(debugCore.DebuggingDisposables);
                 })
                 .AddTo(this);
         }

@@ -1,4 +1,5 @@
-﻿using GigaCreation.Tools.Service;
+﻿using GigaCreation.Tools.Debugging.Core;
+using GigaCreation.Tools.Service;
 using UniRx;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace GigaCreation.Tools.Debugging
     {
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebuggingCore debugCore))
+            if (ServiceLocator.TryGet(out IDebuggingService debugCore))
             {
                 debugCore
                     .IsDebugMode

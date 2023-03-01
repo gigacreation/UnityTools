@@ -1,4 +1,5 @@
-﻿using GigaCreation.Tools.Service;
+﻿using GigaCreation.Tools.Debugging.Core;
+using GigaCreation.Tools.Service;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ namespace GigaCreation.Tools.Debugging
     {
         [SerializeField] private Button _button;
 
-        private IDebuggingCore _debuggingCore;
+        private IDebuggingService _debuggingService;
 
         private void Reset()
         {
@@ -18,7 +19,7 @@ namespace GigaCreation.Tools.Debugging
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out _debuggingCore))
+            if (!ServiceLocator.TryGet(out _debuggingService))
             {
                 return;
             }
@@ -28,7 +29,7 @@ namespace GigaCreation.Tools.Debugging
 
         private void ExitDebugMode()
         {
-            _debuggingCore.IsDebugMode.Value = false;
+            _debuggingService.IsDebugMode.Value = false;
         }
     }
 }

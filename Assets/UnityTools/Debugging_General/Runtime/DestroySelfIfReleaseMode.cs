@@ -1,4 +1,5 @@
-﻿using GigaCreation.Tools.Service;
+﻿using GigaCreation.Tools.Debugging.Core;
+using GigaCreation.Tools.Service;
 using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging
@@ -7,7 +8,7 @@ namespace GigaCreation.Tools.Debugging
     {
         private void Awake()
         {
-            if (!ServiceLocator.IsRegistered<IDebuggingCore>())
+            if (!ServiceLocator.IsRegistered<IDebuggingService>())
             {
                 Destroy(gameObject);
             }

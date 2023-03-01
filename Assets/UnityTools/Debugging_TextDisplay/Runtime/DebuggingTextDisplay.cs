@@ -1,4 +1,5 @@
-﻿using GigaCreation.Tools.Service;
+﻿using GigaCreation.Tools.Debugging.Core;
+using GigaCreation.Tools.Service;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace GigaCreation.Tools.Debugging
     {
         [SerializeField] private int _priority;
 
-        protected IDebuggingCore DebuggingCore;
+        protected IDebuggingService DebuggingService;
         protected TextMeshProUGUI Label;
 
         private DebugLabelManager _debugLabelManager;
@@ -19,7 +20,7 @@ namespace GigaCreation.Tools.Debugging
 
         private void Start()
         {
-            if (ServiceLocator.TryGet(out DebuggingCore))
+            if (ServiceLocator.TryGet(out DebuggingService))
             {
                 Initialize();
             }

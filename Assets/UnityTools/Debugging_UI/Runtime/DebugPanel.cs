@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GigaCreation.Tools.Debugging.Core;
 using GigaCreation.Tools.Service;
 using JetBrains.Annotations;
 using UniRx;
@@ -25,7 +26,7 @@ namespace GigaCreation.Tools.Debugging
 
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebuggingCore debugCore))
+            if (ServiceLocator.TryGet(out IDebuggingService debugCore))
             {
                 debugCore
                     .IsDebugMode

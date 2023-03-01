@@ -1741,7 +1741,7 @@ GameObject:
   - component: {fileID: 877234883}
   - component: {fileID: 877234882}
   m_Layer: 0
-  m_Name: Debug
+  m_Name: Debugging
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1792,8 +1792,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceReleaseBuild: 0
-  _debugMode:
-    value: 1
+  _isDebugMode:
+    value: 0
 --- !u!1 &884314003
 GameObject:
   m_ObjectHideFlags: 0

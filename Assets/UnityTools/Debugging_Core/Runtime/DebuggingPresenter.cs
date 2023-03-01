@@ -2,75 +2,73 @@
 using UniRx;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging
+namespace GigaCreation.Tools.Debugging.Core
 {
     [DefaultExecutionOrder(-1)]
     public class DebuggingPresenter : MonoBehaviour
     {
         [SerializeField] private bool _forceReleaseBuild;
+        [SerializeField] private BoolReactiveProperty _isDebugMode;
 
-        // TODO: _forceReleaseBuild が true の場合は Disable にする
-        [SerializeField] private BoolReactiveProperty _debugMode;
-
-        private IDebuggingCore _debuggingCore;
+        private IDebuggingService _debuggingService;
 
         private void Awake()
         {
-            if (!Debug.isDebugBuild)
+            // リリースビルド痔は自身を破棄する
+            if (!Debug.isDebugBuild || _forceReleaseBuild)
             {
                 Destroy(this);
                 return;
             }
 
-            if (ServiceLocator.TryGet(out _debuggingCore))
+            if (ServiceLocator.TryGet(out _debuggingService))
             {
-                if (FindObjectsOfType<DebuggingPresenter>(true).Length == 1)
+                DebuggingPresenter[] debuggingPresentersInScene
+                    = FindObjectsByType<DebuggingPresenter>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+                // 自身が唯一の DebuggingPresenter だった場合は、自身のデバッグモードフラグをサービス側とリンクさせる
+                if (debuggingPresentersInScene.Length == 1)
                 {
-                    LinkDebugModeFlags(_debuggingCore);
+                    LinkDebugModeFlags(_debuggingService);
                     return;
                 }
 
+                // 自身の他に DebuggingPresenter が存在していたら、自身を破棄する
                 Destroy(this);
                 return;
             }
 
-            if (_forceReleaseBuild)
-            {
-                Destroy(this);
-                return;
-            }
+            _debuggingService = new DebuggingService(_isDebugMode.Value);
 
-            _debuggingCore = new DebuggingCore(_debugMode.Value);
+            LinkDebugModeFlags(_debuggingService);
 
-            LinkDebugModeFlags(_debuggingCore);
-
-            ServiceLocator.Register(_debuggingCore);
+            ServiceLocator.Register(_debuggingService);
         }
 
         private void OnApplicationQuit()
         {
-            ServiceLocator.Unregister(_debuggingCore);
+            ServiceLocator.Unregister(_debuggingService);
         }
 
         /// <summary>
-        /// この Presenter のデバッグモードフラグと、DebuggingCore のデバッグモードフラグを連動させます。
+        /// この Presenter のデバッグモードフラグと、DebuggingService のデバッグモードフラグを連動させます。
         /// </summary>
-        /// <param name="debuggingCore"></param>
-        private void LinkDebugModeFlags(IDebuggingCore debuggingCore)
+        /// <param name="debuggingService">デバッグサービス。</param>
+        private void LinkDebugModeFlags(IDebuggingService debuggingService)
         {
-            debuggingCore
+            debuggingService
                 .IsDebugMode
                 .Subscribe(x =>
                 {
-                    _debugMode.Value = x;
+                    _isDebugMode.Value = x;
                 })
                 .AddTo(this);
 
-            _debugMode
+            _isDebugMode
                 .SkipLatestValueOnSubscribe()
                 .Subscribe(x =>
                 {
-                    debuggingCore.IsDebugMode.Value = x;
+                    debuggingService.IsDebugMode.Value = x;
                 })
                 .AddTo(this);
         }
