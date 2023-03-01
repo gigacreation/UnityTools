@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace GigaCreation.Tools.Debugging
 {
-    public class BuildTimestampDisplay : DebuggingTextDisplay
+    public class BuildTimestampPreference : DebugTextPreference
     {
         [Header("Assets")]
         [SerializeField] private BuildTimestamp _buildTimestamp;

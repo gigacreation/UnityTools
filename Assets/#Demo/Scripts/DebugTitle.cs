@@ -13,7 +13,7 @@ namespace GigaCreation.Tools.Demo
 
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebuggingService debugCore))
+            if (ServiceLocator.TryGet(out IDebugService debugCore))
             {
                 debugCore
                     .IsDebugMode

@@ -12,9 +12,9 @@ namespace GigaCreation.Tools.Debugging
     {
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebuggingService debuggingService))
+            if (ServiceLocator.TryGet(out IDebugService debugService))
             {
-                debuggingService
+                debugService
                     .IsDebugMode
                     .Subscribe(x =>
                     {

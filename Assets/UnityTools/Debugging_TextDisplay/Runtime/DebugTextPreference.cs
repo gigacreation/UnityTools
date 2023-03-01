@@ -7,11 +7,11 @@ using UnityEngine;
 namespace GigaCreation.Tools.Debugging
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
-    public abstract class DebuggingTextDisplay : MonoBehaviour
+    public abstract class DebugTextPreference : MonoBehaviour
     {
         [SerializeField] private int _priority;
 
-        protected IDebuggingService DebuggingService;
+        protected IDebugService DebugService;
         protected TextMeshProUGUI Label;
 
         private DebugLabelManager _debugLabelManager;
@@ -20,7 +20,7 @@ namespace GigaCreation.Tools.Debugging
 
         private void Start()
         {
-            if (ServiceLocator.TryGet(out DebuggingService))
+            if (ServiceLocator.TryGet(out DebugService))
             {
                 Initialize();
             }

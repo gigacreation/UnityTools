@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging
 {
-    public class TimeScaleDisplay : DebuggingTextDisplay
+    public class TimeScaleDebugTextPreference : DebugTextPreference
     {
         protected override void Initialize()
         {
             base.Initialize();
 
-            DebuggingService
+            DebugService
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
@@ -21,7 +21,7 @@ namespace GigaCreation.Tools.Debugging
                         {
                             Label.SetText($"TimeScale: {Time.timeScale}");
                         })
-                        .AddTo(DebuggingService.DebuggingDisposables);
+                        .AddTo(DebugService.DebuggingDisposables);
                 })
                 .AddTo(this);
         }

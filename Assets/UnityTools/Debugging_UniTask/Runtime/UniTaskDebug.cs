@@ -12,7 +12,7 @@ namespace GigaCreation.Tools.Debugging
     public static class UniTaskDebug
     {
         private static bool s_isReleaseMode;
-        private static IDebuggingService s_debuggingService;
+        private static IDebugService s_debugService;
 
         /// <summary>
         /// デバッグモードの時のみスキップできる UniTask.Delay。
@@ -24,7 +24,7 @@ namespace GigaCreation.Tools.Debugging
             CancellationToken cancellationToken = default
         )
         {
-            if (!s_isReleaseMode && (s_debuggingService == null) && !ServiceLocator.TryGet(out s_debuggingService))
+            if (!s_isReleaseMode && (s_debugService == null) && !ServiceLocator.TryGet(out s_debugService))
             {
                 s_isReleaseMode = true;
             }
@@ -32,7 +32,7 @@ namespace GigaCreation.Tools.Debugging
             await UniTask.WhenAny(
                 UniTask.Delay(millisecondsDelay, ignoreTimeScale, delayTiming, cancellationToken),
                 UniTask.WaitUntil(
-                    () => (s_debuggingService != null) && s_debuggingService.IsDebugMode.Value && Input.anyKeyDown,
+                    () => (s_debugService != null) && s_debugService.IsDebugMode.Value && Input.anyKeyDown,
                     delayTiming,
                     cancellationToken
                 )
@@ -49,7 +49,7 @@ namespace GigaCreation.Tools.Debugging
             CancellationToken cancellationToken = default
         )
         {
-            if (!s_isReleaseMode && (s_debuggingService == null) && !ServiceLocator.TryGet(out s_debuggingService))
+            if (!s_isReleaseMode && (s_debugService == null) && !ServiceLocator.TryGet(out s_debugService))
             {
                 s_isReleaseMode = true;
             }
@@ -57,7 +57,7 @@ namespace GigaCreation.Tools.Debugging
             await UniTask.WhenAny(
                 UniTask.Delay(delayTimeSpan, ignoreTimeScale, delayTiming, cancellationToken),
                 UniTask.WaitUntil(
-                    () => (s_debuggingService != null) && s_debuggingService.IsDebugMode.Value && Input.anyKeyDown,
+                    () => (s_debugService != null) && s_debugService.IsDebugMode.Value && Input.anyKeyDown,
                     delayTiming,
                     cancellationToken
                 )
@@ -68,7 +68,7 @@ namespace GigaCreation.Tools.Debugging
         private static void ResetStaticFields()
         {
             s_isReleaseMode = false;
-            s_debuggingService = null;
+            s_debugService = null;
         }
     }
 }

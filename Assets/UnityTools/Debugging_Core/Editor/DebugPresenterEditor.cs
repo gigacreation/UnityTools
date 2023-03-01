@@ -2,8 +2,8 @@ using UnityEditor;
 
 namespace GigaCreation.Tools.Debugging.Core.Editor
 {
-    [CustomEditor(typeof(DebuggingPresenter))]
-    public class DebuggingPresenterEditor : UnityEditor.Editor
+    [CustomEditor(typeof(DebugPresenter))]
+    public class DebugPresenterEditor : UnityEditor.Editor
     {
         private SerializedProperty _forceReleaseBuildProperty;
         private SerializedProperty _isDebugModeProperty;

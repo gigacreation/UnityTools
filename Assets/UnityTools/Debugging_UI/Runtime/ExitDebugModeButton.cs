@@ -10,7 +10,7 @@ namespace GigaCreation.Tools.Debugging
     {
         [SerializeField] private Button _button;
 
-        private IDebuggingService _debuggingService;
+        private IDebugService _debugService;
 
         private void Reset()
         {
@@ -19,7 +19,7 @@ namespace GigaCreation.Tools.Debugging
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out _debuggingService))
+            if (!ServiceLocator.TryGet(out _debugService))
             {
                 return;
             }
@@ -29,7 +29,7 @@ namespace GigaCreation.Tools.Debugging
 
         private void ExitDebugMode()
         {
-            _debuggingService.IsDebugMode.Value = false;
+            _debugService.IsDebugMode.Value = false;
         }
     }
 }

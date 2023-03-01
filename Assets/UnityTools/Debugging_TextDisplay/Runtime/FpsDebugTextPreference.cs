@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging
 {
-    public class FpsDisplay : DebuggingTextDisplay
+    public class FpsDebugTextPreference : DebugTextPreference
     {
         private const int BufferSize = 5;
 
@@ -15,7 +15,7 @@ namespace GigaCreation.Tools.Debugging
         {
             base.Initialize();
 
-            DebuggingService
+            DebugService
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
@@ -32,7 +32,7 @@ namespace GigaCreation.Tools.Debugging
                         {
                             Label.SetText($"{fps:F1} fps");
                         })
-                        .AddTo(DebuggingService.DebuggingDisposables);
+                        .AddTo(DebugService.DebuggingDisposables);
                 })
                 .AddTo(this);
         }

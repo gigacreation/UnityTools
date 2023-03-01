@@ -4,7 +4,7 @@ using UniRx;
 
 namespace GigaCreation.Tools.Debugging.Core
 {
-    public interface IDebuggingService : IService, IDisposable
+    public interface IDebugService : IService, IDisposable
     {
         /// <summary>
         /// 現在、デバッグモードか否か。

@@ -8,21 +8,26 @@ namespace GigaCreation.Tools.Debugging
     [RequireComponent(typeof(RectTransform))]
     public class DebugLabelManager : MonoBehaviour
     {
+        [Header("Assets")]
         [SerializeField] private TextMeshProUGUI _labelPrefab;
+
+        [Header("References")]
+        [SerializeField] private Transform _transform;
         [SerializeField] private AutoLayoutSupporter _autoLayoutSupporter;
 
-        private readonly Dictionary<int, TextMeshProUGUI> _children = new();
+        private readonly Dictionary<int, TextMeshProUGUI> _labels = new();
 
         private void Reset()
         {
+            _transform = transform;
             _autoLayoutSupporter = GetComponent<AutoLayoutSupporter>();
         }
 
-        public TextMeshProUGUI Add(string typeName, int priority)
+        public TextMeshProUGUI Add(string name, int priority)
         {
-            if (_children.ContainsKey(priority))
+            if (_labels.ContainsKey(priority))
             {
-                Debug.LogError($"すでに同じ優先度のデバッグラベルが登録されています: {typeName}");
+                Debug.LogError($"すでに同じ優先度のデバッグラベルが登録されています：{name}, {priority}");
                 return null;
             }
 
@@ -30,37 +35,40 @@ namespace GigaCreation.Tools.Debugging
 
             if (_labelPrefab == null)
             {
-                var obj = new GameObject(typeName)
+                var go = new GameObject(name)
                 {
                     transform =
                     {
-                        parent = transform,
+                        parent = _transform,
                         localScale = Vector3.one
                     }
                 };
 
-                newLabel = obj.AddComponent<TextMeshProUGUI>();
+                newLabel = go.AddComponent<TextMeshProUGUI>();
                 newLabel.verticalAlignment = VerticalAlignmentOptions.Middle;
             }
             else
             {
-                newLabel = Instantiate(_labelPrefab, transform);
-                newLabel.name = typeName;
+                newLabel = Instantiate(_labelPrefab, _transform);
+                newLabel.name = name;
             }
 
-            _children.Add(priority, newLabel);
+            _labels.Add(priority, newLabel);
 
-            TextMeshProUGUI[] sortedLabels = _children
+            TextMeshProUGUI[] sortedLabels = _labels
                 .OrderBy(pair => pair.Key)
                 .Select(pair => pair.Value)
                 .ToArray();
 
-            for (var i = 0; i < _children.Count; i++)
+            for (var i = 0; i < sortedLabels.Length; i++)
             {
                 sortedLabels[i].transform.SetSiblingIndex(i);
             }
 
-            _autoLayoutSupporter.ExecuteRebuilding();
+            if (_autoLayoutSupporter)
+            {
+                _autoLayoutSupporter.ExecuteRebuilding();
+            }
 
             return newLabel;
         }
@@ -68,7 +76,7 @@ namespace GigaCreation.Tools.Debugging
         public void Remove(string className)
         {
             KeyValuePair<int, TextMeshProUGUI> childPair
-                = _children.SingleOrDefault(pair => (pair.Value != null) && (pair.Value.name == className));
+                = _labels.SingleOrDefault(pair => (pair.Value != null) && (pair.Value.name == className));
 
             if (!childPair.Value)
             {
@@ -76,10 +84,13 @@ namespace GigaCreation.Tools.Debugging
                 return;
             }
 
-            _children.Remove(childPair.Key);
+            _labels.Remove(childPair.Key);
             Destroy(childPair.Value.gameObject);
 
-            _autoLayoutSupporter.ExecuteRebuilding();
+            if (_autoLayoutSupporter)
+            {
+                _autoLayoutSupporter.ExecuteRebuilding();
+            }
         }
     }
 }

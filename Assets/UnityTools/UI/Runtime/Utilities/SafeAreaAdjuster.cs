@@ -12,12 +12,13 @@ namespace GigaCreation.Tools
     [RequireComponent(typeof(RectTransform))]
     public class SafeAreaAdjuster : MonoBehaviour
     {
+        [Header("References")]
         [SerializeField] private RectTransform _rectTransform;
-        [SerializeField] private bool _setDirtyOnAdjust;
-
-        [Space]
         [SerializeField] private Image _image;
+
+        [Header("Parameters")]
         [SerializeField] private bool _showBorder;
+        [SerializeField] private bool _setDirtyOnAdjust;
 
         private void Start()
         {

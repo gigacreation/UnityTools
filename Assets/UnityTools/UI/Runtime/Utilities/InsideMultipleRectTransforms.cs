@@ -18,21 +18,23 @@ namespace GigaCreation.Tools
     {
         [Header("References")]
         [SerializeField] private RectTransform _rectTransform;
-        [SerializeField] private List<RectTransform> _targets;
+        [SerializeField] private Image _image;
+
+        [Space]
+        [SerializeField] private List<RectTransform> _insideTargets;
+
+        [Header("Parameters")]
+        [SerializeField] private bool _showBorder;
         [SerializeField] private bool _setDirtyOnAdjust;
 
         [Space]
-        [SerializeField] private Image _image;
-        [SerializeField] private bool _showBorder;
-
-        [Header("References")]
         [SerializeField] private bool _adjustOnAwake;
 
-        public IList<RectTransform> Targets => _targets;
+        public IList<RectTransform> InsideTargets => _insideTargets;
 
         private void Awake()
         {
-            if (!_adjustOnAwake || (_targets.Count == 0))
+            if (!_adjustOnAwake || (_insideTargets.Count == 0))
             {
                 return;
             }
@@ -51,7 +53,7 @@ namespace GigaCreation.Tools
 #if UNITY_EDITOR
         private void Update()
         {
-            if (_targets == null)
+            if (_insideTargets == null)
             {
                 return;
             }
@@ -86,7 +88,7 @@ namespace GigaCreation.Tools
 
         public void Adjust()
         {
-            Vector3[][] cornersOfTargets = _targets
+            Vector3[][] cornersOfTargets = _insideTargets
                 .Where(rt => rt)
                 .Select(rt =>
                 {

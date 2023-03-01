@@ -8,7 +8,7 @@ namespace GigaCreation.Tools.Debugging.General
     {
         private void Start()
         {
-            if (!ServiceLocator.IsRegistered<IDebuggingService>())
+            if (!ServiceLocator.IsRegistered<IDebugService>())
             {
                 Destroy(gameObject);
             }
