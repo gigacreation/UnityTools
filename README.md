@@ -1,9 +1,5 @@
 # UnityTools
 
-## Core
-
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Core`
-
 ## General
 
 `https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/General`
