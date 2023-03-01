@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging.Core
 {
-    [DefaultExecutionOrder(-1)]
     public class DebuggingPresenter : MonoBehaviour
     {
         [SerializeField] private bool _forceReleaseBuild;
@@ -14,7 +13,7 @@ namespace GigaCreation.Tools.Debugging.Core
 
         private void Awake()
         {
-            // リリースビルド痔は自身を破棄する
+            // リリースビルド時は自身を破棄する
             if (!Debug.isDebugBuild || _forceReleaseBuild)
             {
                 Destroy(this);

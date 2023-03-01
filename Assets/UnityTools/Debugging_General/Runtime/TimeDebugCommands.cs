@@ -4,26 +4,28 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging
+namespace GigaCreation.Tools.Debugging.General
 {
     public class TimeDebugCommands : MonoBehaviour
     {
         [SerializeField] private FloatReactiveProperty _timeScale = new(1f);
 
-        [SerializeField] private bool _withCtrlKey;
+        [Space]
+        [SerializeField] private bool _withCommandKey;
         [SerializeField] private bool _withShiftKey;
-        [SerializeField] private bool _withAltKey;
+        [SerializeField] private bool _withOptionKey;
+        [SerializeField] private bool _withControlKey;
 
-        private float _storedTimeScale;
+        private float _storedTimeScale = -1f;
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out IDebuggingService debugCore))
+            if (!ServiceLocator.TryGet(out IDebuggingService debuggingService))
             {
                 return;
             }
 
-            debugCore
+            debuggingService
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
@@ -33,85 +35,82 @@ namespace GigaCreation.Tools.Debugging
                         {
                             Time.timeScale = x;
                         })
-                        .AddTo(debugCore.DebuggingDisposables);
+                        .AddTo(debuggingService.DebuggingDisposables);
 
                     this
                         .UpdateAsObservable()
                         .Where(_ => AreModifierKeysPressed())
                         .Subscribe(_ =>
                         {
-                            if (Input.GetKeyDown(KeyCode.Space))
-                            {
-                                TogglePause();
-                            }
-
                             if (Input.GetKeyDown(KeyCode.RightArrow))
-                            {
-                                SpeedUp(0.05f);
-                            }
-
-                            if (Input.GetKeyDown(KeyCode.LeftArrow))
-                            {
-                                SlowDown(0.05f);
-                            }
-
-                            if (Input.GetKeyDown(KeyCode.UpArrow))
                             {
                                 SpeedUp(0.2f);
                             }
 
-                            if (Input.GetKeyDown(KeyCode.DownArrow))
+                            if (Input.GetKeyDown(KeyCode.LeftArrow))
                             {
                                 SlowDown(0.2f);
                             }
+
+                            if (Input.GetKeyDown(KeyCode.UpArrow))
+                            {
+                                SpeedUp(1f);
+                            }
+
+                            if (Input.GetKeyDown(KeyCode.DownArrow))
+                            {
+                                SlowDown(1f);
+                            }
+
+                            if (Input.GetKeyDown(KeyCode.Space))
+                            {
+                                TogglePause();
+                            }
                         })
-                        .AddTo(debugCore.DebuggingDisposables);
+                        .AddTo(debuggingService.DebuggingDisposables);
                 })
                 .AddTo(this);
         }
 
         private bool AreModifierKeysPressed()
         {
-            return (!_withCtrlKey || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            return (!_withCommandKey || Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand))
                 && (!_withShiftKey || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                && (!_withAltKey || Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt));
-        }
-
-        public void TogglePause()
-        {
-            if (Mathf.Approximately(Time.timeScale, 0f))
-            {
-                _timeScale.Value = _storedTimeScale;
-                return;
-            }
-
-            _storedTimeScale = Time.timeScale;
-            _timeScale.Value = 0f;
+                && (!_withOptionKey || Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt))
+                && (!_withControlKey || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl));
         }
 
         public void SpeedUp(float num)
         {
             _timeScale.Value = Time.timeScale + num;
+            _storedTimeScale = -1f;
         }
 
         public void SlowDown(float num)
         {
             _timeScale.Value = Mathf.Max(0f, Time.timeScale - num);
+
+            if (Time.timeScale > 0f)
+            {
+                _storedTimeScale = -1f;
+            }
         }
 
-        private void OnClickSlowDownButtonInInspector()
+        public void TogglePause()
         {
-            SlowDown(0.2f);
-        }
+            if (_storedTimeScale <= -1f)
+            {
+                if (Time.timeScale > 0f)
+                {
+                    _storedTimeScale = Time.timeScale;
+                    _timeScale.Value = 0f;
+                }
 
-        private void OnClickPauseButtonInInspector()
-        {
-            TogglePause();
-        }
+                return;
+            }
 
-        private void OnClickSpeedUpButtonInInspector()
-        {
-            SpeedUp(0.2f);
+            _timeScale.Value = _storedTimeScale;
+            _storedTimeScale = -1;
         }
     }
 }

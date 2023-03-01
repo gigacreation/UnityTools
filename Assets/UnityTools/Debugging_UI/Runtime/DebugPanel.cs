@@ -26,9 +26,9 @@ namespace GigaCreation.Tools.Debugging
 
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebuggingService debugCore))
+            if (ServiceLocator.TryGet(out IDebuggingService debuggingService))
             {
-                debugCore
+                debuggingService
                     .IsDebugMode
                     .Where(x => x)
                     .Subscribe(_ =>

@@ -1740,6 +1740,7 @@ GameObject:
   - component: {fileID: 877234881}
   - component: {fileID: 877234883}
   - component: {fileID: 877234882}
+  - component: {fileID: 877234884}
   m_Layer: 0
   m_Name: Debugging
   m_TagString: Untagged
@@ -1776,9 +1777,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeScale:
     value: 1
-  _withCtrlKey: 0
-  _withShiftKey: 0
-  _withAltKey: 0
+  _withCommandKey: 1
+  _withShiftKey: 1
+  _withOptionKey: 0
+  _withControlKey: 0
 --- !u!114 &877234883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1793,7 +1795,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forceReleaseBuild: 0
   _isDebugMode:
-    value: 0
+    value: 1
+--- !u!114 &877234884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877234880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cade69f182b6d438552c60589ea98a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &884314003
 GameObject:
   m_ObjectHideFlags: 0

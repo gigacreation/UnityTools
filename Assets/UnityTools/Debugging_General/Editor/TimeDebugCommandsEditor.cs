@@ -1,11 +1,21 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging.Editor
+namespace GigaCreation.Tools.Debugging.General.Editor
 {
     [CustomEditor(typeof(TimeDebugCommands))]
     public class TimeDebugCommandsEditor : UnityEditor.Editor
     {
+        private const string HelpMessage = @"
+上記の修飾キーを押しながら以下のキーを押すと、タイムスケールを変更できます。
+
+[←] : -0.2
+[→] : +0.2
+[↓] : -1
+[↑] : +1
+[Space] : ポーズ / アンポーズ
+";
+
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
@@ -15,9 +25,9 @@ namespace GigaCreation.Tools.Debugging.Editor
                 return;
             }
 
-            EditorGUILayout.HelpBox("上記の修飾キーを押しながら ←↓↑→ を押すと、タイムスケールを変更できます。", MessageType.Info);
-
-            GUILayout.Space(8f);
+            EditorGUILayout.Space();
+            EditorGUILayout.HelpBox(HelpMessage, MessageType.Info);
+            EditorGUILayout.Space();
 
             using (new EditorGUILayout.HorizontalScope())
             {

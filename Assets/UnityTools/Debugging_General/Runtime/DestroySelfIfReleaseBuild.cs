@@ -2,11 +2,11 @@
 using GigaCreation.Tools.Service;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging
+namespace GigaCreation.Tools.Debugging.General
 {
-    public class DestroySelfIfReleaseMode : MonoBehaviour
+    public class DestroySelfIfReleaseBuild : MonoBehaviour
     {
-        private void Awake()
+        private void Start()
         {
             if (!ServiceLocator.IsRegistered<IDebuggingService>())
             {
