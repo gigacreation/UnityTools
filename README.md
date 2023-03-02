@@ -51,7 +51,3 @@
 ## Debugging / Text Display / Build Timestamp
 
 `https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_TextDisplay_BuildTimestamp`
-
-## Debugging / UniTask
-
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_UniTask`
