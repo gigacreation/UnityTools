@@ -24,7 +24,7 @@ namespace GigaCreation.Tools.Debugging
                 ? _buildTimestamp.ToString(_format, _utcOffsetHours)
                 : "The BuildTimestamp asset is not set.";
 
-            Label.SetText(message);
+            SetTextToLabel(message);
         }
 
         public void SetBuildTimestampAsset()

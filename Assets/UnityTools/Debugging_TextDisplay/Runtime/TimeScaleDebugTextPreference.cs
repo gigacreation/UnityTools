@@ -19,9 +19,9 @@ namespace GigaCreation.Tools.Debugging
                         .UpdateAsObservable()
                         .Subscribe(__ =>
                         {
-                            Label.SetText($"TimeScale: {Time.timeScale}");
+                            SetTextToLabel($"TimeScale: {Time.timeScale}");
                         })
-                        .AddTo(DebugService.DebuggingDisposables);
+                        .AddTo(DebugService.DebugDisposables);
                 })
                 .AddTo(this);
         }

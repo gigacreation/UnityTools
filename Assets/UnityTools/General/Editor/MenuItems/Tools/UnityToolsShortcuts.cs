@@ -55,7 +55,7 @@ namespace GigaCreation.Tools
 
             foreach (Object instance in overriddenPrefabInstances)
             {
-                Debug.Log($"ルートの Prefab が変更されています: {instance}");
+                Debug.Log($"ルートの Prefab が変更されています：{instance}");
             }
 
             if (overriddenPrefabInstances.Length == 0)

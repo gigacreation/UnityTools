@@ -23,19 +23,25 @@ namespace GigaCreation.Tools.Debugging
             _autoLayoutSupporter = GetComponent<AutoLayoutSupporter>();
         }
 
-        public TextMeshProUGUI Add(string name, int priority)
+        /// <summary>
+        /// デバッグラベルを生成して返します。
+        /// </summary>
+        /// <param name="priority">ラベルの優先度。この順番でソートされて表示されます。</param>
+        /// <returns></returns>
+        public TextMeshProUGUI Add(int priority)
         {
             if (_labels.ContainsKey(priority))
             {
-                Debug.LogError($"すでに同じ優先度のデバッグラベルが登録されています：{name}, {priority}");
+                Debug.LogError($"すでに同じ優先度のデバッグラベルが登録されています：{priority}");
                 return null;
             }
 
+            var gameObjectName = $"DebugLabel_{priority}";
             TextMeshProUGUI newLabel;
 
             if (_labelPrefab == null)
             {
-                var go = new GameObject(name)
+                var go = new GameObject(gameObjectName)
                 {
                     transform =
                     {
@@ -50,7 +56,7 @@ namespace GigaCreation.Tools.Debugging
             else
             {
                 newLabel = Instantiate(_labelPrefab, _transform);
-                newLabel.name = name;
+                newLabel.name = gameObjectName;
             }
 
             _labels.Add(priority, newLabel);
@@ -73,19 +79,20 @@ namespace GigaCreation.Tools.Debugging
             return newLabel;
         }
 
-        public void Remove(string className)
+        /// <summary>
+        /// 指定されたデバッグラベルを削除します。
+        /// </summary>
+        /// <param name="priority">削除するラベルの優先度。</param>
+        public void Remove(int priority)
         {
-            KeyValuePair<int, TextMeshProUGUI> childPair
-                = _labels.SingleOrDefault(pair => (pair.Value != null) && (pair.Value.name == className));
-
-            if (!childPair.Value)
+            if (!_labels.TryGetValue(priority, out TextMeshProUGUI label))
             {
-                Debug.LogWarning($"要求されたラベルが存在しません: {className}");
+                Debug.LogWarning($"要求されたラベルが存在しません：{priority}");
                 return;
             }
 
-            _labels.Remove(childPair.Key);
-            Destroy(childPair.Value.gameObject);
+            _labels.Remove(priority);
+            Destroy(label.gameObject);
 
             if (_autoLayoutSupporter)
             {

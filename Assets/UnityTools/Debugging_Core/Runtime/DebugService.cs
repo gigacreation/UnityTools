@@ -7,7 +7,7 @@ namespace GigaCreation.Tools.Debugging.Core
         private readonly ReactiveProperty<bool> _isDebugMode;
 
         public IReactiveProperty<bool> IsDebugMode => _isDebugMode;
-        public CompositeDisposable DebuggingDisposables { get; } = new();
+        public CompositeDisposable DebugDisposables { get; } = new();
 
         public DebugService(bool initialMode)
         {
@@ -17,14 +17,14 @@ namespace GigaCreation.Tools.Debugging.Core
                 .Where(x => !x)
                 .Subscribe(_ =>
                 {
-                    DebuggingDisposables.Clear();
+                    DebugDisposables.Clear();
                 });
         }
 
         public void Dispose()
         {
             _isDebugMode.Dispose();
-            DebuggingDisposables.Dispose();
+            DebugDisposables.Dispose();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace GigaCreation.Tools.Debugging.General
                         {
                             Time.timeScale = x;
                         })
-                        .AddTo(debugService.DebuggingDisposables);
+                        .AddTo(debugService.DebugDisposables);
 
                     this
                         .UpdateAsObservable()
@@ -67,7 +67,7 @@ namespace GigaCreation.Tools.Debugging.General
                                 TogglePause();
                             }
                         })
-                        .AddTo(debugService.DebuggingDisposables);
+                        .AddTo(debugService.DebugDisposables);
                 })
                 .AddTo(this);
         }

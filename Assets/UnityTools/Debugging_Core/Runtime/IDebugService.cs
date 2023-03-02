@@ -14,6 +14,6 @@ namespace GigaCreation.Tools.Debugging.Core
         /// <summary>
         /// デバッグモード解除時にクリアされる Disposable。
         /// </summary>
-        CompositeDisposable DebuggingDisposables { get; }
+        CompositeDisposable DebugDisposables { get; }
     }
 }

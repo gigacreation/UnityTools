@@ -22,24 +22,24 @@ namespace GigaCreation.Tools.Debugging.Core
 
             if (ServiceLocator.TryGet(out _debugService))
             {
-                DebugPresenter[] debuggingPresentersInScene
+                DebugPresenter[] debugPresentersInScene
                     = FindObjectsByType<DebugPresenter>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
-                // DebuggingService はすでに登録されているが、DebuggingPresenter はシーン上に自分しかいない場合、
-                // 自身のデバッグモードフラグを DebuggingService とリンクさせて終了する
-                // （別のシーンで DebuggingPresenter が DebuggingService を登録した後にこのシーンへ遷移してきた場合など）
-                if (debuggingPresentersInScene.Length == 1)
+                // DebugService はすでに登録されているが、DebugPresenter はシーン上に自分しかいない場合、
+                // 自身のデバッグモードフラグを DebugService とリンクさせて終了する
+                // （別のシーンで DebugPresenter が DebugService を登録した後にこのシーンへ遷移してきた場合など）
+                if (debugPresentersInScene.Length == 1)
                 {
                     LinkDebugModeFlags(_debugService);
                     return;
                 }
 
-                // 自身の他に DebuggingPresenter が存在していたら、自身を破棄する
+                // 自身の他に DebugPresenter が存在していたら、自身を破棄する
                 Destroy(this);
                 return;
             }
 
-            // DebuggingService がまだ登録されていなかった場合、DebuggingService を生成し、デバッグモードフラグを自身とリンクさせ、登録を行う
+            // DebugService がまだ登録されていなかった場合、DebugService を生成し、デバッグモードフラグを自身とリンクさせ、登録を行う
             _debugService = new DebugService(_isDebugMode.Value);
             LinkDebugModeFlags(_debugService);
             ServiceLocator.Register(_debugService);
@@ -51,7 +51,7 @@ namespace GigaCreation.Tools.Debugging.Core
         }
 
         /// <summary>
-        /// この Presenter のデバッグモードフラグと、DebuggingService のデバッグモードフラグを連動させます。
+        /// この Presenter のデバッグモードフラグと、DebugService のデバッグモードフラグを連動させます。
         /// </summary>
         /// <param name="debugService">デバッグサービス。</param>
         private void LinkDebugModeFlags(IDebugService debugService)

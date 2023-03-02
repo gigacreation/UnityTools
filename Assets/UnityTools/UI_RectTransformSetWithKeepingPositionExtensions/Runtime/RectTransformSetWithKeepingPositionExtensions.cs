@@ -41,7 +41,7 @@ namespace GigaCreation.Tools
 
             if (parentRt == null)
             {
-                Debug.LogError($"親の RectTransform が見つかりません: {self}");
+                Debug.LogError($"親の RectTransform が見つかりません：{self}");
                 return;
             }
 

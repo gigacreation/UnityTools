@@ -1,26 +1,25 @@
 ﻿using GigaCreation.Tools.Debugging.Core;
 using GigaCreation.Tools.Service;
-using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging
 {
-    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public abstract class DebugTextPreference : MonoBehaviour
     {
         [SerializeField] private int _priority;
 
-        protected IDebugService DebugService;
-        protected TextMeshProUGUI Label;
-
+        private IDebugService _debugService;
         private DebugLabelManager _debugLabelManager;
+        private TextMeshProUGUI _label;
 
         private bool _isQuitting;
 
+        protected IDebugService DebugService => _debugService;
+
         private void Start()
         {
-            if (ServiceLocator.TryGet(out DebugService))
+            if (ServiceLocator.TryGet(out _debugService))
             {
                 Initialize();
             }
@@ -33,7 +32,7 @@ namespace GigaCreation.Tools.Debugging
                 return;
             }
 
-            _debugLabelManager.Remove(GetType().Name);
+            _debugLabelManager.Remove(_priority);
         }
 
         private void OnApplicationQuit()
@@ -43,10 +42,10 @@ namespace GigaCreation.Tools.Debugging
 
         protected virtual void Initialize()
         {
-            Label = AddAndGetLabel();
+            _label = AddLabel();
         }
 
-        protected TextMeshProUGUI AddAndGetLabel()
+        private TextMeshProUGUI AddLabel()
         {
             if (!TryGetComponent(out _debugLabelManager))
             {
@@ -55,11 +54,16 @@ namespace GigaCreation.Tools.Debugging
 
             if (!_debugLabelManager)
             {
-                Debug.LogError("DebugLabelManager が見つかりません。");
+                Debug.LogError("シーン内に DebugLabelManager が存在していません。");
                 return null;
             }
 
-            return _debugLabelManager.Add(GetType().Name, _priority);
+            return _debugLabelManager.Add(_priority);
+        }
+
+        protected void SetTextToLabel(string text)
+        {
+            _label.SetText(text);
         }
     }
 }

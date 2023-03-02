@@ -20,19 +20,19 @@ namespace GigaCreation.Tools.Debugging
                 .Where(x => x)
                 .Subscribe(_ =>
                 {
-                    Label.SetText("- fps");
+                    SetTextToLabel("- fps");
 
                     this
                         .UpdateAsObservable()
-                        .Select(__ => Time.deltaTime)
+                        .Select(_ => Time.deltaTime)
                         .Buffer(BufferSize, 1)
                         .Select(y => 1f / y.Average())
                         .ToReadOnlyReactiveProperty()
                         .Subscribe(fps =>
                         {
-                            Label.SetText($"{fps:F1} fps");
+                            SetTextToLabel($"{fps:F1} fps");
                         })
-                        .AddTo(DebugService.DebuggingDisposables);
+                        .AddTo(DebugService.DebugDisposables);
                 })
                 .AddTo(this);
         }
