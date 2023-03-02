@@ -2,7 +2,7 @@
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.UniTasks
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public interface ISimpleWaitable

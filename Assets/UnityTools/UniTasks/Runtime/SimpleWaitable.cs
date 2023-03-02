@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.UniTasks
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public class SimpleWaitable : ISimpleWaitable

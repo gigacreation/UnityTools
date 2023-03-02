@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.UniTasks
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class SimpleWaitableExtensions
