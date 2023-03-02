@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using GigaCreation.Tools.Debugging.Core;
 using GigaCreation.Tools.Service;
-using JetBrains.Annotations;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GigaCreation.Tools.Debugging
 {
@@ -11,12 +11,15 @@ namespace GigaCreation.Tools.Debugging
     /// デバッグモード中、表示・非表示を切り替えることができるパネルです。
     /// パネルが複数ある場合、一つのパネルを表示すると他のパネルは自動で非表示になります。
     /// </summary>
-    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public class DebugExclusivePanel : MonoBehaviour
     {
         [SerializeField] private Transform[] _contents;
-        [SerializeField] private Transform _showButton;
-        [SerializeField] private Transform _hideButton;
+
+        [Space]
+        [SerializeField] private Transform _showButtonTransform;
+        [SerializeField] private Button _showButton;
+        [SerializeField] private Transform _hideButtonTransform;
+        [SerializeField] private Button _hideButton;
 
         private Transform[] _otherDebugPanels;
 
@@ -35,12 +38,28 @@ namespace GigaCreation.Tools.Debugging
                 return;
             }
 
+            _showButton
+                .OnClickAsObservable()
+                .Subscribe(_ =>
+                {
+                    ShowContent();
+                })
+                .AddTo(this);
+
+            _hideButton
+                .OnClickAsObservable()
+                .Subscribe(_ =>
+                {
+                    HideContent();
+                })
+                .AddTo(this);
+
             debugService
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
                 {
-                    Dismiss();
+                    HideContent();
                 })
                 .AddTo(this);
         }
@@ -63,7 +82,7 @@ namespace GigaCreation.Tools.Debugging
             _isQuitting = true;
         }
 
-        public void Present()
+        private void ShowContent()
         {
             foreach (Transform content in _contents)
             {
@@ -75,11 +94,11 @@ namespace GigaCreation.Tools.Debugging
                 panel.localScale = Vector3.zero;
             }
 
-            _showButton.localScale = Vector3.zero;
-            _hideButton.localScale = Vector3.one;
+            _showButtonTransform.localScale = Vector3.zero;
+            _hideButtonTransform.localScale = Vector3.one;
         }
 
-        public void Dismiss()
+        private void HideContent()
         {
             foreach (Transform content in _contents)
             {
@@ -91,8 +110,8 @@ namespace GigaCreation.Tools.Debugging
                 panel.localScale = Vector3.one;
             }
 
-            _showButton.localScale = Vector3.one;
-            _hideButton.localScale = Vector3.zero;
+            _showButtonTransform.localScale = Vector3.one;
+            _hideButtonTransform.localScale = Vector3.zero;
         }
     }
 }

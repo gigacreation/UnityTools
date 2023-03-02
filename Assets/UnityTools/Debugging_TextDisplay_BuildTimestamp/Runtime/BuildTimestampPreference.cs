@@ -9,10 +9,8 @@ namespace GigaCreation.Tools.Debugging
 {
     public class BuildTimestampPreference : DebugTextPreference
     {
-        [Header("Assets")]
+        [Space]
         [SerializeField] private BuildTimestamp _buildTimestamp;
-
-        [Header("Parameters")]
         [SerializeField] private string _format = "yyyy/MM/dd HH:mm:ss";
         [SerializeField] private float _utcOffsetHours;
 
