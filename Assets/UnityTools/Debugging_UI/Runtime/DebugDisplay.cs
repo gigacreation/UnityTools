@@ -10,35 +10,39 @@ namespace GigaCreation.Tools.Debugging
     /// </summary>
     public class DebugDisplay : MonoBehaviour
     {
+        [SerializeField] private Canvas _canvas;
+
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebugService debugService))
+            if (!ServiceLocator.TryGet(out IDebugService debugService))
             {
-                debugService
-                    .IsDebugMode
-                    .Subscribe(x =>
-                    {
-                        if (x)
-                        {
-                            Present();
-                        }
-                        else
-                        {
-                            Dismiss();
-                        }
-                    })
-                    .AddTo(this);
+                return;
             }
+
+            debugService
+                .IsDebugMode
+                .Subscribe(ChangeVisibility)
+                .AddTo(this);
         }
 
-        private void Present()
+        private void Reset()
         {
-            transform.localScale = Vector3.one;
+            _canvas = GetComponent<Canvas>();
         }
 
-        private void Dismiss()
+        /// <summary>
+        /// 自身の表示・非表示を切り替えます。
+        /// </summary>
+        /// <param name="visible">true なら表示をし、false なら非表示にします。</param>
+        private void ChangeVisibility(bool visible)
         {
-            transform.localScale = Vector3.zero;
+            if (_canvas)
+            {
+                _canvas.enabled = visible;
+                return;
+            }
+
+            transform.localScale = visible ? Vector3.one : Vector3.zero;
         }
     }
 }

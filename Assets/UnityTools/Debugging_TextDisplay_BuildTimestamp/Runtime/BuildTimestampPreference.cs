@@ -21,7 +21,7 @@ namespace GigaCreation.Tools.Debugging
             base.Initialize();
 
             string message = _buildTimestamp
-                ? _buildTimestamp.ToString(_format, _utcOffsetHours)
+                ? $"Build Timestamp: {_buildTimestamp.ToString(_format, _utcOffsetHours)}"
                 : "The BuildTimestamp asset is not set.";
 
             SetTextToLabel(message);

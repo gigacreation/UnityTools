@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using GigaCreation.Tools.Debugging.Core;
 using GigaCreation.Tools.Service;
 using JetBrains.Annotations;
@@ -13,30 +12,37 @@ namespace GigaCreation.Tools.Debugging
     /// パネルが複数ある場合、一つのパネルを表示すると他のパネルは自動で非表示になります。
     /// </summary>
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
-    public class DebugPanel : MonoBehaviour
+    public class DebugExclusivePanel : MonoBehaviour
     {
         [SerializeField] private Transform[] _contents;
-
         [SerializeField] private Transform _showButton;
         [SerializeField] private Transform _hideButton;
 
-        private IEnumerable<Transform> _otherDebugPanels;
+        private Transform[] _otherDebugPanels;
 
         private bool _isQuitting;
 
+        private Transform[] OtherDebugPanels
+            => _otherDebugPanels ??= FindObjectsByType<DebugExclusivePanel>(FindObjectsSortMode.None)
+                .Where(panel => panel != this)
+                .Select(panel => panel.transform)
+                .ToArray();
+
         private void Start()
         {
-            if (ServiceLocator.TryGet(out IDebugService debugService))
+            if (!ServiceLocator.TryGet(out IDebugService debugService))
             {
-                debugService
-                    .IsDebugMode
-                    .Where(x => x)
-                    .Subscribe(_ =>
-                    {
-                        Dismiss();
-                    })
-                    .AddTo(this);
+                return;
             }
+
+            debugService
+                .IsDebugMode
+                .Where(x => x)
+                .Subscribe(_ =>
+                {
+                    Dismiss();
+                })
+                .AddTo(this);
         }
 
         private void OnDestroy()
@@ -46,11 +52,9 @@ namespace GigaCreation.Tools.Debugging
                 return;
             }
 
-            FindDebugPanelsIfNotAlready();
-
-            foreach (Transform panel in _otherDebugPanels)
+            foreach (Transform panel in OtherDebugPanels)
             {
-                panel.transform.localScale = Vector3.one;
+                panel.localScale = Vector3.one;
             }
         }
 
@@ -61,16 +65,14 @@ namespace GigaCreation.Tools.Debugging
 
         public void Present()
         {
-            FindDebugPanelsIfNotAlready();
-
             foreach (Transform content in _contents)
             {
                 content.localScale = Vector3.one;
             }
 
-            foreach (Transform panel in _otherDebugPanels)
+            foreach (Transform panel in OtherDebugPanels)
             {
-                panel.transform.localScale = Vector3.zero;
+                panel.localScale = Vector3.zero;
             }
 
             _showButton.localScale = Vector3.zero;
@@ -79,27 +81,18 @@ namespace GigaCreation.Tools.Debugging
 
         public void Dismiss()
         {
-            FindDebugPanelsIfNotAlready();
-
             foreach (Transform content in _contents)
             {
                 content.localScale = Vector3.zero;
             }
 
-            foreach (Transform panel in _otherDebugPanels)
+            foreach (Transform panel in OtherDebugPanels)
             {
-                panel.transform.localScale = Vector3.one;
+                panel.localScale = Vector3.one;
             }
 
             _showButton.localScale = Vector3.one;
             _hideButton.localScale = Vector3.zero;
-        }
-
-        private void FindDebugPanelsIfNotAlready()
-        {
-            _otherDebugPanels ??= FindObjectsOfType<DebugPanel>()
-                .Where(x => x != this)
-                .Select(x => x.transform);
         }
     }
 }

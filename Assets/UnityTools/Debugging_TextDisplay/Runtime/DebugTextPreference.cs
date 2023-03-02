@@ -19,10 +19,12 @@ namespace GigaCreation.Tools.Debugging
 
         private void Start()
         {
-            if (ServiceLocator.TryGet(out _debugService))
+            if (!ServiceLocator.TryGet(out _debugService))
             {
-                Initialize();
+                return;
             }
+
+            Initialize();
         }
 
         private void OnDestroy()
