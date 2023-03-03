@@ -1,13 +1,13 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class TransformExtensions
     {
         // =============================================================================================================
-        //  Reset
+        // Reset
         // =============================================================================================================
 
         public static void Reset(this Transform self)
@@ -18,7 +18,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  SetPosition
+        // SetPosition
         // =============================================================================================================
 
         public static void SetPosition(this Transform self, float x, float y, float z)
@@ -50,7 +50,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  AddPosition
+        // AddPosition
         // =============================================================================================================
 
         public static void AddPosition(this Transform self, float x, float y, float z)
@@ -74,7 +74,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  SetLocalPosition
+        // SetLocalPosition
         // =============================================================================================================
 
         public static void SetLocalPosition(this Transform self, float x, float y, float z)
@@ -106,7 +106,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  AddLocalPosition
+        // AddLocalPosition
         // =============================================================================================================
 
         public static void AddLocalPosition(this Transform self, float x, float y, float z)
@@ -150,7 +150,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  SetLocalScale
+        // SetLocalScale
         // =============================================================================================================
 
         public static void SetLocalScale(this Transform self, float x, float y, float z)
@@ -177,7 +177,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  AddLocalScale
+        // AddLocalScale
         // =============================================================================================================
 
         public static void AddLocalScale(this Transform self, float x, float y, float z)
@@ -205,7 +205,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  SetEulerAngles
+        // SetEulerAngles
         // =============================================================================================================
 
         public static void SetEulerAngles(this Transform self, float x, float y, float z)
@@ -232,7 +232,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  AddEulerAngles
+        // AddEulerAngles
         // =============================================================================================================
 
         public static void AddEulerAngles(this Transform self, float x, float y, float z)
@@ -260,7 +260,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  SetLocalEulerAngles
+        // SetLocalEulerAngles
         // =============================================================================================================
 
         public static void SetLocalEulerAngles(this Transform self, float x, float y, float z)
@@ -287,7 +287,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  AddLocalEulerAngles
+        // AddLocalEulerAngles
         // =============================================================================================================
 
         public static void AddLocalEulerAngles(this Transform self, float x, float y, float z)
@@ -315,7 +315,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  Lerp
+        // Lerp
         // =============================================================================================================
 
         public static void Lerp(this Transform self, Transform to, float t)
@@ -397,7 +397,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  SmoothStep
+        // SmoothStep
         // =============================================================================================================
 
         public static void SmoothStep(this Transform self, Transform to, float t)
@@ -493,7 +493,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  Clamp
+        // Clamp
         // =============================================================================================================
 
         public static void Clamp(this Transform self, Transform min, Transform max)
@@ -584,7 +584,7 @@ namespace GigaCreation.Tools
         }
 
         // =============================================================================================================
-        //  LookAt2D
+        // LookAt2D
         // =============================================================================================================
 
         public static void LookAt2D(this Transform self, Transform target)

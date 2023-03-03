@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Ui
 {
     [ExecuteAlways]
     [RequireComponent(typeof(RectTransform))]

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GigaCreation.Tools.Ui;
 using TMPro;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging
+namespace GigaCreation.Tools.Debugging.TextDisplay
 {
     [RequireComponent(typeof(RectTransform))]
     public class DebugLabelManager : MonoBehaviour

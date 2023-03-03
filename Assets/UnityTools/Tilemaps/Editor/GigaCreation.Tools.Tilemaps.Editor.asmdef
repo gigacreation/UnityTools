@@ -1,5 +1,5 @@
 {
-    "name": "GigaCreation.Tools.Tilemap.Editor",
+    "name": "GigaCreation.Tools.Tilemaps.Editor",
     "rootNamespace": "",
     "references": [
         "GUID:3a9781db4804a9945b9883f3a7c46d45"

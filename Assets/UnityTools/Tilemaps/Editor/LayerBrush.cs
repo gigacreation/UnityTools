@@ -6,7 +6,7 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace GigaCreation.Tools.Editor
+namespace GigaCreation.Tools.Tilemaps.Editor
 {
     /// <summary>
     /// This Brush targets multiple Tilemaps linked through the same GridLayout.

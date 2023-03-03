@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Playables;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General.Editor
 {
     public static class PlayableDirectorCleaner
     {

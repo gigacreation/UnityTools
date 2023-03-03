@@ -1,17 +1,17 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Ui.Editor
 {
     [CustomEditor(typeof(AutoLayoutSupporter))]
     [CanEditMultipleObjects]
-    public class AutoLayoutSupporterEditor : Editor
+    public class AutoLayoutSupporterEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            if (!(target is AutoLayoutSupporter autoLayoutSupporter))
+            if (target is not AutoLayoutSupporter autoLayoutSupporter)
             {
                 return;
             }

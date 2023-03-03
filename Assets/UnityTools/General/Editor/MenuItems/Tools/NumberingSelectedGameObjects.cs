@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General.Editor
 {
     public static class NumberingSelectedGameObjects
     {

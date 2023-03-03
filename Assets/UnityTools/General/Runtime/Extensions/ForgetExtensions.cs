@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 #endif
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class ForgetExtensions

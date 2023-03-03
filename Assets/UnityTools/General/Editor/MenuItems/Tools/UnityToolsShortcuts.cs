@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General.Editor
 {
     public static class UnityToolsShortcuts
     {

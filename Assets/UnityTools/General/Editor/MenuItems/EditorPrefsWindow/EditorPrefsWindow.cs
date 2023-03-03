@@ -8,7 +8,7 @@ using Microsoft.Win32;
 using UnityEditor;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General.Editor
 {
     /// <summary>
     /// EditorPrefs が保存しているすべてのキーと値を閲覧できるエディタ拡張

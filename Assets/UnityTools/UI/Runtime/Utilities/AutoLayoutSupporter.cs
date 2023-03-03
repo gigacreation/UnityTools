@@ -9,7 +9,7 @@ using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 #endif
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Ui
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public class AutoLayoutSupporter : MonoBehaviour

@@ -20,13 +20,13 @@
 
 `https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/TextMeshPro`
 
-## Tilemap
-
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Tilemap`
-
 ## Addressables
 
 `https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Addressables`
+
+## Tilemap
+
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Tilemap`
 
 ## UniTask
 

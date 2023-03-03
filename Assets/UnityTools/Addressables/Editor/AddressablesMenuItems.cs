@@ -9,7 +9,7 @@ using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Addressables.Editor
 {
     public static class AddressablesMenuItems
     {

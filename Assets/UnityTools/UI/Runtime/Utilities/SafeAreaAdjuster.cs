@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEditor;
 #endif
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Ui
 {
     [ExecuteAlways]
     [RequireComponent(typeof(RectTransform))]

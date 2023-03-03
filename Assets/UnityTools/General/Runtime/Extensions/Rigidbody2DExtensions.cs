@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class Rigidbody2DExtensions

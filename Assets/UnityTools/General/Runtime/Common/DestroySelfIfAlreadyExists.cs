@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General
 {
     public class DestroySelfIfAlreadyExists : MonoBehaviour
     {

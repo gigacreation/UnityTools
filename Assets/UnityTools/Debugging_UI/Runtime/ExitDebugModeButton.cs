@@ -3,7 +3,7 @@ using GigaCreation.Tools.Service;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GigaCreation.Tools.Debugging
+namespace GigaCreation.Tools.Debugging.Ui
 {
     [RequireComponent(typeof(Image), typeof(Button))]
     public class ExitDebugModeButton : MonoBehaviour

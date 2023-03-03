@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General
 {
     // TODO: _targetKind が Selections でないときは _selections を非表示にする
     public class SetActiveOnAwake : MonoBehaviour

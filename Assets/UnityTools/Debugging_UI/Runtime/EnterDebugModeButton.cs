@@ -5,7 +5,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GigaCreation.Tools.Debugging
+namespace GigaCreation.Tools.Debugging.Ui
 {
     [RequireComponent(typeof(Image), typeof(Selectable))]
     public class EnterDebugModeButton : MonoBehaviour

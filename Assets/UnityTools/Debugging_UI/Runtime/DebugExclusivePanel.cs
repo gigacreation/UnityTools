@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GigaCreation.Tools.Debugging
+namespace GigaCreation.Tools.Debugging.Ui
 {
     /// <summary>
     /// デバッグモード中、表示・非表示を切り替えることができるパネルです。

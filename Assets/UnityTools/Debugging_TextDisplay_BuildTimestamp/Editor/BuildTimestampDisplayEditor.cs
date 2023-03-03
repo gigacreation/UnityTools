@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging.Editor
+namespace GigaCreation.Tools.Debugging.TextDisplay.Editor
 {
     [CustomEditor(typeof(BuildTimestampPreference))]
     public class BuildTimestampDisplayEditor : UnityEditor.Editor

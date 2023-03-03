@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General.Editor
 {
     public class TagAndLayerFinder : EditorWindow
     {

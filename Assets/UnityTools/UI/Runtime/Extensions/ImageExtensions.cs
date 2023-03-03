@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Ui
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class ImageExtensions

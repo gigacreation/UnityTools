@@ -4,7 +4,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Ui
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class RectTransformSetWithKeepingPositionExtensions

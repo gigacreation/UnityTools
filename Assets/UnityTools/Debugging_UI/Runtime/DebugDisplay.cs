@@ -3,7 +3,7 @@ using GigaCreation.Tools.Service;
 using UniRx;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging
+namespace GigaCreation.Tools.Debugging.Ui
 {
     /// <summary>
     /// デバッグモードがオンのときに表示され、オフのときに非表示になります。

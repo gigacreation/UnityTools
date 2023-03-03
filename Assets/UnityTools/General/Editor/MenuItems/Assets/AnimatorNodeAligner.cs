@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.General.Editor
 {
     public static class AnimatorNodeAligner
     {
@@ -26,8 +26,8 @@ namespace GigaCreation.Tools
 
             IEnumerable<AnimatorController> selectedAnimatorControllers = Selection
                 .objects
-                .Select(x => x as AnimatorController)
-                .Where(x => x);
+                .Select(obj => obj as AnimatorController)
+                .Where(ac => ac);
 
             foreach (AnimatorController ac in selectedAnimatorControllers)
             {
@@ -47,7 +47,7 @@ namespace GigaCreation.Tools
         [MenuItem(AlignAnimatorNodesName, true)]
         private static bool NoAnimatorControllerSelection()
         {
-            return Selection.objects.All(x => x as AnimatorController);
+            return Selection.objects.All(obj => obj as AnimatorController);
         }
     }
 }

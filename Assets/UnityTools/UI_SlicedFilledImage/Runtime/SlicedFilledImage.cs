@@ -11,7 +11,7 @@ using UnityEngine.UI;
 using UnityEngine.U2D;
 #endif
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.Ui
 {
     // Credit: https://bitbucket.org/Unity-Technologies/ui/src/2018.4/UnityEngine.UI/UI/Core/Image.cs
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]

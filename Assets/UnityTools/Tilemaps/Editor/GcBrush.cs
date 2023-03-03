@@ -2,7 +2,7 @@
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Editor
+namespace GigaCreation.Tools.Tilemaps.Editor
 {
     [CustomGridBrush(true, true, true, "GcBrush")]
     public class GcBrush : GridBrush

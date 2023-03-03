@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using GigaCreation.Tools.Ui;
 using GigaCreation.Tools.UniTasks;
 using UniRx;
 using UnityEngine;

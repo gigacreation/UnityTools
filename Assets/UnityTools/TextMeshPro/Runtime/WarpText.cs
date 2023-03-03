@@ -5,7 +5,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-namespace GigaCreation.Tools
+namespace GigaCreation.Tools.TextMeshPro
 {
     [RequireComponent(typeof(TMP_Text))]
     public class WarpText : MonoBehaviour
