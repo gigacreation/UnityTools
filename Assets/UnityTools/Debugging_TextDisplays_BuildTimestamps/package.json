@@ -4,7 +4,7 @@
     "displayName": "UnityTools / Debug / Text Displays / Build Timestamps",
     "unity": "2021.3",
     "dependencies": {
-        "jp.gigacreation.tools.debugging.textdisplay": "1.1.0",
+        "jp.gigacreation.tools.debugging.textdisplays": "1.1.0",
         "jp.gigacreation.tools.buildtimestampdisplay": "2.0.0",
         "com.unity.textmeshpro": "3.0.6"
     },
