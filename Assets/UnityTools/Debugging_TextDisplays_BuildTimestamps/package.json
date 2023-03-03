@@ -1,0 +1,16 @@
+{
+    "name": "jp.gigacreation.tools.debugging.textdisplays.buildtimestamps",
+    "version": "1.1.0",
+    "displayName": "UnityTools / Debug / Text Displays / Build Timestamps",
+    "unity": "2021.3",
+    "dependencies": {
+        "jp.gigacreation.tools.debugging.textdisplay": "1.1.0",
+        "jp.gigacreation.tools.buildtimestampdisplay": "2.0.0",
+        "com.unity.textmeshpro": "3.0.6"
+    },
+    "author": {
+        "name": "GIGA CREATION",
+        "email": "gigacee@gigacreation.jp",
+        "url": "https://www.gigacreation.jp/"
+    }
+}

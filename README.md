@@ -6,15 +6,7 @@
 
 ## UI
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Ui`
-
-## UI / RectTransform Set with Keeping Position Extensions
-
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Ui_RectTransformSetWithKeepingPositionExtensions`
-
-## UI / Sliced Filled Image
-
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Ui_SlicedFilledImage`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/UI`
 
 ## TextMesh Pro
 
@@ -24,13 +16,13 @@
 
 `https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Addressables`
 
-## Tilemap
+## Tilemaps
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Tilemap`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Tilemaps`
 
-## UniTask
+## UniTasks
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/UniTask`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/UniTasks`
 
 ## Debugging / Core
 
@@ -42,12 +34,12 @@
 
 ## Debugging / UI
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_Ui`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_UI`
 
-## Debugging / Text Display
+## Debugging / Text Displays
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_TextDisplay`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_TextDisplays`
 
-## Debugging / Text Display / Build Timestamp
+## Debugging / Text Displays / Build Timestamps
 
-`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_TextDisplay_BuildTimestamp`
+`https://github.com/gigacreation/UnityTools.git?path=Assets/UnityTools/Debugging_TextDisplays_BuildTimestamps`

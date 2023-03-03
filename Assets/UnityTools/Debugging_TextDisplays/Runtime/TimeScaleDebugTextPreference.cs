@@ -2,7 +2,7 @@
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging.TextDisplay
+namespace GigaCreation.Tools.Debugging.TextDisplays
 {
     public class TimeScaleDebugTextPreference : DebugTextPreference
     {

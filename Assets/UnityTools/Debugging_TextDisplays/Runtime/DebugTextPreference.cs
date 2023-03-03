@@ -3,7 +3,7 @@ using GigaCreation.Tools.Service;
 using TMPro;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging.TextDisplay
+namespace GigaCreation.Tools.Debugging.TextDisplays
 {
     public abstract class DebugTextPreference : MonoBehaviour
     {

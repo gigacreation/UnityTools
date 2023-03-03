@@ -4,7 +4,7 @@ using GigaCreation.Tools.Ui;
 using TMPro;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging.TextDisplay
+namespace GigaCreation.Tools.Debugging.TextDisplays
 {
     [RequireComponent(typeof(RectTransform))]
     public class DebugLabelManager : MonoBehaviour

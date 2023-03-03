@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace GigaCreation.Tools.Debugging.TextDisplay
+namespace GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps
 {
     public class BuildTimestampPreference : DebugTextPreference
     {

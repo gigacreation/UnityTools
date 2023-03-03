@@ -1,6 +1,6 @@
 {
     "name": "jp.gigacreation.tools.textmeshpro",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "displayName": "UnityTools / TextMesh Pro",
     "unity": "2021.3",
     "dependencies": {

@@ -1,6 +1,6 @@
 using UnityEngine.SceneManagement;
 
-namespace GigaCreation.Tools.Debugging.TextDisplay
+namespace GigaCreation.Tools.Debugging.TextDisplays
 {
     public class ActiveSceneNameTextPreference : DebugTextPreference
     {

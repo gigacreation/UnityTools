@@ -1,8 +1,9 @@
 {
-    "name": "GigaCreation.Tools.UI.SlicedFilledImage.Editor",
+    "name": "GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:b86eb4df35a187b48bfaee5408a356d3"
+        "GUID:218c99f30364fd44880caf53a4ffa9f2",
+        "GUID:87554202b3901234d86090f34709df15"
     ],
     "includePlatforms": [
         "Editor"

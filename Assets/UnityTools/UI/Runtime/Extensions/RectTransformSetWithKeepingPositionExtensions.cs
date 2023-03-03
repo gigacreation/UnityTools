@@ -1,13 +1,11 @@
 ﻿// Original code from https://gist.github.com/nkjzm/1b31512c00aee93403427f14ebfb4db8
 // Licensed under https://opensource.org/licenses/mit-license.php
 
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace GigaCreation.Tools.Ui
 {
-    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
-    public static class RectTransformSetWithKeepingPositionExtensions
+    public static partial class RectTransformExtensions
     {
         public static void SetPivotWithKeepingPosition(this RectTransform self, Vector2 targetPivot)
         {

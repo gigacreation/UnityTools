@@ -1,7 +1,7 @@
 {
-    "name": "jp.gigacreation.tools.unitask",
-    "version": "1.0.0",
-    "displayName": "UnityTools / UniTask",
+    "name": "jp.gigacreation.tools.unitasks",
+    "version": "1.1.0",
+    "displayName": "UnityTools / UniTasks",
     "unity": "2021.3",
     "dependencies": {
         "com.cysharp.unitask": "2.3.3"

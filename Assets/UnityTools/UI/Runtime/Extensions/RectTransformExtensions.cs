@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GigaCreation.Tools.Ui
 {
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
-    public static class RectTransformExtensions
+    public static partial class RectTransformExtensions
     {
         public static void SetAnchorMin(this RectTransform self, float x, float y)
         {
