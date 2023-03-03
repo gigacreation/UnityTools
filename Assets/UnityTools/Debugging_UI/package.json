@@ -4,8 +4,8 @@
     "displayName": "UnityTools / Debug / UI",
     "unity": "2021.3",
     "dependencies": {
-        "jp.gigacreation.tools.core": "1.1.0",
         "jp.gigacreation.tools.debugging.core": "1.1.0",
+        "jp.gigacreation.tools.service": "1.0.1",
         "com.neuecc.unirx": "7.1.0"
     },
     "author": {
