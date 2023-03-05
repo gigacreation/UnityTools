@@ -9,6 +9,9 @@ namespace GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps
 {
     public class BuildTimestampPreference : DebugTextPreference
     {
+        private const string BuildTimestampAssetNotFoundMessage
+            = "The BuildTimestamp asset could not be found. This asset will be generated after you run the build.";
+
         [Space]
         [SerializeField] private BuildTimestamp _buildTimestamp;
         [SerializeField] private string _format = "yyyy/MM/dd HH:mm:ss";
@@ -19,7 +22,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps
             base.Initialize();
 
             string message = _buildTimestamp
-                ? $"Build Timestamp: {_buildTimestamp.ToString(_format, _utcOffsetHours)}"
+                ? $"Built on {_buildTimestamp.ToString(_format, _utcOffsetHours)}"
                 : "The BuildTimestamp asset is not set.";
 
             SetTextToLabel(message);
@@ -32,10 +35,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps
 
             if (guid == null)
             {
-                Debug.LogWarning(
-                    "The BuildTimestamp asset could not be found. This asset is generated after you run the build."
-                );
-
+                Debug.LogWarning(BuildTimestampAssetNotFoundMessage);
                 return;
             }
 

@@ -9,7 +9,7 @@ namespace GigaCreation.Tools.Debugging.Core
         [SerializeField] private bool _forceReleaseBuild;
         [SerializeField] private BoolReactiveProperty _isDebugMode;
 
-        private IDebugService _debugService;
+        private IDebugManager _debugManager;
 
         private void Awake()
         {
@@ -20,17 +20,17 @@ namespace GigaCreation.Tools.Debugging.Core
                 return;
             }
 
-            if (ServiceLocator.TryGet(out _debugService))
+            if (ServiceLocator.TryGet(out _debugManager))
             {
                 DebugPresenter[] debugPresentersInScene
                     = FindObjectsByType<DebugPresenter>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
-                // DebugService はすでに登録されているが、DebugPresenter はシーン上に自分しかいない場合、
-                // 自身のデバッグモードフラグを DebugService とリンクさせて終了する
-                // （別のシーンで DebugPresenter が DebugService を登録した後にこのシーンへ遷移してきた場合など）
+                // DebugManager はすでに登録されているが、DebugPresenter はシーン上に自分しかいない場合、
+                // 自身のデバッグモードフラグを DebugManager とリンクさせて終了する
+                // （別のシーンで DebugPresenter が DebugManager を登録した後にこのシーンへ遷移してきた場合など）
                 if (debugPresentersInScene.Length == 1)
                 {
-                    LinkDebugModeFlags(_debugService);
+                    LinkDebugModeFlags(_debugManager);
                     return;
                 }
 
@@ -39,24 +39,24 @@ namespace GigaCreation.Tools.Debugging.Core
                 return;
             }
 
-            // DebugService がまだ登録されていなかった場合、DebugService を生成し、デバッグモードフラグを自身とリンクさせ、登録を行う
-            _debugService = new DebugService(_isDebugMode.Value);
-            LinkDebugModeFlags(_debugService);
-            ServiceLocator.Register(_debugService);
+            // DebugManager がまだ登録されていなかった場合、DebugManager を生成し、デバッグモードフラグを自身とリンクさせ、登録を行う
+            _debugManager = new DebugManager(_isDebugMode.Value);
+            LinkDebugModeFlags(_debugManager);
+            ServiceLocator.Register(_debugManager);
         }
 
         private void OnApplicationQuit()
         {
-            ServiceLocator.Unregister(_debugService);
+            ServiceLocator.Unregister(_debugManager);
         }
 
         /// <summary>
-        /// この Presenter のデバッグモードフラグと、DebugService のデバッグモードフラグを連動させます。
+        /// この Presenter のデバッグモードフラグと、DebugManager のデバッグモードフラグを連動させます。
         /// </summary>
-        /// <param name="debugService">デバッグサービス。</param>
-        private void LinkDebugModeFlags(IDebugService debugService)
+        /// <param name="debugManager">デバッグサービス。</param>
+        private void LinkDebugModeFlags(IDebugManager debugManager)
         {
-            debugService
+            debugManager
                 .IsDebugMode
                 .Subscribe(x =>
                 {
@@ -68,7 +68,7 @@ namespace GigaCreation.Tools.Debugging.Core
                 .SkipLatestValueOnSubscribe()
                 .Subscribe(x =>
                 {
-                    debugService.IsDebugMode.Value = x;
+                    debugManager.IsDebugMode.Value = x;
                 })
                 .AddTo(this);
         }

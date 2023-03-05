@@ -9,17 +9,17 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
     {
         [SerializeField] private int _priority;
 
-        private IDebugService _debugService;
+        private IDebugManager _debugManager;
         private DebugLabelManager _debugLabelManager;
         private TextMeshProUGUI _label;
 
         private bool _isQuitting;
 
-        protected IDebugService DebugService => _debugService;
+        protected IDebugManager DebugManager => _debugManager;
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out _debugService))
+            if (!ServiceLocator.TryGet(out _debugManager))
             {
                 return;
             }

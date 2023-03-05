@@ -15,7 +15,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         {
             base.Initialize();
 
-            DebugService
+            DebugManager
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
@@ -32,7 +32,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                         {
                             SetTextToLabel($"{fps:F1} fps");
                         })
-                        .AddTo(DebugService.DebugDisposables);
+                        .AddTo(DebugManager.DebugDisposables);
                 })
                 .AddTo(this);
         }

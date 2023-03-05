@@ -33,7 +33,7 @@ namespace GigaCreation.Tools.Debugging.Ui
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out IDebugService debugService))
+            if (!ServiceLocator.TryGet(out IDebugManager debugManager))
             {
                 return;
             }
@@ -54,7 +54,7 @@ namespace GigaCreation.Tools.Debugging.Ui
                 })
                 .AddTo(this);
 
-            debugService
+            debugManager
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>

@@ -20,12 +20,12 @@ namespace GigaCreation.Tools.Debugging.General
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out IDebugService debugService))
+            if (!ServiceLocator.TryGet(out IDebugManager debugManager))
             {
                 return;
             }
 
-            debugService
+            debugManager
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
@@ -35,7 +35,7 @@ namespace GigaCreation.Tools.Debugging.General
                         {
                             Time.timeScale = x;
                         })
-                        .AddTo(debugService.DebugDisposables);
+                        .AddTo(debugManager.DebugDisposables);
 
                     this
                         .UpdateAsObservable()
@@ -67,7 +67,7 @@ namespace GigaCreation.Tools.Debugging.General
                                 TogglePause();
                             }
                         })
-                        .AddTo(debugService.DebugDisposables);
+                        .AddTo(debugManager.DebugDisposables);
                 })
                 .AddTo(this);
         }

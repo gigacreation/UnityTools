@@ -2,14 +2,14 @@
 
 namespace GigaCreation.Tools.Debugging.Core
 {
-    public class DebugService : IDebugService
+    public class DebugManager : IDebugManager
     {
         private readonly ReactiveProperty<bool> _isDebugMode;
 
         public IReactiveProperty<bool> IsDebugMode => _isDebugMode;
         public CompositeDisposable DebugDisposables { get; } = new();
 
-        public DebugService(bool initialMode)
+        public DebugManager(bool initialMode)
         {
             _isDebugMode = new ReactiveProperty<bool>(initialMode);
 

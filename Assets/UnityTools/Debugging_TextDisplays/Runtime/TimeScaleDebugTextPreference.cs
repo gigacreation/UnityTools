@@ -10,7 +10,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         {
             base.Initialize();
 
-            DebugService
+            DebugManager
                 .IsDebugMode
                 .Where(x => x)
                 .Subscribe(_ =>
@@ -21,7 +21,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                         {
                             SetTextToLabel($"TimeScale: {Time.timeScale}");
                         })
-                        .AddTo(DebugService.DebugDisposables);
+                        .AddTo(DebugManager.DebugDisposables);
                 })
                 .AddTo(this);
         }

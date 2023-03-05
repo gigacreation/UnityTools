@@ -15,7 +15,7 @@ namespace GigaCreation.Tools.Debugging.Ui
 
         [SerializeField] private float _longPressDuration = 1f;
 
-        private IDebugService _debugService;
+        private IDebugManager _debugManager;
 
         private bool _isPressed;
 
@@ -27,7 +27,7 @@ namespace GigaCreation.Tools.Debugging.Ui
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out _debugService))
+            if (!ServiceLocator.TryGet(out _debugManager))
             {
                 return;
             }
@@ -55,7 +55,7 @@ namespace GigaCreation.Tools.Debugging.Ui
 
             _selectable
                 .OnPointerDownAsObservable()
-                .Where(_ => !_debugService.IsDebugMode.Value)
+                .Where(_ => !_debugManager.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
                     _isPressed = true;
@@ -65,7 +65,7 @@ namespace GigaCreation.Tools.Debugging.Ui
 
             _selectable
                 .OnPointerUpAsObservable()
-                .Where(_ => !_debugService.IsDebugMode.Value)
+                .Where(_ => !_debugManager.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
                     ReturnToDefault();
@@ -81,7 +81,7 @@ namespace GigaCreation.Tools.Debugging.Ui
 
         private void EnableDebugMode()
         {
-            _debugService.IsDebugMode.Value = true;
+            _debugManager.IsDebugMode.Value = true;
         }
     }
 }

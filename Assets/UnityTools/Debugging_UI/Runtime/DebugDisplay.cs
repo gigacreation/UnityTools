@@ -14,12 +14,12 @@ namespace GigaCreation.Tools.Debugging.Ui
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out IDebugService debugService))
+            if (!ServiceLocator.TryGet(out IDebugManager debugManager))
             {
                 return;
             }
 
-            debugService
+            debugManager
                 .IsDebugMode
                 .Subscribe(ChangeVisibility)
                 .AddTo(this);

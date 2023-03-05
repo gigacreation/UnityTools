@@ -23,12 +23,12 @@ namespace GigaCreation.Tools.Debugging.General
 
         private void Start()
         {
-            if (!ServiceLocator.TryGet(out IDebugService debugService))
+            if (!ServiceLocator.TryGet(out IDebugManager debugManager))
             {
                 return;
             }
 
-            debugService
+            debugManager
                 .IsDebugMode
                 .Subscribe(x =>
                 {
