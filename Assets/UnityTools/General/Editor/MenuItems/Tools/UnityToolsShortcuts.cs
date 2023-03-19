@@ -12,7 +12,7 @@ namespace GigaCreation.Tools.General.Editor
 {
     public static class UnityToolsShortcuts
     {
-        private const int CategoryPriority = 20999;
+        private const int CategoryPriority = 29900;
         private const string Category = "Tools/GIGA CREATION/Shortcuts/";
 
         [MenuItem(Category + "Clear Console", priority = CategoryPriority)]

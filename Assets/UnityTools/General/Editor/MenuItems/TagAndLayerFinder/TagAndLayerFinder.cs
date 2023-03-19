@@ -10,7 +10,7 @@ namespace GigaCreation.Tools.General.Editor
 {
     public class TagAndLayerFinder : EditorWindow
     {
-        private const int CategoryPriority = 20003;
+        private const int CategoryPriority = 29100;
         private const string Category = "Tools/GIGA CREATION/Tag and Layer Finder/";
 
         private const string CurrentScene = "Current Scene";

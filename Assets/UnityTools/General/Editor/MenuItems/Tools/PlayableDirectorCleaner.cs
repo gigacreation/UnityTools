@@ -6,7 +6,7 @@ namespace GigaCreation.Tools.General.Editor
 {
     public static class PlayableDirectorCleaner
     {
-        private const int CategoryPriority = 20200;
+        private const int CategoryPriority = 29003;
         private const string Category = "Tools/GIGA CREATION/Playable Director/";
 
         [MenuItem(Category + "Purge All Playable Directors Bindings", priority = CategoryPriority)]

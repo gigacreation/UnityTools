@@ -5,7 +5,7 @@ namespace GigaCreation.Tools.General.Editor
 {
     public static class NumberingSelectedGameObjects
     {
-        private const int CategoryPriority = 20002;
+        private const int CategoryPriority = 29002;
         private const string Category = "Tools/GIGA CREATION/Numbering GameObjects/";
 
         [MenuItem(Category + "Numbering Selected GameObjects (1)", priority = CategoryPriority)]

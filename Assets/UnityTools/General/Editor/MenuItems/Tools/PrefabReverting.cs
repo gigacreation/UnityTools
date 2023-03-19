@@ -6,7 +6,7 @@ namespace GigaCreation.Tools.General.Editor
 {
     public static class PrefabReverting
     {
-        private const int CategoryPriority = 20000;
+        private const int CategoryPriority = 29000;
         private const string Category = "Tools/GIGA CREATION/Revert Prefabs/";
 
         private const InteractionMode U = InteractionMode.UserAction;

@@ -7,7 +7,7 @@ namespace GigaCreation.Tools.General.Editor
 {
     public static class HierarchySorter
     {
-        private const int CategoryPriority = 20001;
+        private const int CategoryPriority = 29001;
         private const string Category = "Tools/GIGA CREATION/Sort Hierarchy/";
         private const string ByName = Category + "Sort Selected GameObjects by Name";
         private const string ByPositionXYZ = Category + "Sort Selected GameObjects by Position XYZ";
