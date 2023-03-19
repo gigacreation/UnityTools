@@ -13,7 +13,7 @@ namespace GigaCreation.Tools.Addressables.Editor
 {
     public static class AddressablesMenuItems
     {
-        private const int CategoryPriority = 20100;
+        private const int CategoryPriority = 29100;
         private const string Category = "Tools/GIGA CREATION/Addressables/";
 
         private static readonly string[] s_defaultGroupNames = { "Built In Data", "Default Local Group" };

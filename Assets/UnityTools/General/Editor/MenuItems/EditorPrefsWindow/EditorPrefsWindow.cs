@@ -15,7 +15,7 @@ namespace GigaCreation.Tools.General.Editor
     /// </summary>
     public class EditorPrefsWindow : EditorWindow
     {
-        private const int CategoryPriority = 29101;
+        private const int CategoryPriority = 29011;
         private const string Category = "Tools/GIGA CREATION/EditorPrefs/";
 
         private const float Space = 5f;
