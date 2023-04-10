@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(CopyGameObjectPathName, priority = CategoryPriority)]
         private static void CopyGameObjectPath()
         {
-            GameObject[] gameObjects = Selection.gameObjects;
+            GameObject[] gameObjects = Selection.objects.OfType<GameObject>().ToArray();
 
             if (gameObjects.Length == 0)
             {
