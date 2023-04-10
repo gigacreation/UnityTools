@@ -6,8 +6,8 @@ namespace GigaCreation.Tools.General.Editor
 {
     public static class GameObjectPathUtility
     {
-        private const int CategoryPriority = 2000000000;
-        private const string Category = "Assets/GIGA CREATION/";
+        private const int CategoryPriority = 1000;
+        private const string Category = "GameObject/";
         private const string CopyGameObjectPathName = Category + "Copy Path";
 
         [MenuItem(CopyGameObjectPathName, priority = CategoryPriority)]
