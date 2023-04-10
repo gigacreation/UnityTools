@@ -13,23 +13,34 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(CopyGameObjectPathName, priority = CategoryPriority)]
         private static void CopyGameObjectPath()
         {
-            GameObject selectedGameObject = Selection.activeGameObject;
+            GameObject[] gameObjects = Selection.gameObjects;
 
-            if (selectedGameObject == null)
+            if (gameObjects.Length == 0)
             {
                 return;
             }
 
-            var builder = new StringBuilder(selectedGameObject.transform.name);
-            Transform current = selectedGameObject.transform.parent;
+            var paths = new string[gameObjects.Length];
+            var sb = new StringBuilder();
 
-            while (current != null)
+            for (var i = 0; i < gameObjects.Length; i++)
             {
-                builder.Insert(0, current.name + "/");
-                current = current.parent;
+                sb.Clear();
+
+                sb.Append(gameObjects[i].name);
+
+                Transform current = gameObjects[i].transform.parent;
+
+                while (current != null)
+                {
+                    sb.Insert(0, current.name + "/");
+                    current = current.parent;
+                }
+
+                paths[i] = sb.ToString();
             }
 
-            GUIUtility.systemCopyBuffer = builder.ToString();
+            GUIUtility.systemCopyBuffer = string.Join("\n", paths);
         }
     }
 }
