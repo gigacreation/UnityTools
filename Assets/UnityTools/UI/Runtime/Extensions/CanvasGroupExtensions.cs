@@ -19,5 +19,17 @@ namespace GigaCreation.Tools.Ui
             self.interactable = false;
             self.blocksRaycasts = false;
         }
+
+        public static void Enable(this CanvasGroup self)
+        {
+            self.interactable = true;
+            self.blocksRaycasts = true;
+        }
+
+        public static void Disable(this CanvasGroup self)
+        {
+            self.interactable = false;
+            self.blocksRaycasts = false;
+        }
     }
 }
