@@ -132,8 +132,13 @@ namespace GigaCreation.Tools.Ui
         {
             foreach (Behaviour behaviour in behaviours)
             {
+                if (behaviour == null)
+                {
+                    Debug.LogWarning($"Behaviour is null: {behaviour.name}", behaviour);
+                    continue;
+                }
+
 #if UNITY_EDITOR
-                // TODO: Undo.RecordObject の対象オブジェクトの null チェックを行う
                 Undo.RecordObject(behaviour, "Enable Component");
 #endif
 
@@ -149,6 +154,12 @@ namespace GigaCreation.Tools.Ui
         {
             foreach (Behaviour behaviour in behaviours)
             {
+                if (behaviour == null)
+                {
+                    Debug.LogWarning($"Behaviour is null: {behaviour.name}", behaviour);
+                    continue;
+                }
+
 #if UNITY_EDITOR
                 Undo.RecordObject(behaviour, "Disable Component");
 #endif
@@ -165,6 +176,12 @@ namespace GigaCreation.Tools.Ui
         {
             foreach (RectTransform rectTransform in _rectTransforms)
             {
+                if (rectTransform == null)
+                {
+                    Debug.LogWarning($"RectTransform is null: {rectTransform.name}", rectTransform);
+                    continue;
+                }
+
 #if UNITY_EDITOR
                 Undo.RecordObject(rectTransform, "Rebuild Layout");
 #endif
