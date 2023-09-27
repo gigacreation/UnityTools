@@ -6,14 +6,14 @@ namespace GigaCreation.Tools.Ui
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public static class CanvasGroupExtensions
     {
-        public static void Activate(this CanvasGroup self)
+        public static void Present(this CanvasGroup self)
         {
             self.alpha = 1f;
             self.interactable = true;
             self.blocksRaycasts = true;
         }
 
-        public static void Deactivate(this CanvasGroup self)
+        public static void Dismiss(this CanvasGroup self)
         {
             self.alpha = 0f;
             self.interactable = false;
