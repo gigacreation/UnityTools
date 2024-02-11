@@ -1,8 +1,9 @@
-﻿using GigaCreation.Tools.Service;
+﻿using GigaCreation.Tools.Debugging.Core.Models;
+using GigaCreation.Tools.Service;
 using UniRx;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging.Core
+namespace GigaCreation.Tools.Debugging.Core.Presenters
 {
     public class DebugPresenter : MonoBehaviour
     {

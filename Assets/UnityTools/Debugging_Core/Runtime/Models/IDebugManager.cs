@@ -2,7 +2,7 @@
 using GigaCreation.Tools.Service;
 using UniRx;
 
-namespace GigaCreation.Tools.Debugging.Core
+namespace GigaCreation.Tools.Debugging.Core.Models
 {
     public interface IDebugManager : IService, IDisposable
     {

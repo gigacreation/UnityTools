@@ -1,4 +1,4 @@
-﻿using GigaCreation.Tools.Debugging.Core;
+﻿using GigaCreation.Tools.Debugging.Core.Models;
 using GigaCreation.Tools.Service;
 using UnityEngine;
 using UnityEngine.UI;

@@ -5,14 +5,14 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "73d86259ce31ce7f4dfe1d028ea1c3edf96c23e4"
+      "hash": "809d23edae0df58fd0f61b4b6f67855c59d1b2fb"
     },
     "com.neuecc.unirx": {
       "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "284d5c50d3f1ddd9fa7df3d382ea904732a9c2ff"
+      "hash": "7cce378b3f8c8943b4cac8e847bdbb8e2e1802d1"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -30,11 +30,11 @@
       }
     },
     "com.unity.addressables": {
-      "version": "1.21.18",
+      "version": "1.21.19",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.21.20",
+        "com.unity.scriptablebuildpipeline": "1.21.21",
         "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
@@ -58,7 +58,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.26",
+      "version": "3.0.27",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -67,14 +67,14 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.21.20",
+      "version": "1.21.21",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "3.0.6",
+      "version": "3.0.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -100,19 +100,12 @@
       },
       "hash": "cbbfe5401abacb911ad849b5fe9df972d985ced1"
     },
-    "jp.gigacreation.tools.csv2collections": {
-      "version": "https://github.com/gigacreation/Csv2CollectionsForUnity.git?path=Assets/Csv2Collections",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "dfbe0d3a08ced01a2521214931b65ed322bc447e"
-    },
     "jp.gigacreation.tools.servicelocator": {
       "version": "https://github.com/gigacreation/ServiceLocatorForUnity.git?path=Assets/Service",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "74ca664b7b168e96000003964855487147739e35"
+      "hash": "504182a03156c60f545b781109d9abb0f26e08f6"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
