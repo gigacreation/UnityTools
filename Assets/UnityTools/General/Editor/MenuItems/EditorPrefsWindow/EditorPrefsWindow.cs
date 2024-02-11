@@ -126,7 +126,7 @@ namespace GigaCreation.Tools.General.Editor
 
             using RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(Name, false);
 
-            if (registryKey == null)
+            if (registryKey is null)
             {
                 yield break;
             }

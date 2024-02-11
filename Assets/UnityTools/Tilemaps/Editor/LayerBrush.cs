@@ -1,6 +1,7 @@
 ﻿// Original code from https://github.com/Unity-Technologies/2d-extras/blob/layerbrush/Editor/Brushes/LayerBrush/LayerBrush.cs
 // Licensed under https://github.com/Unity-Technologies/2d-extras/blob/master/LICENSE.md
 
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Tilemaps;
 using UnityEngine;
@@ -45,14 +46,14 @@ namespace GigaCreation.Tools.Tilemaps.Editor
             return true;
         }
 
-        private void CacheBrushTargets(Tilemap[] tilemaps)
+        private void CacheBrushTargets(IReadOnlyList<Tilemap> tilemaps)
         {
-            if ((BrushTargets == null) || (BrushTargets.Length != tilemaps.Length))
+            if ((BrushTargets == null) || (BrushTargets.Length != tilemaps.Count))
             {
-                BrushTargets = new GameObject[tilemaps.Length];
+                BrushTargets = new GameObject[tilemaps.Count];
             }
 
-            for (var i = 0; i < tilemaps.Length; ++i)
+            for (var i = 0; i < tilemaps.Count; ++i)
             {
                 BrushTargets[i] = tilemaps[i].gameObject;
             }

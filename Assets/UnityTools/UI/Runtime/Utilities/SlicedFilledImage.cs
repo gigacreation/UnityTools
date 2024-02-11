@@ -6,10 +6,9 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Sprites;
-using UnityEngine.UI;
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
 using UnityEngine.U2D;
-#endif
+using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace GigaCreation.Tools.Ui
 {
@@ -35,6 +34,9 @@ namespace GigaCreation.Tools.Ui
         private static readonly Vector2[] s_uVs = new Vector2[4];
         private static readonly Vector2[] s_slicedVertices = new Vector2[4];
         private static readonly Vector2[] s_slicedUVs = new Vector2[4];
+        private static readonly List<SlicedFilledImage> s_trackedTexturelessImages = new();
+
+        private static bool s_initialized;
 
         [SerializeField] private Sprite _sprite;
         [SerializeField] private FillDirection _fillDirection;
@@ -674,7 +676,6 @@ namespace GigaCreation.Tools.Ui
                 return;
             }
 
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
             if (!s_initialized)
             {
                 SpriteAtlasManager.atlasRegistered += RebuildImage;
@@ -682,21 +683,17 @@ namespace GigaCreation.Tools.Ui
             }
 
             s_trackedTexturelessImages.Add(this);
-#endif
 
             _tracked = true;
         }
 
         private void UnTrackImage()
         {
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
             s_trackedTexturelessImages.Remove(this);
-#endif
 
             _tracked = false;
         }
 
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
         private static void RebuildImage(SpriteAtlas spriteAtlas)
         {
             for (int i = s_trackedTexturelessImages.Count - 1; i >= 0; i--)
@@ -712,7 +709,6 @@ namespace GigaCreation.Tools.Ui
                 s_trackedTexturelessImages.RemoveAt(i);
             }
         }
-#endif
 
         private static class SetPropertyUtility
         {
@@ -728,7 +724,7 @@ namespace GigaCreation.Tools.Ui
                 return true;
             }
 
-            public static bool SetClass<T>(ref T currentValue, T newValue) where T : class
+            public static bool SetClass<T>(ref T currentValue, T newValue) where T : Object
             {
                 if (((currentValue == null) && (newValue == null)) ||
                     ((currentValue != null) && currentValue.Equals(newValue)))
@@ -741,10 +737,5 @@ namespace GigaCreation.Tools.Ui
                 return true;
             }
         }
-
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
-        private static readonly List<SlicedFilledImage> s_trackedTexturelessImages = new();
-        private static bool s_initialized;
-#endif
     }
 }

@@ -33,7 +33,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps
 #if UNITY_EDITOR
             string guid = AssetDatabase.FindAssets("t:BuildTimestamp").FirstOrDefault();
 
-            if (guid == null)
+            if (guid is null)
             {
                 Debug.LogWarning(BuildTimestampAssetNotFoundMessage);
                 return;
