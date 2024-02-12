@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging.General
 {
-    public class DebugOptions : MonoBehaviour
+    public abstract class DebugOptions : MonoBehaviour
     {
         private static bool s_isInitialized;
         private static IDebugManager s_debugManager;
@@ -47,9 +47,7 @@ namespace GigaCreation.Tools.Debugging.General
             s_isInitialized = true;
         }
 
-        protected virtual void UpdateStaticFields()
-        {
-        }
+        protected abstract void UpdateStaticFields();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetInitializationFlag()
