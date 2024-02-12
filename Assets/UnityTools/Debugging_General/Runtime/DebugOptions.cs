@@ -1,10 +1,10 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using GigaCreation.Tools.Debugging.Core.Models;
+using GigaCreation.Tools.Debugging.Core;
 using GigaCreation.Tools.Service;
 using UnityEngine;
 
-namespace GigaCreation.Tools.Debugging.Core.Views
+namespace GigaCreation.Tools.Debugging.General
 {
     public abstract class DebugOptions : MonoBehaviour
     {

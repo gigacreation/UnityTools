@@ -1,4 +1,3 @@
-using GigaCreation.Tools.Debugging.Core.Presenters;
 using UnityEditor;
 
 namespace GigaCreation.Tools.Debugging.Core.Editor

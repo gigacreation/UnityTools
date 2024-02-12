@@ -1,13 +1,13 @@
 {
     "name": "jp.gigacreation.tools.debugging.textdisplays",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "displayName": "UnityTools / Debug / Text Displays",
-    "unity": "2021.3",
+    "unity": "2022.3",
     "dependencies": {
-        "jp.gigacreation.tools.ui": "1.1.0",
-        "jp.gigacreation.tools.debugging.core": "1.1.0",
-        "jp.gigacreation.tools.servicelocator": "1.0.1",
-        "com.unity.textmeshpro": "3.0.6",
+        "jp.gigacreation.tools.ui": "1.1.1",
+        "jp.gigacreation.tools.debugging.core": "1.1.1",
+        "jp.gigacreation.tools.servicelocator": "1.1.0",
+        "com.unity.textmeshpro": "3.0.7",
         "com.neuecc.unirx": "7.1.0"
     },
     "author": {

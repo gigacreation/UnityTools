@@ -1,6 +1,6 @@
 ﻿using UniRx;
 
-namespace GigaCreation.Tools.Debugging.Core.Models
+namespace GigaCreation.Tools.Debugging.Core
 {
     public class DebugManager : IDebugManager
     {
