@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_EDITOR
-using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 #endif
 
@@ -39,15 +39,7 @@ namespace GigaCreation.Tools.Ui
                 return;
             }
 
-#if UNITY_EDITOR
-            if (!EditorApplication.isPlaying)
-            {
-                EditorCoroutineUtility.StartCoroutine(WaitForNextFrameAndAdjust(), this);
-                return;
-            }
-#endif
-
-            StartCoroutine(WaitForNextFrameAndAdjust());
+            WaitForNextFrameAndAdjustAsync(this.GetCancellationTokenOnDestroy()).Forget();
         }
 
 #if UNITY_EDITOR
@@ -60,7 +52,7 @@ namespace GigaCreation.Tools.Ui
 
             if (!EditorApplication.isPlaying)
             {
-                EditorCoroutineUtility.StartCoroutine(WaitForNextFrameAndAdjust(), this);
+                WaitForNextFrameAndAdjustAsync(this.GetCancellationTokenOnDestroy()).Forget();
             }
         }
 #endif
@@ -79,9 +71,9 @@ namespace GigaCreation.Tools.Ui
             _image = GetComponent<Image>();
         }
 
-        private IEnumerator WaitForNextFrameAndAdjust()
+        private async UniTask WaitForNextFrameAndAdjustAsync(CancellationToken ct = default)
         {
-            yield return null;
+            await UniTask.NextFrame(ct);
 
             Adjust();
         }

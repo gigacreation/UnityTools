@@ -1,6 +1,6 @@
 {
     "name": "jp.gigacreation.tools.debugging.textdisplays.buildtimestamps",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "displayName": "UnityTools / Debug / Text Displays / Build Timestamps",
     "unity": "2022.3",
     "dependencies": {

@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_EDITOR
-using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 #endif
 
@@ -28,7 +28,6 @@ namespace GigaCreation.Tools.Ui
         private void Reset()
         {
             UpdateReferences();
-
             DisableAllLayoutComponents();
         }
 
@@ -75,43 +74,26 @@ namespace GigaCreation.Tools.Ui
             }
 
             UpdateReferences();
-
-#if UNITY_EDITOR
-            if (!EditorApplication.isPlaying)
-            {
-                EditorCoroutineUtility.StartCoroutine(RebuildLayoutCo(), this);
-                return;
-            }
-#endif
-
-            StartCoroutine(RebuildLayoutCo());
+            RebuildLayoutAsync(this.GetCancellationTokenOnDestroy()).Forget();
         }
 
-        public IEnumerator ExecuteRebuildingCo()
+        public async UniTask ExecuteRebuildingAsync(CancellationToken ct = default)
         {
             if (_isDestroying)
             {
-                yield break;
+                return;
             }
 
             UpdateReferences();
 
-#if UNITY_EDITOR
-            if (!EditorApplication.isPlaying)
-            {
-                yield return EditorCoroutineUtility.StartCoroutine(RebuildLayoutCo(), this);
-                yield break;
-            }
-#endif
-
-            yield return RebuildLayoutCo();
+            await RebuildLayoutAsync(ct);
         }
 
-        private IEnumerator RebuildLayoutCo()
+        private async UniTask RebuildLayoutAsync(CancellationToken ct = default)
         {
             EnableAllLayoutComponents();
 
-            yield return MarkAllRectTransformsForRebuildCo();
+            await MarkAllRectTransformsForRebuildAsync(ct);
 
             DisableAllLayoutComponents();
         }
@@ -172,7 +154,7 @@ namespace GigaCreation.Tools.Ui
             }
         }
 
-        private IEnumerator MarkAllRectTransformsForRebuildCo()
+        private async UniTask MarkAllRectTransformsForRebuildAsync(CancellationToken ct = default)
         {
             foreach (RectTransform rectTransform in _rectTransforms)
             {
@@ -192,7 +174,7 @@ namespace GigaCreation.Tools.Ui
                 EditorUtility.SetDirty(rectTransform);
 #endif
 
-                yield return new WaitForEndOfFrame();
+                await UniTask.WaitForEndOfFrame(this, ct);
             }
         }
     }
