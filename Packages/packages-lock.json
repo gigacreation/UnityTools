@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "809d23edae0df58fd0f61b4b6f67855c59d1b2fb"
+      "hash": "fbe0bf85155f42f8832205f7b3ac3df571ada33e"
     },
     "com.neuecc.unirx": {
       "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
@@ -30,11 +30,11 @@
       }
     },
     "com.unity.addressables": {
-      "version": "1.21.20",
+      "version": "1.21.21",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.21.22",
+        "com.unity.scriptablebuildpipeline": "1.21.23",
         "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
@@ -69,14 +69,14 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.21.22",
+      "version": "1.21.23",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "3.0.8",
+      "version": "3.0.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -107,7 +107,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "504182a03156c60f545b781109d9abb0f26e08f6"
+      "hash": "e5ce5f2c29ca7e1f5b24fd97e203ece672d331df"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

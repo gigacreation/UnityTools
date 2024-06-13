@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging.General
 {
-    public abstract class DebugOptions : MonoBehaviour
+    public abstract class DebugOptionsBase : MonoBehaviour
     {
         private static bool s_isInitialized;
         private static IDebugManager s_debugManager;
