@@ -12,8 +12,6 @@ namespace GigaCreation.Tools.Debugging.General
     public class TimeDebugCommands : MonoBehaviour
     {
         [SerializeField] private FloatReactiveProperty _timeScale = new(1f);
-
-        [Space]
         [SerializeField] private bool _withCommandKey;
         [SerializeField] private bool _withShiftKey;
         [SerializeField] private bool _withOptionKey;

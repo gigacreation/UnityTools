@@ -6,15 +6,12 @@ namespace GigaCreation.Tools.Debugging.General.Editor
     [CustomEditor(typeof(TimeDebugCommands))]
     public class TimeDebugCommandsEditor : UnityEditor.Editor
     {
-        private const string HelpMessage = @"
-上記の修飾キーを押しながら以下のキーを押すと、タイムスケールを変更できます。
-
+        private const string HelpMessage = @"上記の修飾キーを押しながら以下のキーを押すと、タイムスケールを変更できます。
 [←] : -0.2
 [→] : +0.2
 [↓] : -1
 [↑] : +1
-[Space] : ポーズ / アンポーズ
-";
+[Space] : ポーズ / アンポーズ";
 
         public override void OnInspectorGUI()
         {
