@@ -27,27 +27,12 @@ namespace GigaCreation.Tools.Ui.Editor
 
             using (new EditorGUILayout.HorizontalScope())
             {
-                if (GUILayout.Button("Enable All Layout Components", GUILayout.Height(24f)))
+                if (GUILayout.Button("Enable Layout Components", GUILayout.Height(24f)))
                 {
-                    autoLayoutSupporter.EnableAllLayoutComponents();
+                    autoLayoutSupporter.EnableLayoutComponents();
                 }
 
-                if (GUILayout.Button("Disable All Layout Components", GUILayout.Height(24f)))
-                {
-                    autoLayoutSupporter.DisableAllLayoutComponents();
-                }
-            }
-
-            GUILayout.Space(4f);
-
-            using (new EditorGUILayout.HorizontalScope())
-            {
                 if (GUILayout.Button("Update References", GUILayout.Height(24f)))
-                {
-                    autoLayoutSupporter.UpdateReferences();
-                }
-
-                if (GUILayout.Button("Update References in Children", GUILayout.Height(24f)))
                 {
                     autoLayoutSupporter.UpdateReferencesInChildren();
                 }

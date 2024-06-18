@@ -1950,14 +1950,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6578354d5943ee91a84abfe5b1a2b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _contentSizeFitters:
-  - {fileID: 543282936}
+  _contentSizeFitters: []
   _layoutGroups:
   - {fileID: 591141102}
-  - {fileID: 543282935}
   _rectTransforms:
   - {fileID: 591141098}
-  - {fileID: 543282931}
 --- !u!114 &591141102
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,6 @@ using UnityEditor;
 
 namespace GigaCreation.Tools.Ui
 {
-    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public class AutoLayoutSupporter : MonoBehaviour
     {
         [SerializeField] private ContentSizeFitter[] _contentSizeFitters;
@@ -28,34 +27,12 @@ namespace GigaCreation.Tools.Ui
         private void Reset()
         {
             UpdateReferences();
-            DisableAllLayoutComponents();
+            SetComponentsEnabled(false, _contentSizeFitters, _layoutGroups);
         }
 
-        public void UpdateReferences()
+        public void EnableLayoutComponents()
         {
-#if UNITY_EDITOR
-            Undo.RecordObject(this, "Update References");
-#endif
-
-            _contentSizeFitters = GetComponentsInParent<ContentSizeFitter>(true)
-                .Concat(GetComponentsInChildren<ContentSizeFitter>(true))
-                .Distinct()
-                .ToArray();
-
-            _layoutGroups = GetComponentsInParent<LayoutGroup>(true)
-                .Concat(GetComponentsInChildren<LayoutGroup>(true))
-                .Distinct()
-                .ToArray();
-
-            _rectTransforms = _contentSizeFitters.Select(x => x.transform as RectTransform)
-                .Concat(_layoutGroups.Select(x => x.transform as RectTransform))
-                .Distinct()
-                .OrderByDescending(x => x.GetComponentsInParent<Transform>(true).Length)
-                .ToArray();
-
-#if UNITY_EDITOR
-            EditorUtility.SetDirty(this);
-#endif
+            SetComponentsEnabled(true, _contentSizeFitters, _layoutGroups);
         }
 
         public void UpdateReferencesInChildren()
@@ -66,17 +43,28 @@ namespace GigaCreation.Tools.Ui
             }
         }
 
-        public void ExecuteRebuilding()
+        private void UpdateReferences()
         {
-            if (_isDestroying)
-            {
-                return;
-            }
+#if UNITY_EDITOR
+            Undo.RecordObject(this, "Update References");
+#endif
 
-            UpdateReferences();
-            RebuildLayoutAsync(this.GetCancellationTokenOnDestroy()).Forget();
+            _contentSizeFitters = GetComponentsInChildren<ContentSizeFitter>(true).ToArray();
+            _layoutGroups = GetComponentsInChildren<LayoutGroup>(true).ToArray();
+
+            _rectTransforms = _contentSizeFitters.Select(fitter => fitter.transform as RectTransform)
+                .Concat(_layoutGroups.Select(group => group.transform as RectTransform))
+                .Distinct()
+                .OrderByDescending(rt => rt.GetComponentsInParent<Transform>(true).Length)
+                .ToArray();
         }
 
+        public void ExecuteRebuilding()
+        {
+            ExecuteRebuildingAsync(this.GetCancellationTokenOnDestroy()).Forget();
+        }
+
+        [UsedImplicitly]
         public async UniTask ExecuteRebuildingAsync(CancellationToken ct = default)
         {
             if (_isDestroying)
@@ -84,74 +72,18 @@ namespace GigaCreation.Tools.Ui
                 return;
             }
 
-            UpdateReferences();
+            UpdateReferencesInChildren();
 
             await RebuildLayoutAsync(ct);
         }
 
         private async UniTask RebuildLayoutAsync(CancellationToken ct = default)
         {
-            EnableAllLayoutComponents();
+            SetComponentsEnabled(true, _contentSizeFitters, _layoutGroups);
 
             await MarkAllRectTransformsForRebuildAsync(ct);
 
-            DisableAllLayoutComponents();
-        }
-
-        public void EnableAllLayoutComponents()
-        {
-            EnableComponents(_contentSizeFitters);
-            EnableComponents(_layoutGroups);
-        }
-
-        public void DisableAllLayoutComponents()
-        {
-            DisableComponents(_contentSizeFitters);
-            DisableComponents(_layoutGroups);
-        }
-
-        private void EnableComponents(IEnumerable<Behaviour> behaviours)
-        {
-            foreach (Behaviour behaviour in behaviours)
-            {
-                if (behaviour == null)
-                {
-                    Debug.LogWarning($"Behaviour is null: {behaviour.name}", behaviour);
-                    continue;
-                }
-
-#if UNITY_EDITOR
-                Undo.RecordObject(behaviour, "Enable Component");
-#endif
-
-                behaviour.enabled = true;
-
-#if UNITY_EDITOR
-                EditorUtility.SetDirty(behaviour);
-#endif
-            }
-        }
-
-        private void DisableComponents(IEnumerable<Behaviour> behaviours)
-        {
-            foreach (Behaviour behaviour in behaviours)
-            {
-                if (behaviour == null)
-                {
-                    Debug.LogWarning($"Behaviour is null: {behaviour.name}", behaviour);
-                    continue;
-                }
-
-#if UNITY_EDITOR
-                Undo.RecordObject(behaviour, "Disable Component");
-#endif
-
-                behaviour.enabled = false;
-
-#if UNITY_EDITOR
-                EditorUtility.SetDirty(behaviour);
-#endif
-            }
+            SetComponentsEnabled(false, _contentSizeFitters, _layoutGroups);
         }
 
         private async UniTask MarkAllRectTransformsForRebuildAsync(CancellationToken ct = default)
@@ -170,11 +102,25 @@ namespace GigaCreation.Tools.Ui
 
                 LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
 
+                await UniTask.WaitForEndOfFrame(this, ct);
+            }
+        }
+
+        private static void SetComponentsEnabled(bool enable, params IEnumerable<Behaviour>[] behaviours)
+        {
+            foreach (Behaviour behaviour in behaviours.SelectMany(enumerable => enumerable))
+            {
+                if (behaviour == null)
+                {
+                    Debug.LogWarning($"Behaviour is null: {behaviour.name}", behaviour);
+                    continue;
+                }
+
 #if UNITY_EDITOR
-                EditorUtility.SetDirty(rectTransform);
+                Undo.RecordObject(behaviour, $"{(enable ? "Enable" : "Disable")} Component");
 #endif
 
-                await UniTask.WaitForEndOfFrame(this, ct);
+                behaviour.enabled = enable;
             }
         }
     }
