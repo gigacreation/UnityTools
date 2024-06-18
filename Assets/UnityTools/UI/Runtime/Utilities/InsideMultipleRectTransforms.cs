@@ -105,10 +105,10 @@ namespace GigaCreation.Tools.Ui
                 cornersOfTargets.Min(corners => corners[2].y)
             );
 
-            Vector3 newPosition = Vector3.Lerp(bottomLeftPosition, topRightPosition, 0.5f);
+            Vector2 newPosition = Vector2.Lerp(bottomLeftPosition, topRightPosition, 0.5f);
             Vector2 newSizeDelta = (topRightPosition - bottomLeftPosition) / _rectTransform.lossyScale;
 
-            if ((_rectTransform.position == newPosition) && (_rectTransform.sizeDelta == newSizeDelta))
+            if (((Vector2)_rectTransform.position == newPosition) && (_rectTransform.sizeDelta == newSizeDelta))
             {
                 return;
             }
@@ -120,7 +120,7 @@ namespace GigaCreation.Tools.Ui
             }
 #endif
 
-            _rectTransform.position = newPosition;
+            _rectTransform.position = new Vector3(newPosition.x, newPosition.y, _rectTransform.position.z);
             _rectTransform.sizeDelta = newSizeDelta;
 
 #if UNITY_EDITOR
