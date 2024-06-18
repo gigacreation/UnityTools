@@ -35,6 +35,12 @@ namespace GigaCreation.Tools.Ui
             SetComponentsEnabled(true, _contentSizeFitters, _layoutGroups);
         }
 
+        [UsedImplicitly]
+        public void DisableLayoutComponents()
+        {
+            SetComponentsEnabled(false, _contentSizeFitters, _layoutGroups);
+        }
+
         public void UpdateReferencesInChildren()
         {
             foreach (AutoLayoutSupporter supporter in GetComponentsInChildren<AutoLayoutSupporter>(true))
