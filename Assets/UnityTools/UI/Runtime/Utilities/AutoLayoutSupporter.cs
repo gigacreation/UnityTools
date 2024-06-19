@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -108,7 +109,11 @@ namespace GigaCreation.Tools.Ui
 
                 LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
 
-                await UniTask.WaitForEndOfFrame(this, ct);
+                UniTask task = Application.isEditor
+                    ? UniTask.Delay(TimeSpan.FromSeconds(0.1), DelayType.Realtime, cancellationToken: ct)
+                    : UniTask.WaitForEndOfFrame(this, ct);
+
+                await task;
             }
         }
 
