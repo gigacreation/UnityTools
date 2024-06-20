@@ -109,9 +109,9 @@ namespace GigaCreation.Tools.Ui
 
                 LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
 
-                UniTask task = Application.isEditor
-                    ? UniTask.Delay(TimeSpan.FromSeconds(0.1), DelayType.Realtime, cancellationToken: ct)
-                    : UniTask.WaitForEndOfFrame(this, ct);
+                UniTask task = Application.isPlaying
+                    ? UniTask.WaitForEndOfFrame(this, ct)
+                    : UniTask.Delay(TimeSpan.FromSeconds(0.1), DelayType.Realtime, cancellationToken: ct);
 
                 await task;
             }
