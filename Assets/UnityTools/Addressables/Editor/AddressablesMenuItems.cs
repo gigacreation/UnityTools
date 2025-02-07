@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -93,41 +95,40 @@ namespace GigaCreation.Tools.Addressables.Editor
         [MenuItem(Category + "Sort Addressables Groups", priority = CategoryPriority + 3)]
         public static void SortAddressablesGroups()
         {
-            List<AddressableAssetGroup> groups = AddressablesSettings.groups;
+            // Addressable Assets Window の描画を更新します
+            CloseAddressableAssetsWindow();
 
-            groups.Sort((a, b) =>
+            AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
+            List<AddressableAssetGroup> groups = settings.groups;
+            AddressableAssetGroupSortSettings sortingSettings = AddressableAssetGroupSortSettings.GetSettings();
+
+            groups.Sort(static (a, b) =>
             {
                 int indexOfA = Array.IndexOf(s_defaultGroupNames, a.Name);
                 int indexOfB = Array.IndexOf(s_defaultGroupNames, b.Name);
 
-                // 両方ともデフォルトのグループではない場合
-                if ((indexOfA == -1) && (indexOfB == -1))
+                return indexOfA switch
                 {
-                    return string.Compare(a.Name, b.Name, StringComparison.Ordinal);
-                }
-
-                // 両方ともデフォルトのグループである場合
-                if ((indexOfA >= 0) && (indexOfB >= 0))
-                {
-                    return indexOfA - indexOfB;
-                }
-
-                // 片方だけデフォルトのグループである場合
-                return indexOfB - indexOfA;
+                    // 両方ともデフォルトのグループではない場合
+                    -1 when indexOfB == -1 => string.Compare(a.Name, b.Name, StringComparison.Ordinal),
+                    // 両方ともデフォルトのグループである場合
+                    >= 0 when indexOfB >= 0 => indexOfA - indexOfB,
+                    // 片方だけデフォルトのグループである場合
+                    _ => indexOfB - indexOfA
+                };
             });
 
-            EditorUtility.SetDirty(AddressablesSettings);
-            AssetDatabase.SaveAssets();
+            groups.Select(static group => group.Guid).ToArray().CopyTo(sortingSettings.sortOrder, 0);
 
-            // Addressable Assets Window の描画を更新します
-            RepaintAddressableAssetsWindow();
+            EditorUtility.SetDirty(settings);
+            AssetDatabase.SaveAssets();
         }
 
         // Original code from https://baba-s.hatenablog.com/entry/2020/03/19/031000
         /// <summary>
-        /// Addressables ウィンドウの描画を更新します。
+        /// Addressables ウィンドウを閉じます。
         /// </summary>
-        private static void RepaintAddressableAssetsWindow()
+        private static void CloseAddressableAssetsWindow()
         {
             const BindingFlags Attr = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
             const string AssemblyName = "Unity.Addressables.Editor";
@@ -157,7 +158,7 @@ namespace GigaCreation.Tools.Addressables.Editor
                 return;
             }
 
-            window.Repaint();
+            window.Close();
         }
     }
 }
