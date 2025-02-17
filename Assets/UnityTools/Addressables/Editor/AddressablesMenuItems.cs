@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System.IO;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
-using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
+#if ADDRESSABLE_ASSET_GROUP_SORT_SETTINGS_AVAILABLE
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 using Object = UnityEngine.Object;
+#endif
 
 namespace GigaCreation.Tools.Addressables.Editor
 {
@@ -17,8 +19,6 @@ namespace GigaCreation.Tools.Addressables.Editor
     {
         private const int CategoryPriority = 29100;
         private const string Category = "Tools/GIGA CREATION/Addressables/";
-
-        private static readonly string[] s_defaultGroupNames = { "Built In Data", "Default Local Group" };
 
         private static AddressableAssetSettings s_addressablesSettings;
 
@@ -92,6 +92,9 @@ namespace GigaCreation.Tools.Addressables.Editor
             Debug.Log($"アセットバンドルのキャッシュクリアに{(success ? "成功" : "失敗")}しました。");
         }
 
+#if ADDRESSABLE_ASSET_GROUP_SORT_SETTINGS_AVAILABLE
+        private static readonly string[] s_defaultGroupNames = { "Built In Data", "Default Local Group" };
+
         [MenuItem(Category + "Sort Addressables Groups", priority = CategoryPriority + 3)]
         public static void SortAddressablesGroups()
         {
@@ -160,5 +163,6 @@ namespace GigaCreation.Tools.Addressables.Editor
 
             window.Close();
         }
+#endif
     }
 }

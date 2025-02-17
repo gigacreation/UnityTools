@@ -1,10 +1,10 @@
 {
     "name": "jp.gigacreation.tools.addressables",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "displayName": "UnityTools / Addressables",
     "unity": "6000.0",
     "dependencies": {
-        "com.unity.addressables": "2.3.16",
+        "com.unity.addressables": "2.2.2",
         "com.unity.scriptablebuildpipeline": "2.2.11"
     },
     "author": {
