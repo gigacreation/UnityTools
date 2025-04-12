@@ -12,7 +12,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
             DebugManager
                 .IsDebugMode
-                .Where(x => x)
+                .Where(static x => x)
                 .Subscribe(_ =>
                 {
                     this

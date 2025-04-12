@@ -28,7 +28,7 @@ namespace GigaCreation.Tools.Debugging.Ui
         private Transform[] OtherDebugPanels
             => _otherDebugPanels ??= FindObjectsByType<DebugExclusivePanel>(FindObjectsSortMode.None)
                 .Where(panel => panel != this)
-                .Select(panel => panel.transform)
+                .Select(static panel => panel.transform)
                 .ToArray();
 
         private void Start()
@@ -56,7 +56,7 @@ namespace GigaCreation.Tools.Debugging.Ui
 
             debugManager
                 .IsDebugMode
-                .Where(x => x)
+                .Where(static x => x)
                 .Subscribe(_ =>
                 {
                     HideContent();

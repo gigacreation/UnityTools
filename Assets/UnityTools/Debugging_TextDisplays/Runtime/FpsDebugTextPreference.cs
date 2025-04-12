@@ -17,16 +17,16 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
             DebugManager
                 .IsDebugMode
-                .Where(x => x)
+                .Where(static x => x)
                 .Subscribe(_ =>
                 {
                     SetTextToLabel("- fps");
 
                     this
                         .UpdateAsObservable()
-                        .Select(_ => Time.deltaTime)
+                        .Select(static _ => Time.deltaTime)
                         .Buffer(BufferSize, 1)
-                        .Select(y => 1f / y.Average())
+                        .Select(static y => 1f / y.Average())
                         .ToReadOnlyReactiveProperty()
                         .Subscribe(fps =>
                         {

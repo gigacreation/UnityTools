@@ -10,6 +10,7 @@ namespace GigaCreation.Tools.Debugging.Ui
     /// </summary>
     public class DebugDisplay : MonoBehaviour
     {
+        [SerializeField] private Transform _transform;
         [SerializeField] private Canvas _canvas;
 
         private void Start()
@@ -27,6 +28,7 @@ namespace GigaCreation.Tools.Debugging.Ui
 
         private void Reset()
         {
+            _transform = transform;
             _canvas = GetComponent<Canvas>();
         }
 
@@ -42,7 +44,7 @@ namespace GigaCreation.Tools.Debugging.Ui
                 return;
             }
 
-            transform.localScale = visible ? Vector3.one : Vector3.zero;
+            _transform.localScale = visible ? Vector3.one : Vector3.zero;
         }
     }
 }

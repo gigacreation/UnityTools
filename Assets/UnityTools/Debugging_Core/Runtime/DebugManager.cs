@@ -14,7 +14,7 @@ namespace GigaCreation.Tools.Debugging.Core
             _isDebugMode = new ReactiveProperty<bool>(initialMode);
 
             _isDebugMode
-                .Where(x => !x)
+                .Where(static x => !x)
                 .Subscribe(_ =>
                 {
                     DebugDisposables.Clear();

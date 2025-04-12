@@ -63,8 +63,8 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
             _labels.Add(priority, newLabel);
 
             TextMeshProUGUI[] sortedLabels = _labels
-                .OrderBy(pair => pair.Key)
-                .Select(pair => pair.Value)
+                .OrderBy(static pair => pair.Key)
+                .Select(static pair => pair.Value)
                 .ToArray();
 
             for (var i = 0; i < sortedLabels.Length; i++)

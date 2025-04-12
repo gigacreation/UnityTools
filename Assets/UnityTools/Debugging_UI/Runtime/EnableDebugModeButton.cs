@@ -7,23 +7,20 @@ using UnityEngine.UI;
 
 namespace GigaCreation.Tools.Debugging.Ui
 {
-    [RequireComponent(typeof(Image), typeof(Selectable))]
-    public class EnterDebugModeButton : MonoBehaviour
+    [RequireComponent(typeof(CanvasGroup), typeof(Image), typeof(Selectable))]
+    public class EnableDebugModeButton : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private Image _image;
         [SerializeField] private Selectable _selectable;
 
+        [Header("Parameters")]
         [SerializeField] private float _longPressDuration = 1f;
 
         private IDebugManager _debugManager;
 
         private bool _isPressed;
-
-        private void Reset()
-        {
-            _image = GetComponent<Image>();
-            _selectable = GetComponent<Selectable>();
-        }
 
         private void Start()
         {
@@ -33,7 +30,6 @@ namespace GigaCreation.Tools.Debugging.Ui
             }
 
             var pressedTime = 0f;
-
             _image.fillAmount = 0f;
 
             this
@@ -48,8 +44,8 @@ namespace GigaCreation.Tools.Debugging.Ui
                         return;
                     }
 
-                    ReturnToDefault();
-                    EnableDebugMode();
+                    ResetToDefault();
+                    _debugManager.IsDebugMode.Value = true;
                 })
                 .AddTo(this);
 
@@ -68,20 +64,32 @@ namespace GigaCreation.Tools.Debugging.Ui
                 .Where(_ => !_debugManager.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
-                    ReturnToDefault();
+                    ResetToDefault();
+                })
+                .AddTo(this);
+
+            _debugManager
+                .IsDebugMode
+                .Subscribe(x =>
+                {
+                    _canvasGroup.alpha = x ? 0f : 1f;
+                    _canvasGroup.interactable = !x;
+                    _canvasGroup.blocksRaycasts = !x;
                 })
                 .AddTo(this);
         }
 
-        private void ReturnToDefault()
+        private void Reset()
+        {
+            _canvasGroup = GetComponent<CanvasGroup>();
+            _image = GetComponent<Image>();
+            _selectable = GetComponent<Selectable>();
+        }
+
+        private void ResetToDefault()
         {
             _isPressed = false;
             _image.fillAmount = 0f;
-        }
-
-        private void EnableDebugMode()
-        {
-            _debugManager.IsDebugMode.Value = true;
         }
     }
 }
