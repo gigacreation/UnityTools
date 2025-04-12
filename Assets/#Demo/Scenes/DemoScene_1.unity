@@ -448,6 +448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 326577122}
+  - component: {fileID: 326577126}
   - component: {fileID: 326577125}
   - component: {fileID: 326577124}
   - component: {fileID: 326577123}
@@ -560,6 +561,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326577121}
   m_CullTransparentMesh: 1
+--- !u!225 &326577126
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326577121}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &418052771
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430047333}
+  - component: {fileID: 430047337}
   - component: {fileID: 430047336}
   - component: {fileID: 430047335}
   - component: {fileID: 430047334}
@@ -814,6 +828,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430047332}
   m_CullTransparentMesh: 1
+--- !u!225 &430047337
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430047332}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &474705199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 530827066}
+  - component: {fileID: 530827070}
   - component: {fileID: 530827069}
   - component: {fileID: 530827068}
   - component: {fileID: 530827067}
@@ -1376,6 +1403,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 530827065}
   m_CullTransparentMesh: 1
+--- !u!225 &530827070
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530827065}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &541565516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,6 +2070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 639649383}
+  - component: {fileID: 639649387}
   - component: {fileID: 639649386}
   - component: {fileID: 639649385}
   - component: {fileID: 639649384}
@@ -2143,6 +2183,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639649382}
   m_CullTransparentMesh: 1
+--- !u!225 &639649387
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639649382}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &651307304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4396,8 +4448,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 779.99994, y: 460.08887}
-  m_SizeDelta: {x: 360, y: 280.17776}
+  m_AnchoredPosition: {x: 780, y: 460.1857}
+  m_SizeDelta: {x: 360.00018, y: 280.37155}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1455666195
 MonoBehaviour:
@@ -5409,9 +5461,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _contents:
   - {fileID: 1429006389}
-  _showButtonTransform: {fileID: 326577122}
+  _showButtonCanvasGroup: {fileID: 326577126}
   _showButton: {fileID: 326577123}
-  _hideButtonTransform: {fileID: 530827066}
+  _hideButtonCanvasGroup: {fileID: 530827070}
   _hideButton: {fileID: 530827067}
 --- !u!1 &1765074607
 GameObject:
@@ -5675,9 +5727,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _contents:
   - {fileID: 1418997111}
-  _showButtonTransform: {fileID: 430047333}
+  _showButtonCanvasGroup: {fileID: 430047337}
   _showButton: {fileID: 430047334}
-  _hideButtonTransform: {fileID: 639649383}
+  _hideButtonCanvasGroup: {fileID: 639649387}
   _hideButton: {fileID: 639649384}
 --- !u!1 &1892292624
 GameObject:
