@@ -37,9 +37,11 @@ namespace GigaCreation.Tools.Demo
 
         private async UniTask DelayAsync(CancellationToken ct = default)
         {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(_duration);
+
             Debug.Log("Delay start.");
 
-            await UniTaskHelper.SkippableDelay(TimeSpan.FromSeconds(_duration), () => Input.anyKeyDown, ct: ct);
+            await UniTaskHelper.SkippableDelay(timeSpan, static () => Input.anyKeyDown, ct: ct);
 
             Debug.Log("Delay end.");
         }
@@ -50,7 +52,7 @@ namespace GigaCreation.Tools.Demo
 
             Debug.Log("Fill start.");
 
-            await UniTaskHelper.SkippableTween(tweener, () => Input.anyKeyDown, ct: ct);
+            await UniTaskHelper.SkippableTween(tweener, static () => Input.anyKeyDown, ct: ct);
 
             Debug.Log("Fill end.");
         }
