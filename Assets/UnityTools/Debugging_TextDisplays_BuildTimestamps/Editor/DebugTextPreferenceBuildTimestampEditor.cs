@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps.Editor
 {
-    [CustomEditor(typeof(BuildTimestampPreference))]
-    public class BuildTimestampDisplayEditor : UnityEditor.Editor
+    [CustomEditor(typeof(DebugTextPreferenceBuildTimestamp))]
+    public class DebugTextPreferenceBuildTimestampEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            if (target is not BuildTimestampPreference buildTimestampDisplay)
+            if (target is not DebugTextPreferenceBuildTimestamp buildTimestampDisplay)
             {
                 return;
             }

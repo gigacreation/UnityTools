@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps
 {
-    public class BuildTimestampPreference : DebugTextPreferenceBase
+    public class DebugTextPreferenceBuildTimestamp : DebugTextPreferenceBase
     {
         private const string BuildTimestampAssetNotFoundMessage
             = "The BuildTimestamp asset could not be found. This asset will be generated after you run the build.";
