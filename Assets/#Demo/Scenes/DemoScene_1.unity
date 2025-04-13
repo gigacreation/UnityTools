@@ -3925,6 +3925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _priority: 20
+  _onlyOnceOnStart: 1
   _buildTimestamp: {fileID: 11400000, guid: c2b13b312d90e3d4389c02d78615dae3, type: 2}
   _format: yyyy/MM/dd HH:mm:ss
   _utcOffsetHours: 9
@@ -3941,6 +3942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _priority: 1
+  _onlyOnceOnStart: 0
 --- !u!114 &1281658671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3954,6 +3956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _priority: 0
+  _onlyOnceOnStart: 0
 --- !u!114 &1281658672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4060,6 +4063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _priority: 10
+  _onlyOnceOnStart: 0
 --- !u!1 &1309692031
 GameObject:
   m_ObjectHideFlags: 0
@@ -4448,8 +4452,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 780, y: 460.1857}
-  m_SizeDelta: {x: 360.00018, y: 280.37155}
+  m_AnchoredPosition: {x: 779.99994, y: 460.08887}
+  m_SizeDelta: {x: 360, y: 280.17776}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1455666195
 MonoBehaviour:

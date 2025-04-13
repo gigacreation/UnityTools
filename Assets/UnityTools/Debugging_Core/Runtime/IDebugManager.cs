@@ -10,10 +10,5 @@ namespace GigaCreation.Tools.Debugging.Core
         /// 現在、デバッグモードか否か。
         /// </summary>
         IReactiveProperty<bool> IsDebugMode { get; }
-
-        /// <summary>
-        /// デバッグモード解除時にクリアされる Disposable。
-        /// </summary>
-        CompositeDisposable DebugDisposables { get; }
     }
 }

@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps
 {
-    public class BuildTimestampPreference : DebugTextPreference
+    public class BuildTimestampPreference : DebugTextPreferenceBase
     {
         private const string BuildTimestampAssetNotFoundMessage
             = "The BuildTimestamp asset could not be found. This asset will be generated after you run the build.";
@@ -17,16 +17,9 @@ namespace GigaCreation.Tools.Debugging.TextDisplays.BuildTimestamps
         [SerializeField] private string _format = "yyyy/MM/dd HH:mm:ss";
         [SerializeField] private float _utcOffsetHours;
 
-        protected override void Initialize()
-        {
-            base.Initialize();
-
-            string message = _buildTimestamp
-                ? $"Built on {_buildTimestamp.ToString(_format, _utcOffsetHours)}"
-                : "The BuildTimestamp asset is not set.";
-
-            SetTextToLabel(message);
-        }
+        protected override string LabelText => _buildTimestamp
+            ? $"Built: {_buildTimestamp.ToString(_format, _utcOffsetHours)}"
+            : "The BuildTimestamp asset is not set.";
 
         public void SetBuildTimestampAsset()
         {

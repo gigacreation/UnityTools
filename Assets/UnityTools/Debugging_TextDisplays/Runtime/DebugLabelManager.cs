@@ -52,7 +52,6 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                 };
 
                 newLabel = go.AddComponent<TextMeshProUGUI>();
-                newLabel.verticalAlignment = VerticalAlignmentOptions.Middle;
             }
             else
             {
@@ -86,13 +85,12 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         /// <param name="priority">削除するラベルの優先度。</param>
         public void Remove(int priority)
         {
-            if (!_labels.TryGetValue(priority, out TextMeshProUGUI label))
+            if (!_labels.Remove(priority, out TextMeshProUGUI label))
             {
                 Debug.LogWarning($"要求されたラベルが存在しません：{priority}");
                 return;
             }
 
-            _labels.Remove(priority);
             Destroy(label.gameObject);
 
             if (_autoLayoutSupporter)

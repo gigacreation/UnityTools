@@ -17,6 +17,8 @@ namespace GigaCreation.Tools.Debugging.General
         [SerializeField] private bool _withOptionKey;
         [SerializeField] private bool _withControlKey;
 
+        private readonly CompositeDisposable _disposables = new();
+
         private float _storedTimeScale = -1f;
 
         private void Start()
@@ -28,24 +30,30 @@ namespace GigaCreation.Tools.Debugging.General
 
             debugManager
                 .IsDebugMode
-                .Where(x => x)
-                .Subscribe(_ =>
+                .Subscribe(isOn =>
                 {
-                    _timeScale
-                        .Subscribe(x =>
-                        {
-                            Time.timeScale = x;
-                        })
-                        .AddTo(debugManager.DebugDisposables);
+                    if (isOn)
+                    {
+                        _timeScale
+                            .Subscribe(static x =>
+                            {
+                                Time.timeScale = x;
+                            })
+                            .AddTo(_disposables);
 
-                    this
-                        .UpdateAsObservable()
-                        .Where(_ => AreModifierKeysPressed())
-                        .Subscribe(_ =>
-                        {
-                            OnUpdateInDebugMode();
-                        })
-                        .AddTo(debugManager.DebugDisposables);
+                        this
+                            .UpdateAsObservable()
+                            .Where(_ => AreModifierKeysPressed())
+                            .Subscribe(_ =>
+                            {
+                                OnUpdateInDebugMode();
+                            })
+                            .AddTo(_disposables);
+                    }
+                    else
+                    {
+                        _disposables.Clear();
+                    }
                 })
                 .AddTo(this);
         }

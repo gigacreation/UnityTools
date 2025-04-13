@@ -1,21 +1,25 @@
-﻿using GigaCreation.Tools.Debugging.Core;
+﻿using System;
+using GigaCreation.Tools.Debugging.Core;
 using GigaCreation.Tools.Service;
 using TMPro;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging.TextDisplays
 {
-    public abstract class DebugTextPreference : MonoBehaviour
+    public abstract class DebugTextPreferenceBase : MonoBehaviour
     {
         [SerializeField] private int _priority;
+        [SerializeField] private bool _onlyOnceOnStart;
 
         private IDebugManager _debugManager;
         private DebugLabelManager _debugLabelManager;
         private TextMeshProUGUI _label;
-
         private bool _isQuitting;
+        private IDisposable _labelUpdateDisposable;
 
-        protected IDebugManager DebugManager => _debugManager;
+        protected abstract string LabelText { get; }
 
         private void Start()
         {
@@ -29,6 +33,9 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
         private void OnDestroy()
         {
+            _labelUpdateDisposable?.Dispose();
+            _labelUpdateDisposable = null;
+
             if (_isQuitting || !_debugLabelManager)
             {
                 return;
@@ -42,9 +49,31 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
             _isQuitting = true;
         }
 
-        protected virtual void Initialize()
+        private void Initialize()
         {
             _label = AddLabel();
+
+            if (_onlyOnceOnStart)
+            {
+                UpdateLabel();
+                return;
+            }
+
+            _debugManager
+                .IsDebugMode
+                .Subscribe(isOn =>
+                {
+                    if (isOn)
+                    {
+                        _labelUpdateDisposable = ActivateLabelUpdate();
+                    }
+                    else
+                    {
+                        _labelUpdateDisposable?.Dispose();
+                        _labelUpdateDisposable = null;
+                    }
+                })
+                .AddTo(this);
         }
 
         private TextMeshProUGUI AddLabel()
@@ -63,9 +92,20 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
             return _debugLabelManager.Add(_priority);
         }
 
-        protected void SetTextToLabel(string text)
+        protected virtual IDisposable ActivateLabelUpdate()
         {
-            _label.SetText(text);
+            return this
+                .UpdateAsObservable()
+                .Subscribe(_ =>
+                {
+                    UpdateLabel();
+                })
+                .AddTo(this);
+        }
+
+        protected void UpdateLabel()
+        {
+            _label.SetText(LabelText);
         }
     }
 }
