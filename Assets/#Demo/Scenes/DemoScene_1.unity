@@ -3883,6 +3883,7 @@ GameObject:
   - component: {fileID: 1281658673}
   - component: {fileID: 1281658672}
   - component: {fileID: 1281658671}
+  - component: {fileID: 1281658678}
   - component: {fileID: 1281658670}
   - component: {fileID: 1281658677}
   - component: {fileID: 1281658669}
@@ -3924,7 +3925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e99de77fb22a64e91e6899ec1c44e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 20
+  _priority: 4
   _onlyOnceOnStart: 1
   _buildTimestamp: {fileID: 11400000, guid: c2b13b312d90e3d4389c02d78615dae3, type: 2}
   _format: yyyy/MM/dd HH:mm:ss
@@ -3941,7 +3942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98a9ffd87144124093afb8c9f8170f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 1
+  _priority: 2
   _onlyOnceOnStart: 0
 --- !u!114 &1281658671
 MonoBehaviour:
@@ -4062,7 +4063,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44eb11539ce94d16bfb248cd86700fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 10
+  _priority: 3
+  _onlyOnceOnStart: 0
+--- !u!114 &1281658678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281658667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199dd20054144e41becc3f644f571e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priority: 1
   _onlyOnceOnStart: 0
 --- !u!1 &1309692031
 GameObject:
