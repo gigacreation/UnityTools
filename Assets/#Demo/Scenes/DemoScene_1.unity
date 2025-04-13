@@ -3886,9 +3886,10 @@ GameObject:
   - component: {fileID: 1281658678}
   - component: {fileID: 1281658670}
   - component: {fileID: 1281658677}
+  - component: {fileID: 1281658679}
   - component: {fileID: 1281658669}
   m_Layer: 5
-  m_Name: DebugTextDisplay
+  m_Name: DebugInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3925,7 +3926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e99de77fb22a64e91e6899ec1c44e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 4
+  _priority: 10
   _onlyOnceOnStart: 1
   _buildTimestamp: {fileID: 11400000, guid: c2b13b312d90e3d4389c02d78615dae3, type: 2}
   _format: yyyy/MM/dd HH:mm:ss
@@ -4079,6 +4080,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 1
   _onlyOnceOnStart: 0
+--- !u!114 &1281658679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281658667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62eeefc227641778b448932123f6bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priority: 4
+  _onlyOnceOnStart: 1
 --- !u!1 &1309692031
 GameObject:
   m_ObjectHideFlags: 0
