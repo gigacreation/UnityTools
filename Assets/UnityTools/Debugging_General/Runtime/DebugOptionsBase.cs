@@ -11,7 +11,7 @@ namespace GigaCreation.Tools.Debugging.General
         private static bool s_isInitialized;
         private static IDebugManager s_debugManager;
 
-        protected static bool IsDebugMode
+        public static bool IsDebugMode
         {
             get
             {
