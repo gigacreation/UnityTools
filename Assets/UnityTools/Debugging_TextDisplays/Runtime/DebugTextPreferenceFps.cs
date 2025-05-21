@@ -10,7 +10,9 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 {
     public class DebugTextPreferenceFps : DebugTextPreferenceBase
     {
-        private const int BufferSize = 5;
+        [Space]
+        [SerializeField] private int _bufferSize = 5;
+        [SerializeField] private bool _ignoreTimeScale;
 
         private string _fpsText;
 
@@ -23,9 +25,9 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
             return this
                 .UpdateAsObservable()
-                .Select(static _ => Time.deltaTime)
-                .Buffer(BufferSize, 1)
-                .Select(static y => 1f / y.Average())
+                .Select(_ => _ignoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime)
+                .Buffer(_bufferSize, 1)
+                .Select(static buffer => 1f / buffer.Average())
                 .ToReadOnlyReactiveProperty()
                 .Subscribe(fps =>
                 {

@@ -3959,6 +3959,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _priority: 0
   _onlyOnceOnStart: 0
+  _bufferSize: 5
+  _ignoreTimeScale: 1
 --- !u!114 &1281658672
 MonoBehaviour:
   m_ObjectHideFlags: 0
