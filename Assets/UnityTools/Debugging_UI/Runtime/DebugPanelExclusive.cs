@@ -37,7 +37,7 @@ namespace GigaCreation.Tools.Debugging.Ui
             _isQuitting = true;
         }
 
-        protected override void ShowContent()
+        public override void ShowContent()
         {
             base.ShowContent();
 
@@ -47,7 +47,7 @@ namespace GigaCreation.Tools.Debugging.Ui
             }
         }
 
-        protected override void HideContent()
+        public override void HideContent()
         {
             base.HideContent();
 
