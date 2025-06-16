@@ -52,7 +52,7 @@ namespace GigaCreation.Tools.Debugging.Ui
                 .AddTo(this);
         }
 
-        protected virtual void ShowContent()
+        public virtual void ShowContent()
         {
             foreach (Transform content in _contents)
             {
@@ -66,7 +66,7 @@ namespace GigaCreation.Tools.Debugging.Ui
             _hideButtonCanvasGroup.blocksRaycasts = true;
         }
 
-        protected virtual void HideContent()
+        public virtual void HideContent()
         {
             foreach (Transform content in _contents)
             {
