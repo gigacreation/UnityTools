@@ -6,6 +6,7 @@ namespace GigaCreation.Tools.Debugging.Core
 {
     public class DebugPresenter : MonoBehaviour
     {
+        [SerializeField] private bool _enableDebugInReleaseBuild;
         [SerializeField] private bool _forceReleaseBuild;
         [SerializeField] private BoolReactiveProperty _isDebugMode;
 
@@ -14,7 +15,7 @@ namespace GigaCreation.Tools.Debugging.Core
         private void Awake()
         {
             // リリースビルド時は自身を破棄する
-            if (!Debug.isDebugBuild || _forceReleaseBuild)
+            if (!_enableDebugInReleaseBuild && (!Debug.isDebugBuild || _forceReleaseBuild))
             {
                 Destroy(this);
                 return;

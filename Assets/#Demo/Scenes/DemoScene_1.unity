@@ -2974,6 +2974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f9efe2a976463abc9e122019de3bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enableDebugInReleaseBuild: 1
   _forceReleaseBuild: 0
   _isDebugMode:
     value: 1

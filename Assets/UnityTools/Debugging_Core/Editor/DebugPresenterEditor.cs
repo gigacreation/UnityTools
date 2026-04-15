@@ -5,11 +5,13 @@ namespace GigaCreation.Tools.Debugging.Core.Editor
     [CustomEditor(typeof(DebugPresenter))]
     public class DebugPresenterEditor : UnityEditor.Editor
     {
+        private SerializedProperty _enableDebugInReleaseBuildProperty;
         private SerializedProperty _forceReleaseBuildProperty;
         private SerializedProperty _isDebugModeProperty;
 
         private void OnEnable()
         {
+            _enableDebugInReleaseBuildProperty = serializedObject.FindProperty("_enableDebugInReleaseBuild");
             _forceReleaseBuildProperty = serializedObject.FindProperty("_forceReleaseBuild");
             _isDebugModeProperty = serializedObject.FindProperty("_isDebugMode");
         }
@@ -18,7 +20,12 @@ namespace GigaCreation.Tools.Debugging.Core.Editor
         {
             serializedObject.Update();
 
-            EditorGUILayout.PropertyField(_forceReleaseBuildProperty);
+            EditorGUILayout.PropertyField(_enableDebugInReleaseBuildProperty);
+
+            using (new EditorGUI.DisabledScope(_enableDebugInReleaseBuildProperty.boolValue))
+            {
+                EditorGUILayout.PropertyField(_forceReleaseBuildProperty);
+            }
 
             using (new EditorGUI.DisabledScope(_forceReleaseBuildProperty.boolValue))
             {
