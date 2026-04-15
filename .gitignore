@@ -75,5 +75,5 @@ sysinfo.txt
 !/**/.gitkeep
 
 # Local only files
-zz-LocalOnly.meta
-zz-LocalOnly/
+External.meta
+External/
