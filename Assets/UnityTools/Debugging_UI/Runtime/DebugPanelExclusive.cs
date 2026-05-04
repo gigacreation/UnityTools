@@ -37,23 +37,13 @@ namespace GigaCreation.Tools.Debugging.Ui
             _isQuitting = true;
         }
 
-        public override void ShowContent()
+        protected override void SetVisible(bool visible)
         {
-            base.ShowContent();
+            base.SetVisible(visible);
 
             foreach (Transform panel in OtherDebugPanels)
             {
-                panel.localScale = Vector3.zero;
-            }
-        }
-
-        public override void HideContent()
-        {
-            base.HideContent();
-
-            foreach (Transform panel in OtherDebugPanels)
-            {
-                panel.localScale = Vector3.one;
+                panel.localScale = visible ? Vector3.zero : Vector3.one;
             }
         }
     }

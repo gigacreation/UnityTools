@@ -20,7 +20,15 @@ namespace GigaCreation.Tools.Debugging.Ui
         [SerializeField] private CanvasGroup _hideButtonCanvasGroup;
         [SerializeField] private Button _hideButton;
 
+        private bool _visible;
+
         public IReadOnlyList<Transform> Contents => _contents;
+
+        public virtual bool Visible
+        {
+            get => _visible;
+            set => SetVisible(value);
+        }
 
         private void Start()
         {
@@ -33,7 +41,7 @@ namespace GigaCreation.Tools.Debugging.Ui
                 .OnClickAsObservable()
                 .Subscribe(_ =>
                 {
-                    ShowContent();
+                    Visible = true;
                 })
                 .AddTo(this);
 
@@ -41,7 +49,7 @@ namespace GigaCreation.Tools.Debugging.Ui
                 .OnClickAsObservable()
                 .Subscribe(_ =>
                 {
-                    HideContent();
+                    Visible = false;
                 })
                 .AddTo(this);
 
@@ -50,37 +58,25 @@ namespace GigaCreation.Tools.Debugging.Ui
                 .Where(static x => x)
                 .Subscribe(_ =>
                 {
-                    HideContent();
+                    Visible = false;
                 })
                 .AddTo(this);
         }
 
-        public virtual void ShowContent()
+        protected virtual void SetVisible(bool visible)
         {
+            _visible = visible;
+
             foreach (Transform content in _contents)
             {
-                content.localScale = Vector3.one;
+                content.localScale = visible ? Vector3.one : Vector3.zero;
             }
 
-            _showButtonCanvasGroup.alpha = 0f;
-            _showButtonCanvasGroup.blocksRaycasts = false;
+            _showButtonCanvasGroup.blocksRaycasts = !visible;
+            _showButtonCanvasGroup.alpha = visible ? 0f : 1f;
 
-            _hideButtonCanvasGroup.alpha = 1f;
-            _hideButtonCanvasGroup.blocksRaycasts = true;
-        }
-
-        public virtual void HideContent()
-        {
-            foreach (Transform content in _contents)
-            {
-                content.localScale = Vector3.zero;
-            }
-
-            _showButtonCanvasGroup.alpha = 1f;
-            _showButtonCanvasGroup.blocksRaycasts = true;
-
-            _hideButtonCanvasGroup.alpha = 0f;
-            _hideButtonCanvasGroup.blocksRaycasts = false;
+            _hideButtonCanvasGroup.blocksRaycasts = visible;
+            _hideButtonCanvasGroup.alpha = visible ? 1f : 0f;
         }
     }
 }
