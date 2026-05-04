@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using GigaCreation.Tools.Debugging.Core;
 using GigaCreation.Tools.Service;
 using UniRx;
@@ -18,6 +19,8 @@ namespace GigaCreation.Tools.Debugging.Ui
         [SerializeField] private Button _showButton;
         [SerializeField] private CanvasGroup _hideButtonCanvasGroup;
         [SerializeField] private Button _hideButton;
+
+        public IReadOnlyList<Transform> Contents => _contents;
 
         private void Start()
         {
