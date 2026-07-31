@@ -32,8 +32,7 @@ namespace GigaCreation.Tools.Debugging.Ui
             var pressedTime = 0f;
             _image.fillAmount = 0f;
 
-            this
-                .UpdateAsObservable()
+            this.UpdateAsObservable()
                 .Where(_ => _isPressed)
                 .Subscribe(_ =>
                 {
@@ -49,8 +48,7 @@ namespace GigaCreation.Tools.Debugging.Ui
                 })
                 .AddTo(this);
 
-            _selectable
-                .OnPointerDownAsObservable()
+            _selectable.OnPointerDownAsObservable()
                 .Where(_ => !_debugManager.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
@@ -59,8 +57,7 @@ namespace GigaCreation.Tools.Debugging.Ui
                 })
                 .AddTo(this);
 
-            _selectable
-                .OnPointerUpAsObservable()
+            _selectable.OnPointerUpAsObservable()
                 .Where(_ => !_debugManager.IsDebugMode.Value)
                 .Subscribe(_ =>
                 {
@@ -68,8 +65,7 @@ namespace GigaCreation.Tools.Debugging.Ui
                 })
                 .AddTo(this);
 
-            _debugManager
-                .IsDebugMode
+            _debugManager.IsDebugMode
                 .Subscribe(x =>
                 {
                     _canvasGroup.alpha = x ? 0f : 1f;

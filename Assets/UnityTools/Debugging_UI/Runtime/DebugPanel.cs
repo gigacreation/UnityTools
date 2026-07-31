@@ -12,7 +12,7 @@ namespace GigaCreation.Tools.Debugging.Ui
     /// </summary>
     public class DebugPanel : MonoBehaviour
     {
-        [SerializeField] private Transform[] _contents;
+        [SerializeField] private CanvasGroup[] _contents;
 
         [Space]
         [SerializeField] private CanvasGroup _showButtonCanvasGroup;
@@ -22,7 +22,7 @@ namespace GigaCreation.Tools.Debugging.Ui
 
         private bool _visible;
 
-        public IReadOnlyList<Transform> Contents => _contents;
+        public IReadOnlyList<CanvasGroup> Contents => _contents;
 
         public virtual bool Visible
         {
@@ -37,24 +37,21 @@ namespace GigaCreation.Tools.Debugging.Ui
                 return;
             }
 
-            _showButton
-                .OnClickAsObservable()
+            _showButton.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
                     Visible = true;
                 })
                 .AddTo(this);
 
-            _hideButton
-                .OnClickAsObservable()
+            _hideButton.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
                     Visible = false;
                 })
                 .AddTo(this);
 
-            debugManager
-                .IsDebugMode
+            debugManager.IsDebugMode
                 .Where(static x => x)
                 .Subscribe(_ =>
                 {
@@ -67,16 +64,27 @@ namespace GigaCreation.Tools.Debugging.Ui
         {
             _visible = visible;
 
-            foreach (Transform content in _contents)
+            foreach (var content in _contents)
             {
-                content.localScale = visible ? Vector3.one : Vector3.zero;
+                content.alpha = visible ? 1f : 0f;
+                content.interactable = visible;
+                content.blocksRaycasts = visible;
             }
 
-            _showButtonCanvasGroup.blocksRaycasts = !visible;
-            _showButtonCanvasGroup.alpha = visible ? 0f : 1f;
+            ChangeShowButtonVisibility(!visible);
+            ChangeHideButtonVisibility(visible);
+        }
 
-            _hideButtonCanvasGroup.blocksRaycasts = visible;
+        protected void ChangeShowButtonVisibility(bool visible)
+        {
+            _showButtonCanvasGroup.alpha = visible ? 1f : 0f;
+            _showButtonCanvasGroup.blocksRaycasts = visible;
+        }
+
+        protected void ChangeHideButtonVisibility(bool visible)
+        {
             _hideButtonCanvasGroup.alpha = visible ? 1f : 0f;
+            _hideButtonCanvasGroup.blocksRaycasts = visible;
         }
     }
 }

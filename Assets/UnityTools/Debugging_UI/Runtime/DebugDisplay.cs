@@ -10,8 +10,8 @@ namespace GigaCreation.Tools.Debugging.Ui
     /// </summary>
     public class DebugDisplay : MonoBehaviour
     {
-        [SerializeField] private Transform _transform;
         [SerializeField] private Canvas _canvas;
+        [SerializeField] private CanvasGroup _canvasGroup;
 
         private void Start()
         {
@@ -20,16 +20,15 @@ namespace GigaCreation.Tools.Debugging.Ui
                 return;
             }
 
-            debugManager
-                .IsDebugMode
+            debugManager.IsDebugMode
                 .Subscribe(ChangeVisibility)
                 .AddTo(this);
         }
 
         private void Reset()
         {
-            _transform = transform;
             _canvas = GetComponent<Canvas>();
+            _canvasGroup = GetComponent<CanvasGroup>();
         }
 
         /// <summary>
@@ -41,10 +40,14 @@ namespace GigaCreation.Tools.Debugging.Ui
             if (_canvas)
             {
                 _canvas.enabled = visible;
-                return;
             }
 
-            _transform.localScale = visible ? Vector3.one : Vector3.zero;
+            if (_canvasGroup)
+            {
+                _canvasGroup.alpha = visible ? 1f : 0f;
+                _canvasGroup.interactable = visible;
+                _canvasGroup.blocksRaycasts = visible;
+            }
         }
     }
 }

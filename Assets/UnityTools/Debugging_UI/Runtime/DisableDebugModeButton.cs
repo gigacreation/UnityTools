@@ -21,16 +21,14 @@ namespace GigaCreation.Tools.Debugging.Ui
                 return;
             }
 
-            _button
-                .OnClickAsObservable()
+            _button.OnClickAsObservable()
                 .Subscribe(_ =>
                 {
                     _debugManager.IsDebugMode.Value = false;
                 })
                 .AddTo(this);
 
-            _debugManager
-                .IsDebugMode
+            _debugManager.IsDebugMode
                 .Subscribe(x =>
                 {
                     _canvasGroup.alpha = x ? 1f : 0f;

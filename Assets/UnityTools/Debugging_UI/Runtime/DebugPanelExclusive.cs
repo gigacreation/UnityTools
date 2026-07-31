@@ -9,14 +9,13 @@ namespace GigaCreation.Tools.Debugging.Ui
     /// </summary>
     public class DebugPanelExclusive : DebugPanel
     {
-        private Transform[] _otherDebugPanels;
+        private DebugPanelExclusive[] _otherDebugPanels;
 
         private bool _isQuitting;
 
-        private Transform[] OtherDebugPanels
+        private DebugPanelExclusive[] OtherDebugPanels
             => _otherDebugPanels ??= FindObjectsByType<DebugPanelExclusive>(FindObjectsSortMode.None)
                 .Where(panel => panel != this)
-                .Select(static panel => panel.transform)
                 .ToArray();
 
         private void OnDestroy()
@@ -26,9 +25,9 @@ namespace GigaCreation.Tools.Debugging.Ui
                 return;
             }
 
-            foreach (Transform panel in OtherDebugPanels)
+            foreach (var panel in OtherDebugPanels)
             {
-                panel.localScale = Vector3.one;
+                panel.Visible = false;
             }
         }
 
@@ -41,9 +40,17 @@ namespace GigaCreation.Tools.Debugging.Ui
         {
             base.SetVisible(visible);
 
-            foreach (Transform panel in OtherDebugPanels)
+            foreach (var other in OtherDebugPanels)
             {
-                panel.localScale = visible ? Vector3.zero : Vector3.one;
+                if (visible)
+                {
+                    other.Visible = false;
+                    other.ChangeShowButtonVisibility(false);
+                }
+                else if (!other.Visible)
+                {
+                    other.ChangeShowButtonVisibility(true);
+                }
             }
         }
     }
