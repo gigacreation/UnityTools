@@ -1,13 +1,13 @@
 {
     "name": "jp.gigacreation.tools.debugging.general",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "displayName": "UnityTools / Debug / General",
-    "unity": "2022.3",
+    "unity": "6000.0",
     "dependencies": {
-        "jp.gigacreation.tools.debugging.core": "1.2.0",
-        "jp.gigacreation.tools.servicelocator": "1.2.0",
+        "jp.gigacreation.tools.debugging.core": "1.3.0",
+        "jp.gigacreation.tools.servicelocator": "1.2.1",
         "com.neuecc.unirx": "7.1.0",
-        "com.cysharp.unitask": "2.5.4"
+        "com.cysharp.unitask": "2.5.10"
     },
     "author": {
         "name": "GIGA CREATION",
