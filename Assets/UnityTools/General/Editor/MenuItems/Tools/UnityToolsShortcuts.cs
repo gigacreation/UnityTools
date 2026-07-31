@@ -43,14 +43,14 @@ namespace GigaCreation.Tools.General.Editor
                     .prefabContentsRoot
                     .transform
                     .Cast<Transform>()
-                    .Select(x => x.gameObject);
+                    .Select(static x => x.gameObject);
             }
 
             // 変更されている Prefab Instance を抽出する
             var overriddenPrefabInstances = rootGameObjects
                 .Where(PrefabUtility.IsAnyPrefabInstanceRoot)
-                .Where(x => PrefabUtility.HasPrefabInstanceAnyOverrides(x, false))
-                .Select(x => (Object) x)
+                .Where(static x => PrefabUtility.HasPrefabInstanceAnyOverrides(x, false))
+                .Select(static x => (Object) x)
                 .ToArray();
 
             foreach (var instance in overriddenPrefabInstances)

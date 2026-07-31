@@ -153,8 +153,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
         }
 
         public override void Pick(
-            GridLayout gridLayout, GameObject brushTarget, BoundsInt position, Vector3Int pickStart
-        )
+            GridLayout gridLayout, GameObject brushTarget, BoundsInt position, Vector3Int pickStart)
         {
             CacheGridLayout(gridLayout);
 
@@ -303,8 +302,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
         }
 
         public override void OnPaintSceneGUI(
-            GridLayout gridLayout, GameObject brushTarget, BoundsInt position, GridBrushBase.Tool tool, bool executing
-        )
+            GridLayout gridLayout, GameObject brushTarget, BoundsInt position, GridBrushBase.Tool tool, bool executing)
         {
             CreateEditor();
 

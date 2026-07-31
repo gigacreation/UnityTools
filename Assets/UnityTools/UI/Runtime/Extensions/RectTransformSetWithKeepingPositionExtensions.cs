@@ -32,8 +32,7 @@ namespace GigaCreation.Tools.Ui
         }
 
         public static void SetAnchorWithKeepingPosition(
-            this RectTransform self, Vector2 targetMinAnchor, Vector2 targetMaxAnchor
-        )
+            this RectTransform self, Vector2 targetMinAnchor, Vector2 targetMaxAnchor)
         {
             var parentRt = self.parent as RectTransform;
 
@@ -61,13 +60,11 @@ namespace GigaCreation.Tools.Ui
 
             self.anchoredPosition -= new Vector2(
                 diffLeft * (1f - pivot.x) + diffRight * pivot.x,
-                diffBottom * (1f - pivot.y) + diffTop * pivot.y
-            );
+                diffBottom * (1f - pivot.y) + diffTop * pivot.y);
         }
 
         public static void SetAnchorWithKeepingPosition(
-            this RectTransform self, float minX, float minY, float maxX, float maxY
-        )
+            this RectTransform self, float minX, float minY, float maxX, float maxY)
         {
             self.SetAnchorWithKeepingPosition(new Vector2(minX, minY), new Vector2(maxX, maxY));
         }

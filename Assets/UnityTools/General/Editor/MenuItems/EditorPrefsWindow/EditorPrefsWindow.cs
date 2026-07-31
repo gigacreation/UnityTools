@@ -57,11 +57,10 @@ namespace GigaCreation.Tools.General.Editor
                     if (GUILayout.Button("Delete All", EditorStyles.toolbarButton))
                     {
                         if (EditorUtility.DisplayDialog(
-                                "Delete all editor preferences.",
-                                "Are you sure you want to delete all the editor preferences? This action cannot be undone.",
-                                "Yes",
-                                "No"
-                            ))
+                            "Delete all editor preferences.",
+                            "Are you sure you want to delete all the editor preferences? This action cannot be undone.",
+                            "Yes",
+                            "No"))
                         {
                             EditorPrefs.DeleteAll();
                         }
@@ -69,12 +68,8 @@ namespace GigaCreation.Tools.General.Editor
 
                     GUILayout.FlexibleSpace();
 
-                    _searchText = EditorGUILayout.TextField
-                    (
-                        _searchText,
-                        EditorStyles.toolbarSearchField,
-                        GUILayout.Width(256)
-                    );
+                    _searchText = EditorGUILayout.TextField(
+                        _searchText, EditorStyles.toolbarSearchField, GUILayout.Width(256));
                 }
 
                 GUILayout.Space(Space);
@@ -104,7 +99,7 @@ namespace GigaCreation.Tools.General.Editor
         private void Refresh()
         {
             _list = GetEditorPrefsKeyValuePairAll()
-                .OrderBy(x => x.Key)
+                .OrderBy(static x => x.Key)
                 .ToArray();
         }
 

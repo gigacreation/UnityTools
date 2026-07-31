@@ -269,14 +269,13 @@ namespace GigaCreation.Tools.Ui
 
         bool ICanvasRaycastFilter.IsRaycastLocationValid(Vector2 screenPoint, Camera eventCamera)
         {
-            if (AlphaHitTestMinimumThreshold <= 0f)
+            switch (AlphaHitTestMinimumThreshold)
             {
-                return true;
-            }
+                case <= 0f:
+                    return true;
 
-            if (AlphaHitTestMinimumThreshold > 1f)
-            {
-                return false;
+                case > 1f:
+                    return false;
             }
 
             if (ActiveSprite == null)
@@ -285,11 +284,7 @@ namespace GigaCreation.Tools.Ui
             }
 
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                    rectTransform,
-                    screenPoint,
-                    eventCamera,
-                    out var local
-                ))
+                rectTransform, screenPoint, eventCamera, out var local))
             {
                 return false;
             }
@@ -378,8 +373,7 @@ namespace GigaCreation.Tools.Ui
                     "Using alphaHitTestMinimumThreshold greater than 0 on Image whose sprite texture cannot be read. "
                     + e.Message
                     + " Also make sure to disable sprite packing for this sprite.",
-                    this
-                );
+                    this);
 
                 return true;
             }
@@ -461,8 +455,7 @@ namespace GigaCreation.Tools.Ui
                     rect.x + rect.width * (padding.x / spriteW),
                     rect.y + rect.height * (padding.y / spriteH),
                     rect.x + rect.width * ((spriteW - padding.z) / spriteW),
-                    rect.y + rect.height * ((spriteH - padding.w) / spriteH)
-                );
+                    rect.y + rect.height * ((spriteH - padding.w) / spriteH));
 
                 GenerateFilledSprite(vh, vertices, outer, _fillAmount);
                 return;
@@ -562,8 +555,7 @@ namespace GigaCreation.Tools.Ui
                         s_slicedVertices[x].x,
                         s_slicedVertices[y].y,
                         s_slicedVertices[x2].x,
-                        s_slicedVertices[y2].y
-                    );
+                        s_slicedVertices[y2].y);
 
                     var uvs = new Vector4(s_slicedUVs[x].x, s_slicedUVs[y].y, s_slicedUVs[x2].x, s_slicedUVs[y2].y);
                     float fillAmount = (_fillAmount - sliceStart) / (sliceEnd - sliceStart);

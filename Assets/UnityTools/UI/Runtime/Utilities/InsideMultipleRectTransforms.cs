@@ -81,8 +81,8 @@ namespace GigaCreation.Tools.Ui
         public void Adjust()
         {
             var cornersOfTargets = _insideTargets
-                .Where(rt => rt)
-                .Select(rt =>
+                .Where(static rt => rt)
+                .Select(static rt =>
                 {
                     var corners = new Vector3[4];
                     rt.GetWorldCorners(corners);
@@ -96,14 +96,12 @@ namespace GigaCreation.Tools.Ui
             }
 
             var bottomLeftPosition = new Vector2(
-                cornersOfTargets.Max(corners => corners[0].x),
-                cornersOfTargets.Max(corners => corners[0].y)
-            );
+                cornersOfTargets.Max(static corners => corners[0].x),
+                cornersOfTargets.Max(static corners => corners[0].y));
 
             var topRightPosition = new Vector2(
-                cornersOfTargets.Min(corners => corners[2].x),
-                cornersOfTargets.Min(corners => corners[2].y)
-            );
+                cornersOfTargets.Min(static corners => corners[2].x),
+                cornersOfTargets.Min(static corners => corners[2].y));
 
             var newPosition = Vector2.Lerp(bottomLeftPosition, topRightPosition, 0.5f);
             var newSizeDelta = (topRightPosition - bottomLeftPosition) / _rectTransform.lossyScale;

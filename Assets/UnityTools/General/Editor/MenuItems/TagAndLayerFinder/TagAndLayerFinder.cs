@@ -145,7 +145,7 @@ namespace GigaCreation.Tools.General.Editor
 
             var gos = Resources
                 .FindObjectsOfTypeAll<GameObject>()
-                .Where(go => go.scene.isLoaded && (go.hideFlags == HideFlags.None));
+                .Where(static go => go.scene.isLoaded && (go.hideFlags == HideFlags.None));
 
             foreach (var go in gos)
             {
@@ -167,7 +167,7 @@ namespace GigaCreation.Tools.General.Editor
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
 
-            foreach (var scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
+            foreach (var scene in EditorBuildSettings.scenes.Where(static scene => scene.enabled))
             {
                 EditorSceneManager.OpenScene(scene.path);
                 FindGameObjectsWithTagInScene(tag);
@@ -206,7 +206,7 @@ namespace GigaCreation.Tools.General.Editor
 
             var gos = Resources
                 .FindObjectsOfTypeAll<GameObject>()
-                .Where(obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None));
+                .Where(static obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None));
 
             foreach (var go in gos)
             {
@@ -248,7 +248,7 @@ namespace GigaCreation.Tools.General.Editor
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
 
-            foreach (var scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
+            foreach (var scene in EditorBuildSettings.scenes.Where(static scene => scene.enabled))
             {
                 EditorSceneManager.OpenScene(scene.path);
                 FindGameObjectsWithSortingLayerInScene(sortingLayer);
@@ -314,7 +314,7 @@ namespace GigaCreation.Tools.General.Editor
 
             var gos = Resources
                 .FindObjectsOfTypeAll<GameObject>()
-                .Where(obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None));
+                .Where(static obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None));
 
             foreach (var go in gos)
             {
@@ -336,7 +336,7 @@ namespace GigaCreation.Tools.General.Editor
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
 
-            foreach (var scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
+            foreach (var scene in EditorBuildSettings.scenes.Where(static scene => scene.enabled))
             {
                 EditorSceneManager.OpenScene(scene.path);
                 FindGameObjectsWithLayerInScene(layer);

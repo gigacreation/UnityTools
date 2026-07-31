@@ -62,7 +62,7 @@ namespace GigaCreation.Tools.Ui
             _rectTransforms = _contentSizeFitters.Select(static fitter => fitter.transform as RectTransform)
                 .Concat(_layoutGroups.Select(static group => group.transform as RectTransform))
                 .Distinct()
-                .OrderByDescending(rt => rt.GetComponentsInParent<Transform>(true).Length)
+                .OrderByDescending(static rt => rt.GetComponentsInParent<Transform>(true).Length)
                 .ToArray();
         }
 
@@ -119,7 +119,7 @@ namespace GigaCreation.Tools.Ui
 
         private static void SetComponentsEnabled(bool enable, params IEnumerable<Behaviour>[] behaviours)
         {
-            foreach (var behaviour in behaviours.SelectMany(enumerable => enumerable))
+            foreach (var behaviour in behaviours.SelectMany(static enumerable => enumerable))
             {
                 if (behaviour == null)
                 {

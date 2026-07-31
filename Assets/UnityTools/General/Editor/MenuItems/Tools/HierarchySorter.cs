@@ -16,23 +16,21 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(ByName, priority = CategoryPriority)]
         private static void SortByName()
         {
-            foreach (var group in Selection.transforms.GroupBy(s => s.parent))
+            foreach (var group in Selection.transforms.GroupBy(static s => s.parent))
             {
-                ChangeSiblingIndex(group.OrderBy(trans => trans.name).ToArray());
+                ChangeSiblingIndex(group.OrderBy(static trans => trans.name).ToArray());
             }
         }
 
         [MenuItem(ByPositionXYZ, priority = CategoryPriority + 1)]
         private static void SortByPosXYZ()
         {
-            foreach (var group in Selection.transforms.GroupBy(s => s.parent))
+            foreach (var group in Selection.transforms.GroupBy(static s => s.parent))
             {
-                ChangeSiblingIndex(
-                    group.OrderBy(trans => trans.position.x)
-                        .ThenBy(trans => trans.position.y)
-                        .ThenBy(trans => trans.position.z)
-                        .ToArray()
-                );
+                ChangeSiblingIndex(group.OrderBy(static trans => trans.position.x)
+                    .ThenBy(static trans => trans.position.y)
+                    .ThenBy(static trans => trans.position.z)
+                    .ToArray());
             }
         }
 
@@ -40,14 +38,12 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(ByPositionYXZ, priority = CategoryPriority + 2)]
         private static void SortByPosYXZ()
         {
-            foreach (var group in Selection.transforms.GroupBy(s => s.parent))
+            foreach (var group in Selection.transforms.GroupBy(static s => s.parent))
             {
-                ChangeSiblingIndex(
-                    group.OrderBy(trans => trans.position.y)
-                        .ThenBy(trans => trans.position.x)
-                        .ThenBy(trans => trans.position.z)
-                        .ToArray()
-                );
+                ChangeSiblingIndex(group.OrderBy(static trans => trans.position.y)
+                    .ThenBy(static trans => trans.position.x)
+                    .ThenBy(static trans => trans.position.z)
+                    .ToArray());
             }
         }
 

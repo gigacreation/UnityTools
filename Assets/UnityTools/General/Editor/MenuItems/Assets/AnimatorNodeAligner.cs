@@ -24,8 +24,8 @@ namespace GigaCreation.Tools.General.Editor
 
             var selectedAnimatorControllers = Selection
                 .objects
-                .Select(obj => obj as AnimatorController)
-                .Where(ac => ac);
+                .Select(static obj => obj as AnimatorController)
+                .Where(static ac => ac);
 
             foreach (var ac in selectedAnimatorControllers)
             {

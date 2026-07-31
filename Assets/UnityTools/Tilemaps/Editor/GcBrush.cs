@@ -17,8 +17,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
         private readonly Vector3Int _textOffset = new(2, 2, 0);
 
         public override void OnPaintSceneGUI(
-            GridLayout grid, GameObject brushTarget, BoundsInt position, GridBrushBase.Tool tool, bool executing
-        )
+            GridLayout grid, GameObject brushTarget, BoundsInt position, GridBrushBase.Tool tool, bool executing)
         {
             base.OnPaintSceneGUI(grid, brushTarget, position, tool, executing);
 

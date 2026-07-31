@@ -25,8 +25,9 @@ namespace GigaCreation.Tools.General
             }
 
             // 自身を除く、同じシーン上に存在する、_targetComponent と同じコンポーネント
-            var sameComponentsWithoutSelf = FindObjectsOfType(_targetComponent.GetType(), true)
-                .Select(obj => obj as Component)
+            var sameComponentsWithoutSelf = FindObjectsByType(
+                    _targetComponent.GetType(), FindObjectsInactive.Include, FindObjectsSortMode.None)
+                .Select(static obj => obj as Component)
                 .Where(comp => comp && (comp != _targetComponent));
 
             foreach (var comp in sameComponentsWithoutSelf)

@@ -24,7 +24,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(Category + "Revert Transform on Selected Prefabs", priority = CategoryPriority + 1)]
         public static void RevertTransformOnSelectedPrefabs()
         {
-            foreach (var t in Selection.gameObjects.Select(obj => obj.transform))
+            foreach (var t in Selection.gameObjects.Select(static obj => obj.transform))
             {
                 var so = new SerializedObject(t);
                 PrefabUtility.RevertPropertyOverride(so.FindProperty("m_LocalPosition"), U);
@@ -36,7 +36,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(Category + "Revert RectTransform on Selected Prefabs", priority = CategoryPriority + 2)]
         public static void RevertRectTransformOnSelectedPrefabs()
         {
-            foreach (var rt in Selection.gameObjects.Select(obj => obj.transform as RectTransform))
+            foreach (var rt in Selection.gameObjects.Select(static obj => obj.transform as RectTransform))
             {
                 var so = new SerializedObject(rt);
                 PrefabUtility.RevertPropertyOverride(so.FindProperty("m_LocalPosition"), U);
@@ -53,7 +53,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(Category + "Revert BoxCollider2D on Selected Prefabs", priority = CategoryPriority + 3)]
         public static void RevertBoxCollider2DOnSelectedPrefabs()
         {
-            foreach (var c in Selection.gameObjects.Select(obj => obj.GetComponent<BoxCollider2D>()))
+            foreach (var c in Selection.gameObjects.Select(static obj => obj.GetComponent<BoxCollider2D>()))
             {
                 var so = new SerializedObject(c);
                 PrefabUtility.RevertPropertyOverride(so.FindProperty("m_Density"), U);
