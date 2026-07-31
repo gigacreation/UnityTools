@@ -16,28 +16,24 @@ namespace GigaCreation.Tools.Demo
         [Header("Parameters")]
         [SerializeField] private float _duration;
 
-        private CancellationToken _ctOnDestroy;
-
         private void Awake()
         {
-            _ctOnDestroy = this.GetCancellationTokenOnDestroy();
-
             SetFillAmount(0f);
         }
 
         public void Delay()
         {
-            DelayAsync(_ctOnDestroy).Forget();
+            DelayAsync(destroyCancellationToken).Forget();
         }
 
         public void Fill()
         {
-            FillAsync(_ctOnDestroy).Forget();
+            FillAsync(destroyCancellationToken).Forget();
         }
 
         private async UniTask DelayAsync(CancellationToken ct = default)
         {
-            TimeSpan timeSpan = TimeSpan.FromSeconds(_duration);
+            var timeSpan = TimeSpan.FromSeconds(_duration);
 
             Debug.Log("Delay start.");
 
@@ -48,7 +44,7 @@ namespace GigaCreation.Tools.Demo
 
         private async UniTask FillAsync(CancellationToken ct = default)
         {
-            Tweener tweener = DOVirtual.Float(0f, 1f, _duration, SetFillAmount).SetEase(Ease.Linear);
+            var tweener = DOVirtual.Float(0f, 1f, _duration, SetFillAmount).SetEase(Ease.Linear);
 
             Debug.Log("Fill start.");
 

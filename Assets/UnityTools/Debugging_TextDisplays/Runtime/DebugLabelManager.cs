@@ -61,7 +61,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
             _labels.Add(priority, newLabel);
 
-            TextMeshProUGUI[] sortedLabels = _labels
+            var sortedLabels = _labels
                 .OrderBy(static pair => pair.Key)
                 .Select(static pair => pair.Value)
                 .ToArray();
@@ -85,7 +85,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         /// <param name="priority">削除するラベルの優先度。</param>
         public void Remove(int priority)
         {
-            if (!_labels.Remove(priority, out TextMeshProUGUI label))
+            if (!_labels.Remove(priority, out var label))
             {
                 Debug.LogWarning($"要求されたラベルが存在しません：{priority}");
                 return;

@@ -82,7 +82,7 @@ namespace GigaCreation.Tools.General.Editor
                 using (var scope = new EditorGUILayout.ScrollViewScope(_scrollPosition))
                 {
                     bool isSearch = !string.IsNullOrWhiteSpace(_searchText);
-                    IEnumerable<KeyValueData> list = _list.Where(x => !isSearch || x.IsFilter(_searchText));
+                    var list = _list.Where(x => !isSearch || x.IsFilter(_searchText));
 
                     foreach ((string key, string value) in list)
                     {
@@ -124,7 +124,7 @@ namespace GigaCreation.Tools.General.Editor
         {
             const string Name = @"Software\Unity Technologies\Unity Editor 5.x\";
 
-            using RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(Name, false);
+            using var registryKey = Registry.CurrentUser.OpenSubKey(Name, false);
 
             if (registryKey is null)
             {

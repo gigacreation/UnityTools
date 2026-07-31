@@ -205,7 +205,7 @@ namespace GigaCreation.Tools.Ui
                     return false;
                 }
 
-                Vector4 v = ActiveSprite.border;
+                var v = ActiveSprite.border;
 
                 return v.sqrMagnitude > 0f;
             }
@@ -288,22 +288,22 @@ namespace GigaCreation.Tools.Ui
                     rectTransform,
                     screenPoint,
                     eventCamera,
-                    out Vector2 local
+                    out var local
                 ))
             {
                 return false;
             }
 
-            Rect rect = GetPixelAdjustedRect();
+            var rect = GetPixelAdjustedRect();
 
             // Convert to have lower left corner as reference point.
-            Vector2 pivot = rectTransform.pivot;
+            var pivot = rectTransform.pivot;
             local.x += pivot.x * rect.width;
             local.y += pivot.y * rect.height;
 
-            Rect spriteRect = ActiveSprite.rect;
-            Vector4 border = ActiveSprite.border;
-            Vector4 adjustedBorder = GetAdjustedBorders(border / PixelsPerUnit, rect);
+            var spriteRect = ActiveSprite.rect;
+            var border = ActiveSprite.border;
+            var adjustedBorder = GetAdjustedBorders(border / PixelsPerUnit, rect);
 
             for (var i = 0; i < 2; i++)
             {
@@ -323,7 +323,7 @@ namespace GigaCreation.Tools.Ui
             }
 
             // Normalize local coordinates.
-            Rect textureRect = ActiveSprite.textureRect;
+            var textureRect = ActiveSprite.textureRect;
             var normalized = new Vector2(local.x / textureRect.width, local.y / textureRect.height);
 
             // Convert to texture space.
@@ -428,7 +428,7 @@ namespace GigaCreation.Tools.Ui
                 return;
             }
 
-            Texture2D alphaTex = ActiveSprite.associatedAlphaSplitTexture;
+            var alphaTex = ActiveSprite.associatedAlphaSplitTexture;
 
             if (alphaTex != null)
             {
@@ -445,13 +445,13 @@ namespace GigaCreation.Tools.Ui
                 return;
             }
 
-            Rect rect = GetPixelAdjustedRect();
-            Vector4 outer = DataUtility.GetOuterUV(ActiveSprite);
-            Vector4 padding = DataUtility.GetPadding(ActiveSprite);
+            var rect = GetPixelAdjustedRect();
+            var outer = DataUtility.GetOuterUV(ActiveSprite);
+            var padding = DataUtility.GetPadding(ActiveSprite);
 
             if (!HasBorder)
             {
-                Vector2 size = ActiveSprite.rect.size;
+                var size = ActiveSprite.rect.size;
 
                 int spriteW = Mathf.RoundToInt(size.x);
                 int spriteH = Mathf.RoundToInt(size.y);
@@ -468,8 +468,8 @@ namespace GigaCreation.Tools.Ui
                 return;
             }
 
-            Vector4 inner = DataUtility.GetInnerUV(ActiveSprite);
-            Vector4 border = GetAdjustedBorders(ActiveSprite.border / PixelsPerUnit, rect);
+            var inner = DataUtility.GetInnerUV(ActiveSprite);
+            var border = GetAdjustedBorders(ActiveSprite.border / PixelsPerUnit, rect);
 
             padding /= PixelsPerUnit;
 
@@ -575,7 +575,7 @@ namespace GigaCreation.Tools.Ui
 
         private Vector4 GetAdjustedBorders(Vector4 border, Rect adjustedRect)
         {
-            Rect originalRect = rectTransform.rect;
+            var originalRect = rectTransform.rect;
 
             for (var axis = 0; axis <= 1; axis++)
             {
@@ -698,7 +698,7 @@ namespace GigaCreation.Tools.Ui
         {
             for (int i = s_trackedTexturelessImages.Count - 1; i >= 0; i--)
             {
-                SlicedFilledImage image = s_trackedTexturelessImages[i];
+                var image = s_trackedTexturelessImages[i];
 
                 if (!spriteAtlas.CanBindTo(image.ActiveSprite))
                 {

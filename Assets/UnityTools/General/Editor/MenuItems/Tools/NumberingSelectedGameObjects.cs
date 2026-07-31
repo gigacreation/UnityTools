@@ -1,5 +1,4 @@
 ﻿using UnityEditor;
-using UnityEngine;
 
 namespace GigaCreation.Tools.General.Editor
 {
@@ -11,7 +10,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(Category + "Numbering Selected GameObjects (1)", priority = CategoryPriority)]
         private static void AddNumber0()
         {
-            foreach (GameObject go in Selection.gameObjects)
+            foreach (var go in Selection.gameObjects)
             {
                 int sibling = go.transform.GetSiblingIndex();
                 go.name = $"{go.name}{sibling + 1:D}";
@@ -21,7 +20,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(Category + "Numbering Selected GameObjects (01)", priority = CategoryPriority + 1)]
         private static void AddNumber00()
         {
-            foreach (GameObject go in Selection.gameObjects)
+            foreach (var go in Selection.gameObjects)
             {
                 int sibling = go.transform.GetSiblingIndex();
                 go.name = $"{go.name}{sibling + 1:D2}";

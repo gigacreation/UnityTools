@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 namespace GigaCreation.Tools.General
@@ -26,11 +25,11 @@ namespace GigaCreation.Tools.General
             }
 
             // 自身を除く、同じシーン上に存在する、_targetComponent と同じコンポーネント
-            IEnumerable<Component> sameComponentsWithoutSelf = FindObjectsOfType(_targetComponent.GetType(), true)
+            var sameComponentsWithoutSelf = FindObjectsOfType(_targetComponent.GetType(), true)
                 .Select(obj => obj as Component)
                 .Where(comp => comp && (comp != _targetComponent));
 
-            foreach (Component comp in sameComponentsWithoutSelf)
+            foreach (var comp in sameComponentsWithoutSelf)
             {
                 // すでに対象の破棄が予約されていた場合は何もしない
                 if (comp.TryGetComponent(out DestroySelfIfAlreadyExists ds) && ds.WillBeDestroyed)

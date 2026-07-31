@@ -43,7 +43,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
                 padding = rectOffset
             };
 
-            Color storedBackgroundColor = GUI.backgroundColor;
+            var storedBackgroundColor = GUI.backgroundColor;
             GUI.backgroundColor = _backgroundColor;
 
             Handles.Label(grid.CellToWorld(position.position + _textOffset), labelText, style);

@@ -23,7 +23,7 @@ namespace GigaCreation.Tools.Debugging.Core
 
             if (ServiceLocator.TryGet(out _debugManager))
             {
-                DebugPresenter[] debugPresentersInScene
+                var debugPresentersInScene
                     = FindObjectsByType<DebugPresenter>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
                 // DebugManager はすでに登録されているが、DebugPresenter はシーン上に自分しかいない場合、

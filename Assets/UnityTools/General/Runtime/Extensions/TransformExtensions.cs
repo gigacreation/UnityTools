@@ -33,19 +33,19 @@ namespace GigaCreation.Tools.General
 
         public static void SetPositionX(this Transform self, float x)
         {
-            Vector3 position = self.position;
+            var position = self.position;
             self.position = new Vector3(x, position.y, position.z);
         }
 
         public static void SetPositionY(this Transform self, float y)
         {
-            Vector3 position = self.position;
+            var position = self.position;
             self.position = new Vector3(position.x, y, position.z);
         }
 
         public static void SetPositionZ(this Transform self, float z)
         {
-            Vector3 position = self.position;
+            var position = self.position;
             self.position = new Vector3(position.x, position.y, z);
         }
 
@@ -89,19 +89,19 @@ namespace GigaCreation.Tools.General
 
         public static void SetLocalPositionX(this Transform self, float x)
         {
-            Vector3 localPosition = self.localPosition;
+            var localPosition = self.localPosition;
             self.localPosition = new Vector3(x, localPosition.y, localPosition.z);
         }
 
         public static void SetLocalPositionY(this Transform self, float y)
         {
-            Vector3 localPosition = self.localPosition;
+            var localPosition = self.localPosition;
             self.localPosition = new Vector3(localPosition.x, y, localPosition.z);
         }
 
         public static void SetLocalPositionZ(this Transform self, float z)
         {
-            Vector3 localPosition = self.localPosition;
+            var localPosition = self.localPosition;
             self.localPosition = new Vector3(localPosition.x, localPosition.y, z);
         }
 
@@ -160,19 +160,19 @@ namespace GigaCreation.Tools.General
 
         public static void SetLocalScaleX(this Transform self, float x)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             self.localScale = new Vector3(x, localScale.y, localScale.z);
         }
 
         public static void SetLocalScaleY(this Transform self, float y)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             self.localScale = new Vector3(localScale.x, y, localScale.z);
         }
 
         public static void SetLocalScaleZ(this Transform self, float z)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             self.localScale = new Vector3(localScale.x, localScale.y, z);
         }
 
@@ -182,25 +182,25 @@ namespace GigaCreation.Tools.General
 
         public static void AddLocalScale(this Transform self, float x, float y, float z)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             self.localScale = new Vector3(localScale.x + x, localScale.y + y, localScale.z + z);
         }
 
         public static void AddLocalScaleX(this Transform self, float x)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             self.localScale = new Vector3(localScale.x + x, localScale.y, localScale.z);
         }
 
         public static void AddLocalScaleY(this Transform self, float y)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             self.localScale = new Vector3(localScale.x, localScale.y + y, localScale.z);
         }
 
         public static void AddLocalScaleZ(this Transform self, float z)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             self.localScale = new Vector3(localScale.x, localScale.y, localScale.z + z);
         }
 
@@ -215,19 +215,19 @@ namespace GigaCreation.Tools.General
 
         public static void SetEulerAnglesX(this Transform self, float x)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.eulerAngles = new Vector3(x, localEulerAngles.y, localEulerAngles.z);
         }
 
         public static void SetEulerAnglesY(this Transform self, float y)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.eulerAngles = new Vector3(localEulerAngles.x, y, localEulerAngles.z);
         }
 
         public static void SetEulerAnglesZ(this Transform self, float z)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.eulerAngles = new Vector3(localEulerAngles.x, localEulerAngles.y, z);
         }
 
@@ -237,25 +237,25 @@ namespace GigaCreation.Tools.General
 
         public static void AddEulerAngles(this Transform self, float x, float y, float z)
         {
-            Vector3 eulerAngles = self.eulerAngles;
+            var eulerAngles = self.eulerAngles;
             self.eulerAngles = new Vector3(eulerAngles.x + x, eulerAngles.y + y, eulerAngles.z + z);
         }
 
         public static void AddEulerAnglesX(this Transform self, float x)
         {
-            Vector3 eulerAngles = self.eulerAngles;
+            var eulerAngles = self.eulerAngles;
             self.eulerAngles = new Vector3(eulerAngles.x + x, eulerAngles.y, eulerAngles.z);
         }
 
         public static void AddEulerAnglesY(this Transform self, float y)
         {
-            Vector3 eulerAngles = self.eulerAngles;
+            var eulerAngles = self.eulerAngles;
             self.eulerAngles = new Vector3(eulerAngles.x, eulerAngles.y + y, eulerAngles.z);
         }
 
         public static void AddEulerAnglesZ(this Transform self, float z)
         {
-            Vector3 eulerAngles = self.eulerAngles;
+            var eulerAngles = self.eulerAngles;
             self.eulerAngles = new Vector3(eulerAngles.x, eulerAngles.y, eulerAngles.z + z);
         }
 
@@ -270,19 +270,19 @@ namespace GigaCreation.Tools.General
 
         public static void SetLocalEulerAnglesX(this Transform self, float x)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.localEulerAngles = new Vector3(x, localEulerAngles.y, localEulerAngles.z);
         }
 
         public static void SetLocalEulerAnglesY(this Transform self, float y)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.localEulerAngles = new Vector3(localEulerAngles.x, y, localEulerAngles.z);
         }
 
         public static void SetLocalEulerAnglesZ(this Transform self, float z)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.localEulerAngles = new Vector3(localEulerAngles.x, localEulerAngles.y, z);
         }
 
@@ -292,25 +292,25 @@ namespace GigaCreation.Tools.General
 
         public static void AddLocalEulerAngles(this Transform self, float x, float y, float z)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.localEulerAngles = new Vector3(localEulerAngles.x + x, localEulerAngles.y + y, localEulerAngles.z + z);
         }
 
         public static void AddLocalEulerAnglesX(this Transform self, float x)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.localEulerAngles = new Vector3(localEulerAngles.x + x, localEulerAngles.y, localEulerAngles.z);
         }
 
         public static void AddLocalEulerAnglesY(this Transform self, float y)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.localEulerAngles = new Vector3(localEulerAngles.x, localEulerAngles.y + y, localEulerAngles.z);
         }
 
         public static void AddLocalEulerAnglesZ(this Transform self, float z)
         {
-            Vector3 localEulerAngles = self.localEulerAngles;
+            var localEulerAngles = self.localEulerAngles;
             self.localEulerAngles = new Vector3(localEulerAngles.x, localEulerAngles.y, localEulerAngles.z + z);
         }
 
@@ -332,7 +332,7 @@ namespace GigaCreation.Tools.General
 
         public static void LerpPosition(this Transform self, Vector2 to, float t)
         {
-            Vector3 position = self.position;
+            var position = self.position;
             self.position = Vector3.Lerp(position, new Vector3(to.x, to.y, position.z), t);
         }
 
@@ -409,7 +409,7 @@ namespace GigaCreation.Tools.General
 
         public static void SmoothStepPosition(this Transform self, Vector3 to, float t)
         {
-            Vector3 position = self.position;
+            var position = self.position;
             float newPositionX = Mathf.SmoothStep(position.x, to.x, t);
             float newPositionY = Mathf.SmoothStep(position.y, to.y, t);
             float newPositionZ = Mathf.SmoothStep(position.z, to.z, t);
@@ -423,7 +423,7 @@ namespace GigaCreation.Tools.General
 
         public static void SmoothStepEulerAngles(this Transform self, Vector3 to, float t)
         {
-            Vector3 eulerAngles = self.eulerAngles;
+            var eulerAngles = self.eulerAngles;
             float eulerAnglesX = Mathf.SmoothStep(eulerAngles.x, to.x, t);
             float eulerAnglesY = Mathf.SmoothStep(eulerAngles.y, to.y, t);
             float eulerAnglesZ = Mathf.SmoothStep(eulerAngles.z, to.z, t);
@@ -432,7 +432,7 @@ namespace GigaCreation.Tools.General
 
         public static void SmoothStepLocalScale(this Transform self, Vector3 to, float t)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             float localScaleX = Mathf.SmoothStep(localScale.x, to.x, t);
             float localScaleY = Mathf.SmoothStep(localScale.y, to.y, t);
             float localScaleZ = Mathf.SmoothStep(localScale.z, to.z, t);
@@ -441,7 +441,7 @@ namespace GigaCreation.Tools.General
 
         public static void SmoothStepLocalScale(this Transform self, Vector2 to, float t)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             float localScaleX = Mathf.SmoothStep(localScale.x, to.x, t);
             float localScaleY = Mathf.SmoothStep(localScale.y, to.y, t);
             self.SetLocalScale(localScaleX, localScaleY, localScale.z);
@@ -505,7 +505,7 @@ namespace GigaCreation.Tools.General
 
         public static void ClampPosition(this Transform self, Vector3 min, Vector3 max)
         {
-            Vector3 position = self.position;
+            var position = self.position;
             float x = Mathf.Clamp(position.x, min.x, max.x);
             float y = Mathf.Clamp(position.y, min.y, max.y);
             float z = Mathf.Clamp(position.z, min.z, max.z);
@@ -514,7 +514,7 @@ namespace GigaCreation.Tools.General
 
         public static void ClampPosition(this Transform self, Vector2 min, Vector2 max)
         {
-            Vector3 position = self.position;
+            var position = self.position;
             float x = Mathf.Clamp(position.x, min.x, max.x);
             float y = Mathf.Clamp(position.y, min.y, max.y);
             self.SetPosition(x, y);
@@ -522,7 +522,7 @@ namespace GigaCreation.Tools.General
 
         public static void ClampEulerAngles(this Transform self, Vector3 min, Vector3 max)
         {
-            Vector3 eulerAngles = self.eulerAngles;
+            var eulerAngles = self.eulerAngles;
             float x = Mathf.Clamp(eulerAngles.x, min.x, max.x);
             float y = Mathf.Clamp(eulerAngles.y, min.y, max.y);
             float z = Mathf.Clamp(eulerAngles.z, min.z, max.z);
@@ -531,7 +531,7 @@ namespace GigaCreation.Tools.General
 
         public static void ClampLocalScale(this Transform self, Vector3 min, Vector3 max)
         {
-            Vector3 localScale = self.localScale;
+            var localScale = self.localScale;
             float x = Mathf.Clamp(localScale.x, min.x, max.x);
             float y = Mathf.Clamp(localScale.y, min.y, max.y);
             float z = Mathf.Clamp(localScale.z, min.z, max.z);
@@ -589,37 +589,37 @@ namespace GigaCreation.Tools.General
 
         public static void LookAt2D(this Transform self, Transform target)
         {
-            LookAt2D(self, target.position, Vector3.forward);
+            self.LookAt2D(target.position, Vector3.forward);
         }
 
         public static void LookAt2D(this Transform self, Vector2 target)
         {
-            LookAt2D(self, target, Vector3.forward);
+            self.LookAt2D(target, Vector3.forward);
         }
 
         public static void LookAt2D(this Transform self, Transform target, float angle)
         {
-            LookAt2D(self, target.position, Vector3.forward, angle);
+            self.LookAt2D(target.position, Vector3.forward, angle);
         }
 
         public static void LookAt2D(this Transform self, Vector2 target, float angle)
         {
-            LookAt2D(self, target, Vector3.forward, angle);
+            self.LookAt2D(target, Vector3.forward, angle);
         }
 
         public static void LookAt2D(this Transform self, Transform target, Vector3 axis)
         {
-            LookAt2D(self, target.position, axis);
+            self.LookAt2D(target.position, axis);
         }
 
         public static void LookAt2D(this Transform self, Transform target, Vector3 axis, float angle)
         {
-            LookAt2D(self, target.position, axis, angle);
+            self.LookAt2D(target.position, axis, angle);
         }
 
         public static void LookAt2D(this Transform self, Vector2 target, Vector3 axis, float angle = 0f)
         {
-            Vector3 position = self.position;
+            var position = self.position;
             var difference = new Vector3(target.x - position.x, target.y - position.y, 0f);
             self.rotation = Quaternion.AngleAxis(angle + Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg, axis);
         }

@@ -39,7 +39,7 @@ namespace GigaCreation.Tools.Ui
                 return;
             }
 
-            WaitForNextFrameAndAdjustAsync(this.GetCancellationTokenOnDestroy()).Forget();
+            WaitForNextFrameAndAdjustAsync(destroyCancellationToken).Forget();
         }
 
 #if UNITY_EDITOR
@@ -52,7 +52,7 @@ namespace GigaCreation.Tools.Ui
 
             if (!EditorApplication.isPlaying)
             {
-                WaitForNextFrameAndAdjustAsync(this.GetCancellationTokenOnDestroy()).Forget();
+                WaitForNextFrameAndAdjustAsync(destroyCancellationToken).Forget();
             }
         }
 #endif
@@ -80,7 +80,7 @@ namespace GigaCreation.Tools.Ui
 
         public void Adjust()
         {
-            Vector3[][] cornersOfTargets = _insideTargets
+            var cornersOfTargets = _insideTargets
                 .Where(rt => rt)
                 .Select(rt =>
                 {
@@ -105,10 +105,10 @@ namespace GigaCreation.Tools.Ui
                 cornersOfTargets.Min(corners => corners[2].y)
             );
 
-            Vector2 newPosition = Vector2.Lerp(bottomLeftPosition, topRightPosition, 0.5f);
-            Vector2 newSizeDelta = (topRightPosition - bottomLeftPosition) / _rectTransform.lossyScale;
+            var newPosition = Vector2.Lerp(bottomLeftPosition, topRightPosition, 0.5f);
+            var newSizeDelta = (topRightPosition - bottomLeftPosition) / _rectTransform.lossyScale;
 
-            if (((Vector2)_rectTransform.position == newPosition) && (_rectTransform.sizeDelta == newSizeDelta))
+            if (((Vector2) _rectTransform.position == newPosition) && (_rectTransform.sizeDelta == newSizeDelta))
             {
                 return;
             }

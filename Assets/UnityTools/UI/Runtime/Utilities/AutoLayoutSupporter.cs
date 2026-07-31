@@ -44,7 +44,7 @@ namespace GigaCreation.Tools.Ui
 
         public void UpdateReferencesInChildren()
         {
-            foreach (AutoLayoutSupporter supporter in GetComponentsInChildren<AutoLayoutSupporter>(true))
+            foreach (var supporter in GetComponentsInChildren<AutoLayoutSupporter>(true))
             {
                 supporter.UpdateReferences();
             }
@@ -59,8 +59,8 @@ namespace GigaCreation.Tools.Ui
             _contentSizeFitters = GetComponentsInChildren<ContentSizeFitter>(true).ToArray();
             _layoutGroups = GetComponentsInChildren<LayoutGroup>(true).ToArray();
 
-            _rectTransforms = _contentSizeFitters.Select(fitter => fitter.transform as RectTransform)
-                .Concat(_layoutGroups.Select(group => group.transform as RectTransform))
+            _rectTransforms = _contentSizeFitters.Select(static fitter => fitter.transform as RectTransform)
+                .Concat(_layoutGroups.Select(static group => group.transform as RectTransform))
                 .Distinct()
                 .OrderByDescending(rt => rt.GetComponentsInParent<Transform>(true).Length)
                 .ToArray();
@@ -68,7 +68,7 @@ namespace GigaCreation.Tools.Ui
 
         public void ExecuteRebuilding()
         {
-            ExecuteRebuildingAsync(this.GetCancellationTokenOnDestroy()).Forget();
+            ExecuteRebuildingAsync(destroyCancellationToken).Forget();
         }
 
         [UsedImplicitly]
@@ -95,7 +95,7 @@ namespace GigaCreation.Tools.Ui
 
         private async UniTask MarkAllRectTransformsForRebuildAsync(CancellationToken ct = default)
         {
-            foreach (RectTransform rectTransform in _rectTransforms)
+            foreach (var rectTransform in _rectTransforms)
             {
                 if (rectTransform == null)
                 {
@@ -109,7 +109,7 @@ namespace GigaCreation.Tools.Ui
 
                 LayoutRebuilder.MarkLayoutForRebuild(rectTransform);
 
-                UniTask task = Application.isPlaying
+                var task = Application.isPlaying
                     ? UniTask.WaitForEndOfFrame(this, ct)
                     : UniTask.Delay(TimeSpan.FromSeconds(0.1), DelayType.Realtime, cancellationToken: ct);
 
@@ -119,7 +119,7 @@ namespace GigaCreation.Tools.Ui
 
         private static void SetComponentsEnabled(bool enable, params IEnumerable<Behaviour>[] behaviours)
         {
-            foreach (Behaviour behaviour in behaviours.SelectMany(enumerable => enumerable))
+            foreach (var behaviour in behaviours.SelectMany(enumerable => enumerable))
             {
                 if (behaviour == null)
                 {

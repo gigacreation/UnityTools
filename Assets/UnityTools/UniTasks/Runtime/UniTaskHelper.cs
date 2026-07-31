@@ -17,7 +17,7 @@ namespace GigaCreation.Tools.UniTasks
             CancellationToken ct = default
         )
         {
-            TimeSpan delayTimeSpan = TimeSpan.FromMilliseconds(millisecondsDelay);
+            var delayTimeSpan = TimeSpan.FromMilliseconds(millisecondsDelay);
 
             await SkippableDelay(delayTimeSpan, condToSkip, ignoreTimeScale, delayTiming, ct);
         }

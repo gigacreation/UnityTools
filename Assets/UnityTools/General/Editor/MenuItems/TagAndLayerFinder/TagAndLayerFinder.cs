@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -144,11 +143,11 @@ namespace GigaCreation.Tools.General.Editor
         {
             string sceneName = SceneManager.GetActiveScene().name;
 
-            IEnumerable<GameObject> gos = Resources
+            var gos = Resources
                 .FindObjectsOfTypeAll<GameObject>()
                 .Where(go => go.scene.isLoaded && (go.hideFlags == HideFlags.None));
 
-            foreach (GameObject go in gos)
+            foreach (var go in gos)
             {
                 if (go.CompareTag(tag))
                 {
@@ -168,7 +167,7 @@ namespace GigaCreation.Tools.General.Editor
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
 
-            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
+            foreach (var scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
             {
                 EditorSceneManager.OpenScene(scene.path);
                 FindGameObjectsWithTagInScene(tag);
@@ -181,7 +180,7 @@ namespace GigaCreation.Tools.General.Editor
 
         private static void FindGameObjectsWithTagInProject(string tag, string pathToSearch)
         {
-            IEnumerable<string> paths = AssetDatabase
+            var paths = AssetDatabase
                 .FindAssets("t:Prefab")
                 .Select(AssetDatabase.GUIDToAssetPath);
 
@@ -205,11 +204,11 @@ namespace GigaCreation.Tools.General.Editor
         {
             string sceneName = SceneManager.GetActiveScene().name;
 
-            IEnumerable<GameObject> gos = Resources
+            var gos = Resources
                 .FindObjectsOfTypeAll<GameObject>()
                 .Where(obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None));
 
-            foreach (GameObject go in gos)
+            foreach (var go in gos)
             {
                 if (go.TryGetComponent(out Renderer renderer))
                 {
@@ -249,7 +248,7 @@ namespace GigaCreation.Tools.General.Editor
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
 
-            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
+            foreach (var scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
             {
                 EditorSceneManager.OpenScene(scene.path);
                 FindGameObjectsWithSortingLayerInScene(sortingLayer);
@@ -262,7 +261,7 @@ namespace GigaCreation.Tools.General.Editor
 
         private static void FindGameObjectsWithSortingLayerInProject(string sortingLayer, string pathToSearch)
         {
-            IEnumerable<string> paths = AssetDatabase
+            var paths = AssetDatabase
                 .FindAssets("t:Prefab")
                 .Select(AssetDatabase.GUIDToAssetPath);
 
@@ -313,11 +312,11 @@ namespace GigaCreation.Tools.General.Editor
         {
             string sceneName = SceneManager.GetActiveScene().name;
 
-            IEnumerable<GameObject> gos = Resources
+            var gos = Resources
                 .FindObjectsOfTypeAll<GameObject>()
                 .Where(obj => obj.scene.isLoaded && (obj.hideFlags == HideFlags.None));
 
-            foreach (GameObject go in gos)
+            foreach (var go in gos)
             {
                 if (go.layer == layer)
                 {
@@ -337,7 +336,7 @@ namespace GigaCreation.Tools.General.Editor
         {
             string currentScenePath = SceneManager.GetActiveScene().path;
 
-            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
+            foreach (var scene in EditorBuildSettings.scenes.Where(scene => scene.enabled))
             {
                 EditorSceneManager.OpenScene(scene.path);
                 FindGameObjectsWithLayerInScene(layer);
@@ -350,7 +349,7 @@ namespace GigaCreation.Tools.General.Editor
 
         private static void FindGameObjectsWithLayerInProject(int layer, string pathToSearch)
         {
-            IEnumerable<string> path = AssetDatabase
+            var path = AssetDatabase
                 .FindAssets("t:Prefab")
                 .Select(AssetDatabase.GUIDToAssetPath);
 
@@ -376,7 +375,7 @@ namespace GigaCreation.Tools.General.Editor
         public static string GetPath(this Transform self)
         {
             string path = self.gameObject.name;
-            Transform parent = self.parent;
+            var parent = self.parent;
 
             while (parent != null)
             {

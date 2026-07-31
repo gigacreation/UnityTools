@@ -8,7 +8,7 @@ namespace GigaCreation.Tools.General
     {
         public static void SetAlpha(this SpriteRenderer self, float alpha)
         {
-            Color color = self.color;
+            var color = self.color;
             color.a = alpha;
             self.color = color;
         }

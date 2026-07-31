@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.Animations;
@@ -17,21 +15,21 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(AlignAnimatorNodesName, priority = CategoryPriority)]
         private static void AlignAnimatorNodes()
         {
-            Type animatorControllerToolType = Assembly
+            var animatorControllerToolType = Assembly
                 .Load("UnityEditor.Graphs")
                 .GetModule("UnityEditor.Graphs.dll")
                 .GetType("UnityEditor.Graphs.AnimatorControllerTool");
 
-            EditorWindow animatorWindow = EditorWindow.GetWindow(animatorControllerToolType);
+            var animatorWindow = EditorWindow.GetWindow(animatorControllerToolType);
 
-            IEnumerable<AnimatorController> selectedAnimatorControllers = Selection
+            var selectedAnimatorControllers = Selection
                 .objects
                 .Select(obj => obj as AnimatorController)
                 .Where(ac => ac);
 
-            foreach (AnimatorController ac in selectedAnimatorControllers)
+            foreach (var ac in selectedAnimatorControllers)
             {
-                foreach (AnimatorControllerLayer layer in ac.layers.ToList())
+                foreach (var layer in ac.layers.ToList())
                 {
                     layer.stateMachine.entryPosition = Vector3.zero;
                     layer.stateMachine.anyStatePosition = Vector3.up * 50f;

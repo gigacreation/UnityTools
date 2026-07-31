@@ -27,7 +27,7 @@ namespace GigaCreation.Tools.Debugging.General
 
         private void Awake()
         {
-            InitializeAsync(this.GetCancellationTokenOnDestroy()).Forget();
+            InitializeAsync(destroyCancellationToken).Forget();
         }
 
         private void OnValidate()

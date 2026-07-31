@@ -9,9 +9,9 @@ namespace GigaCreation.Tools.Ui
     {
         public static void SetPivotWithKeepingPosition(this RectTransform self, Vector2 targetPivot)
         {
-            Vector2 vector2 = targetPivot - self.pivot;
+            var vector2 = targetPivot - self.pivot;
             self.pivot = targetPivot;
-            Vector2 sizeDelta = self.sizeDelta;
+            var sizeDelta = self.sizeDelta;
 
             self.anchoredPosition += new Vector2(sizeDelta.x * vector2.x, sizeDelta.y * vector2.y);
         }
@@ -43,13 +43,13 @@ namespace GigaCreation.Tools.Ui
                 return;
             }
 
-            Vector2 diffMin = targetMinAnchor - self.anchorMin;
-            Vector2 diffMax = targetMaxAnchor - self.anchorMax;
+            var diffMin = targetMinAnchor - self.anchorMin;
+            var diffMax = targetMaxAnchor - self.anchorMax;
 
             self.anchorMin = targetMinAnchor;
             self.anchorMax = targetMaxAnchor;
 
-            Rect rect = parentRt.rect;
+            var rect = parentRt.rect;
             float diffLeft = rect.width * diffMin.x;
             float diffRight = rect.width * diffMax.x;
             float diffBottom = rect.height * diffMin.y;
@@ -57,7 +57,7 @@ namespace GigaCreation.Tools.Ui
 
             self.sizeDelta += new Vector2(diffLeft - diffRight, diffBottom - diffTop);
 
-            Vector2 pivot = self.pivot;
+            var pivot = self.pivot;
 
             self.anchoredPosition -= new Vector2(
                 diffLeft * (1f - pivot.x) + diffRight * pivot.x,

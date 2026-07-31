@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ namespace GigaCreation.Tools.General
 
         private void Awake()
         {
-            IEnumerable<Target> targets = _targetKind switch
+            var targets = _targetKind switch
             {
                 TargetKind.AllChildren => GetComponentsInChildren<Transform>(true)
                     .Select(x => new Target { GameObject = x.gameObject, Active = _active }),
@@ -28,7 +27,7 @@ namespace GigaCreation.Tools.General
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            foreach (Target target in targets)
+            foreach (var target in targets)
             {
                 if (!target.GameObject)
                 {

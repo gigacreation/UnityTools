@@ -46,7 +46,7 @@ namespace GigaCreation.Tools.TextMeshPro
             _textComponent.havePropertiesChanged = true;
             _curveScale *= 10f;
             float oldCurveScale = _curveScale;
-            AnimationCurve oldCurve = CopyAnimationCurve(_vertexCurve);
+            var oldCurve = CopyAnimationCurve(_vertexCurve);
 
             while (true)
             {
@@ -64,7 +64,7 @@ namespace GigaCreation.Tools.TextMeshPro
                 // Generate the mesh and populate the textInfo with data we can use and manipulate.
                 _textComponent.ForceMeshUpdate();
 
-                TMP_TextInfo textInfo = _textComponent.textInfo;
+                var textInfo = _textComponent.textInfo;
                 int characterCount = textInfo.characterCount;
 
                 if (characterCount == 0)
@@ -90,7 +90,7 @@ namespace GigaCreation.Tools.TextMeshPro
                     // Get the index of the mesh used by this character.
                     int materialIndex = textInfo.characterInfo[i].materialReferenceIndex;
 
-                    Vector3[] vertices = textInfo.meshInfo[materialIndex].vertices;
+                    var vertices = textInfo.meshInfo[materialIndex].vertices;
 
                     // Compute the baseline mid point for each character
                     Vector3 offsetToMidBaseline = new Vector2(
@@ -117,15 +117,15 @@ namespace GigaCreation.Tools.TextMeshPro
                     var horizontal = new Vector3(1, 0, 0);
 
                     // Vector3 normal = new Vector3(-(y1 - y0), (x1 * (boundsMaxX - boundsMinX) + boundsMinX) - offsetToMidBaseline.x, 0);
-                    Vector3 tangent
+                    var tangent
                         = new Vector3(x1 * (boundsMaxX - boundsMinX) + boundsMinX, y1)
                         - new Vector3(offsetToMidBaseline.x, y0);
 
                     float dot = Mathf.Acos(Vector3.Dot(horizontal, tangent.normalized)) * 57.2957795f;
-                    Vector3 cross = Vector3.Cross(horizontal, tangent);
+                    var cross = Vector3.Cross(horizontal, tangent);
                     float angle = cross.z > 0 ? dot : 360 - dot;
 
-                    Matrix4x4 matrix = Matrix4x4.TRS(new Vector3(0, y0, 0), Quaternion.Euler(0, 0, angle), Vector3.one);
+                    var matrix = Matrix4x4.TRS(new Vector3(0, y0, 0), Quaternion.Euler(0, 0, angle), Vector3.one);
 
                     vertices[vertexIndex + 0] = matrix.MultiplyPoint3x4(vertices[vertexIndex + 0]);
                     vertices[vertexIndex + 1] = matrix.MultiplyPoint3x4(vertices[vertexIndex + 1]);

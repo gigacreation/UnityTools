@@ -33,7 +33,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
                 return false;
             }
 
-            Tilemap[] tilemaps = gridLayout.GetComponentsInChildren<Tilemap>();
+            var tilemaps = gridLayout.GetComponentsInChildren<Tilemap>();
 
             if (tilemaps.Length != GridBrushes.Length)
             {
@@ -66,7 +66,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
                 return;
             }
 
-            Tilemap[] tilemaps = gridLayout.gameObject.GetComponentsInChildren<Tilemap>();
+            var tilemaps = gridLayout.gameObject.GetComponentsInChildren<Tilemap>();
 
             if ((GridBrushes == null) || (GridBrushes.Length != tilemaps.Length))
             {
@@ -79,7 +79,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
             }
             else
             {
-                foreach (GridBrush gridBrush in GridBrushes)
+                foreach (var gridBrush in GridBrushes)
                 {
                     gridBrush.Reset();
                 }
@@ -199,7 +199,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
                 return;
             }
 
-            foreach (GridBrush gridBrush in GridBrushes)
+            foreach (var gridBrush in GridBrushes)
             {
                 gridBrush.Flip(flip, layout);
             }
@@ -212,7 +212,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
                 return;
             }
 
-            foreach (GridBrush gridBrush in GridBrushes)
+            foreach (var gridBrush in GridBrushes)
             {
                 gridBrush.Rotate(direction, layout);
             }
@@ -225,7 +225,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
                 return;
             }
 
-            foreach (GridBrush gridBrush in GridBrushes)
+            foreach (var gridBrush in GridBrushes)
             {
                 gridBrush.ChangeZPosition(change);
             }
@@ -238,7 +238,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
                 return;
             }
 
-            foreach (GridBrush gridBrush in GridBrushes)
+            foreach (var gridBrush in GridBrushes)
             {
                 gridBrush.ResetZPosition();
             }
@@ -375,7 +375,7 @@ namespace GigaCreation.Tools.Tilemaps.Editor
                 return;
             }
 
-            foreach (GridBrushEditor editor in _editors)
+            foreach (var editor in _editors)
             {
                 editor.ClearPreview();
             }

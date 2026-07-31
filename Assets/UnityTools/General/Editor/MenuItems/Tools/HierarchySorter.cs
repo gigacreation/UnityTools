@@ -16,7 +16,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(ByName, priority = CategoryPriority)]
         private static void SortByName()
         {
-            foreach (IGrouping<Transform, Transform> group in Selection.transforms.GroupBy(s => s.parent))
+            foreach (var group in Selection.transforms.GroupBy(s => s.parent))
             {
                 ChangeSiblingIndex(group.OrderBy(trans => trans.name).ToArray());
             }
@@ -25,7 +25,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(ByPositionXYZ, priority = CategoryPriority + 1)]
         private static void SortByPosXYZ()
         {
-            foreach (IGrouping<Transform, Transform> group in Selection.transforms.GroupBy(s => s.parent))
+            foreach (var group in Selection.transforms.GroupBy(s => s.parent))
             {
                 ChangeSiblingIndex(
                     group.OrderBy(trans => trans.position.x)
@@ -40,7 +40,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(ByPositionYXZ, priority = CategoryPriority + 2)]
         private static void SortByPosYXZ()
         {
-            foreach (IGrouping<Transform, Transform> group in Selection.transforms.GroupBy(s => s.parent))
+            foreach (var group in Selection.transforms.GroupBy(s => s.parent))
             {
                 ChangeSiblingIndex(
                     group.OrderBy(trans => trans.position.y)

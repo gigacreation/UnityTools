@@ -12,10 +12,10 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(Category + "Purge All Playable Directors Bindings", priority = CategoryPriority)]
         public static void PurgeAllPlayableDirectorsBindings()
         {
-            foreach (PlayableDirector director in Object.FindObjectsOfType<PlayableDirector>())
+            foreach (var director in Object.FindObjectsOfType<PlayableDirector>())
             {
                 var so = new SerializedObject(director);
-                SerializedProperty sceneBindings = so.FindProperty("m_SceneBindings");
+                var sceneBindings = so.FindProperty("m_SceneBindings");
 
                 for (int i = sceneBindings.arraySize - 1; i >= 0; i--)
                 {

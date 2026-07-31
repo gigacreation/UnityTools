@@ -6,11 +6,9 @@ using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
 #if ADDRESSABLE_ASSET_GROUP_SORT_SETTINGS_AVAILABLE
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEditor.AddressableAssets.Settings.GroupSchemas;
-using Object = UnityEngine.Object;
 #endif
 
 namespace GigaCreation.Tools.Addressables.Editor
@@ -101,9 +99,9 @@ namespace GigaCreation.Tools.Addressables.Editor
             // Addressable Assets Window の描画を更新します
             CloseAddressableAssetsWindow();
 
-            AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
-            List<AddressableAssetGroup> groups = settings.groups;
-            AddressableAssetGroupSortSettings sortingSettings = AddressableAssetGroupSortSettings.GetSettings();
+            var settings = AddressableAssetSettingsDefaultObject.Settings;
+            var groups = settings.groups;
+            var sortingSettings = AddressableAssetGroupSortSettings.GetSettings();
 
             groups.Sort(static (a, b) =>
             {
@@ -138,9 +136,9 @@ namespace GigaCreation.Tools.Addressables.Editor
             const string WindowTypeName = "UnityEditor.AddressableAssets.GUI.AddressableAssetsWindow";
             const string GroupEditorTypeName = "UnityEditor.AddressableAssets.GUI.AddressableAssetsSettingsGroupEditor";
 
-            Assembly assembly = Assembly.Load(AssemblyName);
-            Type windowType = assembly.GetType(WindowTypeName);
-            Object[] windows = Resources.FindObjectsOfTypeAll(windowType);
+            var assembly = Assembly.Load(AssemblyName);
+            var windowType = assembly.GetType(WindowTypeName);
+            var windows = Resources.FindObjectsOfTypeAll(windowType);
             bool isOpen = 1 <= windows.Length;
 
             if (!isOpen)
@@ -149,9 +147,9 @@ namespace GigaCreation.Tools.Addressables.Editor
             }
 
             var window = windows[0] as EditorWindow;
-            Type groupEditorType = assembly.GetType(GroupEditorTypeName);
-            FieldInfo groupEditorField = windowType.GetField("m_GroupEditor", Attr);
-            MethodInfo method = groupEditorType.GetMethod("Reload", Attr);
+            var groupEditorType = assembly.GetType(GroupEditorTypeName);
+            var groupEditorField = windowType.GetField("m_GroupEditor", Attr);
+            var method = groupEditorType.GetMethod("Reload", Attr);
             object groupEditor = groupEditorField?.GetValue(window);
 
             method?.Invoke(groupEditor, Array.Empty<object>());

@@ -51,8 +51,8 @@ namespace GigaCreation.Tools.Ui
 
         private void Adjust()
         {
-            Vector2 newAnchorMin = Screen.safeArea.position;
-            Vector2 newAnchorMax = Screen.safeArea.position + Screen.safeArea.size;
+            var newAnchorMin = Screen.safeArea.position;
+            var newAnchorMax = Screen.safeArea.position + Screen.safeArea.size;
 
             newAnchorMin.x /= Screen.width;
             newAnchorMin.y /= Screen.height;

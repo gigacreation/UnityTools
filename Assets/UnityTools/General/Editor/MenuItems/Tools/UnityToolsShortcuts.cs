@@ -29,7 +29,7 @@ namespace GigaCreation.Tools.General.Editor
         {
             IEnumerable<GameObject> rootGameObjects;
 
-            PrefabStage currentPrefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+            var currentPrefabStage = PrefabStageUtility.GetCurrentPrefabStage();
 
             if (currentPrefabStage == null)
             {
@@ -47,13 +47,13 @@ namespace GigaCreation.Tools.General.Editor
             }
 
             // 変更されている Prefab Instance を抽出する
-            Object[] overriddenPrefabInstances = rootGameObjects
+            var overriddenPrefabInstances = rootGameObjects
                 .Where(PrefabUtility.IsAnyPrefabInstanceRoot)
                 .Where(x => PrefabUtility.HasPrefabInstanceAnyOverrides(x, false))
-                .Select(x => (Object)x)
+                .Select(x => (Object) x)
                 .ToArray();
 
-            foreach (Object instance in overriddenPrefabInstances)
+            foreach (var instance in overriddenPrefabInstances)
             {
                 Debug.Log($"ルートの Prefab が変更されています：{instance}");
             }

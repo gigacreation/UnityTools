@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -16,7 +15,7 @@ namespace GigaCreation.Tools.General
 
         private void OnValidate()
         {
-            IEnumerable<Target> targets = _targetKind switch
+            var targets = _targetKind switch
             {
                 TargetKind.Self => new[] { new Target { GameObject = gameObject, Visible = _visible } },
 
@@ -29,7 +28,7 @@ namespace GigaCreation.Tools.General
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            foreach (Target target in targets)
+            foreach (var target in targets)
             {
                 if (!target.GameObject)
                 {

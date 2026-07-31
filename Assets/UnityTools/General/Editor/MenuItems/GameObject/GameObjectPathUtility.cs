@@ -14,7 +14,7 @@ namespace GigaCreation.Tools.General.Editor
         [MenuItem(CopyGameObjectPathName, priority = CategoryPriority)]
         private static void CopyGameObjectPath()
         {
-            GameObject[] gameObjects = Selection.objects.OfType<GameObject>().ToArray();
+            var gameObjects = Selection.objects.OfType<GameObject>().ToArray();
 
             if (gameObjects.Length == 0)
             {
@@ -30,7 +30,7 @@ namespace GigaCreation.Tools.General.Editor
 
                 sb.Append(gameObjects[i].name);
 
-                Transform current = gameObjects[i].transform.parent;
+                var current = gameObjects[i].transform.parent;
 
                 while (current != null)
                 {
