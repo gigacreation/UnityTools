@@ -14,7 +14,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         [SerializeField] private bool _onlyOnceOnStart;
 
         private IDebugManager _debugManager;
-        private DebugLabelManager _debugLabelManager;
+        private DebugLabelControl _debugLabelControl;
         private TextMeshProUGUI _label;
         private bool _isQuitting;
         private IDisposable _labelUpdateDisposable;
@@ -36,12 +36,12 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
             _labelUpdateDisposable?.Dispose();
             _labelUpdateDisposable = null;
 
-            if (_isQuitting || !_debugLabelManager)
+            if (_isQuitting || !_debugLabelControl)
             {
                 return;
             }
 
-            _debugLabelManager.Remove(_priority);
+            _debugLabelControl.Remove(_priority);
         }
 
         private void OnApplicationQuit()
@@ -78,18 +78,18 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
         private TextMeshProUGUI AddLabel()
         {
-            if (!TryGetComponent(out _debugLabelManager))
+            if (!TryGetComponent(out _debugLabelControl))
             {
-                _debugLabelManager = FindAnyObjectByType<DebugLabelManager>();
+                _debugLabelControl = FindAnyObjectByType<DebugLabelControl>();
             }
 
-            if (!_debugLabelManager)
+            if (!_debugLabelControl)
             {
                 Debug.LogError("シーン内に DebugLabelManager が存在していません。");
                 return null;
             }
 
-            return _debugLabelManager.Add(_priority);
+            return _debugLabelControl.Add(_priority);
         }
 
         protected virtual IDisposable ActivateLabelUpdate()

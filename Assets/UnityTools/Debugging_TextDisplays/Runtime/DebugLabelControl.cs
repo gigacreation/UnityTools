@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging.TextDisplays
 {
-    public class DebugLabelManager : MonoBehaviour
+    public class DebugLabelControl : MonoBehaviour
     {
         [Header("Assets")]
         [SerializeField] private TextMeshProUGUI _labelPrefab;
@@ -16,7 +16,8 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
         private readonly Dictionary<int, TextMeshProUGUI> _labels = new();
 
-        protected Transform LabelParent => transform;
+        protected IReadOnlyDictionary<int, TextMeshProUGUI> Labels => _labels;
+        protected virtual Transform LabelParent => transform;
 
         private void Reset()
         {
@@ -27,8 +28,8 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         /// デバッグラベルを生成して返します。
         /// </summary>
         /// <param name="priority">ラベルの優先度。この順番でソートされて表示されます。</param>
-        /// <returns></returns>
-        public virtual TextMeshProUGUI Add(int priority)
+        /// <returns>生成したラベル。</returns>
+        public TextMeshProUGUI Add(int priority)
         {
             if (_labels.ContainsKey(priority))
             {
@@ -47,7 +48,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         /// 指定されたデバッグラベルを削除します。
         /// </summary>
         /// <param name="priority">削除するラベルの優先度。</param>
-        public virtual void Remove(int priority)
+        public void Remove(int priority)
         {
             if (!_labels.Remove(priority, out var label))
             {
