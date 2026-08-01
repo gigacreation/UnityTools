@@ -4006,7 +4006,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _labelPrefab: {fileID: 0}
-  _transform: {fileID: 1281658668}
   _autoLayoutSupporter: {fileID: 0}
 --- !u!114 &1281658673
 MonoBehaviour:

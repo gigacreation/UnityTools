@@ -6,21 +6,20 @@ using UnityEngine;
 
 namespace GigaCreation.Tools.Debugging.TextDisplays
 {
-    [RequireComponent(typeof(RectTransform))]
     public class DebugLabelManager : MonoBehaviour
     {
         [Header("Assets")]
         [SerializeField] private TextMeshProUGUI _labelPrefab;
 
         [Header("References")]
-        [SerializeField] private Transform _transform;
         [SerializeField] private AutoLayoutSupporter _autoLayoutSupporter;
 
         private readonly Dictionary<int, TextMeshProUGUI> _labels = new();
 
+        protected Transform LabelParent => transform;
+
         private void Reset()
         {
-            _transform = transform;
             _autoLayoutSupporter = GetComponent<AutoLayoutSupporter>();
         }
 
@@ -29,7 +28,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         /// </summary>
         /// <param name="priority">ラベルの優先度。この順番でソートされて表示されます。</param>
         /// <returns></returns>
-        public TextMeshProUGUI Add(int priority)
+        public virtual TextMeshProUGUI Add(int priority)
         {
             if (_labels.ContainsKey(priority))
             {
@@ -37,30 +36,53 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                 return null;
             }
 
-            var gameObjectName = $"DebugLabel_{priority}";
-            TextMeshProUGUI newLabel;
-
-            if (_labelPrefab == null)
-            {
-                var go = new GameObject(gameObjectName)
-                {
-                    transform =
-                    {
-                        parent = _transform,
-                        localScale = Vector3.one
-                    }
-                };
-
-                newLabel = go.AddComponent<TextMeshProUGUI>();
-            }
-            else
-            {
-                newLabel = Instantiate(_labelPrefab, _transform);
-                newLabel.name = gameObjectName;
-            }
-
+            var newLabel = CreateLabel($"DebugLabel_{priority}");
             _labels.Add(priority, newLabel);
+            SortLabels();
+            RebuildLayout();
+            return newLabel;
+        }
 
+        /// <summary>
+        /// 指定されたデバッグラベルを削除します。
+        /// </summary>
+        /// <param name="priority">削除するラベルの優先度。</param>
+        public virtual void Remove(int priority)
+        {
+            if (!_labels.Remove(priority, out var label))
+            {
+                Debug.LogWarning($"要求されたラベルが存在しません：{priority}");
+                return;
+            }
+
+            Destroy(label.gameObject);
+            SortLabels();
+            RebuildLayout();
+        }
+
+        protected virtual TextMeshProUGUI CreateLabel(string gameObjectName)
+        {
+            if (_labelPrefab != null)
+            {
+                var label = Instantiate(_labelPrefab, LabelParent);
+                label.name = gameObjectName;
+                return label;
+            }
+
+            var go = new GameObject(gameObjectName)
+            {
+                transform =
+                {
+                    parent = LabelParent,
+                    localScale = Vector3.one
+                }
+            };
+
+            return go.AddComponent<TextMeshProUGUI>();
+        }
+
+        protected virtual void SortLabels()
+        {
             var sortedLabels = _labels
                 .OrderBy(static pair => pair.Key)
                 .Select(static pair => pair.Value)
@@ -70,29 +92,10 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
             {
                 sortedLabels[i].transform.SetSiblingIndex(i);
             }
-
-            if (_autoLayoutSupporter)
-            {
-                _autoLayoutSupporter.ExecuteRebuilding();
-            }
-
-            return newLabel;
         }
 
-        /// <summary>
-        /// 指定されたデバッグラベルを削除します。
-        /// </summary>
-        /// <param name="priority">削除するラベルの優先度。</param>
-        public void Remove(int priority)
+        protected void RebuildLayout()
         {
-            if (!_labels.Remove(priority, out var label))
-            {
-                Debug.LogWarning($"要求されたラベルが存在しません：{priority}");
-                return;
-            }
-
-            Destroy(label.gameObject);
-
             if (_autoLayoutSupporter)
             {
                 _autoLayoutSupporter.ExecuteRebuilding();
