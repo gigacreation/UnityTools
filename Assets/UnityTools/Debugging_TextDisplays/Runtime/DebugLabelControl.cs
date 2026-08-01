@@ -8,16 +8,14 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 {
     public class DebugLabelControl : MonoBehaviour
     {
-        [Header("Assets")]
-        [SerializeField] private TextMeshProUGUI _labelPrefab;
-
-        [Header("References")]
+        [SerializeField] private GameObject _labelPrefab;
         [SerializeField] private AutoLayoutSupporter _autoLayoutSupporter;
 
         private readonly Dictionary<int, TextMeshProUGUI> _labels = new();
 
-        protected IReadOnlyDictionary<int, TextMeshProUGUI> Labels => _labels;
-        protected virtual Transform LabelParent => transform;
+        protected IEnumerable<TextMeshProUGUI> SortedLabels => _labels
+            .OrderBy(static pair => pair.Key)
+            .Select(static pair => pair.Value);
 
         private void Reset()
         {
@@ -63,18 +61,20 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
         protected virtual TextMeshProUGUI CreateLabel(string gameObjectName)
         {
+            GameObject go;
+
             if (_labelPrefab != null)
             {
-                var label = Instantiate(_labelPrefab, LabelParent);
-                label.name = gameObjectName;
-                return label;
+                go = Instantiate(_labelPrefab, transform);
+                go.name = gameObjectName;
+                return go.GetComponentInChildren<TextMeshProUGUI>();
             }
 
-            var go = new GameObject(gameObjectName)
+            go = new GameObject(gameObjectName)
             {
                 transform =
                 {
-                    parent = LabelParent,
+                    parent = transform,
                     localScale = Vector3.one
                 }
             };
@@ -84,10 +84,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
         protected virtual void SortLabels()
         {
-            var sortedLabels = _labels
-                .OrderBy(static pair => pair.Key)
-                .Select(static pair => pair.Value)
-                .ToArray();
+            var sortedLabels = SortedLabels.ToArray();
 
             for (var i = 0; i < sortedLabels.Length; i++)
             {
@@ -95,7 +92,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
             }
         }
 
-        protected void RebuildLayout()
+        private void RebuildLayout()
         {
             if (_autoLayoutSupporter)
             {
