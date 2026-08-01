@@ -8,12 +8,12 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 {
     public class DebugLabelControl : MonoBehaviour
     {
-        [SerializeField] private GameObject _labelPrefab;
+        [SerializeField] private GameObject _debugTextPrefab;
         [SerializeField] private AutoLayoutSupporter _autoLayoutSupporter;
 
-        private readonly Dictionary<int, TextMeshProUGUI> _labels = new();
+        private readonly Dictionary<int, GameObject> _debugTexts = new();
 
-        protected IEnumerable<TextMeshProUGUI> SortedLabels => _labels
+        protected IEnumerable<GameObject> SortedDebugTexts => _debugTexts
             .OrderBy(static pair => pair.Key)
             .Select(static pair => pair.Value);
 
@@ -29,17 +29,17 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         /// <returns>生成したラベル。</returns>
         public TextMeshProUGUI Add(int priority)
         {
-            if (_labels.ContainsKey(priority))
+            if (_debugTexts.ContainsKey(priority))
             {
                 Debug.LogError($"すでに同じ優先度のデバッグラベルが登録されています：{priority}");
                 return null;
             }
 
-            var newLabel = CreateLabel($"DebugLabel_{priority}");
-            _labels.Add(priority, newLabel);
+            var newGameObject = CreateLabel($"DebugLabel_{priority}");
+            _debugTexts.Add(priority, newGameObject);
             SortLabels();
             RebuildLayout();
-            return newLabel;
+            return newGameObject.GetComponentInChildren<TextMeshProUGUI>();
         }
 
         /// <summary>
@@ -48,47 +48,50 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         /// <param name="priority">削除するラベルの優先度。</param>
         public void Remove(int priority)
         {
-            if (!_labels.Remove(priority, out var label))
+            if (!_debugTexts.Remove(priority, out var label))
             {
                 Debug.LogWarning($"要求されたラベルが存在しません：{priority}");
                 return;
             }
 
-            Destroy(label.gameObject);
+            Destroy(label);
             SortLabels();
             RebuildLayout();
         }
 
-        protected virtual TextMeshProUGUI CreateLabel(string gameObjectName)
+        protected virtual GameObject CreateLabel(string gameObjectName)
         {
             GameObject go;
 
-            if (_labelPrefab != null)
+            if (_debugTextPrefab != null)
             {
-                go = Instantiate(_labelPrefab, transform);
+                go = Instantiate(_debugTextPrefab, transform);
                 go.name = gameObjectName;
-                return go.GetComponentInChildren<TextMeshProUGUI>();
+            }
+            else
+            {
+                go = new GameObject(gameObjectName)
+                {
+                    transform =
+                    {
+                        parent = transform,
+                        localScale = Vector3.one
+                    }
+                };
+
+                go.AddComponent<TextMeshProUGUI>();
             }
 
-            go = new GameObject(gameObjectName)
-            {
-                transform =
-                {
-                    parent = transform,
-                    localScale = Vector3.one
-                }
-            };
-
-            return go.AddComponent<TextMeshProUGUI>();
+            return go;
         }
 
         protected virtual void SortLabels()
         {
-            var sortedLabels = SortedLabels.ToArray();
+            var sorted = SortedDebugTexts.ToArray();
 
-            for (var i = 0; i < sortedLabels.Length; i++)
+            for (var i = 0; i < sorted.Length; i++)
             {
-                sortedLabels[i].transform.SetSiblingIndex(i);
+                sorted[i].transform.SetSiblingIndex(i);
             }
         }
 
