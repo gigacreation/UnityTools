@@ -3919,6 +3919,7 @@ GameObject:
   - component: {fileID: 1281658677}
   - component: {fileID: 1281658679}
   - component: {fileID: 1281658669}
+  - component: {fileID: 1281658682}
   - component: {fileID: 1281658680}
   m_Layer: 5
   m_Name: DebugInfo
@@ -3958,7 +3959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e99de77fb22a64e91e6899ec1c44e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 10
   _onlyOnceOnStart: 1
   _buildTimestamp: {fileID: 11400000, guid: c2b13b312d90e3d4389c02d78615dae3, type: 2}
   _format: yyyy/MM/dd HH:mm:ss
@@ -3975,7 +3975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98a9ffd87144124093afb8c9f8170f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 2
   _onlyOnceOnStart: 0
 --- !u!114 &1281658671
 MonoBehaviour:
@@ -3989,7 +3988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e463d7d5eba649889e8fab6eb226d8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 0
   _onlyOnceOnStart: 0
   _bufferSize: 5
   _ignoreTimeScale: 1
@@ -4097,7 +4095,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44eb11539ce94d16bfb248cd86700fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 3
   _onlyOnceOnStart: 0
 --- !u!114 &1281658678
 MonoBehaviour:
@@ -4111,7 +4108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199dd20054144e41becc3f644f571e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 1
   _onlyOnceOnStart: 0
 --- !u!114 &1281658679
 MonoBehaviour:
@@ -4125,7 +4121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62eeefc227641778b448932123f6bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 4
   _onlyOnceOnStart: 1
 --- !u!114 &1281658680
 MonoBehaviour:
@@ -4153,6 +4148,19 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1281658682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281658667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0b4611f9024607b3d35b1a1b2013c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onlyOnceOnStart: 0
 --- !u!1 &1309692031
 GameObject:
   m_ObjectHideFlags: 0

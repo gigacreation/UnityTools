@@ -10,7 +10,6 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 {
     public abstract class DebugTextPreferenceBase : MonoBehaviour
     {
-        [SerializeField] private int _priority;
         [SerializeField] private bool _onlyOnceOnStart;
 
         private IDebugManager _debugManager;
@@ -41,7 +40,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                 return;
             }
 
-            _debugLabelControl.Remove(_priority);
+            _debugLabelControl.Remove(GetComponentIndex());
         }
 
         private void OnApplicationQuit()
@@ -89,13 +88,12 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                 return null;
             }
 
-            return _debugLabelControl.Add(_priority);
+            return _debugLabelControl.Add(GetComponentIndex());
         }
 
         protected virtual IDisposable ActivateLabelUpdate()
         {
-            return this
-                .UpdateAsObservable()
+            return this.UpdateAsObservable()
                 .Subscribe(_ =>
                 {
                     UpdateLabel();
