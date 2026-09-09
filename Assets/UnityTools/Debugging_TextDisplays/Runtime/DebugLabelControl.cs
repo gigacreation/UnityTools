@@ -26,8 +26,9 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         /// デバッグラベルを生成して返します。
         /// </summary>
         /// <param name="priority">ラベルの優先度。この順番でソートされて表示されます。</param>
+        /// <param name="emphasis">true なら、ラベルを強調します。</param>
         /// <returns>生成したラベル。</returns>
-        public TextMeshProUGUI Add(int priority)
+        public TextMeshProUGUI Add(int priority, bool emphasis)
         {
             if (_debugTexts.ContainsKey(priority))
             {
@@ -35,7 +36,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                 return null;
             }
 
-            var newGameObject = CreateLabel($"DebugLabel_{priority}");
+            var newGameObject = CreateLabel($"DebugLabel_{priority}", emphasis);
             _debugTexts.Add(priority, newGameObject);
             SortLabels();
             RebuildLayout();
@@ -59,7 +60,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
             RebuildLayout();
         }
 
-        protected virtual GameObject CreateLabel(string gameObjectName)
+        protected virtual GameObject CreateLabel(string gameObjectName, bool emphasis)
         {
             GameObject go;
 
@@ -70,19 +71,24 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
             }
             else
             {
-                go = new GameObject(gameObjectName)
-                {
-                    transform =
-                    {
-                        parent = transform,
-                        localScale = Vector3.one
-                    }
-                };
+                go = new GameObject(gameObjectName, typeof(TextMeshProUGUI));
+                go.transform.SetParent(transform);
+                go.transform.localScale = Vector3.one;
+            }
 
-                go.AddComponent<TextMeshProUGUI>();
+            if (emphasis)
+            {
+                Emphasis(go);
             }
 
             return go;
+        }
+
+        protected virtual void Emphasis(GameObject go)
+        {
+            var label = go.GetComponent<TextMeshProUGUI>();
+            label.color = Color.red;
+            label.fontStyle = FontStyles.Bold;
         }
 
         protected virtual void SortLabels()

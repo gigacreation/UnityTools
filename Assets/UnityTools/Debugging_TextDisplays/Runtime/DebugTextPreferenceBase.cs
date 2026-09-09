@@ -11,6 +11,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
     public abstract class DebugTextPreferenceBase : MonoBehaviour
     {
         [SerializeField] private bool _onlyOnceOnStart;
+        [SerializeField] private bool _emphasis;
 
         private IDebugManager _debugManager;
         private DebugLabelControl _debugLabelControl;
@@ -58,8 +59,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                 return;
             }
 
-            _debugManager
-                .IsDebugMode
+            _debugManager.IsDebugMode
                 .Subscribe(isOn =>
                 {
                     if (isOn)
@@ -88,7 +88,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                 return null;
             }
 
-            return _debugLabelControl.Add(GetComponentIndex());
+            return _debugLabelControl.Add(GetComponentIndex(), _emphasis);
         }
 
         protected virtual IDisposable ActivateLabelUpdate()

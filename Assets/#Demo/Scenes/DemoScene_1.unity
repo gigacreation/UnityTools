@@ -3960,6 +3960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onlyOnceOnStart: 1
+  _emphasis: 0
   _buildTimestamp: {fileID: 11400000, guid: c2b13b312d90e3d4389c02d78615dae3, type: 2}
   _format: yyyy/MM/dd HH:mm:ss
   _utcOffsetHours: 9
@@ -3976,6 +3977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onlyOnceOnStart: 0
+  _emphasis: 0
 --- !u!114 &1281658671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3989,6 +3991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onlyOnceOnStart: 0
+  _emphasis: 0
   _bufferSize: 5
   _ignoreTimeScale: 1
 --- !u!114 &1281658672
@@ -4096,6 +4099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onlyOnceOnStart: 0
+  _emphasis: 0
 --- !u!114 &1281658678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4109,6 +4113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onlyOnceOnStart: 0
+  _emphasis: 0
 --- !u!114 &1281658679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4122,6 +4127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onlyOnceOnStart: 1
+  _emphasis: 0
 --- !u!114 &1281658680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4161,6 +4167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onlyOnceOnStart: 0
+  _emphasis: 1
 --- !u!1 &1309692031
 GameObject:
   m_ObjectHideFlags: 0
