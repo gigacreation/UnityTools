@@ -86,7 +86,7 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
 
         protected virtual void Emphasis(GameObject go)
         {
-            var label = go.GetComponent<TextMeshProUGUI>();
+            var label = go.GetComponentInChildren<TextMeshProUGUI>();
             label.color = Color.red;
             label.fontStyle = FontStyles.Bold;
         }

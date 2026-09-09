@@ -3912,15 +3912,15 @@ GameObject:
   - component: {fileID: 1281658674}
   - component: {fileID: 1281658676}
   - component: {fileID: 1281658673}
+  - component: {fileID: 1281658680}
   - component: {fileID: 1281658672}
   - component: {fileID: 1281658671}
   - component: {fileID: 1281658678}
   - component: {fileID: 1281658670}
+  - component: {fileID: 1281658682}
   - component: {fileID: 1281658677}
   - component: {fileID: 1281658679}
   - component: {fileID: 1281658669}
-  - component: {fileID: 1281658682}
-  - component: {fileID: 1281658680}
   m_Layer: 5
   m_Name: DebugInfo
   m_TagString: Untagged
