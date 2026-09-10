@@ -88,7 +88,6 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
         {
             var label = go.GetComponentInChildren<TextMeshProUGUI>();
             label.color = Color.red;
-            label.fontStyle = FontStyles.Bold;
         }
 
         protected virtual void SortLabels()
