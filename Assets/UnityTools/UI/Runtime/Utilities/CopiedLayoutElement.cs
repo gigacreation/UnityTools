@@ -29,6 +29,11 @@ namespace GigaCreation.Tools.Ui
         [Space]
         [SerializeField] private Vector2 _padding;
 
+        private float _prevMinWidth;
+        private float _prevMinHeight;
+        private float _prevPreferredWidth;
+        private float _prevPreferredHeight;
+
         public float minWidth
         {
             get
@@ -45,7 +50,15 @@ namespace GigaCreation.Tools.Ui
                     return -1f;
                 }
 
-                return LayoutUtility.GetMinWidth(_copySourceOfMinWidth) + _padding.x * 2f;
+                float current = LayoutUtility.GetMinWidth(_copySourceOfMinWidth) + _padding.x * 2f;
+
+                if (!Mathf.Approximately(_prevMinWidth, current))
+                {
+                    SetDirty();
+                }
+
+                _prevMinWidth = current;
+                return current;
             }
         }
 
@@ -65,7 +78,15 @@ namespace GigaCreation.Tools.Ui
                     return -1f;
                 }
 
-                return LayoutUtility.GetMinHeight(_copySourceOfMinHeight) + _padding.y * 2f;
+                float current = LayoutUtility.GetMinHeight(_copySourceOfMinHeight) + _padding.y * 2f;
+
+                if (!Mathf.Approximately(_prevMinHeight, current))
+                {
+                    SetDirty();
+                }
+
+                _prevMinHeight = current;
+                return current;
             }
         }
 
@@ -85,7 +106,15 @@ namespace GigaCreation.Tools.Ui
                     return -1f;
                 }
 
-                return LayoutUtility.GetPreferredWidth(_copySourceOfPreferredWidth) + _padding.x * 2f;
+                float current = LayoutUtility.GetPreferredWidth(_copySourceOfPreferredWidth) + _padding.x * 2f;
+
+                if (!Mathf.Approximately(_prevPreferredWidth, current))
+                {
+                    SetDirty();
+                }
+
+                _prevPreferredWidth = current;
+                return current;
             }
         }
 
@@ -105,18 +134,53 @@ namespace GigaCreation.Tools.Ui
                     return -1f;
                 }
 
-                return LayoutUtility.GetPreferredHeight(_copySourceOfPreferredHeight) + _padding.y * 2f;
+                float current = LayoutUtility.GetPreferredHeight(_copySourceOfPreferredHeight) + _padding.y * 2f;
+
+                if (!Mathf.Approximately(_prevPreferredHeight, current))
+                {
+                    SetDirty();
+                }
+
+                _prevPreferredHeight = current;
+                return current;
             }
         }
 
-        public int layoutPriority => 2;
-        public float flexibleHeight => -1f;
         public float flexibleWidth => -1f;
+        public float flexibleHeight => -1f;
+        public int layoutPriority => 2;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            SetDirty();
+        }
+
+        protected override void OnDisable()
+        {
+            SetDirty();
+            base.OnDisable();
+        }
+
+        protected override void OnBeforeTransformParentChanged()
+        {
+            SetDirty();
+        }
+
+        protected override void OnTransformParentChanged()
+        {
+            SetDirty();
+        }
+
+        protected override void OnDidApplyAnimationProperties()
+        {
+            SetDirty();
+        }
 
 #if UNITY_EDITOR
         protected override void OnValidate()
         {
-            LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
+            SetDirty();
         }
 #endif
 
@@ -126,6 +190,16 @@ namespace GigaCreation.Tools.Ui
 
         public void CalculateLayoutInputVertical()
         {
+        }
+
+        private void SetDirty()
+        {
+            if (!IsActive())
+            {
+                return;
+            }
+
+            LayoutRebuilder.MarkLayoutForRebuild(transform as RectTransform);
         }
     }
 }
