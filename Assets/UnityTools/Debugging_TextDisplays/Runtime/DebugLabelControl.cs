@@ -76,18 +76,15 @@ namespace GigaCreation.Tools.Debugging.TextDisplays
                 go.transform.localScale = Vector3.one;
             }
 
-            if (emphasis)
-            {
-                Emphasis(go);
-            }
+            SetEmphasized(go, emphasis);
 
             return go;
         }
 
-        protected virtual void Emphasis(GameObject go)
+        protected virtual void SetEmphasized(GameObject go, bool emphasized)
         {
             var label = go.GetComponentInChildren<TextMeshProUGUI>();
-            label.color = Color.red;
+            label.color = emphasized ? Color.red : Color.white;
         }
 
         protected virtual void SortLabels()
